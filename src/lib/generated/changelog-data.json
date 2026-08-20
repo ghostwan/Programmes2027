@@ -1,5 +1,30 @@
 [
   {
+    "version": "1.6.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Modifié",
+        "items": [
+          "Réordonné les colonnes des tableaux de comparaison des partis pour suivre le spectre politique de gauche à droite, avec le PCF désormais positionné tout à gauche."
+        ]
+      },
+      {
+        "name": "Ajouté",
+        "items": [
+          "47 nouvelles propositions de La France Insoumise, issues d'une lecture intégrale des 18 chapitres du programme officiel « L'Avenir en commun » édition 2025 (institutions comme l'Assemblée constituante ou la fin du 49.3, économie avec la séparation bancaire ou le plafonnement des héritages, un important volet immigration jusqu'ici quasiment absent — droit du sol, vote des étrangers, Commissariat à l'égalité —, ainsi que santé, éducation, environnement, Europe et sécurité).",
+          "13 nouvelles propositions du PCF issues de ses cahiers thématiques officiels « Les Jours heureux », en particulier sur le logement (service public national du logement, acte 2 de la loi SRU, pôle financier public, permis de louer généralisé, garantie sociale contre la caution locative, etc.) et une proposition sur la sortie du commandement militaire intégré de l'OTAN (partagée avec LFI)."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "Ajout de La France Insoumise sur plusieurs propositions déjà existantes qu'elle partage avec d'autres partis (légalisation du cannabis, désescalade policière et interdiction du LBD40, plafond des salaires en entreprise, écocide, gestion publique de l'eau, statut de réfugié climatique)."
+        ]
+      }
+    ]
+  },
+  {
     "version": "1.5.0",
     "date": "2026-08-20",
     "categories": [

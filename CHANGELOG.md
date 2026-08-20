@@ -17,6 +17,17 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Modifié
 
+- Nouvelle vérification croisée entre partis sur l'ensemble des
+  propositions existantes : ajout du PS et/ou du PCF sur plusieurs
+  mesures qu'ils partagent (service public de la petite enfance, plan
+  santé mentale, lutte contre la malbouffe, désescalade policière,
+  réforme du Conseil de sécurité de l'ONU, pôle public du médicament,
+  acte 2 de la loi SRU, objectif national des besoins de santé).
+
+## [1.6.0] - 2026-08-20
+
+### Modifié
+
 - Réordonné les colonnes des tableaux de comparaison des partis pour
   suivre le spectre politique de gauche à droite, avec le PCF désormais
   positionné tout à gauche.

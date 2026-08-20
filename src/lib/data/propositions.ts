@@ -542,7 +542,7 @@ export const propositions: Proposition[] = [
     title: "Adopter une nouvelle doctrine de maintien de l'ordre fondée sur la désescalade",
     description:
       "Interdire les lanceurs de balles de défense (LBD40), encadrer strictement la vidéosurveillance et fonder l'action des forces de l'ordre sur le dialogue et la désescalade plutôt que la confrontation systématique.",
-    supportingParties: ["eelv", "lfi"],
+    supportingParties: ["eelv", "lfi", "ps"],
   },
   {
     id: "secu-legitime-defense",
@@ -794,7 +794,7 @@ export const propositions: Proposition[] = [
     title: "Remplacer l'ONDAM par un objectif national des besoins (ONBAM)",
     description:
       "Changer la logique de pilotage budgétaire de la santé pour partir des besoins de la population plutôt que d'une enveloppe budgétaire fermée fixée à l'avance.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "pcf"],
   },
   {
     id: "sante-medicament-unite",
@@ -1330,7 +1330,7 @@ export const propositions: Proposition[] = [
     title: "Créer un acte 2 de la loi SRU avec un seuil à 30%",
     description:
       "Relever de 25% à 30% le seuil obligatoire de logements sociaux dans les communes soumises à la loi SRU et durcir les sanctions contre les maires récalcitrants (jusqu'à l'inéligibilité et la reprise des permis de construire par le préfet), en contrepartie d'une dotation de fonctionnement pour les villes qui en construisent beaucoup.",
-    supportingParties: ["pcf"],
+    supportingParties: ["pcf", "lfi"],
   },
   {
     id: "log-aide-pierre",
@@ -1562,7 +1562,7 @@ export const propositions: Proposition[] = [
     title: "Créer un service public de la petite enfance",
     description:
       "Créer 500 000 places de crèche publiques supplémentaires en cinq ans, geler l'ouverture de nouvelles crèches privées lucratives et garantir la gratuité des crèches publiques.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "ps", "pcf"],
   },
   {
     id: "edu-scolarite-18-ans",
@@ -1602,7 +1602,7 @@ export const propositions: Proposition[] = [
     title: "Créer un pôle public du médicament",
     description:
       "Relocaliser la production de médicaments jugés stratégiques, constituer une réserve publique et nationaliser certaines filiales critiques en cas de rupture d'approvisionnement.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "pcf"],
   },
   {
     id: "sante-mentale-plan",
@@ -1610,7 +1610,7 @@ export const propositions: Proposition[] = [
     title: "Lancer un plan national pour la santé mentale",
     description:
       "Rouvrir des lits de psychiatrie publique, renforcer les centres médico-psychologiques et permettre le remboursement d'un suivi psychologique ambulatoire régulier.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "ps"],
   },
   {
     id: "sante-malbouffe",
@@ -1618,7 +1618,7 @@ export const propositions: Proposition[] = [
     title: "Lutter contre la malbouffe et la publicité alimentaire ciblant les enfants",
     description:
       "Interdire les additifs alimentaires controversés, rendre le Nutri-score obligatoire, interdire la publicité pour la malbouffe destinée aux enfants et viser 100% de bio et local en restauration collective.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "ps"],
   },
   {
     id: "env-sortie-nucleaire",
@@ -1754,7 +1754,7 @@ export const propositions: Proposition[] = [
     title: "Réformer le Conseil de sécurité de l'ONU pour le rendre plus représentatif",
     description:
       "Agir pour une réforme du Conseil de sécurité et de l'Assemblée générale des Nations unies afin qu'ils reflètent mieux les équilibres du monde actuel, et réaffirmer l'ONU comme seule instance légitime de sécurité collective.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "ps"],
   },
   {
     id: "europe-reconnaissance-palestine",
