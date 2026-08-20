@@ -1,6 +1,6 @@
 {
   "name": "programmes2027",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "private": true,
   "scripts": {
     "predev": "node scripts/generate-changelog-data.mjs",

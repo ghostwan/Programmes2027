@@ -17,6 +17,16 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un liseret coloré sur les bords de l'écran (rouge à gauche, vert à
+  droite) qui s'intensifie en temps réel pendant qu'on swipe une
+  proposition, pour rappeler visuellement si le geste va compter comme
+  « contre » ou « pour » avant même de relâcher la carte. Le swipe
+  fonctionne depuis n'importe quel endroit de la carte.
+
+## [2.4.0] - 2026-08-20
+
+### Ajouté
+
 - Un bouton pour masquer l'avertissement sur l'ordre aléatoire des
   propositions dans le jeu, une fois lu ; ce choix est mémorisé pour
   les prochaines visites.

@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.4.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Un bouton pour masquer l'avertissement sur l'ordre aléatoire des propositions dans le jeu, une fois lu ; ce choix est mémorisé pour les prochaines visites."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.3.0",
     "date": "2026-08-20",
     "categories": [

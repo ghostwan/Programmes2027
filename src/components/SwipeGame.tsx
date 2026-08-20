@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
-import { motion, useAnimation, type PanInfo } from "framer-motion";
+import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { Answer, AnswersMap, GameState } from "@/lib/types";
@@ -100,6 +100,12 @@ export function SwipeGame() {
 function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }) {
   const router = useRouter();
   const controls = useAnimation();
+  // Real-time drag position, used both to tilt the card and to drive the
+  // red/green edge glows while the user is dragging — not just at release.
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-300, 300], [-15, 15]);
+  const leftGlowOpacity = useTransform(x, [-160, -20], [0.9, 0]);
+  const rightGlowOpacity = useTransform(x, [20, 160], [0, 0.9]);
 
   const [deckIds] = useState<string[]>(
     () => initialSavedState?.deckIds ?? createNewDeckIds()
@@ -192,13 +198,15 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
   async function handleDragEnd(_: unknown, info: PanInfo) {
     const threshold = 100;
     if (info.offset.x > threshold) {
-      await controls.start({ x: 500, opacity: 0, rotate: 20 });
+      await controls.start({ x: 500, opacity: 0 });
+      x.set(0);
       answer("pour");
     } else if (info.offset.x < -threshold) {
-      await controls.start({ x: -500, opacity: 0, rotate: -20 });
+      await controls.start({ x: -500, opacity: 0 });
+      x.set(0);
       answer("contre");
     } else {
-      controls.start({ x: 0, rotate: 0 });
+      controls.start({ x: 0, opacity: 1 });
     }
   }
 
@@ -282,6 +290,26 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
           </button>
         </p>
       )}
+      {/* Edge glows: real-time feedback on which side the current drag
+          would count as, visible along the screen edges regardless of
+          where on the card the drag started. */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none fixed inset-y-0 left-0 z-40 w-4 sm:w-6"
+        style={{
+          opacity: leftGlowOpacity,
+          background: "linear-gradient(to right, rgba(244,63,94,0.9), transparent)",
+        }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none fixed inset-y-0 right-0 z-40 w-4 sm:w-6"
+        style={{
+          opacity: rightGlowOpacity,
+          background: "linear-gradient(to left, rgba(16,185,129,0.9), transparent)",
+        }}
+      />
+
       {/* Card */}
       <div className="relative flex flex-1 items-center justify-center py-4">
         <motion.div
@@ -290,7 +318,8 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
           dragConstraints={{ left: 0, right: 0 }}
           onDragEnd={handleDragEnd}
           animate={controls}
-          initial={{ opacity: 1, scale: 1, x: 0, rotate: 0 }}
+          style={{ x, rotate }}
+          initial={{ opacity: 1, scale: 1 }}
           className="flex h-[440px] w-full cursor-grab flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-xl active:cursor-grabbing"
         >
           <span className="w-fit shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
