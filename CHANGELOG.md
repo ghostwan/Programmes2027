@@ -15,6 +15,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Corrigé
+
+- Retiré le drapeau français de la colonne « Déjà mis en œuvre », qui
+  n'apportait aucune information puisque toutes les propositions
+  comparées concernent déjà la France.
+
+## [1.7.0] - 2026-08-20
+
 ### Ajouté
 
 - Une colonne « Déjà mis en œuvre » dans les tableaux de comparaison,

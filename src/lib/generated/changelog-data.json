@@ -1,5 +1,27 @@
 [
   {
+    "version": "1.7.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Une colonne « Déjà mis en œuvre » dans les tableaux de comparaison, affichant les drapeaux des pays où une mesure comparable existe déjà, à partir des exemples internationaux déjà documentés.",
+          "Un lien discret ✏️ sur chaque proposition permettant de signaler qu'un parti la soutient (ou ne la soutient plus), via une issue GitHub pré-remplie avec le contexte et un espace pour indiquer la source — sans ajouter de sollicitation de notre serveur.",
+          "Un avertissement en bas de chaque page thématique précisant que tous les programmes ne sont pas encore disponibles ou finalisés, que les données reflètent les sources actuellement publiées, et qu'elles seront mises à jour progressivement au fil de la campagne.",
+          "33 nouvelles propositions de Renaissance issues de deux documents officiels du parti (conventions thématiques « Nouvelle donne économique et climatique » et « Une République ferme, une France apaisée »), comblant un manque important sur la sécurité et l'immigration (système d'immigration à points inspiré du Canada, renforcement des polices municipales, durcissement du regroupement familial, etc.), ainsi que sur l'économie, l'environnement (relance du nucléaire EPR/SMR) et les institutions."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "Nouvelle vérification croisée entre partis sur l'ensemble des propositions existantes : ajout du PS et/ou du PCF sur plusieurs mesures qu'ils partagent (service public de la petite enfance, plan santé mentale, lutte contre la malbouffe, désescalade policière, réforme du Conseil de sécurité de l'ONU, pôle public du médicament, acte 2 de la loi SRU, objectif national des besoins de santé).",
+          "Réduction significative des sollicitations du serveur : le site étant entièrement statique, les pages déjà générées sont désormais servies directement depuis le cache d'assets de Cloudflare plutôt que recalculées à chaque visite, et les fichiers immuables du site sont mis en cache par le navigateur sur le long terme."
+        ]
+      }
+    ]
+  },
+  {
     "version": "1.6.0",
     "date": "2026-08-20",
     "categories": [
