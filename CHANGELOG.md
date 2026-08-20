@@ -17,6 +17,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- 75 nouvelles propositions des Républicains issues d'une lecture
+  complète de 7 documents officiels du parti (nucléaire et électricité,
+  agriculture, logement, intelligence artificielle, réindustrialisation
+  et politique familiale), comblant un manque important sur le
+  logement, l'environnement/énergie et les institutions, avec
+  notamment la suppression de l'encadrement des loyers, la relance du
+  nucléaire (EPR2, réacteurs 80 ans), un ministère de l'IA, ou la
+  suppression de l'Office français de la biodiversité.
 - 47 nouveaux exemples internationaux documentés (pays, période, bilan
   sourcé), portant leur nombre total à 93 propositions sur 206, pour
   enrichir la colonne « Déjà mis en œuvre » sur de nombreuses mesures

@@ -1369,7 +1369,7 @@ export const propositions: Proposition[] = [
     themeId: "logement",
     title: "Recentrer l'attribution des logements sociaux sur les actifs",
     description:
-      "Réformer les critères d'attribution des HLM pour prioriser les personnes qui travaillent et leurs familles.",
+      "Réformer les critères d'attribution des HLM pour prioriser les personnes qui travaillent et leurs familles, en abaissant le plafond de ressources d'accès au 5e décile de revenus et en réexaminant la situation des locataires tous les cinq ans.",
     supportingParties: ["lr"],
   },
   {
@@ -2098,7 +2098,7 @@ export const propositions: Proposition[] = [
     title: "Remplacer le congé parental par un congé de naissance de 6 mois mieux rémunéré",
     description:
       "Créer un congé de naissance de six mois rémunéré à 70% du plafond de la Sécurité sociale, en remplacement du congé parental actuel, pour favoriser le partage entre parents et le maintien en emploi des femmes.",
-    supportingParties: ["renaissance"],
+    supportingParties: ["renaissance", "lr"],
   },
   {
     id: "travail-transparence-salaires",
@@ -2411,6 +2411,606 @@ export const propositions: Proposition[] = [
     description:
       "Doter l'organisme public de lutte contre les discriminations d'un service de testing systématique en entreprise, publier les résultats et exiger des plans d'action des entreprises identifiées comme discriminantes.",
     supportingParties: ["renaissance"],
+  },
+  {
+    id: "eco-revenu-familial-unique",
+    themeId: "economie",
+    title: "Fusionner les aides familiales en un « Revenu familial » unique",
+    description:
+      "Fusionner une douzaine de dispositifs d'aide aux familles (allocations familiales, quotient familial, complément familial...) en une allocation unique de 240€ par mois et par enfant mineur dès le premier enfant, doublée pour le troisième enfant.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-choc-transmission-jeunes",
+    themeId: "economie",
+    title: "Relever temporairement le plafond des dons familiaux exonérés pour les jeunes",
+    description:
+      "Porter pendant trois ans le plafond des dons familiaux exonérés de droits à 150 000€ pour les moins de 30 ans et 100 000€ pour les moins de 40 ans, contre environ 32 000€ actuellement.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-fonds-pension-productif",
+    themeId: "economie",
+    title: "Créer un fonds de pension productif de retraite par capitalisation",
+    description:
+      "Créer un étage de retraite par capitalisation individuelle pour chaque actif, alimenté par l'intéressement et la participation, avec un objectif de 1 000 milliards d'euros de capital investi dans les PME et l'industrie françaises.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-transmission-entreprise-report-droits",
+    themeId: "economie",
+    title: "Reporter les droits de succession sur la transmission d'entreprises familiales",
+    description:
+      "Reporter automatiquement l'exigibilité des droits de mutation à titre gratuit sur la transmission d'entreprises familiales (TPE, PME, exploitations agricoles) tant que l'outil de production reste détenu et exploité.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-suppression-c3s-cvae",
+    themeId: "economie",
+    title: "Supprimer la C3S et la CVAE pour l'industrie",
+    description:
+      "Supprimer la contribution sociale de solidarité des sociétés (C3S) et la cotisation sur la valeur ajoutée des entreprises (CVAE), et exonérer la part industrielle de la cotisation foncière des entreprises, pour environ 15 milliards d'euros d'allègement ciblé sur l'industrie.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-reciprocite-controles-douaniers",
+    themeId: "economie",
+    title: "Réorienter la moitié des contrôles douaniers vers les produits importés",
+    description:
+      "Réorienter au moins la moitié des contrôles douaniers et sanitaires vers les produits importés, étendre le mécanisme d'ajustement carbone aux produits transformés et imposer des clauses de réciprocité dans les accords commerciaux.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-foncier-friches-industrielles",
+    themeId: "economie",
+    title: "Recenser et mobiliser les friches industrielles pour la réindustrialisation",
+    description:
+      "Créer un recensement national des friches industrielles sous autorité préfectorale, avec des procédures accélérées, pour libérer environ 25 000 hectares de foncier industriel en dix ans.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-sept-secteurs-strategiques",
+    themeId: "economie",
+    title: "Concentrer la recherche publique sur sept secteurs technologiques stratégiques",
+    description:
+      "Piloter par le Commissariat au Plan la concentration des financements publics de recherche sur sept secteurs jugés stratégiques (énergie, intelligence artificielle, biotechnologies, matériaux, microélectronique, cybersécurité, informatique quantique), pour mettre fin au saupoudrage des aides.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-compartiment-ia-bpi",
+    themeId: "economie",
+    title: "Créer un compartiment IA à la BPI et des data centers souverains",
+    description:
+      "Créer un fonds dédié à la BPI pour financer les scale-up technologiques françaises en intelligence artificielle et déployer des data centers souverains, avec un objectif de plusieurs gigawatts de capacité d'ici 2035.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-suppression-contribution-actionnariat-salarie",
+    themeId: "economie",
+    title: "Supprimer la contribution patronale sur l'actionnariat salarié",
+    description:
+      "Supprimer la contribution patronale sur les actions gratuites, BSPCE et stock-options pour faciliter le partage de la valeur et la rétention des talents, notamment dans la tech.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-buy-european-first-numerique",
+    themeId: "economie",
+    title: "Instaurer un critère de souveraineté dans la commande publique numérique",
+    description:
+      "Créer un « pourcentage de souveraineté » noté pour tout logiciel ou équipement acheté par l'État, prenant en compte l'exposition aux lois extraterritoriales et la chaîne d'approvisionnement, devenant un critère d'attribution des marchés publics.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-code-50-principes",
+    themeId: "travail",
+    title: "Refonder le Code du travail autour de 50 principes intangibles",
+    description:
+      "Réduire le Code du travail à un socle de cinquante principes indépassables, en donnant la primauté à l'accord collectif d'entreprise (ou de branche à défaut) sur la loi supplétive pour le reste.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-veto-normes-entreprises",
+    themeId: "travail",
+    title: "Créer une autorité de contrôle des normes avec droit de veto",
+    description:
+      "Imposer qu'à toute nouvelle règle générant un coût pour les entreprises corresponde la suppression d'un coût équivalent, et créer une autorité indépendante dotée d'un pouvoir de veto sur les nouvelles normes, inspirée du modèle néerlandais.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-fin-droit-erreur-discretionnaire",
+    themeId: "travail",
+    title: "Réserver les sanctions administratives aux seules fraudes intentionnelles",
+    description:
+      "Ne plus sanctionner l'erreur non intentionnelle des entreprises dans leurs démarches administratives, en réservant la sanction à la fraude caractérisée et en faisant reposer la charge de la preuve sur l'administration.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-apprentissage-cap-bac2",
+    themeId: "travail",
+    title: "Réorienter les aides à l'apprentissage vers les niveaux CAP et Bac+2",
+    description:
+      "Réorienter progressivement les aides à l'apprentissage des filières du supérieur vers les niveaux CAP et Bac+2, où l'effet sur l'insertion dans l'emploi est le plus fort, et renforcer le pré-apprentissage pour les jeunes sans emploi ni formation.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-lycees-pro-regions",
+    themeId: "travail",
+    title: "Transférer les lycées professionnels aux régions et aux entreprises",
+    description:
+      "Sortir les lycées professionnels et l'orientation professionnelle du giron de l'Éducation nationale pour les transférer aux régions et aux entreprises, en convergeant progressivement vers le modèle des centres de formation d'apprentis.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-statut-co-entrepreneur-cadres",
+    themeId: "travail",
+    title: "Créer un statut de « co-entrepreneur » pour les cadres dirigeants",
+    description:
+      "Créer un statut d'indépendant pour les cadres dirigeants et experts rares les mieux rémunérés, avec une liberté d'organisation du travail et un accès facilité aux stock-options, en échange d'une sortie du droit du travail classique.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-formation-reconversion-ia",
+    themeId: "travail",
+    title: "Tripler l'effort de formation des actifs menacés par l'intelligence artificielle",
+    description:
+      "Tripler progressivement l'effort national de formation professionnelle pour anticiper les métiers menacés par l'IA, en engageant la formation avant le licenciement et en créant un observatoire dédié.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "travail-cif-sans-plafond",
+    themeId: "travail",
+    title: "Supprimer le plafond du crédit d'impôt famille pour les crèches d'entreprise",
+    description:
+      "Supprimer le plafond de 500 000€ du crédit d'impôt famille dont bénéficient les entreprises finançant des places de crèche pour leurs salariés, et relever fortement le plafond d'exonération de l'aide employeur à la garde d'enfant.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "edu-simplification-creches",
+    themeId: "education",
+    title: "Simplifier les normes d'ouverture des crèches et micro-crèches",
+    description:
+      "Aligner le régime des micro-crèches sur celui, plus souple, des maisons d'assistantes maternelles, et permettre l'ouverture d'une micro-crèche en entreprise en moins de six mois.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "edu-doublement-ingenieurs-ia",
+    themeId: "education",
+    title: "Doubler le nombre d'ingénieurs formés à l'intelligence artificielle",
+    description:
+      "Doubler le nombre d'ingénieurs spécialisés en IA et robotique via des bourses d'excellence, et créer un visa « Talents Tech » pour attirer et rapatrier les talents technologiques français expatriés.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "edu-ia-reservee-lycee",
+    themeId: "education",
+    title: "Réserver l'usage pédagogique de l'IA au lycée",
+    description:
+      "Former les élèves de collège aux savoirs fondamentaux (lire, écrire, compter, raisonner) par des méthodes classiques sans intelligence artificielle, celle-ci n'étant introduite comme outil pédagogique qu'à partir du lycée.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-ministere-ia-cto-etat",
+    themeId: "institutions",
+    title: "Créer un ministère de l'IA et un directeur technologique de l'État",
+    description:
+      "Créer un ministère de plein exercice chargé de l'intelligence artificielle, appuyé par un directeur technologique de l'État ayant autorité sur l'architecture des systèmes d'information publics et la doctrine de souveraineté numérique.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-recentrage-cnil",
+    themeId: "institutions",
+    title: "Recentrer la CNIL sur la protection des mineurs",
+    description:
+      "Auditer la CNIL et redéfinir ses priorités pour la recentrer sur la protection des mineurs et des publics vulnérables plutôt que sur le freinage de l'innovation en intelligence artificielle.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-derogation-rgpd-ai-act",
+    themeId: "institutions",
+    title: "Créer une dérogation expérimentale au RGPD et à l'AI Act",
+    description:
+      "Permettre, pour une durée de trois ans et sur déclaration préalable, de déroger au RGPD et à l'AI Act européen pour les projets de recherche et d'innovation jugés stratégiques.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-automatisation-postes-publics",
+    themeId: "institutions",
+    title: "Réduire de 250 000 postes la fonction publique grâce à l'automatisation",
+    description:
+      "Automatiser les tâches administratives répétitives par l'intelligence artificielle pour redéployer une partie des agents vers le terrain et ne pas remplacer 125 000 départs à la retraite, pour environ 15 milliards d'euros d'économies annuelles.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-agriculture-interet-fondamental",
+    themeId: "institutions",
+    title: "Inscrire l'agriculture comme intérêt fondamental de la Nation dans la Constitution",
+    description:
+      "Réviser la Constitution pour reconnaître l'agriculture comme intérêt fondamental de la Nation, afin d'éviter que des lois agricoles soient censurées au nom d'une lecture jugée déséquilibrée des principes environnementaux.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-suppression-principe-precaution",
+    themeId: "institutions",
+    title: "Retirer le principe de précaution de la Charte de l'environnement",
+    description:
+      "Réviser par référendum la Charte de l'environnement pour remplacer le principe de précaution par un principe d'évaluation scientifique dans la décision publique.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "inst-interdiction-surtransposition",
+    themeId: "institutions",
+    title: "Interdire la sur-transposition des normes européennes en droit français",
+    description:
+      "Adopter une loi organique interdisant d'ajouter des contraintes nationales supplémentaires lors de la transposition des règles européennes en droit français, sur le modèle italien.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "secu-plan-vauban-numerique",
+    themeId: "securite",
+    title: "Lancer un plan de cybersécurité national piloté par l'ANSSI",
+    description:
+      "Renforcer l'ANSSI pour basculer les données sensibles vers un cloud souverain, cartographier les dépendances critiques et tester régulièrement la résistance des hôpitaux, mairies et réseaux vitaux aux cyberattaques.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "secu-video-intelligente-encadree",
+    themeId: "securite",
+    title: "Autoriser la vidéosurveillance algorithmique dans un cadre légal strict",
+    description:
+      "Autoriser l'usage de la vision par ordinateur pour la lutte contre le terrorisme et la protection des sites critiques, sous contrôle parlementaire strict et interdiction de la reconnaissance faciale de masse en temps réel.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "secu-renforcement-viginum",
+    themeId: "securite",
+    title: "Renforcer VIGINUM contre les campagnes de désinformation étrangères",
+    description:
+      "Doter le service de vigilance face aux ingérences numériques étrangères (VIGINUM) d'équipes de réaction rapide et d'un mandat de riposte, en s'appuyant exclusivement sur la vérification factuelle.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-nucleaire-80-ans",
+    themeId: "environnement",
+    title: "Fixer un horizon d'exploitation de 80 ans pour les réacteurs nucléaires",
+    description:
+      "Fixer d'emblée un horizon d'exploitation de 80 ans pour les réacteurs nucléaires existants, plutôt qu'un renouvellement par tranches de dix ans, pour sécuriser les investissements de long terme et viser une production annuelle proche de 400 TWh.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-epr2-securiser-8-supplementaires",
+    themeId: "environnement",
+    title: "Sécuriser les 6 EPR2 en construction et en commander 8 de plus",
+    description:
+      "Garantir les coûts et délais des six réacteurs EPR2 déjà lancés, et commander huit réacteurs supplémentaires si ce programme tient ses engagements.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-relance-hydroelectricite",
+    themeId: "environnement",
+    title: "Relancer l'hydroélectricité et les stations de transfert d'énergie",
+    description:
+      "Moderniser le parc hydroélectrique existant, ajouter plusieurs gigawatts de capacité et relancer des projets de stations de transfert d'énergie par pompage (STEP), notamment en outre-mer.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-stop-subventions-eolien-solaire",
+    themeId: "environnement",
+    title: "Arrêter les subventions publiques à l'éolien et au photovoltaïque",
+    description:
+      "Ne plus lancer de nouveaux appels d'offres subventionnés pour l'éolien terrestre et offshore et le solaire, et supprimer les avantages fiscaux et tarifaires associés aux nouvelles installations.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-priorite-dispatch-nucleaire",
+    themeId: "environnement",
+    title: "Garantir par la loi la priorité de fonctionnement du nucléaire",
+    description:
+      "Inscrire dans la loi qu'aucun réacteur nucléaire ne peut être mis à l'arrêt faute de demande, en donnant la priorité au nucléaire sur le réseau électrique et en pouvant restreindre les importations d'électricité.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-suppression-cee-electricite",
+    themeId: "environnement",
+    title: "Sortir l'électricité du dispositif des certificats d'économie d'énergie",
+    description:
+      "Retirer l'électricité du périmètre des certificats d'économies d'énergie (CEE), ce qui ferait immédiatement baisser la facture des consommateurs d'environ 5%.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-dpe-chauffage-electrique",
+    themeId: "environnement",
+    title: "Réviser le coefficient du chauffage électrique dans le diagnostic de performance énergétique",
+    description:
+      "Abaisser le coefficient d'énergie primaire du chauffage électrique utilisé dans le DPE, pour ne plus pénaliser artificiellement ce mode de chauffage et débloquer plusieurs centaines de milliers de logements classés à tort comme passoires thermiques.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-relance-reacteurs-4e-generation",
+    themeId: "environnement",
+    title: "Relancer la recherche sur les réacteurs nucléaires de 4e génération",
+    description:
+      "Accélérer la recherche sur un démonstrateur de réacteur à neutrons rapides pour viser un premier réacteur de puissance en 2045, afin de démultiplier le potentiel énergétique de l'uranium déjà disponible.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-opposition-grid-package-europeen",
+    themeId: "environnement",
+    title: "S'opposer au plan européen d'interconnexions électriques",
+    description:
+      "Refuser le programme européen d'interconnexions électriques jugé coûteux pour la France, en invoquant si nécessaire le traité Euratom pour protéger la souveraineté du mix énergétique français.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-securiser-chaines-valeur-energie",
+    themeId: "environnement",
+    title: "Sécuriser les stocks stratégiques d'uranium et la filière batteries",
+    description:
+      "Porter les stocks stratégiques d'uranium à cinq ans de consommation, développer une filière européenne de batteries et auditer les équipements solaires étrangers pilotables à distance pour prévenir les risques de cybersécurité.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-suppression-ofb",
+    themeId: "environnement",
+    title: "Supprimer l'Office français de la biodiversité",
+    description:
+      "Supprimer l'Office français de la biodiversité pour distinguer à nouveau une entité dédiée à la biodiversité et une entité dédiée à la chasse et à la faune sauvage, en transférant la police de l'environnement à la gendarmerie.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-reconnaissance-mutuelle-anses",
+    themeId: "environnement",
+    title: "Autoriser automatiquement les produits phytosanitaires déjà validés dans l'UE",
+    description:
+      "Autoriser automatiquement en France tout produit phytosanitaire déjà homologué dans un autre pays de l'Union européenne, sans nouvelle évaluation complète par l'ANSES.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-zan-suppression",
+    themeId: "environnement",
+    title: "Supprimer l'objectif de zéro artificialisation nette (ZAN)",
+    description:
+      "Abroger l'objectif de zéro artificialisation nette, jugé pénalisant pour les communes rurales et l'agriculture, au profit d'objectifs de sobriété foncière négociés localement.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-revision-seuils-icpe-elevage",
+    themeId: "environnement",
+    title: "Assouplir les seuils des installations classées pour l'élevage",
+    description:
+      "Aligner par ordonnance les seuils des installations classées pour la protection de l'environnement (ICPE) applicables à l'élevage sur le socle réglementaire européen, moins contraignant qu'aujourd'hui.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-stockage-eau-agricole",
+    themeId: "environnement",
+    title: "Sécuriser juridiquement les retenues d'eau agricoles",
+    description:
+      "Reconnaître le stockage d'eau agricole comme un projet d'intérêt général majeur pour sécuriser juridiquement les retenues d'eau et bassines, avec des délais d'instruction opposables.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-interdiction-subventions-agribashing",
+    themeId: "environnement",
+    title: "Retirer l'agrément des associations pratiquant des actions jugées abusives contre l'agriculture",
+    description:
+      "Rendre réversible l'agrément des associations environnementales en cas de recours abusifs ou d'entraves aux exploitations agricoles, et raccourcir les délais de recours contre les projets agricoles.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-etiquetage-origine-alimentaire",
+    themeId: "environnement",
+    title: "Renforcer l'étiquetage de l'origine des produits alimentaires",
+    description:
+      "Rendre obligatoire l'indication de l'origine de tout ingrédient représentant 10% ou plus d'un produit alimentaire, et réserver les termes « viande » ou « steak » aux produits d'origine animale.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "env-autoriser-neonicotinoides-europeens",
+    themeId: "environnement",
+    title: "Autoriser les néonicotinoïdes déjà validés ailleurs dans l'Union européenne",
+    description:
+      "Réautoriser en France des substances phytosanitaires comme l'acétamipride dès lors qu'elles sont déjà autorisées dans d'autres pays de l'Union européenne.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "europe-opposition-integration-agricole-ukraine",
+    themeId: "europe",
+    title: "S'opposer à l'intégration agricole de l'Ukraine dans le marché européen",
+    description:
+      "Refuser toute évolution du marché agricole européen qui intégrerait pleinement l'Ukraine, jugée risquée pour la Politique agricole commune et les filières agricoles françaises.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "europe-reforme-centrales-achat",
+    themeId: "europe",
+    title: "Responsabiliser les centrales d'achat européennes envers les producteurs français",
+    description:
+      "Faire évoluer le droit européen de la concurrence pour responsabiliser les centrales d'achat internationales des distributeurs vis-à-vis des producteurs agricoles français.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-simplification-plu",
+    themeId: "logement",
+    title: "Simplifier radicalement les plans locaux d'urbanisme",
+    description:
+      "Remplacer les plans locaux d'urbanisme actuels, souvent longs de centaines de pages, par un document allégé limité à l'essentiel (hauteur, implantation, rapport à la rue).",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-controle-a-posteriori-permis",
+    themeId: "logement",
+    title: "Passer à un contrôle a posteriori des permis de construire",
+    description:
+      "Faire reposer la conformité aux normes de construction sur une attestation du maître d'ouvrage contrôlée en cours de chantier, plutôt que sur une vérification a priori avant délivrance du permis.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-loi-urgence-diviser-delais",
+    themeId: "logement",
+    title: "Diviser par deux les délais de construction avec une loi d'urgence",
+    description:
+      "Créer un guichet unique d'instruction avec un calendrier fixé dès le dépôt du dossier, une règle de silence valant accord et une enquête publique unique, pour réduire les délais de construction de 7 à 3 ans en moyenne.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-lutte-recours-abusifs-urbanisme",
+    themeId: "logement",
+    title: "Lutter contre les recours abusifs contre les permis de construire",
+    description:
+      "Restreindre l'intérêt à agir contre les permis de construire, exiger une consignation financière à l'introduction d'un recours et instaurer une procédure prioritaire à délais contraints.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-tva-maires-batisseurs",
+    themeId: "logement",
+    title: "Reverser une part de la TVA aux maires qui construisent des logements",
+    description:
+      "Reverser plusieurs milliers d'euros de TVA à la commune pour chaque logement neuf construit, afin de financer les équipements publics et créer un intérêt financier à la construction.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-moratoire-normatif-construction",
+    themeId: "logement",
+    title: "Instaurer un moratoire de 10 ans sur les nouvelles normes de construction",
+    description:
+      "Stabiliser la réglementation environnementale de la construction neuve (RE2020) en annulant ses prochains paliers de durcissement, pour donner de la visibilité aux professionnels du bâtiment.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-construction-hors-site",
+    themeId: "logement",
+    title: "Développer la construction préfabriquée en usine",
+    description:
+      "Lever les freins réglementaires à la construction modulaire et préfabriquée en usine, pour réduire les délais de construction de 30 à 50% et les coûts de 10 à 20%.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-transformation-bureaux-logements",
+    themeId: "logement",
+    title: "Faciliter la transformation de bureaux et commerces vacants en logements",
+    description:
+      "Suspendre l'autorisation préalable de changement de destination pour les bâtiments existants, avec un objectif de 150 000 logements créés en cinq ans par la transformation de bureaux et commerces vacants.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-mobilisation-friches-diverses",
+    themeId: "logement",
+    title: "Mobiliser les friches industrielles et ferroviaires pour le logement",
+    description:
+      "Reconnaître la reconversion des friches industrielles, commerciales et ferroviaires comme projet d'intérêt public majeur, avec un registre national dédié et des normes environnementales simplifiées.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-densification-douce-pavillonnaire",
+    themeId: "logement",
+    title: "Faciliter la densification douce des zones pavillonnaires",
+    description:
+      "Faciliter la division parcellaire et supprimer les surfaces minimales de terrain constructible dans les zones résidentielles peu denses, sous le contrôle du maire.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-ptz-reforme-primo-accedants",
+    themeId: "logement",
+    title: "Réserver le prêt à taux zéro aux primo-accédants sans zonage",
+    description:
+      "Réformer le prêt à taux zéro pour le réserver aux primo-accédants, l'ouvrir au neuf comme à l'ancien sans distinction de zone géographique, avec un financement pris en charge par la Caisse des dépôts.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-bail-reel-solidaire",
+    themeId: "logement",
+    title: "Développer le bail réel solidaire pour dissocier foncier et bâti",
+    description:
+      "Développer le bail réel solidaire, qui dissocie la propriété du foncier de celle du bâti pour permettre une décote d'environ 30% à l'achat, en mobilisant davantage le foncier public.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-vente-pavillons-hlm-locataires",
+    themeId: "logement",
+    title: "Faciliter la vente de pavillons HLM à leurs locataires",
+    description:
+      "Ouvrir, après dix ans d'occupation, un droit d'achat avec décote de 20% pour les locataires de pavillons HLM, financé par un fonds de mutualisation, avec remplacement du parc vendu un pour un.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-pacte-famille-logement",
+    themeId: "logement",
+    title: "Déduire une part des intérêts d'emprunt immobilier selon le nombre d'enfants",
+    description:
+      "Permettre aux familles avec enfants mineurs de déduire de leur impôt sur le revenu une part de leurs intérêts d'emprunt immobilier pour leur résidence principale, croissante selon le nombre d'enfants, avec transfert possible du prêt en cas de déménagement.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-fin-interdiction-location-dpe",
+    themeId: "logement",
+    title: "Mettre fin à l'interdiction de louer les logements mal classés au DPE",
+    description:
+      "Rendre le diagnostic de performance énergétique purement informatif plutôt qu'excluant, en annulant les interdictions de mise en location des logements classés F et G.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-suppression-encadrement-loyers",
+    themeId: "logement",
+    title: "Supprimer l'encadrement des loyers",
+    description:
+      "Abroger les dispositifs d'encadrement des loyers (loi ELAN et plafonnements de la loi de 1989), pour laisser le loyer être librement fixé entre bailleur et locataire.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-statut-bailleur-prive",
+    themeId: "logement",
+    title: "Créer un statut fiscal incitatif pour les bailleurs privés",
+    description:
+      "Créer un statut du bailleur privé avec un amortissement fiscal annuel du bien, bonifié pour les loyers modérés, dans un cadre fiscal garanti sur dix ans.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-lutte-divisions-abusives",
+    themeId: "logement",
+    title: "Lutter contre les divisions abusives de logements",
+    description:
+      "Rendre obligatoire le permis de diviser en zones tendues et quartiers prioritaires, avec un pouvoir de substitution du préfet, pour lutter contre les marchands de sommeil et les colocations indignes.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-tolerance-zero-squat-impayes",
+    themeId: "logement",
+    title: "Accélérer les procédures d'expulsion en cas de squat ou d'impayés",
+    description:
+      "Permettre une expulsion administrative sous dix jours en cas de squat avéré, accélérer les procédures pour impayés de loyer, et indemniser automatiquement le propriétaire si l'État n'exécute pas une décision d'expulsion dans les délais.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-reforme-sru-objectifs-negocies",
+    themeId: "logement",
+    title: "Remplacer les quotas SRU uniformes par des objectifs négociés localement",
+    description:
+      "Remplacer les quotas uniformes de logements sociaux de la loi SRU par des objectifs de production négociés par contrats territoriaux, avec un plafonnement à 30% de logements sociaux par territoire.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-extinction-dalo",
+    themeId: "logement",
+    title: "Transformer le droit au logement opposable en simple droit à une solution",
+    description:
+      "Transformer le droit au logement opposable (DALO) en un droit à une solution de logement plutôt qu'un accès automatique et prioritaire au parc social des métropoles.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-conditionnement-hebergement-urgence-regularite",
+    themeId: "logement",
+    title: "Conditionner l'hébergement d'urgence à la régularité du séjour",
+    description:
+      "Mettre fin à l'inconditionnalité de l'hébergement d'urgence pour les personnes en situation irrégulière ou sous obligation de quitter le territoire, et plafonner sa durée à dix-huit mois.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "log-suppression-exoneration-is-bailleurs-hlm",
+    themeId: "logement",
+    title: "Supprimer progressivement l'exonération d'impôt sur les sociétés des bailleurs HLM",
+    description:
+      "Supprimer sur cinq ans l'exonération d'impôt sur les sociétés dont bénéficient les bailleurs sociaux, en redistribuant les recettes vers les organismes qui construisent le plus.",
+    supportingParties: ["lr"],
   },
 ];
 
