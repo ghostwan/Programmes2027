@@ -266,7 +266,7 @@ export const propositions: Proposition[] = [
     title: "Plafonner l'écart des salaires dans l'entreprise (échelle 1 à 20)",
     description:
       "Limiter l'écart entre le salaire le plus bas et le salaire le plus élevé au sein d'un même groupe consolidé à un rapport de 1 à 20.",
-    supportingParties: ["ps"],
+    supportingParties: ["ps", "lfi"],
   },
   {
     id: "travail-cetu",
@@ -518,7 +518,7 @@ export const propositions: Proposition[] = [
     title: "Légaliser et encadrer strictement la production et la vente de cannabis",
     description:
       "Soumettre la légalisation du cannabis à une convention citoyenne, avec un contrôle étatique strict de sa production et de sa commercialisation, pour assécher les circuits du narcotrafic.",
-    supportingParties: ["ps"],
+    supportingParties: ["ps", "lfi"],
   },
   {
     id: "secu-police-proximite",
@@ -542,7 +542,7 @@ export const propositions: Proposition[] = [
     title: "Adopter une nouvelle doctrine de maintien de l'ordre fondée sur la désescalade",
     description:
       "Interdire les lanceurs de balles de défense (LBD40), encadrer strictement la vidéosurveillance et fonder l'action des forces de l'ordre sur le dialogue et la désescalade plutôt que la confrontation systématique.",
-    supportingParties: ["eelv"],
+    supportingParties: ["eelv", "lfi"],
   },
   {
     id: "secu-legitime-defense",
@@ -900,7 +900,7 @@ export const propositions: Proposition[] = [
     title: "Reconnaître le crime d'écocide en droit pénal français",
     description:
       "Créer un crime d'écocide sanctionnant les atteintes les plus graves et intentionnelles à l'environnement, avec un parquet environnemental spécialisé.",
-    supportingParties: ["ps"],
+    supportingParties: ["ps", "lfi"],
   },
   {
     id: "env-mercosur",
@@ -1395,6 +1395,382 @@ export const propositions: Proposition[] = [
     description:
       "Instaurer un moratoire national interdisant toute expulsion locative sans solution de relogement préalable, et interdire les coupures d'eau et d'énergie pour impayés.",
     supportingParties: ["pcf"],
+  },
+  {
+    id: "inst-assemblee-constituante",
+    themeId: "institutions",
+    title: "Élire une Assemblée constituante pour rédiger une nouvelle Constitution",
+    description:
+      "Convoquer un référendum pour lancer un processus constituant : une Assemblée constituante élue rédigerait une nouvelle Constitution, elle-même soumise à référendum populaire.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-fin-49-3",
+    themeId: "institutions",
+    title: "Abolir le recours au 49.3 hors vote du budget",
+    description:
+      "Passer à un régime parlementaire où le gouvernement doit réellement obtenir l'accord du Parlement sur ses textes, en abolissant les procédures de vote forcé comme l'article 49.3.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-pantouflage",
+    themeId: "institutions",
+    title: "Encadrer strictement le « pantouflage » des hauts fonctionnaires",
+    description:
+      "Imposer la démission et le remboursement des frais de formation aux hauts fonctionnaires rejoignant le secteur privé, et allonger à dix ans les délais d'interdiction en cas de conflit d'intérêts.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-plafond-dons-partis",
+    themeId: "institutions",
+    title: "Plafonner à 200€ les dons individuels aux partis politiques",
+    description:
+      "Abaisser fortement le plafond légal des dons qu'un particulier peut verser à un parti politique, pour limiter l'influence de l'argent privé sur la vie démocratique.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-audiovisuel-public-election",
+    themeId: "institutions",
+    title: "Faire élire les présidents de l'audiovisuel public par le Parlement",
+    description:
+      "Retirer à l'Arcom la nomination des présidents de France Télévisions et de Radio France pour la confier au Parlement, et créer une loi anti-concentration des médias plus stricte.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-suppression-metropoles",
+    themeId: "institutions",
+    title: "Supprimer les métropoles et redonner aux communes leur libre coopération",
+    description:
+      "Abroger la loi NOTRe et l'obligation d'appartenance à une intercommunalité, supprimer les métropoles jugées technocratiques et redonner aux communes la liberté de s'associer.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "inst-conscription-citoyenne",
+    themeId: "institutions",
+    title: "Créer un service citoyen obligatoire de 9 mois",
+    description:
+      "Instaurer une conscription citoyenne obligatoire de neuf mois pour les moins de 25 ans, rémunérée au SMIC, combinant formation civique, bilan de santé et permis de conduire gratuit, en remplacement du SNU.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-separation-bancaire",
+    themeId: "economie",
+    title: "Séparer les banques d'affaires des banques de détail",
+    description:
+      "Imposer une séparation stricte entre activités spéculatives de banque d'affaires et activités de banque de détail, et encadrer plus fortement les produits financiers les plus risqués.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-pole-public-bancaire",
+    themeId: "economie",
+    title: "Créer un pôle public bancaire",
+    description:
+      "Socialiser une partie du secteur bancaire de détail pour orienter le crédit aux TPE et PME selon des critères sociaux et écologiques plutôt que la seule rentabilité financière.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-audit-dette",
+    themeId: "economie",
+    title: "Réaliser un audit citoyen de la dette publique",
+    description:
+      "Faire racheter une partie de la dette publique par la Banque centrale européenne et mener un audit citoyen pour identifier la part jugée illégitime de la dette.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-encadrement-dividendes",
+    themeId: "economie",
+    title: "Encadrer strictement les dividendes versés aux actionnaires",
+    description:
+      "Interdire aux entreprises de verser plus de dividendes que de bénéfices réalisés et interdire les licenciements économiques dans les entreprises qui versent des dividendes.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-plafond-heritage",
+    themeId: "economie",
+    title: "Instaurer un plafond maximal sur les héritages perçus",
+    description:
+      "Créer un héritage maximal transmissible (de l'ordre de 12 millions d'euros) au-delà duquel les successions sont intégralement reversées à la collectivité.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-tva-luxe",
+    themeId: "economie",
+    title: "Créer une TVA « grand luxe » en baissant celle sur les produits essentiels",
+    description:
+      "Réduire la TVA sur les produits de première nécessité et créer en contrepartie un taux de TVA très élevé sur les produits de grand luxe.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-annulation-privatisations",
+    themeId: "economie",
+    title: "Annuler les grandes privatisations passées",
+    description:
+      "Revenir sur les privatisations des aéroports, autoroutes et de la Française des Jeux, et créer des pôles publics dans les secteurs jugés stratégiques (médicaments, transports, banque, armement).",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-garantie-emploi",
+    themeId: "travail",
+    title: "Créer une garantie d'emploi pour les chômeurs de longue durée",
+    description:
+      "Proposer à tout chômeur de longue durée un emploi rémunéré au SMIC revalorisé dans un secteur d'utilité écologique ou sociale, sur le modèle des Territoires zéro chômeur de longue durée.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-6e-semaine-conges",
+    themeId: "travail",
+    title: "Généraliser une sixième semaine de congés payés",
+    description:
+      "Ajouter une semaine de congés payés supplémentaire pour l'ensemble des salariés du secteur privé et public.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-quota-precarite",
+    themeId: "travail",
+    title: "Instaurer un quota maximal de contrats précaires par entreprise",
+    description:
+      "Limiter la part de CDD et de contrats précaires à 10% des effectifs en PME et 5% dans les grandes entreprises, et abroger les ordonnances travail de 2017.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-assurance-chomage-retablir",
+    themeId: "travail",
+    title: "Rétablir une assurance-chômage plus protectrice",
+    description:
+      "Abroger les réformes de l'assurance-chômage depuis 2017, indemniser les chômeurs dès le premier jour et supprimer les 15 heures d'activité hebdomadaire obligatoires du dispositif France Travail.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-zero-mort-travail",
+    themeId: "travail",
+    title: "Viser zéro mort au travail et doubler l'inspection du travail",
+    description:
+      "Fixer un objectif national de zéro accident mortel au travail, reconnaître le burn-out comme maladie professionnelle et doubler les effectifs de l'inspection du travail.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-veto-licenciements-ce",
+    themeId: "travail",
+    title: "Donner un droit de veto suspensif aux salariés sur les plans de licenciement",
+    description:
+      "Permettre aux comités d'entreprise de bloquer temporairement un plan de licenciement collectif et de voter la défiance envers la direction, en portant la représentation salariale à un tiers des sièges des conseils d'administration.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-petite-enfance",
+    themeId: "education",
+    title: "Créer un service public de la petite enfance",
+    description:
+      "Créer 500 000 places de crèche publiques supplémentaires en cinq ans, geler l'ouverture de nouvelles crèches privées lucratives et garantir la gratuité des crèches publiques.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-scolarite-18-ans",
+    themeId: "education",
+    title: "Étendre la scolarité obligatoire jusqu'à 18 ans",
+    description:
+      "Repousser l'âge de fin de scolarité obligatoire de 16 à 18 ans, en garantissant une allocation d'autonomie pour les jeunes qui le souhaitent dès 16 ans.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-fin-enseignement-prive",
+    themeId: "education",
+    title: "Mettre fin aux privilèges de l'enseignement privé sous contrat",
+    description:
+      "Abroger la loi Carle et appliquer un malus financier aux établissements privés sous contrat qui pratiquent une ségrégation sociale ou scolaire dans leur recrutement d'élèves.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-lycee-pro-public",
+    themeId: "education",
+    title: "Reconstruire un enseignement professionnel public de qualité",
+    description:
+      "Développer les lycées professionnels et agricoles publics, créer des centres polytechniques professionnels et rétablir le bac professionnel en quatre ans.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-gratuite-superieur",
+    themeId: "education",
+    title: "Rendre gratuit l'enseignement supérieur public jusqu'au doctorat",
+    description:
+      "Supprimer les frais d'inscription dans l'enseignement supérieur public, de la licence au doctorat.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "sante-pole-public-medicament",
+    themeId: "sante",
+    title: "Créer un pôle public du médicament",
+    description:
+      "Relocaliser la production de médicaments jugés stratégiques, constituer une réserve publique et nationaliser certaines filiales critiques en cas de rupture d'approvisionnement.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "sante-mentale-plan",
+    themeId: "sante",
+    title: "Lancer un plan national pour la santé mentale",
+    description:
+      "Rouvrir des lits de psychiatrie publique, renforcer les centres médico-psychologiques et permettre le remboursement d'un suivi psychologique ambulatoire régulier.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "sante-malbouffe",
+    themeId: "sante",
+    title: "Lutter contre la malbouffe et la publicité alimentaire ciblant les enfants",
+    description:
+      "Interdire les additifs alimentaires controversés, rendre le Nutri-score obligatoire, interdire la publicité pour la malbouffe destinée aux enfants et viser 100% de bio et local en restauration collective.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "env-sortie-nucleaire",
+    themeId: "environnement",
+    title: "Sortir progressivement du nucléaire",
+    description:
+      "Abandonner les nouveaux projets d'EPR et planifier le démantèlement progressif des centrales nucléaires existantes, avec un accompagnement à la reconversion des salariés et bassins d'emploi concernés.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "env-renationalisation-transports",
+    themeId: "environnement",
+    title: "Renationaliser la SNCF et les autoroutes",
+    description:
+      "Renationaliser intégralement la SNCF, Fret SNCF et les sociétés d'autoroutes concédées, et refuser toute nouvelle mise en concurrence du transport ferroviaire.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "env-eau-bien-commun",
+    themeId: "environnement",
+    title: "Inscrire l'eau comme bien commun et gérer sa distribution publiquement",
+    description:
+      "Inscrire l'eau comme bien commun dans la Constitution, instaurer la gratuité des premiers mètres cubes vitaux, confier sa gestion à un service public et décréter un moratoire sur les méga-bassines.",
+    supportingParties: ["lfi", "ps"],
+  },
+  {
+    id: "env-fermes-usines",
+    themeId: "environnement",
+    title: "Interdire les fermes-usines et les pratiques d'élevage les plus cruelles",
+    description:
+      "Interdire l'élevage industriel en cage ou en bâtiment fermé de type ferme-usine, ainsi que le broyage des poussins et d'autres pratiques d'élevage jugées les plus cruelles.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "env-zero-dechet",
+    themeId: "environnement",
+    title: "Viser le zéro déchet et interdire l'obsolescence programmée",
+    description:
+      "Interdire les plastiques à usage unique, créer un indice de durabilité obligatoire sur les produits et développer un service public de la réparation pour lutter contre l'obsolescence programmée.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "secu-remplacement-igpn",
+    themeId: "securite",
+    title: "Remplacer l'IGPN et l'IGGN par une autorité de contrôle indépendante",
+    description:
+      "Supprimer les inspections internes de la police et de la gendarmerie pour les remplacer par une autorité indépendante (magistrats, universitaires, citoyens) dotée d'un pouvoir de sanction disciplinaire propre.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "secu-sortie-etat-urgence-permanent",
+    themeId: "securite",
+    title: "Sortir de la logique d'état d'urgence permanent",
+    description:
+      "Abroger les lois antiterroristes jugées liberticides accumulées depuis 2015, privilégier le renseignement humain au tout-technologique et garantir le contrôle du juge judiciaire sur les mesures de sécurité.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "log-requisition-logements-vides",
+    themeId: "logement",
+    title: "Réquisitionner les logements vides et plafonner la multipropriété",
+    description:
+      "Réquisitionner les logements vacants de longue durée pour l'hébergement d'urgence et plafonner le nombre de logements transmissibles par héritage.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "log-airbnb-60-jours",
+    themeId: "logement",
+    title: "Limiter les locations type Airbnb à 60 jours par an",
+    description:
+      "Plafonner la location de courte durée d'une résidence principale à 60 jours par an et supprimer l'avantage fiscal spécifique aux meublés de tourisme.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "log-fin-expulsions-sans-relogement",
+    themeId: "logement",
+    title: "Interdire les expulsions locatives sans solution de relogement",
+    description:
+      "Interdire toute expulsion locative sans solution de relogement public proposée à la famille concernée, et abroger la loi Kasbarian de criminalisation des locataires en impayés.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "immi-droit-sol-integral",
+    themeId: "immigration",
+    title: "Garantir un droit du sol intégral, y compris à Mayotte",
+    description:
+      "Garantir à tout enfant né en France l'accès à la nationalité française par le droit du sol, y compris à Mayotte où ce droit a été restreint, et faciliter les démarches de naturalisation.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "immi-vote-etrangers-locales",
+    themeId: "immigration",
+    title: "Accorder le droit de vote aux étrangers non-européens aux élections locales",
+    description:
+      "Instituer le droit de vote et d'éligibilité des résidents étrangers non-communautaires aux élections municipales et locales, comme c'est déjà le cas pour les citoyens européens.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "immi-commissariat-egalite",
+    themeId: "immigration",
+    title: "Créer un Commissariat à l'égalité contre les discriminations",
+    description:
+      "Créer une autorité indépendante dotée d'un observatoire des discriminations et de pôles spécialisés dans les services publics et les cours d'appel, pour lutter contre les discriminations à l'emploi, au logement et à l'éducation.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "immi-schengen-refonte",
+    themeId: "immigration",
+    title: "Sortir de l'impasse Dublin/Frontex et créer un statut de réfugié climatique",
+    description:
+      "Suspendre le règlement de Dublin sur la répartition des demandeurs d'asile, renégocier les accords bilatéraux de contrôle migratoire et créer un statut de protection pour les personnes déplacées par des catastrophes environnementales.",
+    supportingParties: ["lfi", "ps"],
+  },
+  {
+    id: "europe-veto-libre-echange",
+    themeId: "europe",
+    title: "Utiliser le droit de veto français contre les nouveaux accords de libre-échange",
+    description:
+      "S'opposer par un droit de veto à tout nouvel accord de libre-échange (Mercosur, Chili, Inde, Australie...) et à tout élargissement de l'Union européenne sans harmonisation sociale, fiscale et environnementale préalable.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "europe-primaute-droit-national-social",
+    themeId: "europe",
+    title: "Faire primer les normes sociales et écologiques nationales sur le droit européen",
+    description:
+      "Inscrire dans la Constitution la primauté des normes nationales sur le droit européen lorsqu'elles sont plus ambitieuses socialement ou écologiquement.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "europe-onu-reforme-conseil-securite",
+    themeId: "europe",
+    title: "Réformer le Conseil de sécurité de l'ONU pour le rendre plus représentatif",
+    description:
+      "Agir pour une réforme du Conseil de sécurité et de l'Assemblée générale des Nations unies afin qu'ils reflètent mieux les équilibres du monde actuel, et réaffirmer l'ONU comme seule instance légitime de sécurité collective.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "europe-reconnaissance-palestine",
+    themeId: "europe",
+    title: "Reconnaître l'État de Palestine et sanctionner le gouvernement israélien",
+    description:
+      "Reconnaître formellement l'État de Palestine, exiger un cessez-le-feu durable et mettre en place des sanctions ciblées, dont un embargo sur les armes, contre le gouvernement israélien.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "europe-souverainete-numerique",
+    themeId: "europe",
+    title: "Renforcer la souveraineté numérique face aux GAFAM",
+    description:
+      "Créer un cloud public souverain, garantir la neutralité du Net, héberger les données publiques sur des serveurs français et encadrer strictement l'intelligence artificielle (interdiction de la notation sociale et de la surveillance biométrique généralisée).",
+    supportingParties: ["lfi"],
   },
 ];
 

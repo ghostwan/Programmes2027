@@ -17,12 +17,28 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- 47 nouvelles propositions de La France Insoumise, issues d'une
+  lecture intégrale des 18 chapitres du programme officiel « L'Avenir en
+  commun » édition 2025 (institutions comme l'Assemblée constituante ou
+  la fin du 49.3, économie avec la séparation bancaire ou le
+  plafonnement des héritages, un important volet immigration
+  jusqu'ici quasiment absent — droit du sol, vote des étrangers,
+  Commissariat à l'égalité —, ainsi que santé, éducation, environnement,
+  Europe et sécurité).
 - 13 nouvelles propositions du PCF issues de ses cahiers thématiques
   officiels « Les Jours heureux », en particulier sur le logement
   (service public national du logement, acte 2 de la loi SRU, pôle
   financier public, permis de louer généralisé, garantie sociale contre
   la caution locative, etc.) et une proposition sur la sortie du
   commandement militaire intégré de l'OTAN (partagée avec LFI).
+
+### Modifié
+
+- Ajout de La France Insoumise sur plusieurs propositions déjà
+  existantes qu'elle partage avec d'autres partis (légalisation du
+  cannabis, désescalade policière et interdiction du LBD40, plafond des
+  salaires en entreprise, écocide, gestion publique de l'eau, statut de
+  réfugié climatique).
 
 ## [1.5.0] - 2026-08-20
 
