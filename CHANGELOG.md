@@ -15,6 +15,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Modifié
+
+- Réordonné les colonnes des tableaux de comparaison des partis pour
+  suivre le spectre politique de gauche à droite, avec le PCF désormais
+  positionné tout à gauche.
+
 ### Ajouté
 
 - 47 nouvelles propositions de La France Insoumise, issues d'une

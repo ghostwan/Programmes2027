@@ -2,6 +2,15 @@ import { Party } from "@/lib/types";
 
 export const parties: Party[] = [
   {
+    id: "pcf",
+    name: "Parti Communiste Français",
+    shortName: "PCF",
+    family: "Gauche",
+    color: "#DA291C",
+    description:
+      "Parti historique de la gauche, défend un protectionnisme solidaire et une forte intervention de l'État dans l'économie.",
+  },
+  {
     id: "lfi",
     name: "La France Insoumise",
     shortName: "LFI",
@@ -63,15 +72,6 @@ export const parties: Party[] = [
     color: "#6A0DAD",
     description:
       "Parti fondé par Éric Zemmour, ligne plus radicale sur l'immigration et l'identité, plus libérale que le RN sur l'économie.",
-  },
-  {
-    id: "pcf",
-    name: "Parti Communiste Français",
-    shortName: "PCF",
-    family: "Gauche",
-    color: "#DA291C",
-    description:
-      "Parti historique de la gauche, défend un protectionnisme solidaire et une forte intervention de l'État dans l'économie.",
   },
 ];
 
