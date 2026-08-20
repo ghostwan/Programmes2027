@@ -1,0 +1,779 @@
+import { Proposition } from "@/lib/types";
+
+export const propositions: Proposition[] = [
+  // ÉCONOMIE ET FISCALITÉ
+  {
+    id: "eco-isf",
+    themeId: "economie",
+    title: "Rétablir un impôt sur la fortune (ISF), y compris sa part financière",
+    description:
+      "Remplacer l'actuel impôt sur la fortune immobilière (IFI) par un impôt plus large incluant les actifs financiers, comme c'était le cas avant 2018.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "France (avant 2018)",
+      when: "Existait jusqu'en 2017, remplacé par l'IFI",
+      summary:
+        "L'ISF a existé en France de 1989 à 2017 avant d'être remplacé par l'IFI, recentré sur le seul patrimoine immobilier.",
+      evaluation:
+        "France Stratégie (rapport 2023) montre un effet limité et contesté de la suppression sur l'investissement productif : la mesure est associée à une hausse des dividendes versés aux ménages aisés, sans preuve robuste d'un effet sur l'investissement des entreprises. Le débat reste non tranché entre économistes.",
+    },
+  },
+  {
+    id: "eco-is-baisse",
+    themeId: "economie",
+    title: "Baisser l'impôt sur les sociétés et alléger la fiscalité des entreprises",
+    description:
+      "Poursuivre la baisse du taux d'impôt sur les sociétés et réduire les charges pesant sur les entreprises pour renforcer leur compétitivité.",
+    supportingParties: ["renaissance", "lr", "rn", "reconquete"],
+    internationalExample: {
+      country: "France (2017-2022) et Europe",
+      when: "Baisse du taux de 33% à 25% entre 2017 et 2022",
+      summary:
+        "La France a progressivement abaissé son taux d'IS de 33,3% à 25% entre 2017 et 2022, dans un mouvement européen général de baisse des taux.",
+      evaluation:
+        "L'OCDE documente une convergence générale à la baisse des taux d'IS en Europe depuis 20 ans (« race to the bottom »). L'effet net sur l'attractivité du site France reste difficile à isoler d'autres facteurs économiques.",
+    },
+  },
+  {
+    id: "eco-superprofits",
+    themeId: "economie",
+    title: "Taxer davantage les superprofits et rentes exceptionnelles",
+    description:
+      "Instaurer une taxation exceptionnelle sur les profits jugés excessifs des grandes entreprises, notamment dans l'énergie.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Italie, Espagne, Royaume-Uni",
+      when: "2022-2023",
+      summary:
+        "Plusieurs pays européens ont instauré des taxes temporaires sur les superprofits des énergéticiens suite à la flambée des prix de l'énergie en 2022.",
+      evaluation:
+        "La Commission européenne (rapport 2023) relève des recettes réelles souvent inférieures aux prévisions et des critiques sur l'effet potentiellement dissuasif de ces taxes sur l'investissement énergétique.",
+    },
+  },
+  {
+    id: "eco-austerite",
+    themeId: "economie",
+    title: "Réduire la dépense publique et le nombre de fonctionnaires",
+    description:
+      "Diminuer le poids de la dépense publique dans le PIB et réduire les effectifs de la fonction publique pour redresser les comptes publics.",
+    supportingParties: ["lr", "rn", "reconquete", "renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni, Grèce",
+      when: "Austérité post-2010 (RU) et plan de la Troïka 2010-2018 (Grèce)",
+      summary:
+        "Le Royaume-Uni a mené une politique d'austérité budgétaire après 2010, tandis que la Grèce a appliqué un plan d'ajustement structurel imposé par ses créanciers de 2010 à 2018.",
+      evaluation:
+        "Le FMI a lui-même reconnu en 2013 avoir sous-estimé les multiplicateurs budgétaires : la littérature économique documente un effet récessif à court terme plus marqué que prévu initialement pour les politiques d'austérité brutale.",
+    },
+  },
+  {
+    id: "eco-protectionnisme",
+    themeId: "economie",
+    title: "Instaurer un protectionnisme ciblé et favoriser les achats français/européens",
+    description:
+      "Mettre en place des droits de douane ciblés ou des politiques de préférence pour les produits français ou européens.",
+    supportingParties: ["rn", "reconquete", "lfi", "pcf"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "2018-2019 et 2025",
+      summary:
+        "Les États-Unis ont instauré des droits de douane ciblés sur de nombreux produits sous les administrations Trump.",
+      evaluation:
+        "Des études de la Fed et du Peterson Institute montrent une hausse des prix pour les consommateurs américains et des mesures de rétorsion commerciale, avec un effet net sur l'emploi industriel contesté, globalement faible voire négatif selon la majorité des études.",
+    },
+  },
+
+  // TRAVAIL ET EMPLOI
+  {
+    id: "travail-retraites-62",
+    themeId: "travail",
+    title: "Abroger la réforme des retraites de 2023 et revenir à 62 ans",
+    description:
+      "Annuler le report de l'âge légal de départ à la retraite à 64 ans voté en 2023 et revenir à 62 ans.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "rn"],
+    internationalExample: {
+      country: "Allemagne, Italie, Espagne",
+      when: "Réformes successives portant l'âge légal à 66-67 ans",
+      summary:
+        "Plusieurs voisins européens ont relevé leur âge légal de départ à la retraite au-delà de 64 ans (67 ans en Allemagne).",
+      evaluation:
+        "L'OCDE souligne que la France a un âge de départ effectif parmi les plus bas d'Europe. Le Conseil d'orientation des retraites (COR) publie des projections plus optimistes sur la soutenabilité du système par répartition que celles utilisées par le gouvernement en 2023.",
+    },
+  },
+  {
+    id: "travail-4jours",
+    themeId: "travail",
+    title: "Expérimenter ou généraliser la semaine de 4 jours",
+    description:
+      "Réduire le temps de travail hebdomadaire à 4 jours à salaire égal, au moins à titre expérimental.",
+    supportingParties: ["lfi", "eelv", "ps"],
+    internationalExample: {
+      country: "Royaume-Uni, Islande, Belgique",
+      when: "Islande (2015-2019), Royaume-Uni (2022, 61 entreprises), Belgique (droit à la demande, 2022)",
+      summary:
+        "Plusieurs pays ont mené des expérimentations pilotes de semaine de 4 jours dans des entreprises volontaires.",
+      evaluation:
+        "Les expérimentations pilotes (4 Day Week Global) rapportent un maintien voire une hausse de productivité et une baisse du stress. Limites méthodologiques : échantillons auto-sélectionnés, pas de généralisation démontrée à toute l'économie.",
+    },
+  },
+  {
+    id: "travail-smic",
+    themeId: "travail",
+    title: "Augmenter significativement le SMIC (autour de 1600€ net)",
+    description:
+      "Revaloriser fortement le salaire minimum pour améliorer le pouvoir d'achat des travailleurs les plus modestes.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Allemagne, Royaume-Uni",
+      when: "Instauration du salaire minimum allemand en 2015, hausses régulières du National Living Wage britannique",
+      summary:
+        "L'Allemagne a instauré un salaire minimum national en 2015, une première dans son histoire récente.",
+      evaluation:
+        "Les études du IAB et du DIW Berlin montrent un effet limité sur l'emploi global, avec une légère hausse des salaires bas sans destruction d'emploi massive contrairement aux craintes initiales.",
+    },
+  },
+  {
+    id: "travail-rsa-conditionnalite",
+    themeId: "travail",
+    title: "Conditionner le RSA à des heures d'activité ou de formation",
+    description:
+      "Rendre le versement du RSA conditionnel à la réalisation d'un nombre d'heures d'activité, de formation ou de recherche d'emploi.",
+    supportingParties: ["renaissance", "lr"],
+    internationalExample: {
+      country: "Royaume-Uni, Pays-Bas",
+      when: "Universal Credit (RU), conditionnalité renforcée",
+      summary:
+        "Le Royaume-Uni a renforcé la conditionnalité de ses aides sociales dans le cadre de la réforme du Universal Credit.",
+      evaluation:
+        "Les études de l'IFS (Institute for Fiscal Studies) sont mitigées : incitation à la reprise d'emploi documentée mais aussi effets de sanction pénalisant les plus vulnérables et non-recours aux droits.",
+    },
+  },
+  {
+    id: "travail-code-simplification",
+    themeId: "travail",
+    title: "Simplifier et assouplir le Code du travail",
+    description:
+      "Poursuivre la simplification du droit du travail pour donner plus de flexibilité aux entreprises dans la gestion de l'emploi.",
+    supportingParties: ["renaissance", "lr", "rn"],
+  },
+
+  // IMMIGRATION
+  {
+    id: "immi-quotas",
+    themeId: "immigration",
+    title: "Instaurer des quotas migratoires votés annuellement par le Parlement",
+    description:
+      "Faire voter chaque année par le Parlement des quotas d'immigration par catégorie (travail, études, regroupement familial).",
+    supportingParties: ["lr", "rn", "reconquete", "renaissance"],
+    internationalExample: {
+      country: "Canada, Australie",
+      when: "Systèmes en vigueur depuis plusieurs décennies",
+      summary:
+        "Le Canada fixe des quotas annuels d'immigration économique ; l'Australie utilise un système à points avec quotas par catégorie.",
+      evaluation:
+        "L'OCDE note que ces systèmes offrent prévisibilité et pilotage économique de l'immigration, mais nécessitent une administration robuste. Le système canadien reste critiqué pour ses délais de traitement et la pression sur le logement dans les grandes villes.",
+    },
+  },
+  {
+    id: "immi-preference-nationale",
+    themeId: "immigration",
+    title: "Instaurer une priorité nationale pour l'emploi et les prestations sociales",
+    description:
+      "Réserver en priorité l'accès à certains emplois publics et prestations sociales aux ressortissants français.",
+    supportingParties: ["rn", "reconquete"],
+    internationalExample: {
+      country: "Danemark",
+      when: "Règles en vigueur",
+      summary:
+        "Le Danemark applique des règles restrictives d'accès aux aides sociales pour les non-résidents de longue durée, sans toutefois instaurer de préférence nationale au sens strict.",
+      evaluation:
+        "Les juristes français (Conseil constitutionnel, Conseil d'État) soulignent des obstacles constitutionnels et conventionnels majeurs à une préférence nationale en l'état du droit français et européen.",
+    },
+  },
+  {
+    id: "immi-droit-du-sol",
+    themeId: "immigration",
+    title: "Restreindre ou supprimer le droit du sol",
+    description:
+      "Conditionner ou supprimer l'acquisition automatique de la nationalité française par la naissance sur le territoire.",
+    supportingParties: ["rn", "reconquete", "lr"],
+    internationalExample: {
+      country: "Irlande",
+      when: "Référendum de 2004",
+      summary:
+        "L'Irlande a restreint son droit du sol automatique par référendum en 2004, suite à une pression migratoire perçue.",
+      evaluation:
+        "Le cas irlandais est documenté mais les effets démographiques à long terme sont peu étudiés de façon consensuelle. C'est une mesure rarement appliquée dans les démocraties occidentales comparables.",
+    },
+  },
+  {
+    id: "immi-regularisation",
+    themeId: "immigration",
+    title: "Faciliter la régularisation des travailleurs sans papiers dans les métiers en tension",
+    description:
+      "Simplifier les procédures de régularisation pour les travailleurs sans papiers occupant des emplois dans des secteurs en pénurie de main-d'œuvre.",
+    supportingParties: ["lfi", "ps", "eelv", "renaissance"],
+    internationalExample: {
+      country: "Espagne",
+      when: "Régularisations massives de 2005 (« arraigo social »)",
+      summary:
+        "L'Espagne a mené une vaste régularisation de travailleurs sans papiers en 2005, conditionnée à un emploi et une durée de présence.",
+      evaluation:
+        "Des études de la Banque d'Espagne et de l'OCDE montrent une hausse des recettes de cotisations sociales et une meilleure intégration économique, sans effet d'appel massif démontré à court terme, mais le débat reste vif sur l'effet incitatif à moyen terme.",
+    },
+  },
+  {
+    id: "immi-frontex",
+    themeId: "immigration",
+    title: "Renforcer Frontex et le contrôle des frontières extérieures de l'UE",
+    description:
+      "Augmenter les moyens humains et matériels de l'agence européenne de garde-frontières et de garde-côtes.",
+    supportingParties: ["renaissance", "lr", "rn", "reconquete"],
+    internationalExample: {
+      country: "Union européenne",
+      when: "Rapport de la Cour des comptes européenne, 2021",
+      summary:
+        "Frontex a vu ses effectifs et son budget croître fortement depuis 2015 pour renforcer le contrôle des frontières extérieures de l'UE.",
+      evaluation:
+        "La Cour des comptes européenne (2021) pointe des dysfonctionnements dans le fonctionnement de l'agence et des questions sur le respect des droits fondamentaux aux frontières.",
+    },
+  },
+
+  // SÉCURITÉ ET JUSTICE
+  {
+    id: "secu-effectifs",
+    themeId: "securite",
+    title: "Recruter massivement des policiers et gendarmes",
+    description:
+      "Augmenter significativement les effectifs de police et de gendarmerie sur le territoire.",
+    supportingParties: ["renaissance", "lr", "rn", "reconquete", "ps"],
+    internationalExample: {
+      country: "États-Unis (littérature criminologique)",
+      when: "Études comparatives multiples",
+      summary:
+        "De nombreuses études criminologiques américaines analysent le lien entre présence policière visible et taux de criminalité.",
+      evaluation:
+        "La littérature montre une corrélation entre présence policière visible et baisse de certains délits, mais l'effet varie fortement selon le type de criminalité concerné.",
+    },
+  },
+  {
+    id: "secu-peines-planchers",
+    themeId: "securite",
+    title: "Instaurer des peines planchers automatiques pour les récidivistes",
+    description:
+      "Rendre automatique une peine minimale pour les délinquants et criminels en état de récidive.",
+    supportingParties: ["lr", "rn", "reconquete"],
+    internationalExample: {
+      country: "États-Unis (Californie)",
+      when: "Lois « three strikes », 1994",
+      summary:
+        "La Californie a instauré en 1994 des lois « three strikes » imposant des peines très lourdes automatiques dès la 3e infraction.",
+      evaluation:
+        "Des études du RAND Corporation et du National Institute of Justice montrent un effet incertain sur la récidive, une forte hausse de la population carcérale et des coûts budgétaires importants. Plusieurs États américains ont depuis assoupli ces lois.",
+    },
+  },
+  {
+    id: "secu-prisons",
+    themeId: "securite",
+    title: "Construire massivement de nouvelles places de prison",
+    description:
+      "Augmenter significativement le nombre de places disponibles dans les établissements pénitentiaires.",
+    supportingParties: ["lr", "rn", "reconquete", "renaissance"],
+    internationalExample: {
+      country: "France (comparaison européenne)",
+      when: "Données du Conseil de l'Europe (SPACE)",
+      summary:
+        "La France affiche un taux de surpopulation carcérale parmi les plus élevés d'Europe selon les données du Conseil de l'Europe.",
+      evaluation:
+        "Le débat sur l'efficacité de l'incarcération de masse par rapport aux peines alternatives est documenté par les comparaisons avec les pays scandinaves, qui affichent des taux de récidive plus bas.",
+    },
+  },
+  {
+    id: "secu-peines-alternatives",
+    themeId: "securite",
+    title: "Développer les peines alternatives à l'incarcération",
+    description:
+      "Privilégier le travail d'intérêt général, le bracelet électronique et les mesures de réinsertion plutôt que l'emprisonnement.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Suède, Norvège",
+      when: "Modèle scandinave de réinsertion",
+      summary:
+        "La Suède et la Norvège privilégient depuis plusieurs décennies des politiques pénales axées sur la réinsertion plutôt que la punition pure.",
+      evaluation:
+        "Une étude comparative (Université d'Oslo, Kristoffersen 2013) documente un taux de récidive plus bas en Norvège que dans des systèmes plus punitifs, mais les différences socio-économiques et démographiques entre pays limitent la transposabilité directe.",
+    },
+  },
+  {
+    id: "secu-justice-mineurs",
+    themeId: "securite",
+    title: "Durcir la justice des mineurs (atténuer l'excuse de minorité)",
+    description:
+      "Réduire l'atténuation automatique des peines pour les mineurs délinquants afin de durcir la réponse pénale.",
+    supportingParties: ["lr", "rn", "reconquete"],
+  },
+
+  // ÉDUCATION
+  {
+    id: "edu-traditionnel",
+    themeId: "education",
+    title: "Revenir à des méthodes plus traditionnelles (uniforme, notation stricte, autorité)",
+    description:
+      "Réintroduire l'uniforme scolaire, une notation plus stricte et davantage d'autorité dans les établissements.",
+    supportingParties: ["lr", "rn", "reconquete"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Uniforme généralisé depuis longtemps",
+      summary:
+        "Le port de l'uniforme est généralisé dans les écoles britanniques depuis de nombreuses décennies.",
+      evaluation:
+        "Une revue de littérature de l'Institute of Education de Londres montre des résultats peu concluants sur l'effet de l'uniforme sur les résultats scolaires : effet surtout social et disciplinaire rapporté, pas d'effet démontré robuste sur les résultats académiques.",
+    },
+  },
+  {
+    id: "edu-salaires-enseignants",
+    themeId: "education",
+    title: "Revaloriser significativement le salaire des enseignants",
+    description:
+      "Augmenter fortement la rémunération des enseignants pour rendre le métier plus attractif.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "renaissance"],
+    internationalExample: {
+      country: "Finlande, Corée du Sud",
+      when: "Comparaison OCDE",
+      summary:
+        "Le rapport « Regards sur l'éducation » de l'OCDE montre que la France a un salaire enseignant inférieur à la moyenne OCDE en début de carrière.",
+      evaluation:
+        "Une corrélation positive entre rémunération et attractivité du métier enseignant est documentée dans plusieurs pays comme la Finlande et la Corée du Sud.",
+    },
+  },
+  {
+    id: "edu-effectifs-classe",
+    themeId: "education",
+    title: "Réduire le nombre d'élèves par classe",
+    description:
+      "Diminuer les effectifs par classe, en particulier dans les zones prioritaires, pour améliorer les conditions d'apprentissage.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "France (REP/REP+)",
+      when: "Classes dédoublées depuis 2017",
+      summary:
+        "La France a dédoublé les classes de CP/CE1 en réseau d'éducation prioritaire (REP/REP+) à partir de 2017.",
+      evaluation:
+        "Les évaluations de la DEPP (ministère de l'Éducation nationale) montrent un effet positif mesurable en CP/CE1 en zones prioritaires, notamment en français et mathématiques, plus marqué pour les élèves les plus fragiles.",
+    },
+  },
+  {
+    id: "edu-prive-libre-choix",
+    themeId: "education",
+    title: "Développer l'enseignement privé sous contrat et le libre choix de l'école",
+    description:
+      "Faciliter l'accès à l'enseignement privé sous contrat et renforcer la liberté de choix de l'établissement scolaire.",
+    supportingParties: ["lr", "renaissance", "rn"],
+    internationalExample: {
+      country: "Suède",
+      when: "Système de chèque éducation depuis 1992",
+      summary:
+        "La Suède a instauré en 1992 un système de « chèque éducation » (vouchers) permettant de financer librement des écoles privées avec des fonds publics.",
+      evaluation:
+        "Les études suédoises (Böhlmark & Lindahl) montrent des résultats mitigés : légère amélioration des résultats moyens mais creusement des inégalités entre établissements et ségrégation scolaire accrue.",
+    },
+  },
+  {
+    id: "edu-autonomie-etablissements",
+    themeId: "education",
+    title: "Renforcer l'autonomie des établissements scolaires",
+    description:
+      "Donner davantage de marge de manœuvre aux chefs d'établissement dans la gestion pédagogique et administrative.",
+    supportingParties: ["renaissance", "lr"],
+    internationalExample: {
+      country: "Comparaisons OCDE (PISA)",
+      when: "Enquêtes PISA successives",
+      summary:
+        "L'OCDE compare régulièrement les degrés d'autonomie des établissements scolaires entre pays via l'enquête PISA.",
+      evaluation:
+        "Les comparaisons PISA montrent une corrélation complexe : l'autonomie seule n'améliore les résultats que lorsqu'elle est associée à une reddition de comptes (« accountability ») robuste.",
+    },
+  },
+
+  // SANTÉ
+  {
+    id: "sante-recrutement-soignants",
+    themeId: "sante",
+    title: "Recruter massivement du personnel soignant et revaloriser les salaires infirmiers",
+    description:
+      "Augmenter les effectifs hospitaliers et revaloriser les rémunérations du personnel soignant.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "renaissance"],
+    internationalExample: {
+      country: "Comparaison OCDE",
+      when: "Ségur de la santé, 2020",
+      summary:
+        "La France a engagé une revalorisation via le « Ségur de la santé » en 2020, avec des hausses salariales pour les soignants hospitaliers.",
+      evaluation:
+        "La France se situe dans la moyenne OCDE pour le nombre de médecins par habitant mais souffre de fortes disparités territoriales (déserts médicaux), documenté par la DREES.",
+    },
+  },
+  {
+    id: "sante-deserts-medicaux",
+    themeId: "sante",
+    title: "Lutter contre les déserts médicaux par la coercition à l'installation",
+    description:
+      "Imposer des restrictions à l'installation de nouveaux médecins dans les zones déjà bien dotées pour favoriser les zones sous-dotées.",
+    supportingParties: ["ps", "eelv", "lfi", "pcf"],
+    internationalExample: {
+      country: "Allemagne, Québec",
+      when: "Limitation d'installation dans certaines zones",
+      summary:
+        "L'Allemagne et le Québec appliquent des restrictions d'installation des médecins dans les zones jugées suffisamment dotées.",
+      evaluation:
+        "Les études sont mitigées : l'exemple allemand montre une efficacité limitée de la coercition seule, sans mesures incitatives complémentaires fortes (rémunération, conditions de travail).",
+    },
+  },
+  {
+    id: "sante-formation-medecins",
+    themeId: "sante",
+    title: "Poursuivre l'augmentation des capacités de formation de médecins",
+    description:
+      "Continuer à augmenter le nombre de places en études de médecine après la suppression du numerus clausus.",
+    supportingParties: ["lfi", "ps", "eelv", "renaissance"],
+    internationalExample: {
+      country: "France",
+      when: "Suppression du numerus clausus votée en 2019",
+      summary:
+        "La France a supprimé le numerus clausus en 2019 pour augmenter le nombre de médecins formés.",
+      evaluation:
+        "L'effet à long terme prendra 10 à 15 ans avant d'être pleinement mesurable, compte tenu de la durée des études de médecine ; pas encore d'évaluation d'impact disponible en France.",
+    },
+  },
+  {
+    id: "sante-100-sante",
+    themeId: "sante",
+    title: "Élargir la gratuité des soins dentaires, optiques et auditifs (« 100% santé »)",
+    description:
+      "Étendre le dispositif de prise en charge intégrale de certains équipements de santé (dentaire, optique, audio).",
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "renaissance"],
+    internationalExample: {
+      country: "France",
+      when: "Dispositif « 100% santé » depuis 2021",
+      summary:
+        "Le dispositif « 100% santé », mis en place sous les gouvernements Macron, permet un reste à charge nul sur certains équipements dentaires, optiques et auditifs.",
+      evaluation:
+        "Le bilan de la DREES et de l'Assurance Maladie montre une hausse sensible du recours aux soins dentaires et auditifs depuis 2021, avec un coût pour l'Assurance Maladie plus élevé que prévu initialement.",
+    },
+  },
+  {
+    id: "sante-t2a",
+    themeId: "sante",
+    title: "Réduire le poids de la tarification à l'activité (T2A) dans le financement des hôpitaux",
+    description:
+      "Diminuer la part du financement hospitalier basée sur le volume d'actes réalisés au profit d'un financement plus forfaitaire.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Angleterre (NHS)",
+      when: "Financement par blocs",
+      summary:
+        "Le NHS britannique utilise un financement par blocs plus que par activité pure comparé au système français.",
+      evaluation:
+        "La littérature en économie de la santé de l'OCDE documente que la T2A pure encourage le volume d'actes mais peut négliger la qualité et la prise en charge des pathologies chroniques complexes.",
+    },
+  },
+
+  // ENVIRONNEMENT ET ÉNERGIE
+  {
+    id: "env-nucleaire-relance",
+    themeId: "environnement",
+    title: "Relancer le nucléaire et construire de nouveaux EPR",
+    description:
+      "Construire de nouveaux réacteurs nucléaires pour sécuriser l'approvisionnement électrique et décarboner le mix énergétique.",
+    supportingParties: ["renaissance", "lr", "rn", "reconquete", "pcf"],
+    internationalExample: {
+      country: "France",
+      when: "Parc nucléaire existant, environ 70% du mix électrique",
+      summary:
+        "La France dispose du parc nucléaire le plus important d'Europe, représentant environ 70% de son mix électrique.",
+      evaluation:
+        "La Cour des comptes française pointe des dérives récurrentes de coûts et de délais sur les nouveaux EPR (Flamanville). À l'inverse, l'AIE crédite le nucléaire d'un bilan carbone très favorable comparé aux énergies fossiles.",
+    },
+  },
+  {
+    id: "env-nucleaire-sortie",
+    themeId: "environnement",
+    title: "Réduire la part du nucléaire dans le mix énergétique",
+    description:
+      "Diminuer progressivement la dépendance au nucléaire au profit des énergies renouvelables.",
+    supportingParties: ["eelv"],
+    internationalExample: {
+      country: "Allemagne",
+      when: "Sortie complète du nucléaire en 2023 (Atomausstieg)",
+      summary:
+        "L'Allemagne a fermé son dernier réacteur nucléaire en 2023, achevant une sortie du nucléaire engagée après Fukushima en 2011.",
+      evaluation:
+        "L'Agence internationale de l'énergie documente une hausse du recours au charbon dans les années suivant les premières fermetures post-Fukushima et une hausse des émissions de CO2 du secteur électrique allemand, bien que les renouvelables se soient parallèlement fortement développées.",
+    },
+  },
+  {
+    id: "env-taxe-carbone",
+    themeId: "environnement",
+    title: "Renforcer la fiscalité écologique et la taxe carbone",
+    description:
+      "Augmenter la taxation du carbone pour inciter à la réduction des émissions, avec des compensations sociales pour les ménages modestes.",
+    supportingParties: ["eelv", "ps", "lfi"],
+    internationalExample: {
+      country: "Suède",
+      when: "Taxe carbone depuis 1991",
+      summary:
+        "La Suède applique depuis 1991 une des taxes carbone les plus élevées au monde.",
+      evaluation:
+        "Le National Institute of Economic Research suédois montre une réduction significative des émissions du secteur transport sans effet récessif majeur documenté sur l'économie globale, contrairement aux craintes initiales.",
+    },
+  },
+  {
+    id: "env-renouvelables",
+    themeId: "environnement",
+    title: "Développer massivement les énergies renouvelables (éolien, solaire)",
+    description:
+      "Accélérer fortement le déploiement de l'éolien et du solaire dans le mix électrique français.",
+    supportingParties: ["eelv", "lfi", "ps", "renaissance"],
+    internationalExample: {
+      country: "Allemagne, Danemark",
+      when: "Energiewende (Allemagne), développement de l'éolien (Danemark)",
+      summary:
+        "L'Allemagne a mené une transition énergétique ambitieuse (Energiewende) et le Danemark est un leader mondial de l'éolien.",
+      evaluation:
+        "L'Allemagne a atteint des taux élevés de renouvelables dans l'électricité mais avec des prix de l'électricité parmi les plus élevés d'Europe (Eurostat) et des besoins de flexibilité et de stockage encore non résolus.",
+    },
+  },
+  {
+    id: "env-mercosur",
+    themeId: "environnement",
+    title: "S'opposer à l'accord de libre-échange Mercosur",
+    description:
+      "Refuser la ratification de l'accord commercial entre l'Union européenne et les pays du Mercosur, jugé nuisible à l'agriculture et l'environnement.",
+    supportingParties: ["lfi", "eelv", "ps", "rn", "reconquete", "lr"],
+    internationalExample: {
+      country: "Union européenne / Mercosur",
+      when: "Accord signé fin 2024, ratification incertaine",
+      summary:
+        "L'accord UE-Mercosur a été signé politiquement fin 2024 mais sa ratification par les parlements nationaux reste incertaine.",
+      evaluation:
+        "Le débat est toujours en cours ; il n'y a pas encore de recul suffisant pour une évaluation d'impact réel de cet accord.",
+    },
+  },
+
+  // EUROPE ET INTERNATIONAL
+  {
+    id: "europe-frexit",
+    themeId: "europe",
+    title: "Sortir de l'Union européenne (« Frexit »)",
+    description:
+      "Organiser un référendum sur la sortie de la France de l'Union européenne.",
+    supportingParties: ["reconquete"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Brexit effectif en janvier 2020",
+      summary:
+        "Le Royaume-Uni a quitté l'Union européenne suite au référendum de 2016, avec une sortie effective en janvier 2020.",
+      evaluation:
+        "Des études convergentes (Office for Budget Responsibility britannique, London School of Economics, Bank of England) montrent un impact négatif net sur le commerce extérieur et le PIB britannique à moyen terme, avec des effets bureaucratiques et des pénuries ponctuelles documentées. Le débat persiste sur l'ampleur exacte de l'effet par rapport à d'autres chocs comme le COVID.",
+    },
+  },
+  {
+    id: "europe-desobeissance-budgetaire",
+    themeId: "europe",
+    title: "Renégocier ou désobéir aux règles budgétaires européennes",
+    description:
+      "Refuser d'appliquer certaines règles budgétaires européennes jugées trop contraignantes et renégocier les traités.",
+    supportingParties: ["lfi", "pcf", "rn"],
+    internationalExample: {
+      country: "Grèce",
+      when: "Référendum « Oxi », 2015",
+      summary:
+        "La Grèce a testé en 2015 une confrontation avec la troïka de ses créanciers via un référendum rejetant les conditions du plan d'aide, avant d'accepter finalement un nouveau plan sous conditions strictes.",
+      evaluation:
+        "Il n'existe pas de précédent de « désobéissance » pleinement assumée et durable au sein de l'UE ; l'épisode grec de 2015 s'est soldé par un recul du gouvernement face à la pression des créanciers.",
+    },
+  },
+  {
+    id: "europe-defense-commune",
+    themeId: "europe",
+    title: "Renforcer la défense européenne commune et l'autonomie stratégique",
+    description:
+      "Développer des capacités militaires communes au niveau européen pour réduire la dépendance vis-à-vis des États-Unis.",
+    supportingParties: ["renaissance", "ps", "eelv", "lr"],
+    internationalExample: {
+      country: "Union européenne / OTAN",
+      when: "Renforcé depuis la guerre en Ukraine (2022)",
+      summary:
+        "Le sujet de l'autonomie stratégique européenne a été relancé depuis le déclenchement de la guerre en Ukraine en 2022.",
+      evaluation:
+        "Les rapports de l'IFRI et de la Fondation Robert Schuman montrent que l'OTAN reste le cadre de référence principal pour la majorité des experts en défense, l'autonomie européenne restant largement à construire.",
+    },
+  },
+  {
+    id: "europe-soutien-ukraine",
+    themeId: "europe",
+    title: "Maintenir un soutien fort, y compris militaire, à l'Ukraine",
+    description:
+      "Poursuivre et renforcer l'aide militaire, financière et humanitaire à l'Ukraine face à l'agression russe.",
+    supportingParties: ["renaissance", "ps", "eelv", "lr"],
+  },
+  {
+    id: "europe-pac",
+    themeId: "europe",
+    title: "Réformer la PAC pour mieux protéger les agriculteurs français",
+    description:
+      "Renégocier la Politique agricole commune pour offrir davantage de protection aux agriculteurs français face à la concurrence internationale.",
+    supportingParties: ["lr", "rn", "ps", "lfi", "reconquete"],
+    internationalExample: {
+      country: "Union européenne",
+      when: "Critiques récurrentes de la Cour des comptes européenne",
+      summary:
+        "La PAC fait l'objet de critiques récurrentes sur son efficacité environnementale et la répartition de ses aides.",
+      evaluation:
+        "La Cour des comptes européenne relève une répartition inégale des aides entre grandes et petites exploitations et une efficacité environnementale jugée insuffisante.",
+    },
+  },
+
+  // INSTITUTIONS ET DÉMOCRATIE
+  {
+    id: "inst-6e-republique",
+    themeId: "institutions",
+    title: "Passer à une VIe République plus parlementaire",
+    description:
+      "Rédiger une nouvelle Constitution instaurant un régime plus parlementaire, réduisant les pouvoirs du président de la République.",
+    supportingParties: ["lfi", "eelv", "pcf"],
+    internationalExample: {
+      country: "Allemagne, Espagne (référence théorique)",
+      when: "Régimes parlementaires existants",
+      summary:
+        "Les régimes parlementaires allemand et espagnol sont parfois cités en référence pour un système plus équilibré entre exécutif et Parlement.",
+      evaluation:
+        "Aucune évaluation empirique directe n'est possible puisque le projet n'a pas été mis en œuvre en France ; le débat reste théorique sur les mérites comparés des régimes parlementaires et semi-présidentiels (littérature de science politique, Linz, « The Perils of Presidentialism »).",
+    },
+  },
+  {
+    id: "inst-ric",
+    themeId: "institutions",
+    title: "Instaurer un référendum d'initiative citoyenne (RIC)",
+    description:
+      "Permettre aux citoyens de déclencher un référendum national sur toute question, à condition de réunir un certain nombre de signatures.",
+    supportingParties: ["lfi", "rn", "reconquete", "pcf"],
+    internationalExample: {
+      country: "Suisse, États-Unis (Californie)",
+      when: "Démocratie directe suisse, référendums d'initiative californiens",
+      summary:
+        "La Suisse pratique une démocratie directe très développée avec des votations fréquentes ; certains États américains comme la Californie permettent des référendums d'initiative populaire.",
+      evaluation:
+        "Le cas suisse est documenté comme stable et associé à une forte légitimité perçue des décisions, mais avec un taux de participation aux votations parfois faible. Le cas californien est souvent cité pour ses effets pervers, comme les blocages budgétaires liés à des référendums contradictoires (Proposition 13 sur la fiscalité locale, 1978).",
+    },
+  },
+  {
+    id: "inst-non-cumul",
+    themeId: "institutions",
+    title: "Renforcer le non-cumul des mandats dans le temps",
+    description:
+      "Limiter le nombre de mandats successifs qu'un même élu peut exercer.",
+    supportingParties: ["lfi", "eelv", "ps", "renaissance"],
+  },
+  {
+    id: "inst-proportionnelle",
+    themeId: "institutions",
+    title: "Instaurer la proportionnelle aux élections législatives",
+    description:
+      "Remplacer tout ou partie du scrutin majoritaire actuel par un scrutin proportionnel pour mieux représenter la diversité des opinions politiques.",
+    supportingParties: ["rn", "reconquete", "lfi", "eelv", "pcf", "ps"],
+    internationalExample: {
+      country: "Allemagne, Italie",
+      when: "Scrutin proportionnel mixte (Allemagne)",
+      summary:
+        "L'Allemagne utilise un scrutin proportionnel mixte avec un seuil électoral de 5%, tandis que l'Italie a une longue histoire de scrutin proportionnel.",
+      evaluation:
+        "La littérature de science politique associe la proportionnelle à une meilleure représentation de la diversité des opinions mais aussi à une plus grande instabilité gouvernementale potentielle (cas italien historique, IIIe/IVe République française). Le cas allemand montre qu'un seuil électoral permet de limiter la fragmentation.",
+    },
+  },
+  {
+    id: "inst-reduction-parlementaires",
+    themeId: "institutions",
+    title: "Réduire le nombre de parlementaires",
+    description:
+      "Diminuer le nombre de députés et de sénateurs pour réduire le coût et simplifier le fonctionnement des institutions.",
+    supportingParties: ["renaissance", "lr", "rn"],
+  },
+
+  // LOGEMENT
+  {
+    id: "log-encadrement-loyers",
+    themeId: "logement",
+    title: "Renforcer et généraliser l'encadrement des loyers",
+    description:
+      "Étendre l'encadrement des loyers à davantage de villes et le rendre plus strict dans les zones tendues.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Allemagne (Berlin)",
+      when: "Mietpreisbremse depuis 2015, Mietendeckel à Berlin 2020 (annulé en 2021)",
+      summary:
+        "L'Allemagne applique un « frein aux loyers » (Mietpreisbremse) depuis 2015 ; Berlin avait instauré un plafonnement plus strict (Mietendeckel) en 2020, annulé par la Cour constitutionnelle en 2021.",
+      evaluation:
+        "Les études du DIW Berlin montrent un ralentissement de la hausse des loyers dans les zones encadrées mais aussi une réduction de l'offre locative disponible, les propriétaires se tournant vers la vente ou la location meublée touristique.",
+    },
+  },
+  {
+    id: "log-logements-sociaux",
+    themeId: "logement",
+    title: "Construire massivement des logements sociaux",
+    description:
+      "Augmenter fortement le rythme de construction de logements sociaux pour répondre à la demande.",
+    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    internationalExample: {
+      country: "Autriche (Vienne)",
+      when: "Modèle de logement social à grande échelle",
+      summary:
+        "Vienne dispose d'un parc de logements sociaux représentant environ 60% du parc locatif de la ville.",
+      evaluation:
+        "Le modèle viennois est cité positivement par de nombreux experts internationaux (OCDE, ONU-Habitat) pour sa contribution à la modération des loyers en général, y compris dans le parc privé, du fait de l'effet de régulation par la concurrence.",
+    },
+  },
+  {
+    id: "log-normes-construction",
+    themeId: "logement",
+    title: "Réduire les normes de construction pour relancer l'offre",
+    description:
+      "Alléger les normes environnementales et techniques pesant sur la construction neuve pour en réduire les coûts.",
+    supportingParties: ["renaissance", "lr", "rn"],
+  },
+  {
+    id: "log-taxation-vacance",
+    themeId: "logement",
+    title: "Renforcer la taxation des logements vacants et des résidences secondaires en zone tendue",
+    description:
+      "Augmenter la fiscalité sur les logements vacants et les résidences secondaires dans les zones où la demande de logement est forte.",
+    supportingParties: ["lfi", "eelv", "ps"],
+    internationalExample: {
+      country: "Canada (Vancouver)",
+      when: "Taxe sur les logements vacants depuis 2017",
+      summary:
+        "La ville de Vancouver applique depuis 2017 une taxe sur les logements vacants pour lutter contre la spéculation immobilière.",
+      evaluation:
+        "Une étude de la ville de Vancouver (2019) montre une légère baisse du taux de vacance mais un effet limité sur les prix globaux du marché, la pression immobilière étant multifactorielle.",
+    },
+  },
+  {
+    id: "log-accession-propriete",
+    themeId: "logement",
+    title: "Relancer l'accession à la propriété (prêt à taux zéro élargi)",
+    description:
+      "Élargir les dispositifs d'aide à l'achat immobilier comme le prêt à taux zéro pour faciliter l'accession à la propriété.",
+    supportingParties: ["renaissance", "lr", "rn"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Help to Buy, 2013-2023",
+      summary:
+        "Le Royaume-Uni a mis en place le dispositif « Help to Buy » de 2013 à 2023 pour faciliter l'accession à la propriété.",
+      evaluation:
+        "Le National Audit Office britannique a critiqué ce dispositif pour avoir contribué à une hausse des prix de l'immobilier neuf sans améliorer significativement l'accessibilité globale au logement.",
+    },
+  },
+];
+
+export const propositionById = Object.fromEntries(
+  propositions.map((p) => [p.id, p])
+);

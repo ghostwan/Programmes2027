@@ -1,0 +1,64 @@
+# Journal des modifications (Changelog)
+
+Toutes les modifications notables de ce projet sont documentées dans ce fichier.
+
+Le format est inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/),
+et ce projet respecte le [Semantic Versioning](https://semver.org/lang/fr/)
+(`MAJEUR.MINEUR.CORRECTIF`).
+
+Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Déprécié`,
+`Sécurité`, `Cassant` (changement non rétrocompatible).
+
+> Ce fichier est la source de vérité utilisée pour générer automatiquement le
+> numéro de version et la page **/changelog** du site. Voir `AGENTS.md` pour
+> les règles de mise à jour.
+
+## [Non publié]
+
+## [1.2.0] - 2026-08-20
+
+### Ajouté
+
+- Bouton « Ne sais pas » clairement identifié dans le jeu, pour ignorer une
+  proposition sans qu'elle compte dans le calcul des résultats.
+
+## [1.1.1] - 2026-08-20
+
+### Modifié
+
+- Dans le jeu, le détail de chaque proposition est désormais affiché
+  directement dans la carte (au lieu d'un bouton « voir le détail »), avec
+  un défilement interne si le texte est trop long pour l'écran.
+
+## [1.1.0] - 2026-08-20
+
+### Ajouté
+
+- Mise en place d'un système de versionnage sémantique du site : numéro de
+  version affiché dans le pied de page et page `/changelog` listant les
+  nouveautés de chaque version.
+- Le numéro de version est désormais incrémenté automatiquement avant
+  chaque déploiement, en fonction des changements documentés dans ce
+  fichier.
+
+## [1.0.0] - 2026-08-20
+
+### Ajouté
+
+- Comparateur des propositions politiques par thématique (10 thématiques,
+  45 propositions), avec vue tableau croisé sur desktop et cartes sur mobile.
+- Fiches détaillées par proposition : partis soutenants, exemple
+  d'application à l'étranger et évaluation factuelle des effets observés.
+- Fiches partis (8 formations) avec la liste de leurs propositions
+  recensées par thématique.
+- Jeu à l'aveugle façon Tinder : propositions mélangées sans indiquer le
+  parti, swipe tactile sur mobile (via `framer-motion`), boutons dédiés sur
+  desktop, et bouton « voir le détail » avant de répondre.
+- Algorithme de correspondance calculant le taux d'accord avec chaque parti
+  à partir des réponses données, et un classement complet.
+- Statistiques de résultats par grande thématique avec le parti le plus
+  proche sur chacune.
+- Protection du site par mot de passe (Basic Auth) le temps de la phase de
+  développement, avec identifiants stockés en tant que secrets Cloudflare
+  chiffrés.
+- Déploiement du site sur Cloudflare Workers via l'adaptateur OpenNext.

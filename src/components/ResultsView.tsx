@@ -1,0 +1,184 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
+import Link from "next/link";
+import { propositions } from "@/lib/data/propositions";
+import { partyById } from "@/lib/data/parties";
+import { themeById } from "@/lib/data/themes";
+import { AnswersMap } from "@/lib/types";
+import { computePartyScores, computeThemeStats } from "@/lib/matching";
+import { ANSWERS_STORAGE_KEY } from "@/lib/storage";
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot(): string | null {
+  return window.localStorage.getItem(ANSWERS_STORAGE_KEY);
+}
+
+function getServerSnapshot(): string | null {
+  return null;
+}
+
+export function ResultsView() {
+  const raw = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const answers: AnswersMap = raw ? JSON.parse(raw) : {};
+
+  const totalAnswered = Object.values(answers).filter(
+    (a) => a === "pour" || a === "contre"
+  ).length;
+
+  if (totalAnswered === 0) {
+    return (
+      <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center gap-4 px-4 py-20 text-center">
+        <div className="text-4xl">🤔</div>
+        <h1 className="text-xl font-bold text-slate-900">
+          Pas encore de résultats
+        </h1>
+        <p className="text-slate-600">
+          Vous devez d&apos;abord répondre à quelques propositions dans le jeu.
+        </p>
+        <Link
+          href="/jeu"
+          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          Aller au jeu
+        </Link>
+      </div>
+    );
+  }
+
+  const partyScores = computePartyScores(answers, propositions).filter(
+    (s) => s.answeredRelevant > 0
+  );
+  const themeStats = computeThemeStats(answers, propositions);
+  const top = partyScores[0];
+
+  return (
+    <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
+      <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Vos résultats
+      </h1>
+      <p className="mt-2 text-slate-600">
+        Basé sur {totalAnswered} propositions auxquelles vous avez répondu.
+      </p>
+
+      {top && (
+        <section className="mt-6 rounded-2xl border-2 p-6 shadow-sm" style={{ borderColor: partyById[top.partyId].color }}>
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Le parti le plus proche de vos réponses
+          </p>
+          <div className="mt-2 flex items-center gap-3">
+            <span
+              className="h-5 w-5 rounded-full"
+              style={{ backgroundColor: partyById[top.partyId].color }}
+            />
+            <h2 className="text-2xl font-bold text-slate-900">
+              {partyById[top.partyId].name}
+            </h2>
+          </div>
+          <p className="mt-1 text-3xl font-black text-slate-900">
+            {top.matchPercent}%{" "}
+            <span className="text-base font-medium text-slate-500">
+              d&apos;accord ({top.answeredRelevant} propositions communes)
+            </span>
+          </p>
+          <Link
+            href={`/partis/${top.partyId}`}
+            className="mt-3 inline-block text-sm font-medium text-slate-700 underline underline-offset-2"
+          >
+            Voir le programme complet de ce parti →
+          </Link>
+        </section>
+      )}
+
+      <section className="mt-8">
+        <h2 className="text-lg font-bold text-slate-900">Classement complet</h2>
+        <div className="mt-3 flex flex-col gap-2">
+          {partyScores.map((s) => {
+            const party = partyById[s.partyId];
+            return (
+              <Link
+                key={s.partyId}
+                href={`/partis/${s.partyId}`}
+                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm hover:shadow-md"
+              >
+                <span className="w-28 flex-shrink-0 text-sm font-semibold text-slate-700">
+                  {party.shortName}
+                </span>
+                <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-100">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${s.matchPercent}%`,
+                      backgroundColor: party.color,
+                    }}
+                  />
+                </div>
+                <span className="w-14 flex-shrink-0 text-right text-sm font-bold text-slate-900">
+                  {s.matchPercent}%
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+        <p className="mt-2 text-xs text-slate-400">
+          Le score reflète le taux d&apos;accord uniquement sur les
+          propositions documentées comme soutenues par chaque parti et pour
+          lesquelles vous avez répondu.
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-slate-900">Détail par thématique</h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {themeStats
+            .filter((s) => s.totalAnswered > 0)
+            .map((stat) => {
+              const theme = themeById[stat.themeId];
+              return (
+                <div
+                  key={stat.themeId}
+                  className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                >
+                  <div className="flex items-center gap-2 font-semibold text-slate-900">
+                    <span>{theme.icon}</span> {theme.name}
+                  </div>
+                  <p className="mt-1 text-xs text-slate-500">
+                    {stat.totalAnswered} propositions répondues ·{" "}
+                    {stat.pourPercent}% pour
+                  </p>
+                  {stat.topParty && (
+                    <p className="mt-2 text-sm">
+                      Le plus proche :{" "}
+                      <span className="font-semibold" style={{ color: partyById[stat.topParty].color }}>
+                        {partyById[stat.topParty].shortName}
+                      </span>{" "}
+                      ({stat.topPartyPercent}%)
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+      </section>
+
+      <div className="mt-10 flex flex-wrap gap-3">
+        <Link
+          href="/jeu"
+          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+        >
+          🔄 Rejouer
+        </Link>
+        <Link
+          href="/themes"
+          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          Explorer les thématiques en détail
+        </Link>
+      </div>
+    </main>
+  );
+}

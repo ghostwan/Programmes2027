@@ -1,0 +1,57 @@
+export type PartyId =
+  | "lfi"
+  | "ps"
+  | "eelv"
+  | "renaissance"
+  | "lr"
+  | "rn"
+  | "reconquete"
+  | "pcf";
+
+export interface Party {
+  id: PartyId;
+  name: string;
+  shortName: string;
+  family: string;
+  color: string; // tailwind-friendly hex
+  description: string;
+}
+
+export type ThemeId =
+  | "economie"
+  | "travail"
+  | "immigration"
+  | "securite"
+  | "education"
+  | "sante"
+  | "environnement"
+  | "europe"
+  | "institutions"
+  | "logement";
+
+export interface Theme {
+  id: ThemeId;
+  name: string;
+  icon: string;
+  description: string;
+}
+
+export interface InternationalExample {
+  country: string;
+  when: string;
+  summary: string;
+  evaluation: string;
+}
+
+export interface Proposition {
+  id: string;
+  themeId: ThemeId;
+  title: string;
+  description: string;
+  supportingParties: PartyId[];
+  internationalExample?: InternationalExample;
+}
+
+export type Answer = "pour" | "contre" | "skip";
+
+export type AnswersMap = Record<string, Answer>;
