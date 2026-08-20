@@ -136,12 +136,49 @@ recently if other parties plausibly support it too. After adding a batch:
    known official sources (see step 1's table) over generic search.
 3. Apply only recommendations with a real citation (official program page,
    PDF, or vote record) — never on vibes/ideological assumption.
+4. **Also use international precedents as a source of cross-party signal**,
+   not just party programs directly. If proposition X already has an
+   `internationalExample` citing e.g. Denmark's family reunification law,
+   or Sweden's carbon tax, actively check whether *other* parties' own
+   documents/declarations cite that same country/policy as a model or
+   counter-example — parties frequently justify their own proposals by
+   invoking a specific foreign precedent (e.g. "comme au Danemark...", "à
+   l'image du modèle suédois..."). Finding that a second party's program
+   explicitly references the same country's implementation for a similar
+   measure is itself citable evidence for adding them to
+   `supportingParties`. This is a distinct research angle from re-reading a
+   party's whole program: search the party's document for the country name
+   (once you already have it from the existing `internationalExample`)
+   rather than only for the topic in the abstract.
 
-## 6. International examples (optional but valued)
+## 6. International examples: research AND periodic full re-scan
 
-If time allows, for new propositions without an `internationalExample`,
-research whether a genuinely comparable policy has been implemented abroad.
-Rules:
+New propositions without an `internationalExample`: if time allows, research
+whether a genuinely comparable policy has been implemented abroad (rules
+below). This should also be run **periodically as a standalone pass over the
+ENTIRE dataset**, not only on newly added propositions — earlier passes only
+covered ~93 of 277+ propositions, so there is always a backlog. When the
+user asks something like "regarde les pays qui ont déjà mis en place ces
+mesures" without specifying new vs. existing, treat it as a full re-scan:
+
+1. Dump every proposition currently missing `internationalExample` per theme
+   (adapt the step 2 script: filter blocks where `"internationalExample"
+   not in block`).
+2. Delegate to parallel `general` agents per theme-pair, same as step 3, but
+   framed as "does a real, well-documented foreign precedent exist for each
+   of these — country, period, factual summary, sourced evaluation (name
+   the institution/study)". Explicitly tell agents to say "aucun exemple
+   international clair" per item rather than force a weak analogy — in
+   past runs, roughly half of all propositions legitimately have no good
+   match (ideological or France-specific measures), and that's expected,
+   not a failure.
+3. For every example added, immediately determine its `assessment` (see
+   below) AND run the cross-party check from step 5.4 (search other
+   parties' documents for that same country name) before moving to the
+   next batch — doing both together avoids re-reading the same sources
+   twice.
+
+Rules for adding an example:
 - Only add an example when genuinely confident — many proposals (especially
   ideological or France-specific ones) legitimately have none. Say so rather
   than forcing an approximate comparison.

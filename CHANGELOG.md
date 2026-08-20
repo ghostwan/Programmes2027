@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.1.0] - 2026-08-20
+
 ### Ajouté
 
 - Un bilan global (positif, négatif ou mitigé) pour chacun des 91
