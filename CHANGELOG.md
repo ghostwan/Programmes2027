@@ -17,6 +17,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Une colonne « Déjà mis en œuvre » dans les tableaux de comparaison,
+  affichant les drapeaux des pays où une mesure comparable existe déjà,
+  à partir des exemples internationaux déjà documentés.
+- Un lien discret ✏️ sur chaque proposition permettant de signaler
+  qu'un parti la soutient (ou ne la soutient plus), via une issue
+  GitHub pré-remplie avec le contexte et un espace pour indiquer la
+  source — sans ajouter de sollicitation de notre serveur.
 - Un avertissement en bas de chaque page thématique précisant que tous
   les programmes ne sont pas encore disponibles ou finalisés, que les
   données reflètent les sources actuellement publiées, et qu'elles
