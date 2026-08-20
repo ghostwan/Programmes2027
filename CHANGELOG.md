@@ -17,6 +17,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un bouton pour masquer l'avertissement sur l'ordre aléatoire des
+  propositions dans le jeu, une fois lu ; ce choix est mémorisé pour
+  les prochaines visites.
+
+## [2.3.0] - 2026-08-20
+
+### Ajouté
+
 - Un avertissement dans le jeu précisant que l'ordre aléatoire des
   propositions peut influencer le résultat en cas de consultation
   anticipée, et que l'algorithme de correspondance est encore en cours

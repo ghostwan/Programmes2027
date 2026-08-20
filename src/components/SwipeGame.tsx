@@ -6,7 +6,12 @@ import { motion, useAnimation, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { Answer, AnswersMap, GameState } from "@/lib/types";
-import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY, MIN_ANSWERS_FOR_EARLY_RESULTS } from "@/lib/storage";
+import {
+  ANSWERS_STORAGE_KEY,
+  GAME_STATE_STORAGE_KEY,
+  MIN_ANSWERS_FOR_EARLY_RESULTS,
+  QUIZ_WARNING_DISMISSED_KEY,
+} from "@/lib/storage";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -104,6 +109,18 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
     () => initialSavedState?.answers ?? {}
   );
   const [resumed] = useState(() => (initialSavedState?.index ?? 0) > 0);
+  const [warningDismissed, setWarningDismissed] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(QUIZ_WARNING_DISMISSED_KEY) === "1"
+  );
+
+  function dismissWarning() {
+    setWarningDismissed(true);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(QUIZ_WARNING_DISMISSED_KEY, "1");
+    }
+  }
 
   const deck = useMemo(
     () => deckIds.map((id) => propositionById[id]).filter(Boolean),
@@ -247,13 +264,24 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
         )}
       </div>
 
-      <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
-        ⚠️ L&apos;ordre des propositions est tiré au hasard à chaque partie,
-        ce qui peut influencer votre résultat si vous consultez vos résultats
-        avant d&apos;avoir répondu à toutes les propositions. L&apos;algorithme
-        de correspondance est encore en cours d&apos;amélioration.
-      </p>
-
+      {!warningDismissed && (
+        <p className="mb-4 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+          <span className="flex-1">
+            ⚠️ L&apos;ordre des propositions est tiré au hasard à chaque partie,
+            ce qui peut influencer votre résultat si vous consultez vos résultats
+            avant d&apos;avoir répondu à toutes les propositions. L&apos;algorithme
+            de correspondance est encore en cours d&apos;amélioration.
+          </span>
+          <button
+            type="button"
+            onClick={dismissWarning}
+            aria-label="Masquer cet avertissement"
+            className="shrink-0 rounded-full px-1.5 py-0.5 font-bold text-amber-700 hover:bg-amber-100 hover:text-amber-900"
+          >
+            ✕
+          </button>
+        </p>
+      )}
       {/* Card */}
       <div className="relative flex flex-1 items-center justify-center py-4">
         <motion.div

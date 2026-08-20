@@ -79,3 +79,10 @@ export function setAssumeOppositionSetting(value: boolean) {
   window.localStorage.setItem(ASSUME_OPPOSITION_STORAGE_KEY, value ? "1" : "0");
   window.dispatchEvent(new Event(ASSUME_OPPOSITION_CHANGE_EVENT));
 }
+
+/**
+ * Whether the user has dismissed the "random order / algorithm still
+ * being refined" disclaimer shown in the quiz. Persisted so it stays
+ * hidden on future visits once acknowledged.
+ */
+export const QUIZ_WARNING_DISMISSED_KEY = "programmes2027:quiz-warning-dismissed";
