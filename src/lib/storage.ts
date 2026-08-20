@@ -6,3 +6,32 @@ export const ANSWERS_STORAGE_KEY = "programmes2027:answers";
  * resume later exactly where they left off.
  */
 export const GAME_STATE_STORAGE_KEY = "programmes2027:game-state";
+
+/**
+ * Minimum number of answered propositions (pour/contre/skip combined)
+ * before the user is offered a shortcut to see their results without
+ * finishing every single proposition.
+ */
+export const MIN_ANSWERS_FOR_EARLY_RESULTS = 15;
+
+/**
+ * Whether there is a saved, not-yet-finished game in localStorage (i.e. the
+ * user has started answering but hasn't reached the end of the deck yet).
+ * Used by the results page to offer a "continue the quiz" shortcut instead
+ * of only "restart from scratch".
+ */
+export function hasUnfinishedGame(): boolean {
+  if (typeof window === "undefined") return false;
+  const raw = window.localStorage.getItem(GAME_STATE_STORAGE_KEY);
+  if (!raw) return false;
+  try {
+    const parsed = JSON.parse(raw) as { deckIds?: unknown; index?: unknown };
+    return (
+      Array.isArray(parsed.deckIds) &&
+      typeof parsed.index === "number" &&
+      parsed.index < parsed.deckIds.length
+    );
+  } catch {
+    return false;
+  }
+}

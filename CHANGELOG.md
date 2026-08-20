@@ -17,6 +17,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Possibilité de voir ses résultats en cours de partie, sans attendre
+  d'avoir répondu à toutes les propositions (bouton disponible après 15
+  réponses), avec un bouton « Continuer le quiz » depuis la page de
+  résultats pour reprendre et affiner son score là où on s'était arrêté.
 - 9 nouvelles propositions issues d'une relecture complète du programme du
   Parti socialiste (mix énergétique nucléaire-renouvelable décidé par le
   Parlement, taxe Zucman, écocide, légalisation encadrée du cannabis,

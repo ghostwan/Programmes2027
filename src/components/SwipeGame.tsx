@@ -6,7 +6,7 @@ import { motion, useAnimation, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { Answer, AnswersMap, GameState } from "@/lib/types";
-import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY } from "@/lib/storage";
+import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY, MIN_ANSWERS_FOR_EARLY_RESULTS } from "@/lib/storage";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -114,14 +114,29 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
   const done = index >= deck.length;
   const progress = deck.length > 0 ? Math.round((index / deck.length) * 100) : 0;
 
-  function finish(finalAnswers: AnswersMap) {
+  function persistAnswers(finalAnswers: AnswersMap) {
     if (typeof window !== "undefined") {
       window.localStorage.setItem(
         ANSWERS_STORAGE_KEY,
         JSON.stringify(finalAnswers)
       );
     }
+  }
+
+  function finish(finalAnswers: AnswersMap) {
+    persistAnswers(finalAnswers);
     clearSavedGameState();
+    router.push("/resultats");
+  }
+
+  /**
+   * Lets the user jump to the results page before finishing the whole
+   * deck. Unlike `finish()`, this does NOT clear the saved game state, so
+   * the user can come back later (via the "Continuer le quiz" button on
+   * the results page) and resume exactly where they left off.
+   */
+  function viewResultsNow() {
+    persistAnswers(answers);
     router.push("/resultats");
   }
 
@@ -199,6 +214,16 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
             style={{ width: `${progress}%` }}
           />
         </div>
+        {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && (
+          <div className="mt-2 text-right">
+            <button
+              onClick={viewResultsNow}
+              className="text-xs font-semibold text-slate-500 underline underline-offset-2 hover:text-slate-800"
+            >
+              Voir mes résultats maintenant ({answeredCount} réponses) →
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Card */}

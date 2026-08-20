@@ -7,7 +7,7 @@ import { partyById } from "@/lib/data/parties";
 import { themeById } from "@/lib/data/themes";
 import { AnswersMap } from "@/lib/types";
 import { computePartyScores, computeThemeStats } from "@/lib/matching";
-import { ANSWERS_STORAGE_KEY } from "@/lib/storage";
+import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY, hasUnfinishedGame } from "@/lib/storage";
 
 function subscribe(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -22,9 +22,19 @@ function getServerSnapshot(): string | null {
   return null;
 }
 
+function getGameStateSnapshot(): string | null {
+  return window.localStorage.getItem(GAME_STATE_STORAGE_KEY);
+}
+
 export function ResultsView() {
   const raw = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const gameStateRaw = useSyncExternalStore(
+    subscribe,
+    getGameStateSnapshot,
+    getServerSnapshot
+  );
   const answers: AnswersMap = raw ? JSON.parse(raw) : {};
+  const unfinishedGame = gameStateRaw !== null && hasUnfinishedGame();
 
   const totalAnswered = Object.values(answers).filter(
     (a) => a === "pour" || a === "contre"
@@ -166,15 +176,34 @@ export function ResultsView() {
       </section>
 
       <div className="mt-10 flex flex-wrap gap-3">
-        <Link
-          href="/jeu"
-          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-        >
-          🔄 Rejouer
-        </Link>
+        {unfinishedGame && (
+          <p className="w-full text-sm text-slate-500">
+            Ces résultats sont provisoires : vous n&apos;avez pas encore
+            répondu à toutes les propositions.
+          </p>
+        )}
+        {unfinishedGame ? (
+          <Link
+            href="/jeu"
+            className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+          >
+            ▶️ Continuer le quiz
+          </Link>
+        ) : (
+          <Link
+            href="/jeu"
+            className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+          >
+            🔄 Rejouer
+          </Link>
+        )}
         <Link
           href="/themes"
-          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+          className={
+            unfinishedGame
+              ? "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+              : "rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+          }
         >
           Explorer les thématiques en détail
         </Link>
