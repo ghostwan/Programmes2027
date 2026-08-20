@@ -109,6 +109,16 @@ export default async function ThemeDetailPage({
           </Link>
         ))}
       </div>
+
+      <p className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs leading-relaxed text-amber-900">
+        ⚠️ Les programmes des partis pour 2027 ne sont pas tous disponibles
+        ou finalisés à ce stade de la campagne. Les propositions affichées
+        ici reflètent l&apos;état des sources officielles actuellement
+        publiées et accessibles, pas l&apos;intégralité de chaque programme.
+        Cette base de données sera mise à jour progressivement au fil de la
+        campagne, à mesure que de nouveaux documents seront publiés par les
+        partis.
+      </p>
     </main>
   );
 }

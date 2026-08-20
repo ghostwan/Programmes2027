@@ -17,6 +17,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un avertissement en bas de chaque page thématique précisant que tous
+  les programmes ne sont pas encore disponibles ou finalisés, que les
+  données reflètent les sources actuellement publiées, et qu'elles
+  seront mises à jour progressivement au fil de la campagne.
 - 33 nouvelles propositions de Renaissance issues de deux documents
   officiels du parti (conventions thématiques « Nouvelle donne
   économique et climatique » et « Une République ferme, une France
@@ -34,6 +38,11 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   santé mentale, lutte contre la malbouffe, désescalade policière,
   réforme du Conseil de sécurité de l'ONU, pôle public du médicament,
   acte 2 de la loi SRU, objectif national des besoins de santé).
+- Réduction significative des sollicitations du serveur : le site étant
+  entièrement statique, les pages déjà générées sont désormais servies
+  directement depuis le cache d'assets de Cloudflare plutôt que
+  recalculées à chaque visite, et les fichiers immuables du site sont
+  mis en cache par le navigateur sur le long terme.
 
 ## [1.6.0] - 2026-08-20
 
