@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { propositions } from "@/lib/data/propositions";
 import { partyById } from "@/lib/data/parties";
@@ -35,6 +35,7 @@ export function ResultsView() {
   );
   const answers: AnswersMap = raw ? JSON.parse(raw) : {};
   const unfinishedGame = gameStateRaw !== null && hasUnfinishedGame();
+  const [expandedTheme, setExpandedTheme] = useState<string | null>(null);
 
   const totalAnswered = Object.values(answers).filter(
     (a) => a === "pour" || a === "contre"
@@ -143,31 +144,99 @@ export function ResultsView() {
 
       <section className="mt-10">
         <h2 className="text-lg font-bold text-slate-900">Détail par thématique</h2>
+        <p className="mt-1 text-xs text-slate-500">
+          Cliquez sur une thématique pour voir le détail des propositions
+          pour lesquelles vous avez répondu « pour », et les partis qui les
+          soutiennent.
+        </p>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {themeStats
             .filter((s) => s.totalAnswered > 0)
             .map((stat) => {
               const theme = themeById[stat.themeId];
+              const isExpanded = expandedTheme === stat.themeId;
+              const pourPropsInTheme = propositions.filter(
+                (p) => p.themeId === stat.themeId && answers[p.id] === "pour"
+              );
               return (
                 <div
                   key={stat.themeId}
-                  className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                  className={`rounded-xl border bg-white p-4 shadow-sm sm:col-span-1 ${
+                    isExpanded ? "sm:col-span-2" : ""
+                  } ${isExpanded ? "border-slate-300" : "border-slate-200"}`}
                 >
-                  <div className="flex items-center gap-2 font-semibold text-slate-900">
-                    <span>{theme.icon}</span> {theme.name}
-                  </div>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {stat.totalAnswered} propositions répondues ·{" "}
-                    {stat.pourPercent}% pour
-                  </p>
-                  {stat.topParty && (
-                    <p className="mt-2 text-sm">
-                      Le plus proche :{" "}
-                      <span className="font-semibold" style={{ color: partyById[stat.topParty].color }}>
-                        {partyById[stat.topParty].shortName}
-                      </span>{" "}
-                      ({stat.topPartyPercent}%)
-                    </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedTheme(isExpanded ? null : stat.themeId)
+                    }
+                    className="flex w-full items-center justify-between gap-2 text-left"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2 font-semibold text-slate-900">
+                        <span>{theme.icon}</span> {theme.name}
+                      </div>
+                      <p className="mt-1 text-xs text-slate-500">
+                        {stat.totalAnswered} propositions répondues ·{" "}
+                        {stat.pourPercent}% pour
+                      </p>
+                      {stat.topParty && (
+                        <p className="mt-2 text-sm">
+                          Le plus proche :{" "}
+                          <span className="font-semibold" style={{ color: partyById[stat.topParty].color }}>
+                            {partyById[stat.topParty].shortName}
+                          </span>{" "}
+                          ({stat.topPartyPercent}%)
+                        </p>
+                      )}
+                    </div>
+                    <span className="shrink-0 text-slate-400">
+                      {isExpanded ? "▲" : "▼"}
+                    </span>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="mt-4 flex flex-col gap-3 border-t border-slate-100 pt-4">
+                      {pourPropsInTheme.length === 0 ? (
+                        <p className="text-sm text-slate-500">
+                          Vous n&apos;avez répondu « pour » à aucune
+                          proposition de cette thématique.
+                        </p>
+                      ) : (
+                        pourPropsInTheme.map((prop) => (
+                          <Link
+                            key={prop.id}
+                            href={`/proposition/${prop.id}`}
+                            className="rounded-lg border border-slate-100 bg-slate-50 p-3 hover:bg-slate-100"
+                          >
+                            <p className="text-sm font-medium text-slate-900">
+                              {prop.title}
+                            </p>
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {prop.supportingParties.length === 0 ? (
+                                <span className="text-xs text-slate-400">
+                                  Aucun parti identifié comme soutenant cette
+                                  proposition
+                                </span>
+                              ) : (
+                                prop.supportingParties.map((pid) => {
+                                  const party = partyById[pid];
+                                  return (
+                                    <span
+                                      key={pid}
+                                      className="rounded-full px-2 py-0.5 text-xs font-medium text-white"
+                                      style={{ backgroundColor: party.color }}
+                                    >
+                                      {party.shortName}
+                                    </span>
+                                  );
+                                })
+                              )}
+                            </div>
+                          </Link>
+                        ))
+                      )}
+                    </div>
                   )}
                 </div>
               );

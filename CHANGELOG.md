@@ -15,6 +15,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Dans les résultats du jeu, chaque thématique du détail par thématique
+  est désormais cliquable : elle déplie la liste des propositions pour
+  lesquelles vous avez répondu « pour », avec les partis qui les
+  soutiennent affichés à côté de chacune.
+
 ## [2.1.0] - 2026-08-20
 
 ### Ajouté
