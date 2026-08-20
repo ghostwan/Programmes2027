@@ -1,5 +1,24 @@
 [
   {
+    "version": "1.5.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Possibilité de voir ses résultats en cours de partie, sans attendre d'avoir répondu à toutes les propositions (bouton disponible après 15 réponses), avec un bouton « Continuer le quiz » depuis la page de résultats pour reprendre et affiner son score là où on s'était arrêté.",
+          "9 nouvelles propositions issues d'une relecture complète du programme du Parti socialiste (mix énergétique nucléaire-renouvelable décidé par le Parlement, taxe Zucman, écocide, légalisation encadrée du cannabis, réforme du CESE en Conseil de la société civile, etc.)."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "Ajout de partis manquants sur une vingtaine de propositions déjà existantes après vérification de leurs positions officielles (par exemple EELV et PCF sur la taxe Zucman et le barème progressif de l'impôt, Reconquête sur la restriction de Schengen aux Européens, le PCF sur l'opposition à l'accord Mercosur), afin de ne pas laisser penser qu'un parti s'oppose à une mesure alors que sa position n'avait simplement pas encore été recherchée."
+        ]
+      }
+    ]
+  },
+  {
     "version": "1.4.0",
     "date": "2026-08-20",
     "categories": [

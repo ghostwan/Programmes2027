@@ -17,6 +17,17 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- 13 nouvelles propositions du PCF issues de ses cahiers thématiques
+  officiels « Les Jours heureux », en particulier sur le logement
+  (service public national du logement, acte 2 de la loi SRU, pôle
+  financier public, permis de louer généralisé, garantie sociale contre
+  la caution locative, etc.) et une proposition sur la sortie du
+  commandement militaire intégré de l'OTAN (partagée avec LFI).
+
+## [1.5.0] - 2026-08-20
+
+### Ajouté
+
 - Possibilité de voir ses résultats en cours de partie, sans attendre
   d'avoir répondu à toutes les propositions (bouton disponible après 15
   réponses), avec un bouton « Continuer le quiz » depuis la page de

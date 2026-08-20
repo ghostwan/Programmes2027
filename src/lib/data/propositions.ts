@@ -778,7 +778,7 @@ export const propositions: Proposition[] = [
     title: "Créer une « Grande Sécu » remboursant les soins à 100%",
     description:
       "Fusionner l'Assurance maladie et les complémentaires santé pour un panier de soins essentiels intégralement remboursé, sans reste à charge.",
-    supportingParties: ["ps", "lfi"],
+    supportingParties: ["ps", "lfi", "pcf"],
   },
   {
     id: "sante-prevention",
@@ -1031,6 +1031,14 @@ export const propositions: Proposition[] = [
       evaluation:
         "Les rapports de l'IFRI et de la Fondation Robert Schuman montrent que l'OTAN reste le cadre de référence principal pour la majorité des experts en défense, l'autonomie européenne restant largement à construire.",
     },
+  },
+  {
+    id: "europe-sortie-otan",
+    themeId: "europe",
+    title: "Sortir du commandement militaire intégré de l'OTAN",
+    description:
+      "Quitter le commandement militaire intégré de l'OTAN pour bâtir un système de sécurité collective proprement européen, tout en maintenant une dissuasion nucléaire française strictement indépendante.",
+    supportingParties: ["pcf", "lfi"],
   },
   {
     id: "europe-soutien-ukraine",
@@ -1307,6 +1315,86 @@ export const propositions: Proposition[] = [
     description:
       "Aligner fiscalement et réglementairement toute location de courte durée (hors résidence principale) sur les obligations du secteur hôtelier, et limiter le nombre de licences touristiques dans les zones tendues.",
     supportingParties: ["eelv"],
+  },
+  {
+    id: "log-service-public-national",
+    themeId: "logement",
+    title: "Créer un service public national du logement",
+    description:
+      "Structurer un service public national et décentralisé du logement, de l'habitat et de la ville autour de trois pôles publics (financier, foncier, construction), avec un statut politique stable pour sortir le logement des priorités changeantes de chaque remaniement ministériel.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-sru-acte2",
+    themeId: "logement",
+    title: "Créer un acte 2 de la loi SRU avec un seuil à 30%",
+    description:
+      "Relever de 25% à 30% le seuil obligatoire de logements sociaux dans les communes soumises à la loi SRU et durcir les sanctions contre les maires récalcitrants (jusqu'à l'inéligibilité et la reprise des permis de construire par le préfet), en contrepartie d'une dotation de fonctionnement pour les villes qui en construisent beaucoup.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-aide-pierre",
+    themeId: "logement",
+    title: "Porter l'aide à la pierre à 15 milliards d'euros par an",
+    description:
+      "Multiplier par plus de trente le budget de l'aide à la construction et à la rénovation de logements sociaux (l'« aide à la pierre »), en rupture avec la logique de la loi Barre de 1977 qui avait privilégié l'aide à la personne (APL) au détriment du financement direct de la construction.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-pole-financier-public",
+    themeId: "logement",
+    title: "Créer un grand pôle financier public du logement",
+    description:
+      "Mobiliser la Caisse des dépôts, la Banque Postale et les banques mutualistes pour distribuer des crédits à taux abaissés dédiés au logement social, avec une sélectivité du crédit selon l'utilité sociale du projet afin de limiter la spéculation immobilière.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-action-logement",
+    themeId: "logement",
+    title: "Doubler la contribution des entreprises au logement (Action Logement)",
+    description:
+      "Porter le « 1% logement » (Action Logement), aujourd'hui réduit à 0,45% de la masse salariale, à 2% et sans seuil de salariés, avec une gestion réformée associant davantage les salariés et une sanctuarisation des fonds contre tout détournement.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-foncier-bien-commun",
+    themeId: "logement",
+    title: "Faire du foncier un bien commun face à la spéculation",
+    description:
+      "Interdire la vente des terrains publics au plus offrant en donnant la priorité au logement social avec une forte décote, créer une grande foncière publique d'État, et instaurer un droit de réquisition des immeubles vacants par les maires.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-renovation-massive-anah",
+    themeId: "logement",
+    title: "Multiplier par cinq le budget de rénovation énergétique du logement",
+    description:
+      "Porter le budget de l'Agence nationale de l'habitat à 20 milliards d'euros par an, en lui donnant compétence sur le parc public et privé, pour réhabiliter massivement les logements sociaux et privés sans hausse de loyer pour les locataires.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-permis-louer-generalise",
+    themeId: "logement",
+    title: "Généraliser un « permis de louer » avant toute mise en location",
+    description:
+      "Instaurer un contrôle obligatoire du logement avant sa mise en location dans le parc privé (surface, sécurité, performance énergétique), sur le modèle du contrôle technique automobile.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-garantie-sociale-caution",
+    themeId: "logement",
+    title: "Remplacer la caution locative par une garantie sociale universelle",
+    description:
+      "Supprimer l'exigence de caution locative et la remplacer par une garantie universelle d'État en cas d'impayés, financée par une caisse de solidarité associant bailleurs, locataires, État et collectivités.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "log-moratoire-expulsions",
+    themeId: "logement",
+    title: "Interdire les expulsions locatives sans solution de relogement",
+    description:
+      "Instaurer un moratoire national interdisant toute expulsion locative sans solution de relogement préalable, et interdire les coupures d'eau et d'énergie pour impayés.",
+    supportingParties: ["pcf"],
   },
 ];
 
