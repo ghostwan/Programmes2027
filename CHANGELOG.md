@@ -15,6 +15,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Cassant
+
+- Suppression de la protection par mot de passe (Basic Auth) du site,
+  remplacée par une vérification anti-robot Cloudflare Turnstile,
+  demandée une seule fois par navigateur (valable 30 jours), pour
+  ouvrir le site au public tout en limitant le pillage automatisé de
+  contenu par des robots.
+
 ### Ajouté
 
 - Une case à cocher « Masquer les mesures soutenues par un seul parti »

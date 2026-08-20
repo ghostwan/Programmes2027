@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"main": ".open-next/worker.js",
+	"main": "custom-worker.ts",
 	"name": "programmes2027",
 	"compatibility_date": "2026-08-20",
 	"compatibility_flags": [

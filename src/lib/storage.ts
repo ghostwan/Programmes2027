@@ -35,3 +35,10 @@ export function hasUnfinishedGame(): boolean {
     return false;
   }
 }
+
+/**
+ * Cookie set once a visitor has solved the Cloudflare Turnstile
+ * challenge (see /verify and src/middleware.ts). Its value is an opaque
+ * random token, not derived from anything guessable.
+ */
+export const TURNSTILE_GATE_COOKIE_NAME = "cf_turnstile_ok";
