@@ -7,7 +7,15 @@ import { partyById } from "@/lib/data/parties";
 import { themeById } from "@/lib/data/themes";
 import { AnswersMap } from "@/lib/types";
 import { computePartyScores, computeThemeStats } from "@/lib/matching";
-import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY, hasUnfinishedGame } from "@/lib/storage";
+import {
+  ANSWERS_STORAGE_KEY,
+  GAME_STATE_STORAGE_KEY,
+  hasUnfinishedGame,
+  getAssumeOppositionSnapshot,
+  getAssumeOppositionServerSnapshot,
+  subscribeAssumeOpposition,
+  setAssumeOppositionSetting,
+} from "@/lib/storage";
 
 function subscribe(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -36,6 +44,12 @@ export function ResultsView() {
   const answers: AnswersMap = raw ? JSON.parse(raw) : {};
   const unfinishedGame = gameStateRaw !== null && hasUnfinishedGame();
   const [expandedTheme, setExpandedTheme] = useState<string | null>(null);
+  const assumeOppositionRaw = useSyncExternalStore(
+    subscribeAssumeOpposition,
+    getAssumeOppositionSnapshot,
+    getAssumeOppositionServerSnapshot
+  );
+  const assumeOpposition = assumeOppositionRaw === "1";
 
   const totalAnswered = Object.values(answers).filter(
     (a) => a === "pour" || a === "contre"
@@ -61,10 +75,11 @@ export function ResultsView() {
     );
   }
 
-  const partyScores = computePartyScores(answers, propositions).filter(
+  const matchingOptions = { assumeOppositionWhenMissing: assumeOpposition };
+  const partyScores = computePartyScores(answers, propositions, matchingOptions).filter(
     (s) => s.answeredRelevant > 0
   );
-  const themeStats = computeThemeStats(answers, propositions);
+  const themeStats = computeThemeStats(answers, propositions, matchingOptions);
   const top = partyScores[0];
 
   return (
@@ -105,6 +120,31 @@ export function ResultsView() {
         </section>
       )}
 
+      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <label className="flex cursor-pointer items-start gap-3 select-none">
+          <input
+            type="checkbox"
+            checked={assumeOpposition}
+            onChange={(e) => setAssumeOppositionSetting(e.target.checked)}
+            className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-500"
+          />
+          <span>
+            <span className="block text-sm font-semibold text-slate-900">
+              Considérer qu&apos;un parti sans position connue y est opposé
+            </span>
+            <span className="mt-0.5 block text-xs text-slate-500">
+              Par défaut, quand aucune source ne documente la position d&apos;un
+              parti sur une proposition, on considère qu&apos;on ne sait
+              simplement pas — ça ne compte ni pour ni contre lui. En activant
+              cette option, l&apos;absence de position documentée sera traitée
+              comme si le parti s&apos;y opposait, ce qui peut faire baisser
+              son score sur les propositions qu&apos;il ne soutient pas
+              explicitement.
+            </span>
+          </span>
+        </label>
+      </section>
+
       <section className="mt-8">
         <h2 className="text-lg font-bold text-slate-900">Classement complet</h2>
         <div className="mt-3 flex flex-col gap-2">
@@ -136,9 +176,9 @@ export function ResultsView() {
           })}
         </div>
         <p className="mt-2 text-xs text-slate-400">
-          Le score reflète le taux d&apos;accord uniquement sur les
-          propositions documentées comme soutenues par chaque parti et pour
-          lesquelles vous avez répondu.
+          {assumeOpposition
+            ? "Le score reflète le taux d'accord sur l'ensemble des propositions auxquelles vous avez répondu : une proposition non soutenue par un parti est traitée comme une position implicite « contre » de ce parti."
+            : "Le score reflète le taux d'accord uniquement sur les propositions documentées comme soutenues par chaque parti et pour lesquelles vous avez répondu."}
         </p>
       </section>
 

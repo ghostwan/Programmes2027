@@ -17,6 +17,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un réglage sur la page de résultats permettant de choisir comment
+  traiter l'absence de position connue d'un parti sur une proposition :
+  soit on ne sait simplement pas (par défaut, neutre), soit on
+  considère que le parti s'y oppose implicitement, ce qui peut alors
+  faire baisser son score de correspondance. Le choix est mémorisé
+  d'une visite à l'autre.
 - Un bouton « ← Précédent » dans le jeu, permettant de revenir à la
   proposition précédente pour changer sa réponse.
 - Un bouton « Donner mon avis » en bas de chaque page, qui ouvre une
