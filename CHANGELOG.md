@@ -15,6 +15,22 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Un bilan global (positif, négatif ou mitigé) pour chacun des 91
+  exemples internationaux déjà documentés, basé sur ce qu'en disent les
+  institutions et études citées.
+
+### Modifié
+
+- La carte « Ailleurs dans le monde » de chaque proposition change
+  désormais de couleur selon ce bilan (vert, rouge ou ambre), au lieu
+  d'être toujours verte même quand les effets observés sont négatifs.
+- Le fond des drapeaux dans les tableaux de comparaison reprend cette
+  même couleur.
+
+## [2.0.0] - 2026-08-20
+
 ### Cassant
 
 - Suppression de la protection par mot de passe (Basic Auth) du site,

@@ -6,6 +6,7 @@ import { Proposition } from "@/lib/types";
 import { parties, partyById } from "@/lib/data/parties";
 import { getCountryFlags } from "@/lib/countryFlags";
 import { buildCorrectionIssueUrl } from "@/lib/github";
+import { getAssessmentStyle } from "@/lib/assessmentStyles";
 
 export function ThemeComparisonTable({
   themeProps,
@@ -77,6 +78,7 @@ export function ThemeComparisonTable({
           <tbody>
             {visibleProps.map((prop) => {
               const flags = getCountryFlags(prop.internationalExample?.country);
+              const style = getAssessmentStyle(prop.internationalExample);
               return (
                 <tr key={prop.id} className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
                   <td className="p-3">
@@ -99,8 +101,17 @@ export function ThemeComparisonTable({
                       )}
                     </td>
                   ))}
-                  <td className="p-3 text-center text-base" title={prop.internationalExample?.country}>
-                    {flags.length > 0 ? flags.join(" ") : <span className="text-slate-300">—</span>}
+                  <td className="p-3 text-center text-base">
+                    {flags.length > 0 ? (
+                      <span
+                        className={`inline-flex items-center gap-1 rounded-full ${style.pillBg} px-2 py-0.5`}
+                        title={`${prop.internationalExample?.country} — ${style.label}`}
+                      >
+                        {flags.join(" ")}
+                      </span>
+                    ) : (
+                      <span className="text-slate-300">—</span>
+                    )}
                   </td>
                   <td className="p-3 text-center">
                     <a
@@ -129,6 +140,7 @@ export function ThemeComparisonTable({
       <div className="mt-4 flex flex-col gap-4 lg:hidden">
         {visibleProps.map((prop) => {
           const flags = getCountryFlags(prop.internationalExample?.country);
+          const style = getAssessmentStyle(prop.internationalExample);
           return (
             <Link
               key={prop.id}
@@ -152,8 +164,8 @@ export function ThemeComparisonTable({
                 })}
                 {flags.length > 0 && (
                   <span
-                    className="ml-1 text-sm"
-                    title={`Déjà mis en œuvre : ${prop.internationalExample?.country}`}
+                    className={`ml-1 inline-flex items-center gap-1 rounded-full ${style.pillBg} px-2 py-0.5 text-sm`}
+                    title={`Déjà mis en œuvre : ${prop.internationalExample?.country} — ${style.label}`}
                   >
                     {flags.join(" ")}
                   </span>

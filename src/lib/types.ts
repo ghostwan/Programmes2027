@@ -41,6 +41,12 @@ export interface InternationalExample {
   when: string;
   summary: string;
   evaluation: string;
+  /**
+   * Overall assessment of how observers/institutions judge the effects
+   * described in `evaluation`. Optional because some examples are too
+   * recent or too disputed to summarize as one of these three buckets.
+   */
+  assessment?: "positive" | "negative" | "mixed";
 }
 
 export interface Proposition {

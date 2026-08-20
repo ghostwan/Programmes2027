@@ -16,6 +16,7 @@ export const propositions: Proposition[] = [
         "L'ISF a existé en France de 1989 à 2017 avant d'être remplacé par l'IFI, recentré sur le seul patrimoine immobilier.",
       evaluation:
         "France Stratégie (rapport 2023) montre un effet limité et contesté de la suppression sur l'investissement productif : la mesure est associée à une hausse des dividendes versés aux ménages aisés, sans preuve robuste d'un effet sur l'investissement des entreprises. Le débat reste non tranché entre économistes.",
+      assessment: "mixed",
     },
   },
   {
@@ -32,6 +33,7 @@ export const propositions: Proposition[] = [
         "La France a progressivement abaissé son taux d'IS de 33,3% à 25% entre 2017 et 2022, dans un mouvement européen général de baisse des taux.",
       evaluation:
         "L'OCDE documente une convergence générale à la baisse des taux d'IS en Europe depuis 20 ans (« race to the bottom »). L'effet net sur l'attractivité du site France reste difficile à isoler d'autres facteurs économiques.",
+      assessment: "mixed",
     },
   },
   {
@@ -48,6 +50,7 @@ export const propositions: Proposition[] = [
         "Plusieurs pays européens ont instauré des taxes temporaires sur les superprofits des énergéticiens suite à la flambée des prix de l'énergie en 2022.",
       evaluation:
         "La Commission européenne (rapport 2023) relève des recettes réelles souvent inférieures aux prévisions et des critiques sur l'effet potentiellement dissuasif de ces taxes sur l'investissement énergétique.",
+      assessment: "negative",
     },
   },
   {
@@ -64,6 +67,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a mené une politique d'austérité budgétaire après 2010, tandis que la Grèce a appliqué un plan d'ajustement structurel imposé par ses créanciers de 2010 à 2018.",
       evaluation:
         "Le FMI a lui-même reconnu en 2013 avoir sous-estimé les multiplicateurs budgétaires : la littérature économique documente un effet récessif à court terme plus marqué que prévu initialement pour les politiques d'austérité brutale.",
+      assessment: "negative",
     },
   },
   {
@@ -80,6 +84,7 @@ export const propositions: Proposition[] = [
         "Les États-Unis ont instauré des droits de douane ciblés sur de nombreux produits sous les administrations Trump.",
       evaluation:
         "Des études de la Fed et du Peterson Institute montrent une hausse des prix pour les consommateurs américains et des mesures de rétorsion commerciale, avec un effet net sur l'emploi industriel contesté, globalement faible voire négatif selon la majorité des études.",
+      assessment: "negative",
     },
   },
   {
@@ -128,6 +133,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a fusionné six prestations sociales (dont l'aide au logement et l'allocation chômage) en un versement unique appelé Universal Credit.",
       evaluation:
         "Le National Audit Office et l'Institute for Fiscal Studies documentent des gains d'efficacité administrative, mais aussi des ruptures de paiement et une hausse du recours aux banques alimentaires liées aux délais de versement initiaux.",
+      assessment: "mixed",
     },
   },
   {
@@ -194,6 +200,7 @@ export const propositions: Proposition[] = [
         "Plusieurs voisins européens ont relevé leur âge légal de départ à la retraite au-delà de 64 ans (67 ans en Allemagne).",
       evaluation:
         "L'OCDE souligne que la France a un âge de départ effectif parmi les plus bas d'Europe. Le Conseil d'orientation des retraites (COR) publie des projections plus optimistes sur la soutenabilité du système par répartition que celles utilisées par le gouvernement en 2023.",
+      assessment: "mixed",
     },
   },
   {
@@ -210,6 +217,7 @@ export const propositions: Proposition[] = [
         "Plusieurs pays ont mené des expérimentations pilotes de semaine de 4 jours dans des entreprises volontaires.",
       evaluation:
         "Les expérimentations pilotes (4 Day Week Global) rapportent un maintien voire une hausse de productivité et une baisse du stress. Limites méthodologiques : échantillons auto-sélectionnés, pas de généralisation démontrée à toute l'économie.",
+      assessment: "positive",
     },
   },
   {
@@ -226,6 +234,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne a instauré un salaire minimum national en 2015, une première dans son histoire récente.",
       evaluation:
         "Les études du IAB et du DIW Berlin montrent un effet limité sur l'emploi global, avec une légère hausse des salaires bas sans destruction d'emploi massive contrairement aux craintes initiales.",
+      assessment: "positive",
     },
   },
   {
@@ -242,6 +251,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a renforcé la conditionnalité de ses aides sociales dans le cadre de la réforme du Universal Credit.",
       evaluation:
         "Les études de l'IFS (Institute for Fiscal Studies) sont mitigées : incitation à la reprise d'emploi documentée mais aussi effets de sanction pénalisant les plus vulnérables et non-recours aux droits.",
+      assessment: "mixed",
     },
   },
   {
@@ -308,6 +318,7 @@ export const propositions: Proposition[] = [
         "Le Canada fixe des quotas annuels d'immigration économique ; l'Australie utilise un système à points avec quotas par catégorie.",
       evaluation:
         "L'OCDE note que ces systèmes offrent prévisibilité et pilotage économique de l'immigration, mais nécessitent une administration robuste. Le système canadien reste critiqué pour ses délais de traitement et la pression sur le logement dans les grandes villes.",
+      assessment: "mixed",
     },
   },
   {
@@ -324,6 +335,7 @@ export const propositions: Proposition[] = [
         "Le Danemark applique des règles restrictives d'accès aux aides sociales pour les non-résidents de longue durée, sans toutefois instaurer de préférence nationale au sens strict.",
       evaluation:
         "Les juristes français (Conseil constitutionnel, Conseil d'État) soulignent des obstacles constitutionnels et conventionnels majeurs à une préférence nationale en l'état du droit français et européen.",
+      assessment: "negative",
     },
   },
   {
@@ -340,6 +352,7 @@ export const propositions: Proposition[] = [
         "L'Irlande a restreint son droit du sol automatique par référendum en 2004, suite à une pression migratoire perçue.",
       evaluation:
         "Le cas irlandais est documenté mais les effets démographiques à long terme sont peu étudiés de façon consensuelle. C'est une mesure rarement appliquée dans les démocraties occidentales comparables.",
+      assessment: "mixed",
     },
   },
   {
@@ -356,6 +369,7 @@ export const propositions: Proposition[] = [
         "L'Espagne a mené une vaste régularisation de travailleurs sans papiers en 2005, conditionnée à un emploi et une durée de présence.",
       evaluation:
         "Des études de la Banque d'Espagne et de l'OCDE montrent une hausse des recettes de cotisations sociales et une meilleure intégration économique, sans effet d'appel massif démontré à court terme, mais le débat reste vif sur l'effet incitatif à moyen terme.",
+      assessment: "positive",
     },
   },
   {
@@ -372,6 +386,7 @@ export const propositions: Proposition[] = [
         "Frontex a vu ses effectifs et son budget croître fortement depuis 2015 pour renforcer le contrôle des frontières extérieures de l'UE.",
       evaluation:
         "La Cour des comptes européenne (2021) pointe des dysfonctionnements dans le fonctionnement de l'agence et des questions sur le respect des droits fondamentaux aux frontières.",
+      assessment: "negative",
     },
   },
   {
@@ -462,6 +477,7 @@ export const propositions: Proposition[] = [
         "De nombreuses études criminologiques américaines analysent le lien entre présence policière visible et taux de criminalité.",
       evaluation:
         "La littérature montre une corrélation entre présence policière visible et baisse de certains délits, mais l'effet varie fortement selon le type de criminalité concerné.",
+      assessment: "mixed",
     },
   },
   {
@@ -478,6 +494,7 @@ export const propositions: Proposition[] = [
         "La Californie a instauré en 1994 des lois « three strikes » imposant des peines très lourdes automatiques dès la 3e infraction.",
       evaluation:
         "Des études du RAND Corporation et du National Institute of Justice montrent un effet incertain sur la récidive, une forte hausse de la population carcérale et des coûts budgétaires importants. Plusieurs États américains ont depuis assoupli ces lois.",
+      assessment: "negative",
     },
   },
   {
@@ -494,6 +511,7 @@ export const propositions: Proposition[] = [
         "La France affiche un taux de surpopulation carcérale parmi les plus élevés d'Europe selon les données du Conseil de l'Europe.",
       evaluation:
         "Le débat sur l'efficacité de l'incarcération de masse par rapport aux peines alternatives est documenté par les comparaisons avec les pays scandinaves, qui affichent des taux de récidive plus bas.",
+      assessment: "mixed",
     },
   },
   {
@@ -510,6 +528,7 @@ export const propositions: Proposition[] = [
         "La Suède et la Norvège privilégient depuis plusieurs décennies des politiques pénales axées sur la réinsertion plutôt que la punition pure.",
       evaluation:
         "Une étude comparative (Université d'Oslo, Kristoffersen 2013) documente un taux de récidive plus bas en Norvège que dans des systèmes plus punitifs, mais les différences socio-économiques et démographiques entre pays limitent la transposabilité directe.",
+      assessment: "positive",
     },
   },
   {
@@ -534,6 +553,7 @@ export const propositions: Proposition[] = [
         "L'Uruguay a été le premier pays à légaliser intégralement la production, la vente et la consommation de cannabis, via un monopole d'État sur la distribution.",
       evaluation:
         "L'organisme régulateur IRCCA et des chercheurs indépendants indiquent une réduction du marché noir pour les usagers enregistrés, mais une adoption plus lente que prévu du circuit légal par les consommateurs.",
+      assessment: "mixed",
     },
   },
   {
@@ -558,6 +578,7 @@ export const propositions: Proposition[] = [
         "La loi britannique impose aux policiers de remettre un formulaire écrit lors de tout contrôle « stop and search », précisant le motif et l'identité de l'agent.",
       evaluation:
         "Des données du Home Office montrent une traçabilité améliorée des contrôles, mais des études (StopWatch UK) documentent une persistance des disparités ethniques dans les taux de contrôle malgré ce dispositif.",
+      assessment: "mixed",
     },
   },
   {
@@ -600,6 +621,7 @@ export const propositions: Proposition[] = [
         "Le port de l'uniforme est généralisé dans les écoles britanniques depuis de nombreuses décennies.",
       evaluation:
         "Une revue de littérature de l'Institute of Education de Londres montre des résultats peu concluants sur l'effet de l'uniforme sur les résultats scolaires : effet surtout social et disciplinaire rapporté, pas d'effet démontré robuste sur les résultats académiques.",
+      assessment: "mixed",
     },
   },
   {
@@ -616,6 +638,7 @@ export const propositions: Proposition[] = [
         "Le rapport « Regards sur l'éducation » de l'OCDE montre que la France a un salaire enseignant inférieur à la moyenne OCDE en début de carrière.",
       evaluation:
         "Une corrélation positive entre rémunération et attractivité du métier enseignant est documentée dans plusieurs pays comme la Finlande et la Corée du Sud.",
+      assessment: "positive",
     },
   },
   {
@@ -632,6 +655,7 @@ export const propositions: Proposition[] = [
         "La France a dédoublé les classes de CP/CE1 en réseau d'éducation prioritaire (REP/REP+) à partir de 2017.",
       evaluation:
         "Les évaluations de la DEPP (ministère de l'Éducation nationale) montrent un effet positif mesurable en CP/CE1 en zones prioritaires, notamment en français et mathématiques, plus marqué pour les élèves les plus fragiles.",
+      assessment: "positive",
     },
   },
   {
@@ -648,6 +672,7 @@ export const propositions: Proposition[] = [
         "La Suède a instauré en 1992 un système de « chèque éducation » (vouchers) permettant de financer librement des écoles privées avec des fonds publics.",
       evaluation:
         "Les études suédoises (Böhlmark & Lindahl) montrent des résultats mitigés : légère amélioration des résultats moyens mais creusement des inégalités entre établissements et ségrégation scolaire accrue.",
+      assessment: "mixed",
     },
   },
   {
@@ -664,6 +689,7 @@ export const propositions: Proposition[] = [
         "L'OCDE compare régulièrement les degrés d'autonomie des établissements scolaires entre pays via l'enquête PISA.",
       evaluation:
         "Les comparaisons PISA montrent une corrélation complexe : l'autonomie seule n'améliore les résultats que lorsqu'elle est associée à une reddition de comptes (« accountability ») robuste.",
+      assessment: "mixed",
     },
   },
   {
@@ -696,6 +722,7 @@ export const propositions: Proposition[] = [
         "La Suède rend les repas scolaires gratuits et universels obligatoires dans toutes les écoles publiques, de la maternelle au lycée.",
       evaluation:
         "Une étude suédoise (Lundborg, Rooth & Alex-Petersen, Review of Economic Studies, 2022) montre un effet positif mesurable sur les revenus futurs des élèves issus de familles modestes ayant bénéficié du programme durant toute leur scolarité.",
+      assessment: "positive",
     },
   },
   {
@@ -720,6 +747,7 @@ export const propositions: Proposition[] = [
         "Le Danemark verse à tout étudiant du supérieur une allocation mensuelle (le « SU ») indépendante des revenus des parents.",
       evaluation:
         "L'OCDE crédite ce dispositif d'un taux élevé d'indépendance résidentielle et de poursuite d'études chez les jeunes de milieux modestes, mais son coût budgétaire élevé fait l'objet de débats récurrents et de coupes partielles depuis les années 2010.",
+      assessment: "mixed",
     },
   },
   {
@@ -746,6 +774,7 @@ export const propositions: Proposition[] = [
         "La France a engagé une revalorisation via le « Ségur de la santé » en 2020, avec des hausses salariales pour les soignants hospitaliers.",
       evaluation:
         "La France se situe dans la moyenne OCDE pour le nombre de médecins par habitant mais souffre de fortes disparités territoriales (déserts médicaux), documenté par la DREES.",
+      assessment: "mixed",
     },
   },
   {
@@ -762,6 +791,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne et le Québec appliquent des restrictions d'installation des médecins dans les zones jugées suffisamment dotées.",
       evaluation:
         "Les études sont mitigées : l'exemple allemand montre une efficacité limitée de la coercition seule, sans mesures incitatives complémentaires fortes (rémunération, conditions de travail).",
+      assessment: "negative",
     },
   },
   {
@@ -778,6 +808,7 @@ export const propositions: Proposition[] = [
         "La France a supprimé le numerus clausus en 2019 pour augmenter le nombre de médecins formés.",
       evaluation:
         "L'effet à long terme prendra 10 à 15 ans avant d'être pleinement mesurable, compte tenu de la durée des études de médecine ; pas encore d'évaluation d'impact disponible en France.",
+      assessment: "mixed",
     },
   },
   {
@@ -794,6 +825,7 @@ export const propositions: Proposition[] = [
         "Le dispositif « 100% santé », mis en place sous les gouvernements Macron, permet un reste à charge nul sur certains équipements dentaires, optiques et auditifs.",
       evaluation:
         "Le bilan de la DREES et de l'Assurance Maladie montre une hausse sensible du recours aux soins dentaires et auditifs depuis 2021, avec un coût pour l'Assurance Maladie plus élevé que prévu initialement.",
+      assessment: "mixed",
     },
   },
   {
@@ -810,6 +842,7 @@ export const propositions: Proposition[] = [
         "Le NHS britannique utilise un financement par blocs plus que par activité pure comparé au système français.",
       evaluation:
         "La littérature en économie de la santé de l'OCDE documente que la T2A pure encourage le volume d'actes mais peut négliger la qualité et la prise en charge des pathologies chroniques complexes.",
+      assessment: "mixed",
     },
   },
   {
@@ -876,6 +909,7 @@ export const propositions: Proposition[] = [
         "La France dispose du parc nucléaire le plus important d'Europe ; le Royaume-Uni a de son côté relancé un programme de nouveaux réacteurs (Hinkley Point C, Sizewell C) et finance des petits réacteurs modulaires avec Rolls-Royce SMR.",
       evaluation:
         "La Cour des comptes française pointe des dérives récurrentes de coûts et de délais sur les nouveaux EPR (Flamanville) ; au Royaume-Uni, le chantier de Hinkley Point C a vu son coût passer de 18 à plus de 40 milliards de livres selon le National Audit Office (2023), illustrant les risques de ce type de programme.",
+      assessment: "negative",
     },
   },
   {
@@ -892,6 +926,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne a fermé son dernier réacteur nucléaire en 2023, achevant une sortie du nucléaire engagée après Fukushima en 2011.",
       evaluation:
         "L'Agence internationale de l'énergie documente une hausse du recours au charbon dans les années suivant les premières fermetures post-Fukushima et une hausse des émissions de CO2 du secteur électrique allemand, bien que les renouvelables se soient parallèlement fortement développées.",
+      assessment: "negative",
     },
   },
   {
@@ -908,6 +943,7 @@ export const propositions: Proposition[] = [
         "La Suède applique depuis 1991 une des taxes carbone les plus élevées au monde.",
       evaluation:
         "Le National Institute of Economic Research suédois montre une réduction significative des émissions du secteur transport sans effet récessif majeur documenté sur l'économie globale, contrairement aux craintes initiales.",
+      assessment: "positive",
     },
   },
   {
@@ -924,6 +960,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne a mené une transition énergétique ambitieuse (Energiewende) et le Danemark est un leader mondial de l'éolien.",
       evaluation:
         "L'Allemagne a atteint des taux élevés de renouvelables dans l'électricité mais avec des prix de l'électricité parmi les plus élevés d'Europe (Eurostat) et des besoins de flexibilité et de stockage encore non résolus.",
+      assessment: "mixed",
     },
   },
   {
@@ -948,6 +985,7 @@ export const propositions: Proposition[] = [
         "La Belgique a inscrit l'écocide comme crime dans son code pénal fédéral, punissable jusqu'à 20 ans de prison pour les cas les plus graves.",
       evaluation:
         "Trop récent pour un bilan d'application avec peu de poursuites à ce jour, mais salué par les ONG comme une première mondiale à l'échelle d'un État européen.",
+      assessment: "positive",
     },
   },
   {
@@ -964,6 +1002,7 @@ export const propositions: Proposition[] = [
         "L'accord UE-Mercosur a été signé politiquement fin 2024 mais sa ratification par les parlements nationaux reste incertaine.",
       evaluation:
         "Le débat est toujours en cours ; il n'y a pas encore de recul suffisant pour une évaluation d'impact réel de cet accord.",
+      assessment: "mixed",
     },
   },
   {
@@ -1004,6 +1043,7 @@ export const propositions: Proposition[] = [
         "Plusieurs territoires ont ponctuellement instauré des moratoires locaux sur l'implantation de nouvelles éoliennes, sans aller jusqu'au démantèlement de parcs existants.",
       evaluation:
         "Les études sur ces moratoires (Allemagne, Royaume-Uni) documentent un ralentissement des investissements dans les renouvelables et un report de la décarbonation, sans qu'un cas de démantèlement à grande échelle de parcs en fonctionnement n'ait été observé à ce jour dans un grand pays européen.",
+      assessment: "negative",
     },
   },
   {
@@ -1030,6 +1070,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a quitté l'Union européenne suite au référendum de 2016, avec une sortie effective en janvier 2020.",
       evaluation:
         "Des études convergentes (Office for Budget Responsibility britannique, London School of Economics, Bank of England) montrent un impact négatif net sur le commerce extérieur et le PIB britannique à moyen terme, avec des effets bureaucratiques et des pénuries ponctuelles documentées. Le débat persiste sur l'ampleur exacte de l'effet par rapport à d'autres chocs comme le COVID.",
+      assessment: "negative",
     },
   },
   {
@@ -1046,6 +1087,7 @@ export const propositions: Proposition[] = [
         "La Grèce a testé en 2015 une confrontation avec la troïka de ses créanciers via un référendum rejetant les conditions du plan d'aide, avant d'accepter finalement un nouveau plan sous conditions strictes.",
       evaluation:
         "Il n'existe pas de précédent de « désobéissance » pleinement assumée et durable au sein de l'UE ; l'épisode grec de 2015 s'est soldé par un recul du gouvernement face à la pression des créanciers.",
+      assessment: "negative",
     },
   },
   {
@@ -1070,6 +1112,7 @@ export const propositions: Proposition[] = [
         "Le sujet de l'autonomie stratégique européenne a été relancé depuis le déclenchement de la guerre en Ukraine en 2022.",
       evaluation:
         "Les rapports de l'IFRI et de la Fondation Robert Schuman montrent que l'OTAN reste le cadre de référence principal pour la majorité des experts en défense, l'autonomie européenne restant largement à construire.",
+      assessment: "mixed",
     },
   },
   {
@@ -1102,6 +1145,7 @@ export const propositions: Proposition[] = [
         "La PAC fait l'objet de critiques récurrentes sur son efficacité environnementale et la répartition de ses aides.",
       evaluation:
         "La Cour des comptes européenne relève une répartition inégale des aides entre grandes et petites exploitations et une efficacité environnementale jugée insuffisante.",
+      assessment: "negative",
     },
   },
   {
@@ -1144,6 +1188,7 @@ export const propositions: Proposition[] = [
         "Les régimes parlementaires allemand et espagnol sont parfois cités en référence pour un système plus équilibré entre exécutif et Parlement.",
       evaluation:
         "Aucune évaluation empirique directe n'est possible puisque le projet n'a pas été mis en œuvre en France ; le débat reste théorique sur les mérites comparés des régimes parlementaires et semi-présidentiels (littérature de science politique, Linz, « The Perils of Presidentialism »).",
+      assessment: "mixed",
     },
   },
   {
@@ -1160,6 +1205,7 @@ export const propositions: Proposition[] = [
         "La Suisse pratique une démocratie directe très développée avec des votations fréquentes ; certains États américains comme la Californie permettent des référendums d'initiative populaire.",
       evaluation:
         "Le cas suisse est documenté comme stable et associé à une forte légitimité perçue des décisions, mais avec un taux de participation aux votations parfois faible. Le cas californien est souvent cité pour ses effets pervers, comme les blocages budgétaires liés à des référendums contradictoires (Proposition 13 sur la fiscalité locale, 1978).",
+      assessment: "mixed",
     },
   },
   {
@@ -1176,6 +1222,7 @@ export const propositions: Proposition[] = [
         "L'Assemblée citoyenne irlandaise, composée de 99 citoyens tirés au sort, a formulé des recommandations sur l'avortement et d'autres sujets constitutionnels soumises ensuite au Parlement et au peuple.",
       evaluation:
         "Le dispositif est largement cité comme une référence internationale de démocratie délibérative ; ses recommandations sur l'IVG ont directement mené au référendum de 2018.",
+      assessment: "positive",
     },
   },
   {
@@ -1200,6 +1247,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne utilise un scrutin proportionnel mixte avec un seuil électoral de 5%, tandis que l'Italie a une longue histoire de scrutin proportionnel.",
       evaluation:
         "La littérature de science politique associe la proportionnelle à une meilleure représentation de la diversité des opinions mais aussi à une plus grande instabilité gouvernementale potentielle (cas italien historique, IIIe/IVe République française). Le cas allemand montre qu'un seuil électoral permet de limiter la fragmentation.",
+      assessment: "mixed",
     },
   },
   {
@@ -1240,6 +1288,7 @@ export const propositions: Proposition[] = [
         "Toute modification de la Constitution irlandaise doit être approuvée par référendum populaire obligatoire, le Parlement seul ne pouvant pas la modifier.",
       evaluation:
         "Le mécanisme a été utilisé plus de 30 fois depuis 1937 (mariage homosexuel en 2015, IVG en 2018) ; il est salué pour sa légitimité démocratique mais critiqué pour la lenteur et le coût des scrutins répétés.",
+      assessment: "mixed",
     },
   },
   {
@@ -1256,6 +1305,7 @@ export const propositions: Proposition[] = [
         "Le Tribunal constitutionnel polonais a jugé en 2021 que certaines dispositions des traités européens étaient incompatibles avec la Constitution polonaise, affirmant la primauté du droit national.",
       evaluation:
         "Cette décision a provoqué une crise majeure avec l'Union européenne (gel de fonds européens, procédures d'infraction) et une controverse sur l'indépendance de la justice polonaise ; les juristes européens soulignent le risque d'affaiblissement de la sécurité juridique et des droits garantis par les traités en cas de généralisation de ce type de primauté nationale.",
+      assessment: "negative",
     },
   },
 
@@ -1274,6 +1324,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne applique un « frein aux loyers » (Mietpreisbremse) depuis 2015 ; Berlin avait instauré un plafonnement plus strict (Mietendeckel) en 2020, annulé par la Cour constitutionnelle en 2021.",
       evaluation:
         "Les études du DIW Berlin montrent un ralentissement de la hausse des loyers dans les zones encadrées mais aussi une réduction de l'offre locative disponible, les propriétaires se tournant vers la vente ou la location meublée touristique.",
+      assessment: "mixed",
     },
   },
   {
@@ -1290,6 +1341,7 @@ export const propositions: Proposition[] = [
         "Vienne dispose d'un parc de logements sociaux représentant environ 60% du parc locatif de la ville.",
       evaluation:
         "Le modèle viennois est cité positivement par de nombreux experts internationaux (OCDE, ONU-Habitat) pour sa contribution à la modération des loyers en général, y compris dans le parc privé, du fait de l'effet de régulation par la concurrence.",
+      assessment: "positive",
     },
   },
   {
@@ -1314,6 +1366,7 @@ export const propositions: Proposition[] = [
         "La ville de Vancouver applique depuis 2017 une taxe sur les logements vacants pour lutter contre la spéculation immobilière.",
       evaluation:
         "Une étude de la ville de Vancouver (2019) montre une légère baisse du taux de vacance mais un effet limité sur les prix globaux du marché, la pression immobilière étant multifactorielle.",
+      assessment: "mixed",
     },
   },
   {
@@ -1330,6 +1383,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a mis en place le dispositif « Help to Buy » de 2013 à 2023 pour faciliter l'accession à la propriété.",
       evaluation:
         "Le National Audit Office britannique a critiqué ce dispositif pour avoir contribué à une hausse des prix de l'immobilier neuf sans améliorer significativement l'accessibilité globale au logement.",
+      assessment: "negative",
     },
   },
   {
@@ -1378,6 +1432,7 @@ export const propositions: Proposition[] = [
         "New York impose l'enregistrement obligatoire des locations de courte durée et interdit les locations de logements entiers de moins de 30 jours sans présence de l'hôte.",
       evaluation:
         "Selon les données de la ville, l'offre de type Airbnb s'est effondrée de plus de 80% après l'entrée en vigueur, avec un effet limité mais réel sur les prix locatifs selon plusieurs études.",
+      assessment: "positive",
     },
   },
   {
@@ -1466,6 +1521,7 @@ export const propositions: Proposition[] = [
         "Les autorités sanitaires américaines ont imposé un moratoire fédéral sur les expulsions locatives pendant la pandémie de Covid-19.",
       evaluation:
         "La Cour suprême a invalidé ce moratoire en août 2021, jugeant que l'agence avait outrepassé ses pouvoirs ; des études du Eviction Lab de Princeton montrent qu'il avait évité plusieurs centaines de milliers d'expulsions pendant sa durée d'application.",
+      assessment: "mixed",
     },
   },
   {
@@ -1482,6 +1538,7 @@ export const propositions: Proposition[] = [
         "Une Convention constitutionnelle élue a rédigé un nouveau projet de Constitution pour remplacer celle héritée de la dictature de Pinochet.",
       evaluation:
         "Le texte proposé a été rejeté à 62% lors du référendum de septembre 2022, illustrant le risque de décalage entre une assemblée constituante et l'opinion publique.",
+      assessment: "negative",
     },
   },
   {
@@ -1546,6 +1603,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni a instauré un « ring-fencing » isolant juridiquement les activités de banque de détail des activités de marché ; les États-Unis avaient imposé une séparation stricte similaire avec le Glass-Steagall Act.",
       evaluation:
         "La Prudential Regulation Authority britannique estime que le ring-fencing a renforcé la résilience des dépôts de détail, mais le Trésor britannique relève des coûts de mise en œuvre élevés pour les banques.",
+      assessment: "mixed",
     },
   },
   {
@@ -1562,6 +1620,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne dispose d'un réseau de caisses d'épargne publiques locales (Sparkassen) et de banques régionales publiques (Landesbanken), représentant environ 40% du marché bancaire allemand.",
       evaluation:
         "La Bundesbank souligne que les Sparkassen ont mieux soutenu le financement des PME pendant la crise de 2008 que les banques privées, mais les Landesbanken ont nécessité d'importants renflouements publics lors de cette même crise.",
+      assessment: "mixed",
     },
   },
   {
@@ -1578,6 +1637,7 @@ export const propositions: Proposition[] = [
         "Le gouvernement équatorien a créé une commission d'audit citoyen de la dette publique, qui a conclu qu'une partie de la dette était illégitime, menant à un défaut partiel assumé sur ces titres.",
       evaluation:
         "Le FMI et des économistes indépendants notent que l'Équateur a pu racheter cette dette décotée d'environ 65% sur les marchés secondaires, mais l'opération a durablement dégradé l'accès du pays aux marchés financiers internationaux.",
+      assessment: "mixed",
     },
   },
   {
@@ -1642,6 +1702,7 @@ export const propositions: Proposition[] = [
         "L'Espagne a restreint fortement les motifs de recours aux contrats temporaires et renforcé les sanctions pour les entreprises en abusant.",
       evaluation:
         "Le ministère espagnol du Travail et l'OCDE constatent une chute marquée de la part des CDD dans les nouvelles embauches, avec un débat sur la part liée à un effet de requalification statistique plutôt qu'à une hausse réelle de la stabilité de l'emploi.",
+      assessment: "mixed",
     },
   },
   {
@@ -1682,6 +1743,7 @@ export const propositions: Proposition[] = [
         "La Suède garantit un droit universel à une place en crèche ou pré-école publique à tarif plafonné et proportionnel au revenu (« maxtaxa » depuis 2002).",
       evaluation:
         "L'OCDE cite le modèle suédois comme référence pour son fort taux de couverture et son effet positif documenté sur l'emploi des mères et le développement des enfants.",
+      assessment: "positive",
     },
   },
   {
@@ -1698,6 +1760,7 @@ export const propositions: Proposition[] = [
         "L'Angleterre a élevé l'âge de fin de scolarité ou formation obligatoire à 18 ans, sous forme scolaire, d'apprentissage ou de formation.",
       evaluation:
         "Le ministère britannique de l'Éducation rapporte une hausse du taux de rétention dans l'éducation/formation post-16, mais l'Institute for Fiscal Studies note des résultats en emploi mitigés pour les jeunes les moins qualifiés.",
+      assessment: "mixed",
     },
   },
   {
@@ -1730,6 +1793,7 @@ export const propositions: Proposition[] = [
         "L'Allemagne a aboli les frais de scolarité dans l'enseignement supérieur public dans l'ensemble de ses Länder.",
       evaluation:
         "Des études du DIW Berlin montrent une légère hausse des inscriptions d'étudiants issus de milieux modestes après la suppression des frais, sans dégradation mesurable de la qualité de l'enseignement.",
+      assessment: "positive",
     },
   },
   {
@@ -1754,6 +1818,7 @@ export const propositions: Proposition[] = [
         "Le NHS a mis en place un programme national d'accès élargi aux thérapies psychologiques (notamment les TCC), avec objectifs de délai et suivi statistique national.",
       evaluation:
         "Les évaluations officielles NHS Digital montrent une amélioration mesurée chez environ 50% des patients traités, mais des files d'attente persistantes et des disparités territoriales sont régulièrement pointées par le National Audit Office.",
+      assessment: "mixed",
     },
   },
   {
@@ -1770,6 +1835,7 @@ export const propositions: Proposition[] = [
         "Le Royaume-Uni interdit la publicité pour les aliments gras, sucrés ou salés à la télévision avant 21h et en ligne à tout moment, pour limiter l'exposition des enfants.",
       evaluation:
         "Les études d'impact du gouvernement britannique anticipent une réduction de l'exposition des enfants à ces publicités de plus de 90%, mais les effets réels sur la consommation et l'obésité infantile restent encore peu mesurés à ce stade.",
+      assessment: "mixed",
     },
   },
   {
@@ -1786,6 +1852,7 @@ export const propositions: Proposition[] = [
         "Après l'accident de Fukushima, l'Allemagne a décidé l'arrêt total de ses centrales nucléaires, achevé en avril 2023.",
       evaluation:
         "Le bilan est contrasté : recours accru au charbon et au gaz dans les années suivantes, hausse des émissions de CO2 du secteur électrique et prix de l'électricité parmi les plus élevés d'Europe (Agence internationale de l'énergie, Fraunhofer ISE).",
+      assessment: "negative",
     },
   },
   {
@@ -1802,6 +1869,7 @@ export const propositions: Proposition[] = [
         "Le gouvernement britannique a engagé la renationalisation progressive des opérateurs ferroviaires régionaux privés sous l'entité publique Great British Railways.",
       evaluation:
         "Trop récent pour un bilan complet ; les partisans citent la fin des dividendes privés, tandis que le National Audit Office pointe le coût de reprise des contrats existants.",
+      assessment: "mixed",
     },
   },
   {
@@ -1818,6 +1886,7 @@ export const propositions: Proposition[] = [
         "Un référendum a inscrit dans la Constitution uruguayenne le droit à l'eau comme droit humain et interdit sa privatisation.",
       evaluation:
         "Le dispositif est considéré comme un succès en matière d'accès universel par ONU-Eau, mais des tensions persistent sur le financement des infrastructures.",
+      assessment: "mixed",
     },
   },
   {
@@ -1850,6 +1919,7 @@ export const propositions: Proposition[] = [
         "L'Independent Office for Police Conduct (IOPC) a remplacé l'ancienne autorité de plaintes pour enquêter sur les affaires graves impliquant la police, avec des enquêteurs non issus de la police.",
       evaluation:
         "Un rapport du Home Affairs Committee (2021) salue une meilleure indépendance mais relève des délais d'instruction toujours longs et un manque de confiance persistant du public.",
+      assessment: "mixed",
     },
   },
   {
@@ -1882,6 +1952,7 @@ export const propositions: Proposition[] = [
         "Le Deregulation Act 2015 plafonne à 90 nuitées par an la location de résidences entières via des plateformes comme Airbnb sans autorisation d'urbanisme.",
       evaluation:
         "Ce seuil est largement contourné en pratique faute de mécanisme de contrôle efficace, ce qui a conduit la mairie de Londres à réclamer un régime d'enregistrement obligatoire plus strict.",
+      assessment: "negative",
     },
   },
   {
@@ -1906,6 +1977,7 @@ export const propositions: Proposition[] = [
         "La Belgique autorise les ressortissants non-UE résidant légalement depuis au moins cinq ans à voter aux élections communales.",
       evaluation:
         "Le taux d'inscription reste faible (environ 15-20% des éligibles), mais la mesure n'a pas suscité de contentieux majeur ni d'effet de fraude signalé par les autorités électorales belges.",
+      assessment: "mixed",
     },
   },
   {
@@ -1922,6 +1994,7 @@ export const propositions: Proposition[] = [
         "L'Equality and Human Rights Commission (EHRC) est une autorité publique indépendante chargée de faire respecter la législation anti-discrimination et de mener des enquêtes.",
       evaluation:
         "Des rapports parlementaires (2020-2022) pointent un manque de moyens et de pouvoirs coercitifs réels, limitant son impact sur les discriminations structurelles.",
+      assessment: "negative",
     },
   },
   {
@@ -1946,6 +2019,7 @@ export const propositions: Proposition[] = [
         "La région wallonne a utilisé son droit de veto régional pour bloquer temporairement la signature de l'accord de libre-échange UE-Canada (CETA).",
       evaluation:
         "L'accord a finalement été signé après renégociation de certaines clauses, montrant qu'un veto régional peut peser sur les négociations européennes mais rarement les arrêter durablement.",
+      assessment: "mixed",
     },
   },
   {
@@ -1962,6 +2036,7 @@ export const propositions: Proposition[] = [
         "Le Tribunal constitutionnel polonais a jugé certaines dispositions des traités européens incompatibles avec la Constitution polonaise, affirmant la primauté du droit national.",
       evaluation:
         "Ce conflit a conduit la Commission européenne à geler des milliards d'euros de fonds européens destinés à la Pologne jusqu'à une réforme judiciaire en 2023-2024.",
+      assessment: "negative",
     },
   },
   {
@@ -1986,6 +2061,7 @@ export const propositions: Proposition[] = [
         "Ces pays, avec la Norvège, ont officiellement reconnu l'État de Palestine de façon coordonnée en mai 2024.",
       evaluation:
         "La mesure a provoqué le rappel des ambassadeurs israéliens et des tensions diplomatiques, sans effet immédiat mesurable sur le cours du conflit.",
+      assessment: "mixed",
     },
   },
   {
@@ -2018,6 +2094,7 @@ export const propositions: Proposition[] = [
         "Les États-Unis ont engagé plusieurs centaines de milliards de dollars de subventions et crédits d'impôt pour les semi-conducteurs, l'énergie propre et les technologies d'avenir.",
       evaluation:
         "Le Congressional Budget Office a revu significativement à la hausse le coût budgétaire réel du dispositif par rapport aux estimations initiales, tout en constatant un afflux important d'investissements privés dans les secteurs ciblés.",
+      assessment: "mixed",
     },
   },
   {
@@ -2034,6 +2111,7 @@ export const propositions: Proposition[] = [
         "La Suède a introduit un système à trois piliers incluant une part obligatoire de capitalisation individuelle (« premiepension ») en complément de la répartition.",
       evaluation:
         "L'OCDE relève que ce pilier reste minoritaire dans le revenu de retraite total mais expose les assurés à la volatilité des marchés financiers, avec des rendements très variables selon les cohortes.",
+      assessment: "mixed",
     },
   },
   {
@@ -2050,6 +2128,7 @@ export const propositions: Proposition[] = [
         "Ces pays ont imposé une règle de compensation obligeant à supprimer une ou plusieurs normes existantes pour chaque nouvelle norme créée (« one-in, one-out » puis « two-for-one »).",
       evaluation:
         "Le National Audit Office britannique et le Government Accountability Office américain constatent des économies réelles mais aussi un ralentissement de l'adoption de nouvelles réglementations jugées nécessaires (sécurité, environnement).",
+      assessment: "mixed",
     },
   },
   {
@@ -2066,6 +2145,7 @@ export const propositions: Proposition[] = [
         "La Chine a créé des zones économiques spéciales offrant fiscalité allégée, procédures administratives accélérées et infrastructures dédiées pour attirer l'industrie et les investissements étrangers.",
       evaluation:
         "La Banque mondiale considère ces zones comme un facteur majeur de la croissance industrielle chinoise, tout en soulignant des effets très inégaux selon les zones et des risques de concurrence fiscale interne au pays.",
+      assessment: "mixed",
     },
   },
   {
@@ -2090,6 +2170,7 @@ export const propositions: Proposition[] = [
         "La directive européenne sur la transparence salariale impose aux employeurs d'indiquer une fourchette de salaire dans les offres d'emploi et interdit de demander l'historique de rémunération aux candidats.",
       evaluation:
         "La Commission européenne motive la directive par l'écart salarial persistant entre femmes et hommes (environ 12,7% dans l'UE selon Eurostat), mais la mesure n'étant pas encore pleinement transposée, son effet réel n'est pas encore mesurable.",
+      assessment: "mixed",
     },
   },
   {
@@ -2130,6 +2211,7 @@ export const propositions: Proposition[] = [
         "La loi fédérale allemande sur la protection du climat (Klimaschutzgesetz) fixe des budgets carbone sectoriels contraignants avec sanctions en cas de dépassement.",
       evaluation:
         "La Cour constitutionnelle allemande a jugé la loi initiale insuffisante en 2021, forçant un renforcement des objectifs ; le mécanisme est jugé efficace pour la transparence mais certains secteurs comme les transports dépassent régulièrement leurs budgets.",
+      assessment: "mixed",
     },
   },
   {
@@ -2146,6 +2228,7 @@ export const propositions: Proposition[] = [
         "La Norvège exonère les véhicules électriques de TVA et de taxes d'immatriculation.",
       evaluation:
         "Plus de 90% des ventes de voitures neuves étaient électriques en 2023 selon les statistiques norvégiennes (OFV), mais le coût budgétaire pour l'État est élevé et le dispositif est progressivement réduit.",
+      assessment: "positive",
     },
   },
   {
@@ -2162,6 +2245,7 @@ export const propositions: Proposition[] = [
         "Londres a instauré une zone à ultra-faibles émissions (ULEZ), étendue progressivement à toute l'agglomération en 2023.",
       evaluation:
         "Une évaluation de la mairie de Londres (2023) montre une baisse mesurable de la pollution de l'air, mais la mesure a suscité une forte contestation politique et des recours judiciaires.",
+      assessment: "mixed",
     },
   },
   {
@@ -2218,6 +2302,7 @@ export const propositions: Proposition[] = [
         "Action Fraud est la plateforme nationale unique de signalement des fraudes et cybercrimes au Royaume-Uni, gérée avec la City of London Police.",
       evaluation:
         "Un rapport du National Audit Office (2017) critique un faible taux de poursuites effectives malgré le volume élevé de signalements centralisés.",
+      assessment: "negative",
     },
   },
   {
@@ -2234,6 +2319,7 @@ export const propositions: Proposition[] = [
         "Les Sexual Assault Referral Centres (SARC) offrent une prise en charge médicale, psychologique et médico-légale des victimes de violences sexuelles, en accès direct ou via la police.",
       evaluation:
         "Une évaluation du NHS England (2020) souligne une meilleure coordination des soins, mais des disparités régionales importantes dans les délais d'accès et les moyens alloués.",
+      assessment: "mixed",
     },
   },
   {
@@ -2266,6 +2352,7 @@ export const propositions: Proposition[] = [
         "Le Canada attribue les visas de travail permanents via un système à points fondé sur l'âge, les diplômes, la langue et l'expérience professionnelle.",
       evaluation:
         "Le système a permis une immigration économique bien intégrée au marché du travail, mais Statistique Canada note aussi un phénomène de déclassement professionnel chez une partie des immigrants qualifiés (diplômes étrangers non reconnus).",
+      assessment: "mixed",
     },
   },
   {
@@ -2282,6 +2369,7 @@ export const propositions: Proposition[] = [
         "Le Danemark impose des critères stricts (âge minimum de 24 ans pour les deux conjoints, exigence de rattachement au pays, garanties financières) pour le regroupement familial.",
       evaluation:
         "Une étude de l'université d'Aarhus montre une baisse significative des demandes, mais des ONG (Amnesty International) et la Cour européenne des droits de l'homme critiquent des atteintes disproportionnées au droit à la vie familiale.",
+      assessment: "mixed",
     },
   },
   {
@@ -2314,6 +2402,7 @@ export const propositions: Proposition[] = [
         "Le Border Force est une agence unique du ministère de l'Intérieur britannique responsable du contrôle des frontières (ports, aéroports).",
       evaluation:
         "Des rapports de l'inspection indépendante des frontières (ICIBI) pointent régulièrement des sous-effectifs et des temps d'attente élevés aux points de contrôle, malgré la centralisation.",
+      assessment: "negative",
     },
   },
   {
@@ -2330,6 +2419,7 @@ export const propositions: Proposition[] = [
         "La loi IRCA a instauré des sanctions financières et pénales pour les employeurs recrutant sciemment des travailleurs sans papiers, complétée par le système de vérification E-Verify.",
       evaluation:
         "Des études du Migration Policy Institute montrent une application inégale selon les États et une efficacité limitée en l'absence de contrôles systématiques sur le terrain.",
+      assessment: "negative",
     },
   },
   {
@@ -2362,6 +2452,7 @@ export const propositions: Proposition[] = [
         "La loi autrichienne sur l'Islam a interdit le financement étranger des mosquées et la rémunération des imams par des organisations étrangères.",
       evaluation:
         "La mesure a résisté à des recours juridiques mais a été critiquée par des organisations musulmanes et certains juristes pour son caractère discriminatoire envers un seul culte.",
+      assessment: "mixed",
     },
   },
   {

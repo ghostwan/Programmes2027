@@ -1,5 +1,29 @@
 [
   {
+    "version": "2.0.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Cassant",
+        "items": [
+          "Suppression de la protection par mot de passe (Basic Auth) du site, remplacée par une vérification anti-robot Cloudflare Turnstile, demandée une seule fois par navigateur (valable 30 jours), pour ouvrir le site au public tout en limitant le pillage automatisé de contenu par des robots."
+        ]
+      },
+      {
+        "name": "Ajouté",
+        "items": [
+          "Une case à cocher « Masquer les mesures soutenues par un seul parti » sur les pages thématiques, pour se concentrer sur les propositions qui font débat entre plusieurs partis."
+        ]
+      },
+      {
+        "name": "Corrigé",
+        "items": [
+          "Fusion de 5 propositions quasi-identiques qui avaient été créées séparément sous des libellés différents (parfois par des partis différents) : les expulsions locatives sans relogement (PCF/LFI), la réautorisation des produits phytosanitaires validés dans l'UE, la fin des interdictions de location liées au DPE (RN/LR), la relance du nucléaire avec de nouveaux EPR (fusionnée avec la version chiffrée à 14 réacteurs), et l'obligation de police municipale dans les villes de plus de 10 000 habitants (RN/Renaissance)."
+        ]
+      }
+    ]
+  },
+  {
     "version": "1.8.0",
     "date": "2026-08-20",
     "categories": [

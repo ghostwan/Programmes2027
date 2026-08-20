@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { propositions } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { partyById } from "@/lib/data/parties";
+import { getAssessmentStyle } from "@/lib/assessmentStyles";
 
 export function generateStaticParams() {
   return propositions.map((p) => ({ id: p.id }));
@@ -58,26 +59,36 @@ export default async function PropositionDetailPage({
       </section>
 
       {proposition.internationalExample ? (
-        <section className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
-          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-emerald-800">
-            🌍 Ailleurs dans le monde
-          </h2>
-          <p className="mt-2 font-semibold text-emerald-900">
-            {proposition.internationalExample.country} —{" "}
-            {proposition.internationalExample.when}
-          </p>
-          <p className="mt-2 text-sm text-emerald-900">
-            {proposition.internationalExample.summary}
-          </p>
-          <div className="mt-4 rounded-xl bg-white/60 p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-              Évaluation des effets
-            </h3>
-            <p className="mt-1.5 text-sm text-slate-700">
-              {proposition.internationalExample.evaluation}
-            </p>
-          </div>
-        </section>
+        (() => {
+          const style = getAssessmentStyle(proposition.internationalExample);
+          return (
+            <section className={`mt-8 rounded-2xl border ${style.border} ${style.bg} p-6`}>
+              <div className="flex items-center justify-between gap-2">
+                <h2 className={`flex items-center gap-2 text-sm font-semibold uppercase tracking-wide ${style.heading}`}>
+                  🌍 Ailleurs dans le monde
+                </h2>
+                <span className={`rounded-full ${style.pillBg} ${style.pillText} px-2.5 py-1 text-xs font-semibold`}>
+                  {style.label}
+                </span>
+              </div>
+              <p className={`mt-2 font-semibold ${style.text}`}>
+                {proposition.internationalExample.country} —{" "}
+                {proposition.internationalExample.when}
+              </p>
+              <p className={`mt-2 text-sm ${style.text}`}>
+                {proposition.internationalExample.summary}
+              </p>
+              <div className={`mt-4 rounded-xl ${style.innerBg} p-4`}>
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Évaluation des effets
+                </h3>
+                <p className="mt-1.5 text-sm text-slate-700">
+                  {proposition.internationalExample.evaluation}
+                </p>
+              </div>
+            </section>
+          );
+        })()
       ) : (
         <section className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
           Aucun exemple international directement comparable n&apos;a été
