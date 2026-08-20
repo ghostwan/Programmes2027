@@ -15,6 +15,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Une case à cocher « Masquer les mesures soutenues par un seul parti »
+  sur les pages thématiques, pour se concentrer sur les propositions
+  qui font débat entre plusieurs partis.
+
 ### Corrigé
 
 - Fusion de 5 propositions quasi-identiques qui avaient été créées
