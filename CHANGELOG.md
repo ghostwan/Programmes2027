@@ -15,6 +15,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- 47 nouveaux exemples internationaux documentés (pays, période, bilan
+  sourcé), portant leur nombre total à 93 propositions sur 206, pour
+  enrichir la colonne « Déjà mis en œuvre » sur de nombreuses mesures
+  qui n'en avaient pas encore.
+
 ### Corrigé
 
 - Retiré le drapeau français de la colonne « Déjà mis en œuvre », qui

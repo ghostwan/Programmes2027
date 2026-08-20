@@ -121,6 +121,14 @@ export const propositions: Proposition[] = [
     description:
       "Regrouper les différents dispositifs d'aide sociale dans un compte unique par bénéficiaire, avec un revenu d'incitation à l'activité (RIA) pour accélérer le retour à l'emploi.",
     supportingParties: ["lr"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Universal Credit, depuis 2013",
+      summary:
+        "Le Royaume-Uni a fusionné six prestations sociales (dont l'aide au logement et l'allocation chômage) en un versement unique appelé Universal Credit.",
+      evaluation:
+        "Le National Audit Office et l'Institute for Fiscal Studies documentent des gains d'efficacité administrative, mais aussi des ruptures de paiement et une hausse du recours aux banques alimentaires liées aux délais de versement initiaux.",
+    },
   },
   {
     id: "eco-fonds-production",
@@ -519,6 +527,14 @@ export const propositions: Proposition[] = [
     description:
       "Soumettre la légalisation du cannabis à une convention citoyenne, avec un contrôle étatique strict de sa production et de sa commercialisation, pour assécher les circuits du narcotrafic.",
     supportingParties: ["ps", "lfi"],
+    internationalExample: {
+      country: "Uruguay",
+      when: "Depuis 2013",
+      summary:
+        "L'Uruguay a été le premier pays à légaliser intégralement la production, la vente et la consommation de cannabis, via un monopole d'État sur la distribution.",
+      evaluation:
+        "L'organisme régulateur IRCCA et des chercheurs indépendants indiquent une réduction du marché noir pour les usagers enregistrés, mais une adoption plus lente que prévu du circuit légal par les consommateurs.",
+    },
   },
   {
     id: "secu-police-proximite",
@@ -535,6 +551,14 @@ export const propositions: Proposition[] = [
     description:
       "Remettre un document systématique lors de chaque contrôle d'identité pour lutter contre les contrôles discriminatoires (« au faciès »).",
     supportingParties: ["ps", "lfi", "eelv"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis le PACE Act de 1984",
+      summary:
+        "La loi britannique impose aux policiers de remettre un formulaire écrit lors de tout contrôle « stop and search », précisant le motif et l'identité de l'agent.",
+      evaluation:
+        "Des données du Home Office montrent une traçabilité améliorée des contrôles, mais des études (StopWatch UK) documentent une persistance des disparités ethniques dans les taux de contrôle malgré ce dispositif.",
+    },
   },
   {
     id: "secu-doctrine-maintien-ordre",
@@ -665,6 +689,14 @@ export const propositions: Proposition[] = [
     description:
       "Élargir la gratuité de l'école au-delà de l'enseignement lui-même : cantines, transports scolaires, manuels et fournitures.",
     supportingParties: ["lfi", "pcf"],
+    internationalExample: {
+      country: "Suède",
+      when: "Depuis 1997",
+      summary:
+        "La Suède rend les repas scolaires gratuits et universels obligatoires dans toutes les écoles publiques, de la maternelle au lycée.",
+      evaluation:
+        "Une étude suédoise (Lundborg, Rooth & Alex-Petersen, Review of Economic Studies, 2022) montre un effet positif mesurable sur les revenus futurs des élèves issus de familles modestes ayant bénéficié du programme durant toute leur scolarité.",
+    },
   },
   {
     id: "edu-repas-1e",
@@ -681,6 +713,14 @@ export const propositions: Proposition[] = [
     description:
       "Verser une allocation mensuelle aux étudiants pour financer leurs études, sous conditions de ressources pour certains partis ou de façon universelle pour d'autres.",
     supportingParties: ["ps", "pcf"],
+    internationalExample: {
+      country: "Danemark",
+      when: "Système SU, réformé plusieurs fois depuis les années 1970",
+      summary:
+        "Le Danemark verse à tout étudiant du supérieur une allocation mensuelle (le « SU ») indépendante des revenus des parents.",
+      evaluation:
+        "L'OCDE crédite ce dispositif d'un taux élevé d'indépendance résidentielle et de poursuite d'études chez les jeunes de milieux modestes, mais son coût budgétaire élevé fait l'objet de débats récurrents et de coupes partielles depuis les années 2010.",
+    },
   },
   {
     id: "edu-brevet-orientation",
@@ -901,6 +941,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer un crime d'écocide sanctionnant les atteintes les plus graves et intentionnelles à l'environnement, avec un parquet environnemental spécialisé.",
     supportingParties: ["ps", "lfi"],
+    internationalExample: {
+      country: "Belgique",
+      when: "2024",
+      summary:
+        "La Belgique a inscrit l'écocide comme crime dans son code pénal fédéral, punissable jusqu'à 20 ans de prison pour les cas les plus graves.",
+      evaluation:
+        "Trop récent pour un bilan d'application avec peu de poursuites à ce jour, mais salué par les ONG comme une première mondiale à l'échelle d'un État européen.",
+    },
   },
   {
     id: "env-mercosur",
@@ -1129,6 +1177,14 @@ export const propositions: Proposition[] = [
     description:
       "Réformer le Conseil économique, social et environnemental pour y intégrer un collège de citoyens tirés au sort, pivot d'un futur droit de référendum d'initiative citoyenne.",
     supportingParties: ["ps"],
+    internationalExample: {
+      country: "Irlande",
+      when: "2016-2018",
+      summary:
+        "L'Assemblée citoyenne irlandaise, composée de 99 citoyens tirés au sort, a formulé des recommandations sur l'avortement et d'autres sujets constitutionnels soumises ensuite au Parlement et au peuple.",
+      evaluation:
+        "Le dispositif est largement cité comme une référence internationale de démocratie délibérative ; ses recommandations sur l'IVG ont directement mené au référendum de 2018.",
+    },
   },
   {
     id: "inst-non-cumul",
@@ -1185,6 +1241,14 @@ export const propositions: Proposition[] = [
     description:
       "Retirer au Parlement réuni en Congrès la possibilité de réviser la Constitution, pour réserver cette compétence exclusivement au référendum populaire.",
     supportingParties: ["rn"],
+    internationalExample: {
+      country: "Irlande",
+      when: "Depuis 1937",
+      summary:
+        "Toute modification de la Constitution irlandaise doit être approuvée par référendum populaire obligatoire, le Parlement seul ne pouvant pas la modifier.",
+      evaluation:
+        "Le mécanisme a été utilisé plus de 30 fois depuis 1937 (mariage homosexuel en 2015, IVG en 2018) ; il est salué pour sa légitimité démocratique mais critiqué pour la lenteur et le coût des scrutins répétés.",
+    },
   },
   {
     id: "inst-primaute-constitution",
@@ -1315,6 +1379,14 @@ export const propositions: Proposition[] = [
     description:
       "Aligner fiscalement et réglementairement toute location de courte durée (hors résidence principale) sur les obligations du secteur hôtelier, et limiter le nombre de licences touristiques dans les zones tendues.",
     supportingParties: ["eelv"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "New York, Local Law 18, 2023",
+      summary:
+        "New York impose l'enregistrement obligatoire des locations de courte durée et interdit les locations de logements entiers de moins de 30 jours sans présence de l'hôte.",
+      evaluation:
+        "Selon les données de la ville, l'offre de type Airbnb s'est effondrée de plus de 80% après l'entrée en vigueur, avec un effet limité mais réel sur les prix locatifs selon plusieurs études.",
+    },
   },
   {
     id: "log-service-public-national",
@@ -1395,6 +1467,14 @@ export const propositions: Proposition[] = [
     description:
       "Instaurer un moratoire national interdisant toute expulsion locative sans solution de relogement préalable, et interdire les coupures d'eau et d'énergie pour impayés.",
     supportingParties: ["pcf"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "Moratoire du CDC, 2020-2021",
+      summary:
+        "Les autorités sanitaires américaines ont imposé un moratoire fédéral sur les expulsions locatives pendant la pandémie de Covid-19.",
+      evaluation:
+        "La Cour suprême a invalidé ce moratoire en août 2021, jugeant que l'agence avait outrepassé ses pouvoirs ; des études du Eviction Lab de Princeton montrent qu'il avait évité plusieurs centaines de milliers d'expulsions pendant sa durée d'application.",
+    },
   },
   {
     id: "inst-assemblee-constituante",
@@ -1403,6 +1483,14 @@ export const propositions: Proposition[] = [
     description:
       "Convoquer un référendum pour lancer un processus constituant : une Assemblée constituante élue rédigerait une nouvelle Constitution, elle-même soumise à référendum populaire.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Chili",
+      when: "2021-2022",
+      summary:
+        "Une Convention constitutionnelle élue a rédigé un nouveau projet de Constitution pour remplacer celle héritée de la dictature de Pinochet.",
+      evaluation:
+        "Le texte proposé a été rejeté à 62% lors du référendum de septembre 2022, illustrant le risque de décalage entre une assemblée constituante et l'opinion publique.",
+    },
   },
   {
     id: "inst-fin-49-3",
@@ -1459,6 +1547,14 @@ export const propositions: Proposition[] = [
     description:
       "Imposer une séparation stricte entre activités spéculatives de banque d'affaires et activités de banque de détail, et encadrer plus fortement les produits financiers les plus risqués.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Royaume-Uni, États-Unis",
+      when: "Ring-fencing britannique (2013-2019), Glass-Steagall Act américain (1933-1999)",
+      summary:
+        "Le Royaume-Uni a instauré un « ring-fencing » isolant juridiquement les activités de banque de détail des activités de marché ; les États-Unis avaient imposé une séparation stricte similaire avec le Glass-Steagall Act.",
+      evaluation:
+        "La Prudential Regulation Authority britannique estime que le ring-fencing a renforcé la résilience des dépôts de détail, mais le Trésor britannique relève des coûts de mise en œuvre élevés pour les banques.",
+    },
   },
   {
     id: "eco-pole-public-bancaire",
@@ -1467,6 +1563,14 @@ export const propositions: Proposition[] = [
     description:
       "Socialiser une partie du secteur bancaire de détail pour orienter le crédit aux TPE et PME selon des critères sociaux et écologiques plutôt que la seule rentabilité financière.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Allemagne",
+      when: "Système historique des Sparkassen, toujours en vigueur",
+      summary:
+        "L'Allemagne dispose d'un réseau de caisses d'épargne publiques locales (Sparkassen) et de banques régionales publiques (Landesbanken), représentant environ 40% du marché bancaire allemand.",
+      evaluation:
+        "La Bundesbank souligne que les Sparkassen ont mieux soutenu le financement des PME pendant la crise de 2008 que les banques privées, mais les Landesbanken ont nécessité d'importants renflouements publics lors de cette même crise.",
+    },
   },
   {
     id: "eco-audit-dette",
@@ -1475,6 +1579,14 @@ export const propositions: Proposition[] = [
     description:
       "Faire racheter une partie de la dette publique par la Banque centrale européenne et mener un audit citoyen pour identifier la part jugée illégitime de la dette.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Équateur",
+      when: "2007-2008",
+      summary:
+        "Le gouvernement équatorien a créé une commission d'audit citoyen de la dette publique, qui a conclu qu'une partie de la dette était illégitime, menant à un défaut partiel assumé sur ces titres.",
+      evaluation:
+        "Le FMI et des économistes indépendants notent que l'Équateur a pu racheter cette dette décotée d'environ 65% sur les marchés secondaires, mais l'opération a durablement dégradé l'accès du pays aux marchés financiers internationaux.",
+    },
   },
   {
     id: "eco-encadrement-dividendes",
@@ -1531,6 +1643,14 @@ export const propositions: Proposition[] = [
     description:
       "Limiter la part de CDD et de contrats précaires à 10% des effectifs en PME et 5% dans les grandes entreprises, et abroger les ordonnances travail de 2017.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Espagne",
+      when: "Réforme du marché du travail, 2021-2022",
+      summary:
+        "L'Espagne a restreint fortement les motifs de recours aux contrats temporaires et renforcé les sanctions pour les entreprises en abusant.",
+      evaluation:
+        "Le ministère espagnol du Travail et l'OCDE constatent une chute marquée de la part des CDD dans les nouvelles embauches, avec un débat sur la part liée à un effet de requalification statistique plutôt qu'à une hausse réelle de la stabilité de l'emploi.",
+    },
   },
   {
     id: "travail-assurance-chomage-retablir",
@@ -1563,6 +1683,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer 500 000 places de crèche publiques supplémentaires en cinq ans, geler l'ouverture de nouvelles crèches privées lucratives et garantir la gratuité des crèches publiques.",
     supportingParties: ["lfi", "ps", "pcf"],
+    internationalExample: {
+      country: "Suède",
+      when: "Généralisé en 1995 (droit opposable)",
+      summary:
+        "La Suède garantit un droit universel à une place en crèche ou pré-école publique à tarif plafonné et proportionnel au revenu (« maxtaxa » depuis 2002).",
+      evaluation:
+        "L'OCDE cite le modèle suédois comme référence pour son fort taux de couverture et son effet positif documenté sur l'emploi des mères et le développement des enfants.",
+    },
   },
   {
     id: "edu-scolarite-18-ans",
@@ -1571,6 +1699,14 @@ export const propositions: Proposition[] = [
     description:
       "Repousser l'âge de fin de scolarité obligatoire de 16 à 18 ans, en garantissant une allocation d'autonomie pour les jeunes qui le souhaitent dès 16 ans.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Angleterre",
+      when: "Education and Skills Act 2008, effectif 2013-2015",
+      summary:
+        "L'Angleterre a élevé l'âge de fin de scolarité ou formation obligatoire à 18 ans, sous forme scolaire, d'apprentissage ou de formation.",
+      evaluation:
+        "Le ministère britannique de l'Éducation rapporte une hausse du taux de rétention dans l'éducation/formation post-16, mais l'Institute for Fiscal Studies note des résultats en emploi mitigés pour les jeunes les moins qualifiés.",
+    },
   },
   {
     id: "edu-fin-enseignement-prive",
@@ -1595,6 +1731,14 @@ export const propositions: Proposition[] = [
     description:
       "Supprimer les frais d'inscription dans l'enseignement supérieur public, de la licence au doctorat.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Allemagne",
+      when: "2014 (suppression des frais dans le dernier Land)",
+      summary:
+        "L'Allemagne a aboli les frais de scolarité dans l'enseignement supérieur public dans l'ensemble de ses Länder.",
+      evaluation:
+        "Des études du DIW Berlin montrent une légère hausse des inscriptions d'étudiants issus de milieux modestes après la suppression des frais, sans dégradation mesurable de la qualité de l'enseignement.",
+    },
   },
   {
     id: "sante-pole-public-medicament",
@@ -1611,6 +1755,14 @@ export const propositions: Proposition[] = [
     description:
       "Rouvrir des lits de psychiatrie publique, renforcer les centres médico-psychologiques et permettre le remboursement d'un suivi psychologique ambulatoire régulier.",
     supportingParties: ["lfi", "ps"],
+    internationalExample: {
+      country: "Angleterre",
+      when: "Programme IAPT, depuis 2008",
+      summary:
+        "Le NHS a mis en place un programme national d'accès élargi aux thérapies psychologiques (notamment les TCC), avec objectifs de délai et suivi statistique national.",
+      evaluation:
+        "Les évaluations officielles NHS Digital montrent une amélioration mesurée chez environ 50% des patients traités, mais des files d'attente persistantes et des disparités territoriales sont régulièrement pointées par le National Audit Office.",
+    },
   },
   {
     id: "sante-malbouffe",
@@ -1619,6 +1771,14 @@ export const propositions: Proposition[] = [
     description:
       "Interdire les additifs alimentaires controversés, rendre le Nutri-score obligatoire, interdire la publicité pour la malbouffe destinée aux enfants et viser 100% de bio et local en restauration collective.",
     supportingParties: ["lfi", "ps"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "2022, étendu en 2025",
+      summary:
+        "Le Royaume-Uni interdit la publicité pour les aliments gras, sucrés ou salés à la télévision avant 21h et en ligne à tout moment, pour limiter l'exposition des enfants.",
+      evaluation:
+        "Les études d'impact du gouvernement britannique anticipent une réduction de l'exposition des enfants à ces publicités de plus de 90%, mais les effets réels sur la consommation et l'obésité infantile restent encore peu mesurés à ce stade.",
+    },
   },
   {
     id: "env-sortie-nucleaire",
@@ -1627,6 +1787,14 @@ export const propositions: Proposition[] = [
     description:
       "Abandonner les nouveaux projets d'EPR et planifier le démantèlement progressif des centrales nucléaires existantes, avec un accompagnement à la reconversion des salariés et bassins d'emploi concernés.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Allemagne",
+      when: "2011-2023",
+      summary:
+        "Après l'accident de Fukushima, l'Allemagne a décidé l'arrêt total de ses centrales nucléaires, achevé en avril 2023.",
+      evaluation:
+        "Le bilan est contrasté : recours accru au charbon et au gaz dans les années suivantes, hausse des émissions de CO2 du secteur électrique et prix de l'électricité parmi les plus élevés d'Europe (Agence internationale de l'énergie, Fraunhofer ISE).",
+    },
   },
   {
     id: "env-renationalisation-transports",
@@ -1635,6 +1803,14 @@ export const propositions: Proposition[] = [
     description:
       "Renationaliser intégralement la SNCF, Fret SNCF et les sociétés d'autoroutes concédées, et refuser toute nouvelle mise en concurrence du transport ferroviaire.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "2024-2025",
+      summary:
+        "Le gouvernement britannique a engagé la renationalisation progressive des opérateurs ferroviaires régionaux privés sous l'entité publique Great British Railways.",
+      evaluation:
+        "Trop récent pour un bilan complet ; les partisans citent la fin des dividendes privés, tandis que le National Audit Office pointe le coût de reprise des contrats existants.",
+    },
   },
   {
     id: "env-eau-bien-commun",
@@ -1643,6 +1819,14 @@ export const propositions: Proposition[] = [
     description:
       "Inscrire l'eau comme bien commun dans la Constitution, instaurer la gratuité des premiers mètres cubes vitaux, confier sa gestion à un service public et décréter un moratoire sur les méga-bassines.",
     supportingParties: ["lfi", "ps"],
+    internationalExample: {
+      country: "Uruguay",
+      when: "2004",
+      summary:
+        "Un référendum a inscrit dans la Constitution uruguayenne le droit à l'eau comme droit humain et interdit sa privatisation.",
+      evaluation:
+        "Le dispositif est considéré comme un succès en matière d'accès universel par ONU-Eau, mais des tensions persistent sur le financement des infrastructures.",
+    },
   },
   {
     id: "env-fermes-usines",
@@ -1667,6 +1851,14 @@ export const propositions: Proposition[] = [
     description:
       "Supprimer les inspections internes de la police et de la gendarmerie pour les remplacer par une autorité indépendante (magistrats, universitaires, citoyens) dotée d'un pouvoir de sanction disciplinaire propre.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis 2018",
+      summary:
+        "L'Independent Office for Police Conduct (IOPC) a remplacé l'ancienne autorité de plaintes pour enquêter sur les affaires graves impliquant la police, avec des enquêteurs non issus de la police.",
+      evaluation:
+        "Un rapport du Home Affairs Committee (2021) salue une meilleure indépendance mais relève des délais d'instruction toujours longs et un manque de confiance persistant du public.",
+    },
   },
   {
     id: "secu-sortie-etat-urgence-permanent",
@@ -1691,6 +1883,14 @@ export const propositions: Proposition[] = [
     description:
       "Plafonner la location de courte durée d'une résidence principale à 60 jours par an et supprimer l'avantage fiscal spécifique aux meublés de tourisme.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Londres, depuis 2015",
+      summary:
+        "Le Deregulation Act 2015 plafonne à 90 nuitées par an la location de résidences entières via des plateformes comme Airbnb sans autorisation d'urbanisme.",
+      evaluation:
+        "Ce seuil est largement contourné en pratique faute de mécanisme de contrôle efficace, ce qui a conduit la mairie de Londres à réclamer un régime d'enregistrement obligatoire plus strict.",
+    },
   },
   {
     id: "log-fin-expulsions-sans-relogement",
@@ -1699,6 +1899,14 @@ export const propositions: Proposition[] = [
     description:
       "Interdire toute expulsion locative sans solution de relogement public proposée à la famille concernée, et abroger la loi Kasbarian de criminalisation des locataires en impayés.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "Moratoire du CDC, 2020-2021",
+      summary:
+        "Les autorités sanitaires américaines ont imposé un moratoire fédéral sur les expulsions locatives pendant la pandémie de Covid-19.",
+      evaluation:
+        "La Cour suprême a invalidé ce moratoire en août 2021, jugeant que l'agence avait outrepassé ses pouvoirs ; des études du Eviction Lab de Princeton montrent qu'il avait évité plusieurs centaines de milliers d'expulsions pendant sa durée d'application.",
+    },
   },
   {
     id: "immi-droit-sol-integral",
@@ -1715,6 +1923,14 @@ export const propositions: Proposition[] = [
     description:
       "Instituer le droit de vote et d'éligibilité des résidents étrangers non-communautaires aux élections municipales et locales, comme c'est déjà le cas pour les citoyens européens.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Belgique",
+      when: "Depuis 2004",
+      summary:
+        "La Belgique autorise les ressortissants non-UE résidant légalement depuis au moins cinq ans à voter aux élections communales.",
+      evaluation:
+        "Le taux d'inscription reste faible (environ 15-20% des éligibles), mais la mesure n'a pas suscité de contentieux majeur ni d'effet de fraude signalé par les autorités électorales belges.",
+    },
   },
   {
     id: "immi-commissariat-egalite",
@@ -1723,6 +1939,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer une autorité indépendante dotée d'un observatoire des discriminations et de pôles spécialisés dans les services publics et les cours d'appel, pour lutter contre les discriminations à l'emploi, au logement et à l'éducation.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis 2007",
+      summary:
+        "L'Equality and Human Rights Commission (EHRC) est une autorité publique indépendante chargée de faire respecter la législation anti-discrimination et de mener des enquêtes.",
+      evaluation:
+        "Des rapports parlementaires (2020-2022) pointent un manque de moyens et de pouvoirs coercitifs réels, limitant son impact sur les discriminations structurelles.",
+    },
   },
   {
     id: "immi-schengen-refonte",
@@ -1739,6 +1963,14 @@ export const propositions: Proposition[] = [
     description:
       "S'opposer par un droit de veto à tout nouvel accord de libre-échange (Mercosur, Chili, Inde, Australie...) et à tout élargissement de l'Union européenne sans harmonisation sociale, fiscale et environnementale préalable.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Belgique",
+      when: "Wallonie, 2016",
+      summary:
+        "La région wallonne a utilisé son droit de veto régional pour bloquer temporairement la signature de l'accord de libre-échange UE-Canada (CETA).",
+      evaluation:
+        "L'accord a finalement été signé après renégociation de certaines clauses, montrant qu'un veto régional peut peser sur les négociations européennes mais rarement les arrêter durablement.",
+    },
   },
   {
     id: "europe-primaute-droit-national-social",
@@ -1747,6 +1979,14 @@ export const propositions: Proposition[] = [
     description:
       "Inscrire dans la Constitution la primauté des normes nationales sur le droit européen lorsqu'elles sont plus ambitieuses socialement ou écologiquement.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Pologne",
+      when: "2021",
+      summary:
+        "Le Tribunal constitutionnel polonais a jugé certaines dispositions des traités européens incompatibles avec la Constitution polonaise, affirmant la primauté du droit national.",
+      evaluation:
+        "Ce conflit a conduit la Commission européenne à geler des milliards d'euros de fonds européens destinés à la Pologne jusqu'à une réforme judiciaire en 2023-2024.",
+    },
   },
   {
     id: "europe-onu-reforme-conseil-securite",
@@ -1763,6 +2003,14 @@ export const propositions: Proposition[] = [
     description:
       "Reconnaître formellement l'État de Palestine, exiger un cessez-le-feu durable et mettre en place des sanctions ciblées, dont un embargo sur les armes, contre le gouvernement israélien.",
     supportingParties: ["lfi"],
+    internationalExample: {
+      country: "Espagne, Irlande",
+      when: "Mai 2024",
+      summary:
+        "Ces pays, avec la Norvège, ont officiellement reconnu l'État de Palestine de façon coordonnée en mai 2024.",
+      evaluation:
+        "La mesure a provoqué le rappel des ambassadeurs israéliens et des tensions diplomatiques, sans effet immédiat mesurable sur le cours du conflit.",
+    },
   },
   {
     id: "europe-souverainete-numerique",
@@ -1787,6 +2035,14 @@ export const propositions: Proposition[] = [
     description:
       "Faire de l'État un investisseur, plutôt qu'un simple subventionneur, dans dix priorités technologiques de rupture comme l'intelligence artificielle, le quantique, le nucléaire et l'avion bas carbone.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "Inflation Reduction Act et CHIPS Act, 2022",
+      summary:
+        "Les États-Unis ont engagé plusieurs centaines de milliards de dollars de subventions et crédits d'impôt pour les semi-conducteurs, l'énergie propre et les technologies d'avenir.",
+      evaluation:
+        "Le Congressional Budget Office a revu significativement à la hausse le coût budgétaire réel du dispositif par rapport aux estimations initiales, tout en constatant un afflux important d'investissements privés dans les secteurs ciblés.",
+    },
   },
   {
     id: "eco-retraite-capitalisation",
@@ -1795,6 +2051,14 @@ export const propositions: Proposition[] = [
     description:
       "Réorienter une partie de l'épargne des Français (assurance-vie, épargne salariale) vers le financement des entreprises françaises et européennes, avec une couche de retraite par capitalisation individuelle en complément du système par répartition.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Suède",
+      when: "Réforme de 1998, effective depuis 2001",
+      summary:
+        "La Suède a introduit un système à trois piliers incluant une part obligatoire de capitalisation individuelle (« premiepension ») en complément de la répartition.",
+      evaluation:
+        "L'OCDE relève que ce pilier reste minoritaire dans le revenu de retraite total mais expose les assurés à la volatilité des marchés financiers, avec des rendements très variables selon les cohortes.",
+    },
   },
   {
     id: "eco-simplification-normes",
@@ -1803,6 +2067,14 @@ export const propositions: Proposition[] = [
     description:
       "Nommer un ministre de la simplification, créer un guichet administratif unique pour les entreprises et appliquer la règle « une norme créée, une norme supprimée » pour réduire la charge administrative.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni, États-Unis",
+      when: "Royaume-Uni dès 2011, États-Unis en 2017",
+      summary:
+        "Ces pays ont imposé une règle de compensation obligeant à supprimer une ou plusieurs normes existantes pour chaque nouvelle norme créée (« one-in, one-out » puis « two-for-one »).",
+      evaluation:
+        "Le National Audit Office britannique et le Government Accountability Office américain constatent des économies réelles mais aussi un ralentissement de l'adoption de nouvelles réglementations jugées nécessaires (sécurité, environnement).",
+    },
   },
   {
     id: "eco-zones-franches-industrielles",
@@ -1811,6 +2083,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer une centaine de « territoires d'innovation » bénéficiant de procédures administratives et d'urbanisme accélérées pour favoriser l'implantation de nouvelles usines.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Chine",
+      when: "À partir de 1980 (Shenzhen et autres zones économiques spéciales)",
+      summary:
+        "La Chine a créé des zones économiques spéciales offrant fiscalité allégée, procédures administratives accélérées et infrastructures dédiées pour attirer l'industrie et les investissements étrangers.",
+      evaluation:
+        "La Banque mondiale considère ces zones comme un facteur majeur de la croissance industrielle chinoise, tout en soulignant des effets très inégaux selon les zones et des risques de concurrence fiscale interne au pays.",
+    },
   },
   {
     id: "travail-conge-naissance",
@@ -1827,6 +2107,14 @@ export const propositions: Proposition[] = [
     description:
       "Imposer aux entreprises d'indiquer la rémunération proposée dans chaque offre d'emploi, pour lutter contre les inégalités salariales et améliorer la transparence du marché du travail.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Union européenne",
+      when: "Directive adoptée en 2023, transposition prévue pour 2026",
+      summary:
+        "La directive européenne sur la transparence salariale impose aux employeurs d'indiquer une fourchette de salaire dans les offres d'emploi et interdit de demander l'historique de rémunération aux candidats.",
+      evaluation:
+        "La Commission européenne motive la directive par l'écart salarial persistant entre femmes et hommes (environ 12,7% dans l'UE selon Eurostat), mais la mesure n'étant pas encore pleinement transposée, son effet réel n'est pas encore mesurable.",
+    },
   },
   {
     id: "travail-droit-reconversion",
@@ -1859,6 +2147,14 @@ export const propositions: Proposition[] = [
     description:
       "Accélérer la relance du nucléaire avec un objectif de 14 nouveaux réacteurs EPR, un plan de petits réacteurs modulaires (SMR) à l'horizon 2030 et un pari sur la fusion nucléaire.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis 2016",
+      summary:
+        "Le Royaume-Uni a relancé un programme de nouveaux réacteurs (Hinkley Point C, Sizewell C) et finance le développement de petits réacteurs modulaires avec Rolls-Royce SMR.",
+      evaluation:
+        "Le chantier de Hinkley Point C accuse d'importants retards et dépassements de budget, passé de 18 à plus de 40 milliards de livres selon le National Audit Office (2023), illustrant les risques de ce type de programme.",
+    },
   },
   {
     id: "env-loi-programmation-energie-climat",
@@ -1867,6 +2163,14 @@ export const propositions: Proposition[] = [
     description:
       "Planifier les financements climat et énergie sur plusieurs années avec une clause de révision automatique en cas de dépassement de la trajectoire carbone, et publier chaque année une « dette carbone » nationale.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Allemagne",
+      when: "Depuis 2019",
+      summary:
+        "La loi fédérale allemande sur la protection du climat (Klimaschutzgesetz) fixe des budgets carbone sectoriels contraignants avec sanctions en cas de dépassement.",
+      evaluation:
+        "La Cour constitutionnelle allemande a jugé la loi initiale insuffisante en 2021, forçant un renforcement des objectifs ; le mécanisme est jugé efficace pour la transparence mais certains secteurs comme les transports dépassent régulièrement leurs budgets.",
+    },
   },
   {
     id: "env-tva-vehicules-electriques",
@@ -1875,6 +2179,14 @@ export const propositions: Proposition[] = [
     description:
       "Substituer partiellement le bonus écologique par une baisse temporaire de la TVA sur les véhicules électriques neufs et d'occasion, pour accélérer leur adoption.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Norvège",
+      when: "Depuis 2001",
+      summary:
+        "La Norvège exonère les véhicules électriques de TVA et de taxes d'immatriculation.",
+      evaluation:
+        "Plus de 90% des ventes de voitures neuves étaient électriques en 2023 selon les statistiques norvégiennes (OFV), mais le coût budgétaire pour l'État est élevé et le dispositif est progressivement réduit.",
+    },
   },
   {
     id: "env-zfe-volontaires",
@@ -1883,6 +2195,14 @@ export const propositions: Proposition[] = [
     description:
       "Redonner aux villes qui le souhaitent la possibilité d'instaurer des zones à faibles émissions, couplée à l'extension du dispositif de leasing social de véhicules propres.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Londres, depuis 2019",
+      summary:
+        "Londres a instauré une zone à ultra-faibles émissions (ULEZ), étendue progressivement à toute l'agglomération en 2023.",
+      evaluation:
+        "Une évaluation de la mairie de Londres (2023) montre une baisse mesurable de la pollution de l'air, mais la mesure a suscité une forte contestation politique et des recours judiciaires.",
+    },
   },
   {
     id: "env-contrats-transition-agricole",
@@ -1931,6 +2251,14 @@ export const propositions: Proposition[] = [
     description:
       "Fusionner les différents dispositifs de signalement (Perceval, 17Cyber, Pharos) en une plateforme unique, et former massivement les forces de l'ordre à la lutte contre la cybercriminalité.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis 2009",
+      summary:
+        "Action Fraud est la plateforme nationale unique de signalement des fraudes et cybercrimes au Royaume-Uni, gérée avec la City of London Police.",
+      evaluation:
+        "Un rapport du National Audit Office (2017) critique un faible taux de poursuites effectives malgré le volume élevé de signalements centralisés.",
+    },
   },
   {
     id: "secu-centres-violences-sexuelles",
@@ -1939,6 +2267,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer, sur le modèle belge, des centres rattachés aux hôpitaux ouverts en continu pour une prise en charge médicale et un dépôt de plainte sécurisé des victimes de violences sexuelles et sexistes.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Généralisés après 2010",
+      summary:
+        "Les Sexual Assault Referral Centres (SARC) offrent une prise en charge médicale, psychologique et médico-légale des victimes de violences sexuelles, en accès direct ou via la police.",
+      evaluation:
+        "Une évaluation du NHS England (2020) souligne une meilleure coordination des soins, mais des disparités régionales importantes dans les délais d'accès et les moyens alloués.",
+    },
   },
   {
     id: "secu-brigades-mobiles-gendarmerie",
@@ -1963,6 +2299,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer un système d'admission par points fondé sur des critères objectifs (qualification, âge, maîtrise du français, offre d'emploi), avec des quotas votés chaque année par le Parlement.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Canada",
+      when: "Depuis 1967, réformé en 2015",
+      summary:
+        "Le Canada attribue les visas de travail permanents via un système à points fondé sur l'âge, les diplômes, la langue et l'expérience professionnelle.",
+      evaluation:
+        "Le système a permis une immigration économique bien intégrée au marché du travail, mais Statistique Canada note aussi un phénomène de déclassement professionnel chez une partie des immigrants qualifiés (diplômes étrangers non reconnus).",
+    },
   },
   {
     id: "immi-durcissement-regroupement-familial",
@@ -1971,6 +2315,14 @@ export const propositions: Proposition[] = [
     description:
       "Allonger de 18 à 24 mois le délai de présence exigé du conjoint et renforcer les exigences de maîtrise du français, de logement et de ressources pour le regroupement familial.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Danemark",
+      when: "Depuis 2002, durci en 2018",
+      summary:
+        "Le Danemark impose des critères stricts (âge minimum de 24 ans pour les deux conjoints, exigence de rattachement au pays, garanties financières) pour le regroupement familial.",
+      evaluation:
+        "Une étude de l'université d'Aarhus montre une baisse significative des demandes, mais des ONG (Amnesty International) et la Cour européenne des droits de l'homme critiquent des atteintes disproportionnées au droit à la vie familiale.",
+    },
   },
   {
     id: "immi-fin-prestations-fin-titre-sejour",
@@ -1995,6 +2347,14 @@ export const propositions: Proposition[] = [
     description:
       "Créer un état-major national et des états-majors régionaux réunissant police aux frontières, douanes et renseignement pour mieux coordonner le contrôle des frontières.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Royaume-Uni",
+      when: "Depuis 2012",
+      summary:
+        "Le Border Force est une agence unique du ministère de l'Intérieur britannique responsable du contrôle des frontières (ports, aéroports).",
+      evaluation:
+        "Des rapports de l'inspection indépendante des frontières (ICIBI) pointent régulièrement des sous-effectifs et des temps d'attente élevés aux points de contrôle, malgré la centralisation.",
+    },
   },
   {
     id: "immi-sanctions-employeurs-irreguliers",
@@ -2003,6 +2363,14 @@ export const propositions: Proposition[] = [
     description:
       "Durcir les sanctions, y compris l'interdiction de gérance, contre les employeurs recourant sciemment au travail irrégulier de personnes étrangères sans titre de séjour.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "États-Unis",
+      when: "Depuis 1986 (Immigration Reform and Control Act)",
+      summary:
+        "La loi IRCA a instauré des sanctions financières et pénales pour les employeurs recrutant sciemment des travailleurs sans papiers, complétée par le système de vérification E-Verify.",
+      evaluation:
+        "Des études du Migration Policy Institute montrent une application inégale selon les États et une efficacité limitée en l'absence de contrôles systématiques sur le terrain.",
+    },
   },
   {
     id: "inst-delit-entrisme",
@@ -2027,6 +2395,14 @@ export const propositions: Proposition[] = [
     description:
       "Abaisser de 10 000€ à 1 000€ le seuil à partir duquel les dons et financements étrangers des lieux de culte doivent être déclarés, pour mieux contrôler les financements de l'étranger.",
     supportingParties: ["renaissance"],
+    internationalExample: {
+      country: "Autriche",
+      when: "2015",
+      summary:
+        "La loi autrichienne sur l'Islam a interdit le financement étranger des mosquées et la rémunération des imams par des organisations étrangères.",
+      evaluation:
+        "La mesure a résisté à des recours juridiques mais a été critiquée par des organisations musulmanes et certains juristes pour son caractère discriminatoire envers un seul culte.",
+    },
   },
   {
     id: "inst-testing-discriminations-embauche",

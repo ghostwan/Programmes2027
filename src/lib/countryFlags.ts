@@ -32,6 +32,11 @@ const COUNTRY_FLAGS: Array<[string, string]> = [
   ["Islande", "🇮🇸"],
   ["Australie", "🇦🇺"],
   ["Québec", "🇨🇦"],
+  ["Uruguay", "🇺🇾"],
+  ["Chili", "🇨🇱"],
+  ["Chine", "🇨🇳"],
+  ["Équateur", "🇪🇨"],
+  ["Russie", "🇷🇺"],
 ];
 
 export function getCountryFlags(countryLabel: string | undefined): string[] {
