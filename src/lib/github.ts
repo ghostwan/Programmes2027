@@ -35,3 +35,28 @@ export function buildCorrectionIssueUrl(prop: Proposition): string {
 
   return `https://github.com/${REPO}/issues/new?${params.toString()}`;
 }
+
+/**
+ * Builds a prefilled "New issue" GitHub URL for general site feedback (bug
+ * report, suggestion, question...), independent of any specific
+ * proposition. Same rationale as buildCorrectionIssueUrl: a plain link,
+ * no client JS, no server round-trip — GitHub hosts the form.
+ */
+export function buildFeedbackIssueUrl(currentPath?: string): string {
+  const body = [
+    currentPath ? `Page concernée : ${currentPath}` : "",
+    "",
+    "Décrivez votre retour, suggestion ou bug :",
+    "> ",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const params = new URLSearchParams({
+    title: "Retour sur Programmes2027",
+    body,
+    labels: "feedback",
+  });
+
+  return `https://github.com/${REPO}/issues/new?${params.toString()}`;
+}

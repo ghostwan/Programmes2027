@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.2.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Dans les résultats du jeu, chaque thématique du détail par thématique est désormais cliquable : elle déplie la liste des propositions pour lesquelles vous avez répondu « pour », avec les partis qui les soutiennent affichés à côté de chacune."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.1.0",
     "date": "2026-08-20",
     "categories": [

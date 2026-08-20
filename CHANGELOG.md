@@ -17,6 +17,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un bouton « Donner mon avis » en bas de chaque page, qui ouvre une
+  issue GitHub pré-remplie pour signaler un bug, suggérer une
+  amélioration ou poser une question, sans passer par notre serveur.
+
+## [2.2.0] - 2026-08-20
+
+### Ajouté
+
 - Dans les résultats du jeu, chaque thématique du détail par thématique
   est désormais cliquable : elle déplie la liste des propositions pour
   lesquelles vous avez répondu « pour », avec les partis qui les
