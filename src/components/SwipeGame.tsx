@@ -247,6 +247,13 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
         )}
       </div>
 
+      <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+        ⚠️ L&apos;ordre des propositions est tiré au hasard à chaque partie,
+        ce qui peut influencer votre résultat si vous consultez vos résultats
+        avant d&apos;avoir répondu à toutes les propositions. L&apos;algorithme
+        de correspondance est encore en cours d&apos;amélioration.
+      </p>
+
       {/* Card */}
       <div className="relative flex flex-1 items-center justify-center py-4">
         <motion.div

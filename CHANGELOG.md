@@ -17,6 +17,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un avertissement dans le jeu précisant que l'ordre aléatoire des
+  propositions peut influencer le résultat en cas de consultation
+  anticipée, et que l'algorithme de correspondance est encore en cours
+  d'amélioration.
 - Un réglage sur la page de résultats permettant de choisir comment
   traiter l'absence de position connue d'un parti sur une proposition :
   soit on ne sait simplement pas (par défaut, neutre), soit on
