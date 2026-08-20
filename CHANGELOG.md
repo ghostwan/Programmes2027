@@ -15,6 +15,16 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [1.3.0] - 2026-08-20
+
+### Ajouté
+
+- La progression dans le jeu (ordre des propositions et réponses déjà
+  données) est désormais sauvegardée automatiquement dans le navigateur :
+  vous pouvez fermer l'onglet et reprendre votre partie plus tard
+  exactement là où vous l'aviez laissée, avec la possibilité de
+  recommencer à zéro si vous le préférez.
+
 ## [1.2.0] - 2026-08-20
 
 ### Ajouté

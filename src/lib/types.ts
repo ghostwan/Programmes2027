@@ -55,3 +55,15 @@ export interface Proposition {
 export type Answer = "pour" | "contre" | "skip";
 
 export type AnswersMap = Record<string, Answer>;
+
+/**
+ * Persisted state of an in-progress game, so a user can leave and resume
+ * later on the same device/browser.
+ */
+export interface GameState {
+  /** Shuffled proposition ids, in the order they are/were presented. */
+  deckIds: string[];
+  /** Index of the next proposition to show. */
+  index: number;
+  answers: AnswersMap;
+}

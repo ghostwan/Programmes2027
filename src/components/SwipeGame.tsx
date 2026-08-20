@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useAnimation, type PanInfo } from "framer-motion";
-import { propositions } from "@/lib/data/propositions";
+import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
-import { Answer, AnswersMap } from "@/lib/types";
-import { ANSWERS_STORAGE_KEY } from "@/lib/storage";
+import { Answer, AnswersMap, GameState } from "@/lib/types";
+import { ANSWERS_STORAGE_KEY, GAME_STATE_STORAGE_KEY } from "@/lib/storage";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -17,16 +17,102 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+function createNewDeckIds(): string[] {
+  return shuffle(propositions).map((p) => p.id);
+}
+
+function parseSavedGameState(raw: string): GameState | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as GameState;
+    const allIds = new Set(propositions.map((p) => p.id));
+    const isValid =
+      Array.isArray(parsed.deckIds) &&
+      parsed.deckIds.length === propositions.length &&
+      new Set(parsed.deckIds).size === propositions.length &&
+      parsed.deckIds.every((id) => allIds.has(id)) &&
+      typeof parsed.index === "number" &&
+      parsed.index >= 0 &&
+      parsed.index < parsed.deckIds.length &&
+      typeof parsed.answers === "object" &&
+      parsed.answers !== null;
+    return isValid ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveGameState(state: GameState) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(GAME_STATE_STORAGE_KEY, JSON.stringify(state));
+}
+
+function clearSavedGameState() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(GAME_STATE_STORAGE_KEY);
+}
+
+// Sentinel used before we know whether we are running on the client and
+// have been able to check localStorage (see useSyncExternalStore below).
+const LOADING = Symbol("loading");
+type Snapshot = string | typeof LOADING;
+
+function subscribe() {
+  // No-op: we only care about the very first client read (see
+  // getSnapshot/getServerSnapshot below), not about ongoing changes.
+  return () => {};
+}
+
+function getSnapshot(): Snapshot {
+  return window.localStorage.getItem(GAME_STATE_STORAGE_KEY) ?? "";
+}
+
+function getServerSnapshot(): Snapshot {
+  return LOADING;
+}
+
+/**
+ * Outer wrapper: figures out, without ever causing a hydration mismatch,
+ * whether we're on the client and can read a previously saved game from
+ * localStorage. Once that's known, it mounts <GamePlay> exactly once with
+ * that initial data — all further game state lives in GamePlay's own
+ * component state (no repeated localStorage reads needed).
+ */
 export function SwipeGame() {
+  const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  if (snapshot === LOADING) {
+    return (
+      <div className="flex flex-1 items-center justify-center py-20 text-slate-500">
+        Chargement...
+      </div>
+    );
+  }
+
+  return <GamePlay initialSavedState={parseSavedGameState(snapshot)} />;
+}
+
+function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }) {
   const router = useRouter();
-  const deck = useMemo(() => shuffle(propositions), []);
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<AnswersMap>({});
   const controls = useAnimation();
+
+  const [deckIds] = useState<string[]>(
+    () => initialSavedState?.deckIds ?? createNewDeckIds()
+  );
+  const [index, setIndex] = useState(() => initialSavedState?.index ?? 0);
+  const [answers, setAnswers] = useState<AnswersMap>(
+    () => initialSavedState?.answers ?? {}
+  );
+  const [resumed] = useState(() => (initialSavedState?.index ?? 0) > 0);
+
+  const deck = useMemo(
+    () => deckIds.map((id) => propositionById[id]).filter(Boolean),
+    [deckIds]
+  );
 
   const current = deck[index];
   const done = index >= deck.length;
-  const progress = Math.round((index / deck.length) * 100);
+  const progress = deck.length > 0 ? Math.round((index / deck.length) * 100) : 0;
 
   function finish(finalAnswers: AnswersMap) {
     if (typeof window !== "undefined") {
@@ -35,18 +121,27 @@ export function SwipeGame() {
         JSON.stringify(finalAnswers)
       );
     }
+    clearSavedGameState();
     router.push("/resultats");
   }
 
   function answer(a: Answer) {
     if (!current) return;
     const next = { ...answers, [current.id]: a };
+    const nextIndex = index + 1;
     setAnswers(next);
-    if (index + 1 >= deck.length) {
+    if (nextIndex >= deckIds.length) {
       finish(next);
     } else {
-      setIndex(index + 1);
+      setIndex(nextIndex);
+      saveGameState({ deckIds, index: nextIndex, answers: next });
     }
+  }
+
+  function restart() {
+    clearSavedGameState();
+    // Force a full remount with a brand new shuffled deck.
+    window.location.reload();
   }
 
   async function handleDragEnd(_: unknown, info: PanInfo) {
@@ -76,6 +171,20 @@ export function SwipeGame() {
 
   return (
     <div className="mx-auto flex w-full max-w-xl flex-1 flex-col px-4 py-6">
+      {resumed && (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900">
+          <span>
+            ↩️ Vous reprenez votre partie là où vous l&apos;aviez laissée.
+          </span>
+          <button
+            onClick={restart}
+            className="font-semibold underline underline-offset-2 hover:text-amber-950"
+          >
+            Recommencer à zéro
+          </button>
+        </div>
+      )}
+
       {/* Progress */}
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-medium text-slate-500">
@@ -153,7 +262,8 @@ export function SwipeGame() {
       <p className="mt-3 text-center text-xs text-slate-400">
         Sur mobile : swipez la carte. Sur ordinateur : utilisez les boutons.
         « Ne sais pas » ignore la proposition, elle ne compte pas dans vos
-        résultats.
+        résultats. Votre progression est sauvegardée automatiquement dans ce
+        navigateur.
       </p>
     </div>
   );
