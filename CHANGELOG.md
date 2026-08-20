@@ -15,6 +15,18 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [1.4.0] - 2026-08-20
+
+### Ajouté
+
+- Près de 40 nouvelles propositions politiques réelles et récentes
+  (2025-2026), tirées directement des sites officiels des partis (Parti
+  Socialiste, La France Insoumise, Les Républicains, PCF), portant le
+  total à 84 propositions comparées. Parmi les nouveautés : la taxe
+  Zucman, la « Grande Sécu », le compte social unique, l'abrogation de
+  Parcoursup, la règle verte constitutionnelle, et plusieurs mesures sur
+  le logement, l'Europe et les institutions.
+
 ## [1.3.0] - 2026-08-20
 
 ### Ajouté

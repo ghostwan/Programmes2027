@@ -82,6 +82,46 @@ export const propositions: Proposition[] = [
         "Des études de la Fed et du Peterson Institute montrent une hausse des prix pour les consommateurs américains et des mesures de rétorsion commerciale, avec un effet net sur l'emploi industriel contesté, globalement faible voire négatif selon la majorité des études.",
     },
   },
+  {
+    id: "eco-taxe-succession",
+    themeId: "economie",
+    title: "Plafonner les très grosses successions reçues dans une vie",
+    description:
+      "Créer un impôt cumulant toutes les transmissions (héritages, donations) reçues par une même personne au cours de sa vie, avec un plafond au-delà duquel elles sont beaucoup plus taxées.",
+    supportingParties: ["ps", "lfi"],
+  },
+  {
+    id: "eco-bareme-progressif",
+    themeId: "economie",
+    title: "Rendre l'impôt sur le revenu beaucoup plus progressif",
+    description:
+      "Créer davantage de tranches d'imposition (jusqu'à 14 selon certains projets) et fusionner IR, CSG et CRDS en un impôt unique et plus progressif.",
+    supportingParties: ["ps", "lfi"],
+  },
+  {
+    id: "eco-seuil-zero-cotisation",
+    themeId: "economie",
+    title: "Instaurer un seuil « zéro cotisation » pour travailler plus",
+    description:
+      "Exonérer de cotisations sociales une tranche de revenu supplémentaire pour inciter financièrement à l'augmentation du temps de travail.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-compte-social-unique",
+    themeId: "economie",
+    title: "Fusionner les aides sociales dans un compte social unique",
+    description:
+      "Regrouper les différents dispositifs d'aide sociale dans un compte unique par bénéficiaire, avec un revenu d'incitation à l'activité (RIA) pour accélérer le retour à l'emploi.",
+    supportingParties: ["lr"],
+  },
+  {
+    id: "eco-fonds-production",
+    themeId: "economie",
+    title: "Créer un fonds public pour réinvestir dans l'industrie française",
+    description:
+      "Mobiliser un fonds dédié (« Fonds France Production ») pour restaurer la souveraineté industrielle et agricole par l'investissement dans l'outil de production.",
+    supportingParties: ["lr"],
+  },
 
   // TRAVAIL ET EMPLOI
   {
@@ -155,6 +195,46 @@ export const propositions: Proposition[] = [
     description:
       "Poursuivre la simplification du droit du travail pour donner plus de flexibilité aux entreprises dans la gestion de l'emploi.",
     supportingParties: ["renaissance", "lr", "rn"],
+  },
+  {
+    id: "travail-35h",
+    themeId: "travail",
+    title: "Revenir aux 35 heures et réduire à 32h pour les métiers pénibles",
+    description:
+      "Rétablir 35 heures comme durée légale du travail, avec une majoration des heures supplémentaires, et abaisser à 32 heures pour les métiers pénibles ou de nuit.",
+    supportingParties: ["lfi", "pcf"],
+  },
+  {
+    id: "travail-retraite-60",
+    themeId: "travail",
+    title: "Abaisser l'âge de la retraite à 60 ans avec 40 annuités",
+    description:
+      "Aller au-delà de l'abrogation de la réforme de 2023 en fixant l'âge légal de départ à 60 ans, avec 40 annuités de cotisation pour une retraite à taux plein.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "travail-plafond-salaires",
+    themeId: "travail",
+    title: "Plafonner l'écart des salaires dans l'entreprise (échelle 1 à 20)",
+    description:
+      "Limiter l'écart entre le salaire le plus bas et le salaire le plus élevé au sein d'un même groupe consolidé à un rapport de 1 à 20.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "travail-cetu",
+    themeId: "travail",
+    title: "Créer un compte épargne temps universel",
+    description:
+      "Permettre à chaque salarié de cumuler RTT, heures supplémentaires et jours de repos non pris dans un compte mobilisable librement (formation, enfants, loisirs).",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "travail-secu-independants",
+    themeId: "travail",
+    title: "Créer une caisse de sécurité sociale pour les indépendants précaires",
+    description:
+      "Mettre en place un cofinancement tripartite (travailleurs, plateformes numériques, État) pour couvrir socialement les travailleurs indépendants précaires, notamment des plateformes.",
+    supportingParties: ["ps"],
   },
 
   // IMMIGRATION
@@ -238,6 +318,30 @@ export const propositions: Proposition[] = [
         "La Cour des comptes européenne (2021) pointe des dysfonctionnements dans le fonctionnement de l'agence et des questions sur le respect des droits fondamentaux aux frontières.",
     },
   },
+  {
+    id: "immi-titre-sejour-automatique",
+    themeId: "immigration",
+    title: "Délivrer un titre de séjour automatique après 6 mois de CDI",
+    description:
+      "Automatiser la régularisation par le travail pour les personnes en CDI depuis six mois, afin de lutter contre l'exploitation des travailleurs sans papiers.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "immi-ofpra-independance",
+    themeId: "immigration",
+    title: "Rattacher l'OFPRA aux Affaires étrangères plutôt qu'à l'Intérieur",
+    description:
+      "Changer la tutelle ministérielle de l'Office français de protection des réfugiés et apatrides pour renforcer son indépendance dans l'examen des demandes d'asile.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "immi-asile-genre",
+    themeId: "immigration",
+    title: "Reconnaître l'orientation sexuelle et l'identité de genre comme motifs d'asile",
+    description:
+      "Élargir explicitement les critères de protection internationale aux persécutions fondées sur l'orientation sexuelle ou l'identité de genre.",
+    supportingParties: ["ps"],
+  },
 
   // SÉCURITÉ ET JUSTICE
   {
@@ -311,6 +415,22 @@ export const propositions: Proposition[] = [
     description:
       "Réduire l'atténuation automatique des peines pour les mineurs délinquants afin de durcir la réponse pénale.",
     supportingParties: ["lr", "rn", "reconquete"],
+  },
+  {
+    id: "secu-police-proximite",
+    themeId: "securite",
+    title: "Reconstruire une police de proximité territorialisée",
+    description:
+      "Redéployer une police de proximité visible et ancrée dans les quartiers, avec une régionalisation des orientations stratégiques du ministère de l'Intérieur.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "secu-recepisse",
+    themeId: "securite",
+    title: "Instaurer un récépissé lors des contrôles d'identité",
+    description:
+      "Remettre un document systématique lors de chaque contrôle d'identité pour lutter contre les contrôles discriminatoires (« au faciès »).",
+    supportingParties: ["ps", "lfi", "eelv"],
   },
 
   // ÉDUCATION
@@ -394,6 +514,46 @@ export const propositions: Proposition[] = [
         "Les comparaisons PISA montrent une corrélation complexe : l'autonomie seule n'améliore les résultats que lorsqu'elle est associée à une reddition de comptes (« accountability ») robuste.",
     },
   },
+  {
+    id: "edu-parcoursup",
+    themeId: "education",
+    title: "Abroger Parcoursup au profit d'une procédure nationale transparente",
+    description:
+      "Remplacer la plateforme Parcoursup par un système d'affectation dans l'enseignement supérieur unique, public et dont les critères sont pleinement transparents.",
+    supportingParties: ["ps", "lfi", "pcf"],
+  },
+  {
+    id: "edu-choc-savoirs",
+    themeId: "education",
+    title: "Abroger les groupes de niveau au collège (« choc des savoirs »)",
+    description:
+      "Revenir sur la réforme instaurant des groupes de niveau en français et mathématiques au collège, pour retrouver des classes hétérogènes.",
+    supportingParties: ["lfi", "eelv", "pcf"],
+  },
+  {
+    id: "edu-gratuite-cantines",
+    themeId: "education",
+    title: "Étendre la gratuité scolaire aux cantines, transports et fournitures",
+    description:
+      "Élargir la gratuité de l'école au-delà de l'enseignement lui-même : cantines, transports scolaires, manuels et fournitures.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "edu-repas-1e",
+    themeId: "education",
+    title: "Instaurer un repas à 1€ dans toutes les cantines scolaires",
+    description:
+      "Plafonner le prix d'un repas à la cantine à 1 euro pour l'ensemble des élèves, quel que soit leur établissement.",
+    supportingParties: ["pcf"],
+  },
+  {
+    id: "edu-allocation-autonomie",
+    themeId: "education",
+    title: "Créer une allocation d'autonomie pour les étudiants",
+    description:
+      "Verser une allocation mensuelle aux étudiants pour financer leurs études, sous conditions de ressources pour certains partis ou de façon universelle pour d'autres.",
+    supportingParties: ["ps", "pcf"],
+  },
 
   // SANTÉ
   {
@@ -475,6 +635,30 @@ export const propositions: Proposition[] = [
       evaluation:
         "La littérature en économie de la santé de l'OCDE documente que la T2A pure encourage le volume d'actes mais peut négliger la qualité et la prise en charge des pathologies chroniques complexes.",
     },
+  },
+  {
+    id: "sante-grande-secu",
+    themeId: "sante",
+    title: "Créer une « Grande Sécu » remboursant les soins à 100%",
+    description:
+      "Fusionner l'Assurance maladie et les complémentaires santé pour un panier de soins essentiels intégralement remboursé, sans reste à charge.",
+    supportingParties: ["ps", "lfi"],
+  },
+  {
+    id: "sante-prevention",
+    themeId: "sante",
+    title: "Doubler la part de la prévention dans les dépenses de santé",
+    description:
+      "Porter la part consacrée à la prévention (cancer, maladies cardiovasculaires, vaccination) de 4% à 8% des dépenses de santé.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "sante-onbam",
+    themeId: "sante",
+    title: "Remplacer l'ONDAM par un objectif national des besoins (ONBAM)",
+    description:
+      "Changer la logique de pilotage budgétaire de la santé pour partir des besoins de la population plutôt que d'une enveloppe budgétaire fermée fixée à l'avance.",
+    supportingParties: ["lfi"],
   },
 
   // ENVIRONNEMENT ET ÉNERGIE
@@ -558,6 +742,30 @@ export const propositions: Proposition[] = [
         "Le débat est toujours en cours ; il n'y a pas encore de recul suffisant pour une évaluation d'impact réel de cet accord.",
     },
   },
+  {
+    id: "env-pfas",
+    themeId: "environnement",
+    title: "Interdire tous les PFAS (polluants éternels) d'ici 2030",
+    description:
+      "Fixer un calendrier précis d'interdiction totale des PFAS, avec dépistage systématique et création d'un fonds public de dépollution.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "env-regle-verte",
+    themeId: "environnement",
+    title: "Inscrire une « règle verte » dans la Constitution",
+    description:
+      "Constitutionnaliser le principe de ne pas prélever sur la nature plus que ce qu'elle peut reconstituer, ni y rejeter plus qu'elle ne peut supporter.",
+    supportingParties: ["lfi"],
+  },
+  {
+    id: "env-crime-climatique",
+    themeId: "environnement",
+    title: "Créer un délit de dissimulation d'émissions carbone",
+    description:
+      "Sanctionner pénalement les entreprises qui trompent sciemment sur leurs émissions de gaz à effet de serre réelles.",
+    supportingParties: ["lfi"],
+  },
 
   // EUROPE ET INTERNATIONAL
   {
@@ -632,6 +840,22 @@ export const propositions: Proposition[] = [
         "La Cour des comptes européenne relève une répartition inégale des aides entre grandes et petites exploitations et une efficacité environnementale jugée insuffisante.",
     },
   },
+  {
+    id: "europe-avoirs-russes",
+    themeId: "europe",
+    title: "Saisir les avoirs russes gelés pour financer l'Ukraine",
+    description:
+      "Utiliser les avoirs de la Banque centrale russe gelés en Europe pour financer l'aide à la reconstruction et à la défense de l'Ukraine.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "europe-suspension-israel",
+    themeId: "europe",
+    title: "Suspendre l'accord d'association UE-Israël",
+    description:
+      "Suspendre l'accord commercial préférentiel entre l'Union européenne et Israël en réponse à la situation dans les territoires palestiniens.",
+    supportingParties: ["ps"],
+  },
 
   // INSTITUTIONS ET DÉMOCRATIE
   {
@@ -697,6 +921,22 @@ export const propositions: Proposition[] = [
     description:
       "Diminuer le nombre de députés et de sénateurs pour réduire le coût et simplifier le fonctionnement des institutions.",
     supportingParties: ["renaissance", "lr", "rn"],
+  },
+  {
+    id: "inst-defenseur-laicite",
+    themeId: "institutions",
+    title: "Créer un Défenseur de la laïcité",
+    description:
+      "Instaurer une nouvelle autorité indépendante, rattachée au Défenseur des droits, chargée de veiller au respect du principe de laïcité.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "inst-fonctionnaires-500k",
+    themeId: "institutions",
+    title: "Recruter 500 000 fonctionnaires supplémentaires",
+    description:
+      "Renforcer significativement les effectifs des services publics (éducation, santé, justice, administration) par un plan pluriannuel de recrutement.",
+    supportingParties: ["pcf"],
   },
 
   // LOGEMENT
@@ -771,6 +1011,38 @@ export const propositions: Proposition[] = [
       evaluation:
         "Le National Audit Office britannique a critiqué ce dispositif pour avoir contribué à une hausse des prix de l'immobilier neuf sans améliorer significativement l'accessibilité globale au logement.",
     },
+  },
+  {
+    id: "log-taxe-multipropriete",
+    themeId: "logement",
+    title: "Taxer davantage les propriétaires à partir du 4e logement",
+    description:
+      "Créer une taxation renforcée pour les propriétaires possédant quatre logements ou plus, hors résidence principale et logements en loyers conventionnés.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "log-leasing",
+    themeId: "logement",
+    title: "Permettre l'accession à la propriété en « leasing »",
+    description:
+      "Créer un mécanisme où une partie des loyers versés est progressivement déduite du prix d'achat du logement après plusieurs années de location.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "log-prime-climat",
+    themeId: "logement",
+    title: "Remplacer MaPrimeRénov' par une « Prime pour le climat »",
+    description:
+      "Transformer l'aide à la rénovation énergétique en une avance remboursable sans intérêt sur 30 ans, pour lever la barrière du reste à charge initial.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "log-recentrage-hlm",
+    themeId: "logement",
+    title: "Recentrer l'attribution des logements sociaux sur les actifs",
+    description:
+      "Réformer les critères d'attribution des HLM pour prioriser les personnes qui travaillent et leurs familles.",
+    supportingParties: ["lr"],
   },
 ];
 
