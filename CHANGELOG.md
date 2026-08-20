@@ -17,6 +17,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un bouton « ← Précédent » dans le jeu, permettant de revenir à la
+  proposition précédente pour changer sa réponse.
 - Un bouton « Donner mon avis » en bas de chaque page, qui ouvre une
   issue GitHub pré-remplie pour signaler un bug, suggérer une
   amélioration ou poser une question, sans passer par notre serveur.

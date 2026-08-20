@@ -159,6 +159,19 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
     window.location.reload();
   }
 
+  /**
+   * Goes back to the previous proposition so the user can change their
+   * answer. The previous answer is kept in `answers` until they pick a
+   * new one (answering again simply overwrites the same key), so
+   * re-visiting without re-answering doesn't lose anything.
+   */
+  function goBack() {
+    if (index === 0) return;
+    const prevIndex = index - 1;
+    setIndex(prevIndex);
+    saveGameState({ deckIds, index: prevIndex, answers });
+  }
+
   async function handleDragEnd(_: unknown, info: PanInfo) {
     const threshold = 100;
     if (info.offset.x > threshold) {
@@ -203,8 +216,16 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
       {/* Progress */}
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-medium text-slate-500">
+          <button
+            type="button"
+            onClick={goBack}
+            disabled={index === 0}
+            className="flex items-center gap-1 font-semibold text-slate-500 hover:text-slate-800 disabled:invisible"
+          >
+            ← Précédent
+          </button>
           <span>
-            {answeredCount + 1} / {deck.length}
+            {index + 1} / {deck.length}
           </span>
           <span>{theme.icon} {theme.name}</span>
         </div>
