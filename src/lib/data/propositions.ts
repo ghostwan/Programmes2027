@@ -582,7 +582,7 @@ export const propositions: Proposition[] = [
     title: "Rendre obligatoire une police municipale dans les communes de plus de 10 000 habitants",
     description:
       "Imposer aux communes de plus de 10 000 habitants la création d'une police municipale, pour renforcer la présence de forces de l'ordre de proximité.",
-    supportingParties: ["rn"],
+    supportingParties: ["rn", "renaissance"],
   },
 
   // ÉDUCATION
@@ -867,15 +867,15 @@ export const propositions: Proposition[] = [
     themeId: "environnement",
     title: "Relancer le nucléaire et construire de nouveaux EPR",
     description:
-      "Construire de nouveaux réacteurs nucléaires pour sécuriser l'approvisionnement électrique et décarboner le mix énergétique.",
+      "Construire de nouveaux réacteurs nucléaires pour sécuriser l'approvisionnement électrique et décarboner le mix énergétique, avec pour certains partis un objectif chiffré allant jusqu'à 14 nouveaux réacteurs et le lancement d'un plan de petits réacteurs modulaires (SMR).",
     supportingParties: ["renaissance", "lr", "rn", "reconquete", "pcf"],
     internationalExample: {
-      country: "France",
-      when: "Parc nucléaire existant, environ 70% du mix électrique",
+      country: "France, Royaume-Uni",
+      when: "Parc français existant (≈70% du mix électrique) ; relance britannique depuis 2016",
       summary:
-        "La France dispose du parc nucléaire le plus important d'Europe, représentant environ 70% de son mix électrique.",
+        "La France dispose du parc nucléaire le plus important d'Europe ; le Royaume-Uni a de son côté relancé un programme de nouveaux réacteurs (Hinkley Point C, Sizewell C) et finance des petits réacteurs modulaires avec Rolls-Royce SMR.",
       evaluation:
-        "La Cour des comptes française pointe des dérives récurrentes de coûts et de délais sur les nouveaux EPR (Flamanville). À l'inverse, l'AIE crédite le nucléaire d'un bilan carbone très favorable comparé aux énergies fossiles.",
+        "La Cour des comptes française pointe des dérives récurrentes de coûts et de délais sur les nouveaux EPR (Flamanville) ; au Royaume-Uni, le chantier de Hinkley Point C a vu son coût passer de 18 à plus de 40 milliards de livres selon le National Audit Office (2023), illustrant les risques de ce type de programme.",
     },
   },
   {
@@ -1005,14 +1005,6 @@ export const propositions: Proposition[] = [
       evaluation:
         "Les études sur ces moratoires (Allemagne, Royaume-Uni) documentent un ralentissement des investissements dans les renouvelables et un report de la décarbonation, sans qu'un cas de démantèlement à grande échelle de parcs en fonctionnement n'ait été observé à ce jour dans un grand pays européen.",
     },
-  },
-  {
-    id: "env-dpe-abroger",
-    themeId: "environnement",
-    title: "Abroger les obligations et interdictions liées au DPE",
-    description:
-      "Supprimer les interdictions de mise en location liées au Diagnostic de Performance Énergétique (DPE) et les obligations de travaux associées, au profit d'un accompagnement non contraignant.",
-    supportingParties: ["rn"],
   },
   {
     id: "env-gratuite-transports",
@@ -1465,8 +1457,8 @@ export const propositions: Proposition[] = [
     themeId: "logement",
     title: "Interdire les expulsions locatives sans solution de relogement",
     description:
-      "Instaurer un moratoire national interdisant toute expulsion locative sans solution de relogement préalable, et interdire les coupures d'eau et d'énergie pour impayés.",
-    supportingParties: ["pcf"],
+      "Instaurer un moratoire national interdisant toute expulsion locative sans solution de relogement préalable, interdire les coupures d'eau et d'énergie pour impayés, et abroger la loi Kasbarian de criminalisation des locataires en difficulté.",
+    supportingParties: ["pcf", "lfi"],
     internationalExample: {
       country: "États-Unis",
       when: "Moratoire du CDC, 2020-2021",
@@ -1893,22 +1885,6 @@ export const propositions: Proposition[] = [
     },
   },
   {
-    id: "log-fin-expulsions-sans-relogement",
-    themeId: "logement",
-    title: "Interdire les expulsions locatives sans solution de relogement",
-    description:
-      "Interdire toute expulsion locative sans solution de relogement public proposée à la famille concernée, et abroger la loi Kasbarian de criminalisation des locataires en impayés.",
-    supportingParties: ["lfi"],
-    internationalExample: {
-      country: "États-Unis",
-      when: "Moratoire du CDC, 2020-2021",
-      summary:
-        "Les autorités sanitaires américaines ont imposé un moratoire fédéral sur les expulsions locatives pendant la pandémie de Covid-19.",
-      evaluation:
-        "La Cour suprême a invalidé ce moratoire en août 2021, jugeant que l'agence avait outrepassé ses pouvoirs ; des études du Eviction Lab de Princeton montrent qu'il avait évité plusieurs centaines de milliers d'expulsions pendant sa durée d'application.",
-    },
-  },
-  {
     id: "immi-droit-sol-integral",
     themeId: "immigration",
     title: "Garantir un droit du sol intégral, y compris à Mayotte",
@@ -2139,22 +2115,6 @@ export const propositions: Proposition[] = [
     description:
       "Imposer une accréditation stricte, une transparence financière obligatoire et un encadrement des pratiques commerciales (publicité, promesses d'insertion) aux écoles privées de l'enseignement supérieur.",
     supportingParties: ["renaissance"],
-  },
-  {
-    id: "env-relance-nucleaire-epr-smr",
-    themeId: "environnement",
-    title: "Construire 14 nouveaux EPR et lancer un plan de petits réacteurs modulaires",
-    description:
-      "Accélérer la relance du nucléaire avec un objectif de 14 nouveaux réacteurs EPR, un plan de petits réacteurs modulaires (SMR) à l'horizon 2030 et un pari sur la fusion nucléaire.",
-    supportingParties: ["renaissance"],
-    internationalExample: {
-      country: "Royaume-Uni",
-      when: "Depuis 2016",
-      summary:
-        "Le Royaume-Uni a relancé un programme de nouveaux réacteurs (Hinkley Point C, Sizewell C) et finance le développement de petits réacteurs modulaires avec Rolls-Royce SMR.",
-      evaluation:
-        "Le chantier de Hinkley Point C accuse d'importants retards et dépassements de budget, passé de 18 à plus de 40 milliards de livres selon le National Audit Office (2023), illustrant les risques de ce type de programme.",
-    },
   },
   {
     id: "env-loi-programmation-energie-climat",
@@ -2761,7 +2721,7 @@ export const propositions: Proposition[] = [
     themeId: "environnement",
     title: "Autoriser automatiquement les produits phytosanitaires déjà validés dans l'UE",
     description:
-      "Autoriser automatiquement en France tout produit phytosanitaire déjà homologué dans un autre pays de l'Union européenne, sans nouvelle évaluation complète par l'ANSES.",
+      "Autoriser automatiquement en France tout produit phytosanitaire déjà homologué dans un autre pays de l'Union européenne, sans nouvelle évaluation complète par l'ANSES, comme l'acétamipride pour les néonicotinoïdes.",
     supportingParties: ["lr"],
   },
   {
@@ -2802,14 +2762,6 @@ export const propositions: Proposition[] = [
     title: "Renforcer l'étiquetage de l'origine des produits alimentaires",
     description:
       "Rendre obligatoire l'indication de l'origine de tout ingrédient représentant 10% ou plus d'un produit alimentaire, et réserver les termes « viande » ou « steak » aux produits d'origine animale.",
-    supportingParties: ["lr"],
-  },
-  {
-    id: "env-autoriser-neonicotinoides-europeens",
-    themeId: "environnement",
-    title: "Autoriser les néonicotinoïdes déjà validés ailleurs dans l'Union européenne",
-    description:
-      "Réautoriser en France des substances phytosanitaires comme l'acétamipride dès lors qu'elles sont déjà autorisées dans d'autres pays de l'Union européenne.",
     supportingParties: ["lr"],
   },
   {
@@ -2945,8 +2897,8 @@ export const propositions: Proposition[] = [
     themeId: "logement",
     title: "Mettre fin à l'interdiction de louer les logements mal classés au DPE",
     description:
-      "Rendre le diagnostic de performance énergétique purement informatif plutôt qu'excluant, en annulant les interdictions de mise en location des logements classés F et G.",
-    supportingParties: ["lr"],
+      "Rendre le diagnostic de performance énergétique purement informatif plutôt qu'excluant, en annulant les interdictions de mise en location des logements classés F et G et les obligations de travaux associées, au profit d'un accompagnement non contraignant.",
+    supportingParties: ["lr", "rn"],
   },
   {
     id: "log-suppression-encadrement-loyers",

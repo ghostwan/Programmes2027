@@ -15,6 +15,19 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Corrigé
+
+- Fusion de 5 propositions quasi-identiques qui avaient été créées
+  séparément sous des libellés différents (parfois par des partis
+  différents) : les expulsions locatives sans relogement (PCF/LFI),
+  la réautorisation des produits phytosanitaires validés dans l'UE, la
+  fin des interdictions de location liées au DPE (RN/LR), la relance
+  du nucléaire avec de nouveaux EPR (fusionnée avec la version
+  chiffrée à 14 réacteurs), et l'obligation de police municipale dans
+  les villes de plus de 10 000 habitants (RN/Renaissance).
+
+## [1.8.0] - 2026-08-20
+
 ### Ajouté
 
 - 75 nouvelles propositions des Républicains issues d'une lecture
