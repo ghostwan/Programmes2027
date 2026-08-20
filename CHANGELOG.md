@@ -15,6 +15,17 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- 33 nouvelles propositions de Renaissance issues de deux documents
+  officiels du parti (conventions thématiques « Nouvelle donne
+  économique et climatique » et « Une République ferme, une France
+  apaisée »), comblant un manque important sur la sécurité et
+  l'immigration (système d'immigration à points inspiré du Canada,
+  renforcement des polices municipales, durcissement du regroupement
+  familial, etc.), ainsi que sur l'économie, l'environnement
+  (relance du nucléaire EPR/SMR) et les institutions.
+
 ### Modifié
 
 - Nouvelle vérification croisée entre partis sur l'ensemble des

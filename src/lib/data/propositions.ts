@@ -194,7 +194,7 @@ export const propositions: Proposition[] = [
     title: "Expérimenter ou généraliser la semaine de 4 jours",
     description:
       "Réduire le temps de travail hebdomadaire à 4 jours à salaire égal, au moins à titre expérimental.",
-    supportingParties: ["lfi", "eelv", "ps"],
+    supportingParties: ["lfi", "eelv", "ps", "renaissance"],
     internationalExample: {
       country: "Royaume-Uni, Islande, Belgique",
       when: "Islande (2015-2019), Royaume-Uni (2022, 61 entreprises), Belgique (droit à la demande, 2022)",
@@ -274,7 +274,7 @@ export const propositions: Proposition[] = [
     title: "Créer un compte épargne temps universel",
     description:
       "Permettre à chaque salarié de cumuler RTT, heures supplémentaires et jours de repos non pris dans un compte mobilisable librement (formation, enfants, loisirs).",
-    supportingParties: ["ps"],
+    supportingParties: ["ps", "renaissance"],
   },
   {
     id: "travail-secu-independants",
@@ -1771,6 +1771,270 @@ export const propositions: Proposition[] = [
     description:
       "Créer un cloud public souverain, garantir la neutralité du Net, héberger les données publiques sur des serveurs français et encadrer strictement l'intelligence artificielle (interdiction de la notation sociale et de la surveillance biométrique généralisée).",
     supportingParties: ["lfi"],
+  },
+  {
+    id: "eco-bouclier-fiscal-productif",
+    themeId: "economie",
+    title: "Plafonner les impôts de production à 3% de la valeur ajoutée",
+    description:
+      "Voter une loi de programmation économique donnant dix ans de visibilité fiscale aux entreprises, avec un « bouclier fiscal productif » ramenant les impôts de production sous 3% de la valeur ajoutée.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "eco-plan-france-2050",
+    themeId: "economie",
+    title: "Investir 100 milliards d'euros dans les technologies d'avenir (plan France 2050)",
+    description:
+      "Faire de l'État un investisseur, plutôt qu'un simple subventionneur, dans dix priorités technologiques de rupture comme l'intelligence artificielle, le quantique, le nucléaire et l'avion bas carbone.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "eco-retraite-capitalisation",
+    themeId: "economie",
+    title: "Créer une couche de retraite par capitalisation en complément de la répartition",
+    description:
+      "Réorienter une partie de l'épargne des Français (assurance-vie, épargne salariale) vers le financement des entreprises françaises et européennes, avec une couche de retraite par capitalisation individuelle en complément du système par répartition.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "eco-simplification-normes",
+    themeId: "economie",
+    title: "Supprimer une norme pour chaque nouvelle norme créée",
+    description:
+      "Nommer un ministre de la simplification, créer un guichet administratif unique pour les entreprises et appliquer la règle « une norme créée, une norme supprimée » pour réduire la charge administrative.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "eco-zones-franches-industrielles",
+    themeId: "economie",
+    title: "Créer 100 zones franches industrielles à procédures accélérées",
+    description:
+      "Créer une centaine de « territoires d'innovation » bénéficiant de procédures administratives et d'urbanisme accélérées pour favoriser l'implantation de nouvelles usines.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "travail-conge-naissance",
+    themeId: "travail",
+    title: "Remplacer le congé parental par un congé de naissance de 6 mois mieux rémunéré",
+    description:
+      "Créer un congé de naissance de six mois rémunéré à 70% du plafond de la Sécurité sociale, en remplacement du congé parental actuel, pour favoriser le partage entre parents et le maintien en emploi des femmes.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "travail-transparence-salaires",
+    themeId: "travail",
+    title: "Rendre obligatoire l'affichage des salaires dans les offres d'emploi",
+    description:
+      "Imposer aux entreprises d'indiquer la rémunération proposée dans chaque offre d'emploi, pour lutter contre les inégalités salariales et améliorer la transparence du marché du travail.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "travail-droit-reconversion",
+    themeId: "travail",
+    title: "Créer un droit à la reconversion pour les métiers pénibles",
+    description:
+      "Limiter à 10-15 ans l'exercice de certains métiers pénibles avant une reconversion accompagnée, et créer un capital de reprise d'études mobilisable via le compte personnel de formation.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "edu-reforme-bourses-etudiantes",
+    themeId: "education",
+    title: "Refondre le calcul des bourses étudiantes sur critères sociaux",
+    description:
+      "Recalculer les bourses étudiantes selon un quotient familial type CAF, verser une aide unique intégrant le logement, en contrepartie de la suppression de la réduction d'impôt pour frais de scolarité.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "edu-regulation-prive-lucratif-sup",
+    themeId: "education",
+    title: "Encadrer strictement l'enseignement supérieur privé lucratif",
+    description:
+      "Imposer une accréditation stricte, une transparence financière obligatoire et un encadrement des pratiques commerciales (publicité, promesses d'insertion) aux écoles privées de l'enseignement supérieur.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "env-relance-nucleaire-epr-smr",
+    themeId: "environnement",
+    title: "Construire 14 nouveaux EPR et lancer un plan de petits réacteurs modulaires",
+    description:
+      "Accélérer la relance du nucléaire avec un objectif de 14 nouveaux réacteurs EPR, un plan de petits réacteurs modulaires (SMR) à l'horizon 2030 et un pari sur la fusion nucléaire.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "env-loi-programmation-energie-climat",
+    themeId: "environnement",
+    title: "Créer une loi de programmation pluriannuelle énergie-climat contraignante",
+    description:
+      "Planifier les financements climat et énergie sur plusieurs années avec une clause de révision automatique en cas de dépassement de la trajectoire carbone, et publier chaque année une « dette carbone » nationale.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "env-tva-vehicules-electriques",
+    themeId: "environnement",
+    title: "Baisser temporairement la TVA sur les véhicules électriques à 5,5%",
+    description:
+      "Substituer partiellement le bonus écologique par une baisse temporaire de la TVA sur les véhicules électriques neufs et d'occasion, pour accélérer leur adoption.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "env-zfe-volontaires",
+    themeId: "environnement",
+    title: "Rétablir les zones à faibles émissions pour les collectivités volontaires",
+    description:
+      "Redonner aux villes qui le souhaitent la possibilité d'instaurer des zones à faibles émissions, couplée à l'extension du dispositif de leasing social de véhicules propres.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "env-contrats-transition-agricole",
+    themeId: "environnement",
+    title: "Créer des contrats de transition agricole entre agriculteurs, industriels et distributeurs",
+    description:
+      "Instaurer des contrats tripartites pour mieux partager la valeur entre agriculteurs, industriels et distributeurs, avec un objectif de réduction de 50% des pesticides d'ici 2030 et un marché du carbone agricole.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-videoprotection-algorithmique",
+    themeId: "securite",
+    title: "Étendre la vidéoprotection algorithmique au-delà des Jeux olympiques",
+    description:
+      "Pérenniser et étendre l'expérimentation de vidéosurveillance augmentée par intelligence artificielle testée pendant les Jeux olympiques de Paris 2024, via un cadre légal dédié.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-unite-anti-drone",
+    themeId: "securite",
+    title: "Créer une unité conjointe police-gendarmerie de lutte anti-drone",
+    description:
+      "Libéraliser l'usage des drones par les forces de l'ordre et créer une unité spécialisée conjointe police-gendarmerie-préfecture pour lutter contre les usages malveillants de drones.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-renforcement-police-municipale",
+    themeId: "securite",
+    title: "Renforcer les pouvoirs et l'armement des polices municipales",
+    description:
+      "Donner aux directeurs de police municipale un statut d'officier de police judiciaire, rendre la police municipale obligatoire au-delà de 10 000 habitants avec un armement minimal financé par l'État, et créer une école nationale des policiers municipaux.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-narcotrafic-mesures-urgence",
+    themeId: "securite",
+    title: "Expulser plus vite des logements sociaux les personnes condamnées pour trafic de drogue",
+    description:
+      "Accélérer la procédure d'expulsion des logements sociaux en cas de trafic de drogue avéré, multiplier les opérations de contrôle renforcé aux frontières et sanctionner les plateformes non coopérantes contre le narcotrafic.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-plateforme-unique-cyber",
+    themeId: "securite",
+    title: "Créer une plateforme unique de signalement des cybercrimes",
+    description:
+      "Fusionner les différents dispositifs de signalement (Perceval, 17Cyber, Pharos) en une plateforme unique, et former massivement les forces de l'ordre à la lutte contre la cybercriminalité.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-centres-violences-sexuelles",
+    themeId: "securite",
+    title: "Créer des centres de prise en charge des violences sexuelles ouverts 24h/24",
+    description:
+      "Créer, sur le modèle belge, des centres rattachés aux hôpitaux ouverts en continu pour une prise en charge médicale et un dépôt de plainte sécurisé des victimes de violences sexuelles et sexistes.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-brigades-mobiles-gendarmerie",
+    themeId: "securite",
+    title: "Créer des brigades mobiles de gendarmerie pour les zones rurales",
+    description:
+      "Créer des brigades itinérantes allant de village en village pour renforcer la présence des forces de l'ordre dans les territoires ruraux les moins bien couverts.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "secu-controle-ecrans-mineurs",
+    themeId: "securite",
+    title: "Instaurer un couvre-feu numérique pour les mineurs",
+    description:
+      "Interdire effectivement les écrans aux moins de 15 ans, instaurer un couvre-feu numérique de 22h à 8h pour les 15-18 ans et créer un « addict-score » public des plateformes.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-systeme-points-canada",
+    themeId: "immigration",
+    title: "Piloter l'immigration de travail par un système à points inspiré du Canada",
+    description:
+      "Créer un système d'admission par points fondé sur des critères objectifs (qualification, âge, maîtrise du français, offre d'emploi), avec des quotas votés chaque année par le Parlement.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-durcissement-regroupement-familial",
+    themeId: "immigration",
+    title: "Durcir les conditions du regroupement familial",
+    description:
+      "Allonger de 18 à 24 mois le délai de présence exigé du conjoint et renforcer les exigences de maîtrise du français, de logement et de ressources pour le regroupement familial.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-fin-prestations-fin-titre-sejour",
+    themeId: "immigration",
+    title: "Mettre fin automatiquement aux prestations sociales à l'expiration du titre de séjour",
+    description:
+      "Cesser automatiquement le versement de toute prestation sociale dès l'expiration du titre de séjour d'une personne étrangère.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-allongement-retention-cra",
+    themeId: "immigration",
+    title: "Allonger la durée de rétention administrative et créer 3000 places de CRA",
+    description:
+      "Augmenter le délai maximal de rétention administrative pour accélérer les expulsions des personnes étrangères condamnées pour des faits graves, et créer 3000 places supplémentaires en centre de rétention d'ici 2030.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-border-force",
+    themeId: "immigration",
+    title: "Créer une « Border Force » pour piloter le contrôle des frontières",
+    description:
+      "Créer un état-major national et des états-majors régionaux réunissant police aux frontières, douanes et renseignement pour mieux coordonner le contrôle des frontières.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "immi-sanctions-employeurs-irreguliers",
+    themeId: "immigration",
+    title: "Renforcer les sanctions contre les employeurs de travailleurs sans papiers",
+    description:
+      "Durcir les sanctions, y compris l'interdiction de gérance, contre les employeurs recourant sciemment au travail irrégulier de personnes étrangères sans titre de séjour.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "inst-delit-entrisme",
+    themeId: "institutions",
+    title: "Créer un délit d'entrisme communautariste",
+    description:
+      "Sanctionner pénalement le fait d'appeler à refuser les lois de la République ou d'imposer des règles contraires aux lois françaises dans un territoire ou une association, en complément du délit de séparatisme existant.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "inst-interdiction-voile-enfants",
+    themeId: "institutions",
+    title: "Interdire le voilement des enfants dans l'espace public",
+    description:
+      "Interdire le port du voile aux enfants dans l'espace public, avec sanction des parents plutôt que des enfants, et créer un délit spécifique pour toute personne qui contraindrait une femme à se voiler.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "inst-financement-etranger-lieux-culte",
+    themeId: "institutions",
+    title: "Abaisser fortement le seuil de déclaration des financements étrangers des cultes",
+    description:
+      "Abaisser de 10 000€ à 1 000€ le seuil à partir duquel les dons et financements étrangers des lieux de culte doivent être déclarés, pour mieux contrôler les financements de l'étranger.",
+    supportingParties: ["renaissance"],
+  },
+  {
+    id: "inst-testing-discriminations-embauche",
+    themeId: "institutions",
+    title: "Généraliser le testing contre les discriminations à l'embauche",
+    description:
+      "Doter l'organisme public de lutte contre les discriminations d'un service de testing systématique en entreprise, publier les résultats et exiger des plans d'action des entreprises identifiées comme discriminantes.",
+    supportingParties: ["renaissance"],
   },
 ];
 
