@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# research materials (downloaded party programs, not part of the app)
+/docs-sources
+
 # debug
 npm-debug.log*
 yarn-debug.log*

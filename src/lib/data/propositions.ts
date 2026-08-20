@@ -83,12 +83,20 @@ export const propositions: Proposition[] = [
     },
   },
   {
+    id: "eco-taxe-zucman",
+    themeId: "economie",
+    title: "Créer une taxe plancher de 2% sur les très grands patrimoines (« taxe Zucman »)",
+    description:
+      "Instaurer un impôt minimal annuel de 2% sur les patrimoines supérieurs à 100 millions d'euros, pour lutter contre l'optimisation fiscale des ultra-riches qui leur permet de payer proportionnellement moins d'impôts que la classe moyenne.",
+    supportingParties: ["ps", "lfi", "eelv", "pcf"],
+  },
+  {
     id: "eco-taxe-succession",
     themeId: "economie",
     title: "Plafonner les très grosses successions reçues dans une vie",
     description:
       "Créer un impôt cumulant toutes les transmissions (héritages, donations) reçues par une même personne au cours de sa vie, avec un plafond au-delà duquel elles sont beaucoup plus taxées.",
-    supportingParties: ["ps", "lfi"],
+    supportingParties: ["ps", "lfi", "eelv", "pcf"],
   },
   {
     id: "eco-bareme-progressif",
@@ -96,7 +104,7 @@ export const propositions: Proposition[] = [
     title: "Rendre l'impôt sur le revenu beaucoup plus progressif",
     description:
       "Créer davantage de tranches d'imposition (jusqu'à 14 selon certains projets) et fusionner IR, CSG et CRDS en un impôt unique et plus progressif.",
-    supportingParties: ["ps", "lfi"],
+    supportingParties: ["ps", "lfi", "eelv", "pcf"],
   },
   {
     id: "eco-seuil-zero-cotisation",
@@ -121,6 +129,46 @@ export const propositions: Proposition[] = [
     description:
       "Mobiliser un fonds dédié (« Fonds France Production ») pour restaurer la souveraineté industrielle et agricole par l'investissement dans l'outil de production.",
     supportingParties: ["lr"],
+  },
+  {
+    id: "eco-tva-verte",
+    themeId: "economie",
+    title: "Instaurer une TVA différenciée selon l'impact environnemental",
+    description:
+      "Baisser la TVA sur les produits de première nécessité et écologiques (bio, réparation), et l'augmenter sur les produits de luxe ou nocifs pour la santé et l'environnement (ultra-transformés, vols intérieurs, hôtellerie de luxe).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-exoneration-salaires",
+    themeId: "economie",
+    title: "Exonérer de cotisations patronales les entreprises qui augmentent les salaires",
+    description:
+      "Permettre aux entreprises d'augmenter les salaires de 10% (jusqu'à trois fois le SMIC) en les exonérant de la hausse des cotisations patronales pendant trois à cinq ans.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "eco-iff",
+    themeId: "economie",
+    title: "Remplacer l'IFI par un impôt sur la fortune financière (IFF)",
+    description:
+      "Supprimer l'impôt sur la fortune immobilière (IFI) et créer à la place un impôt ciblant les fortunes exclusivement financières, épargnant la conservation et la transmission du patrimoine immobilier.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "eco-cotisation-revenus-financiers",
+    themeId: "economie",
+    title: "Créer une cotisation sur les revenus financiers des entreprises",
+    description:
+      "Instaurer une cotisation sociale sur les revenus financiers des entreprises pour financer la Sécurité sociale, en complément d'une modulation à la hausse des cotisations pour celles qui suppriment des emplois.",
+    supportingParties: ["pcf", "lfi"],
+  },
+  {
+    id: "eco-renationalisation-energie",
+    themeId: "economie",
+    title: "Renationaliser les grandes entreprises de l'énergie",
+    description:
+      "Renationaliser EDF, Engie et TotalEnergies pour constituer un grand pôle public de l'énergie à 100% public, et sortir du marché européen de l'électricité.",
+    supportingParties: ["pcf", "lfi"],
   },
 
   // TRAVAIL ET EMPLOI
@@ -210,7 +258,7 @@ export const propositions: Proposition[] = [
     title: "Abaisser l'âge de la retraite à 60 ans avec 40 annuités",
     description:
       "Aller au-delà de l'abrogation de la réforme de 2023 en fixant l'âge légal de départ à 60 ans, avec 40 annuités de cotisation pour une retraite à taux plein.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv", "pcf"],
   },
   {
     id: "travail-plafond-salaires",
@@ -292,7 +340,7 @@ export const propositions: Proposition[] = [
     title: "Faciliter la régularisation des travailleurs sans papiers dans les métiers en tension",
     description:
       "Simplifier les procédures de régularisation pour les travailleurs sans papiers occupant des emplois dans des secteurs en pénurie de main-d'œuvre.",
-    supportingParties: ["lfi", "ps", "eelv", "renaissance"],
+    supportingParties: ["lfi", "ps", "eelv", "renaissance", "pcf"],
     internationalExample: {
       country: "Espagne",
       when: "Régularisations massives de 2005 (« arraigo social »)",
@@ -319,6 +367,30 @@ export const propositions: Proposition[] = [
     },
   },
   {
+    id: "immi-frontex-demanteler",
+    themeId: "immigration",
+    title: "Démanteler Frontex au profit d'une agence de protection des migrants",
+    description:
+      "Remplacer l'agence européenne de garde-frontières Frontex par une nouvelle agence dédiée à la protection des droits fondamentaux et au sauvetage en mer et sur terre des personnes migrantes.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-renouvellement-auto-titres",
+    themeId: "immigration",
+    title: "Instaurer un renouvellement automatique des titres de séjour longue durée",
+    description:
+      "Simplifier drastiquement le renouvellement des cartes de séjour de longue durée et des titres étudiants, pour désengorger les préfectures et sécuriser le maintien au travail ou aux études.",
+    supportingParties: ["ps", "eelv"],
+  },
+  {
+    id: "immi-droit-travail-asile",
+    themeId: "immigration",
+    title: "Accorder le droit au travail immédiat dès la demande d'asile",
+    description:
+      "Automatiser le droit au travail dès la délivrance de l'attestation de demande d'asile, sans délai ni autorisation administrative supplémentaire.",
+    supportingParties: ["eelv", "ps"],
+  },
+  {
     id: "immi-titre-sejour-automatique",
     themeId: "immigration",
     title: "Délivrer un titre de séjour automatique après 6 mois de CDI",
@@ -341,6 +413,30 @@ export const propositions: Proposition[] = [
     description:
       "Élargir explicitement les critères de protection internationale aux persécutions fondées sur l'orientation sexuelle ou l'identité de genre.",
     supportingParties: ["ps"],
+  },
+  {
+    id: "immi-schengen-europeens",
+    themeId: "immigration",
+    title: "Réserver la libre circulation Schengen aux ressortissants européens",
+    description:
+      "Négocier avec les partenaires européens pour restreindre la libre circulation au sein de l'espace Schengen aux seuls citoyens des pays membres de l'Union européenne.",
+    supportingParties: ["rn", "reconquete"],
+  },
+  {
+    id: "immi-asile-consulats",
+    themeId: "immigration",
+    title: "Rendre obligatoire le dépôt des demandes d'asile depuis l'étranger",
+    description:
+      "Imposer que les demandes d'asile soient déposées dans les ambassades et consulats français à l'étranger plutôt que sur le territoire national.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "immi-ame-remplacement",
+    themeId: "immigration",
+    title: "Remplacer l'Aide médicale d'État par une Aide d'urgence vitale",
+    description:
+      "Restreindre l'Aide médicale d'État (AME), qui couvre les soins des personnes en situation irrégulière, à une aide limitée aux seules urgences vitales.",
+    supportingParties: ["rn"],
   },
 
   // SÉCURITÉ ET JUSTICE
@@ -417,6 +513,14 @@ export const propositions: Proposition[] = [
     supportingParties: ["lr", "rn", "reconquete"],
   },
   {
+    id: "secu-legalisation-cannabis",
+    themeId: "securite",
+    title: "Légaliser et encadrer strictement la production et la vente de cannabis",
+    description:
+      "Soumettre la légalisation du cannabis à une convention citoyenne, avec un contrôle étatique strict de sa production et de sa commercialisation, pour assécher les circuits du narcotrafic.",
+    supportingParties: ["ps"],
+  },
+  {
     id: "secu-police-proximite",
     themeId: "securite",
     title: "Reconstruire une police de proximité territorialisée",
@@ -431,6 +535,30 @@ export const propositions: Proposition[] = [
     description:
       "Remettre un document systématique lors de chaque contrôle d'identité pour lutter contre les contrôles discriminatoires (« au faciès »).",
     supportingParties: ["ps", "lfi", "eelv"],
+  },
+  {
+    id: "secu-doctrine-maintien-ordre",
+    themeId: "securite",
+    title: "Adopter une nouvelle doctrine de maintien de l'ordre fondée sur la désescalade",
+    description:
+      "Interdire les lanceurs de balles de défense (LBD40), encadrer strictement la vidéosurveillance et fonder l'action des forces de l'ordre sur le dialogue et la désescalade plutôt que la confrontation systématique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-legitime-defense",
+    themeId: "securite",
+    title: "Instaurer une présomption de légitime défense pour les forces de l'ordre",
+    description:
+      "Créer une présomption légale de légitime défense en faveur des policiers et gendarmes ayant fait usage de leur arme dans l'exercice de leurs fonctions.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "secu-police-municipale-obligatoire",
+    themeId: "securite",
+    title: "Rendre obligatoire une police municipale dans les communes de plus de 10 000 habitants",
+    description:
+      "Imposer aux communes de plus de 10 000 habitants la création d'une police municipale, pour renforcer la présence de forces de l'ordre de proximité.",
+    supportingParties: ["rn"],
   },
 
   // ÉDUCATION
@@ -456,7 +584,7 @@ export const propositions: Proposition[] = [
     title: "Revaloriser significativement le salaire des enseignants",
     description:
       "Augmenter fortement la rémunération des enseignants pour rendre le métier plus attractif.",
-    supportingParties: ["lfi", "ps", "eelv", "pcf", "renaissance"],
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "renaissance", "rn"],
     internationalExample: {
       country: "Finlande, Corée du Sud",
       when: "Comparaison OCDE",
@@ -472,7 +600,7 @@ export const propositions: Proposition[] = [
     title: "Réduire le nombre d'élèves par classe",
     description:
       "Diminuer les effectifs par classe, en particulier dans les zones prioritaires, pour améliorer les conditions d'apprentissage.",
-    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "rn"],
     internationalExample: {
       country: "France (REP/REP+)",
       when: "Classes dédoublées depuis 2017",
@@ -536,7 +664,7 @@ export const propositions: Proposition[] = [
     title: "Étendre la gratuité scolaire aux cantines, transports et fournitures",
     description:
       "Élargir la gratuité de l'école au-delà de l'enseignement lui-même : cantines, transports scolaires, manuels et fournitures.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "pcf"],
   },
   {
     id: "edu-repas-1e",
@@ -553,6 +681,14 @@ export const propositions: Proposition[] = [
     description:
       "Verser une allocation mensuelle aux étudiants pour financer leurs études, sous conditions de ressources pour certains partis ou de façon universelle pour d'autres.",
     supportingParties: ["ps", "pcf"],
+  },
+  {
+    id: "edu-brevet-orientation",
+    themeId: "education",
+    title: "Faire du brevet un examen d'orientation post-3e",
+    description:
+      "Transformer le diplôme national du brevet en examen d'orientation déterminant, selon les résultats, l'orientation vers l'enseignement général, professionnel ou l'apprentissage, en rupture avec le collège unique.",
+    supportingParties: ["rn"],
   },
 
   // SANTÉ
@@ -594,7 +730,7 @@ export const propositions: Proposition[] = [
     title: "Poursuivre l'augmentation des capacités de formation de médecins",
     description:
       "Continuer à augmenter le nombre de places en études de médecine après la suppression du numerus clausus.",
-    supportingParties: ["lfi", "ps", "eelv", "renaissance"],
+    supportingParties: ["lfi", "ps", "eelv", "renaissance", "rn"],
     internationalExample: {
       country: "France",
       when: "Suppression du numerus clausus votée en 2019",
@@ -626,7 +762,7 @@ export const propositions: Proposition[] = [
     title: "Réduire le poids de la tarification à l'activité (T2A) dans le financement des hôpitaux",
     description:
       "Diminuer la part du financement hospitalier basée sur le volume d'actes réalisés au profit d'un financement plus forfaitaire.",
-    supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    supportingParties: ["lfi", "ps", "eelv", "pcf", "rn"],
     internationalExample: {
       country: "Angleterre (NHS)",
       when: "Financement par blocs",
@@ -659,6 +795,30 @@ export const propositions: Proposition[] = [
     description:
       "Changer la logique de pilotage budgétaire de la santé pour partir des besoins de la population plutôt que d'une enveloppe budgétaire fermée fixée à l'avance.",
     supportingParties: ["lfi"],
+  },
+  {
+    id: "sante-medicament-unite",
+    themeId: "sante",
+    title: "Vendre les médicaments à l'unité pour lutter contre les pénuries",
+    description:
+      "Autoriser la vente de médicaments à l'unité en pharmacie afin de réduire le gaspillage et de mieux faire face aux pénuries.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "sante-ars-suppression",
+    themeId: "sante",
+    title: "Supprimer les Agences régionales de santé (ARS)",
+    description:
+      "Supprimer les ARS pour réduire le poids administratif pesant sur les hôpitaux et réaffirmer l'autorité directe de l'État dans le pilotage du système de santé.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "sante-moratoire-lits",
+    themeId: "sante",
+    title: "Instaurer un moratoire sur la suppression de lits à l'hôpital public",
+    description:
+      "Geler toute nouvelle fermeture de lits dans les hôpitaux publics face à la réduction continue des capacités depuis plusieurs décennies.",
+    supportingParties: ["rn"],
   },
 
   // ENVIRONNEMENT ET ÉNERGIE
@@ -727,12 +887,28 @@ export const propositions: Proposition[] = [
     },
   },
   {
+    id: "env-mix-nucleaire-renouvelable-parlement",
+    themeId: "environnement",
+    title: "Décider du mix énergétique nucléaire-renouvelable par un débat parlementaire",
+    description:
+      "Faire décider le mix énergétique par le Parlement sur la base d'un débat associant citoyens, associations et collectivités, en s'appuyant sur un parc nucléaire historique partiellement renouvelé et le développement des renouvelables (« le nucléaire autant que nécessaire, les renouvelables autant que possible »), en sécurisant l'approvisionnement en uranium et en finançant la recherche sur la fusion nucléaire.",
+    supportingParties: ["ps"],
+  },
+  {
+    id: "env-ecocide",
+    themeId: "environnement",
+    title: "Reconnaître le crime d'écocide en droit pénal français",
+    description:
+      "Créer un crime d'écocide sanctionnant les atteintes les plus graves et intentionnelles à l'environnement, avec un parquet environnemental spécialisé.",
+    supportingParties: ["ps"],
+  },
+  {
     id: "env-mercosur",
     themeId: "environnement",
     title: "S'opposer à l'accord de libre-échange Mercosur",
     description:
       "Refuser la ratification de l'accord commercial entre l'Union européenne et les pays du Mercosur, jugé nuisible à l'agriculture et l'environnement.",
-    supportingParties: ["lfi", "eelv", "ps", "rn", "reconquete", "lr"],
+    supportingParties: ["lfi", "eelv", "ps", "rn", "reconquete", "lr", "pcf"],
     internationalExample: {
       country: "Union européenne / Mercosur",
       when: "Accord signé fin 2024, ratification incertaine",
@@ -765,6 +941,38 @@ export const propositions: Proposition[] = [
     description:
       "Sanctionner pénalement les entreprises qui trompent sciemment sur leurs émissions de gaz à effet de serre réelles.",
     supportingParties: ["lfi"],
+  },
+  {
+    id: "env-moratoire-eolien",
+    themeId: "environnement",
+    title: "Décréter un moratoire sur l'éolien et le solaire subventionnés",
+    description:
+      "Suspendre toutes les subventions à l'éolien et au solaire, et démanteler progressivement les parcs éoliens arrivant en fin de vie.",
+    supportingParties: ["rn"],
+    internationalExample: {
+      country: "Comparaisons internationales sur les moratoires éoliens",
+      when: "Débats similaires dans plusieurs régions allemandes et au Royaume-Uni",
+      summary:
+        "Plusieurs territoires ont ponctuellement instauré des moratoires locaux sur l'implantation de nouvelles éoliennes, sans aller jusqu'au démantèlement de parcs existants.",
+      evaluation:
+        "Les études sur ces moratoires (Allemagne, Royaume-Uni) documentent un ralentissement des investissements dans les renouvelables et un report de la décarbonation, sans qu'un cas de démantèlement à grande échelle de parcs en fonctionnement n'ait été observé à ce jour dans un grand pays européen.",
+    },
+  },
+  {
+    id: "env-dpe-abroger",
+    themeId: "environnement",
+    title: "Abroger les obligations et interdictions liées au DPE",
+    description:
+      "Supprimer les interdictions de mise en location liées au Diagnostic de Performance Énergétique (DPE) et les obligations de travaux associées, au profit d'un accompagnement non contraignant.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "env-gratuite-transports",
+    themeId: "environnement",
+    title: "Rendre les transports en commun gratuits",
+    description:
+      "Généraliser la gratuité des transports collectifs publics sur l'ensemble du territoire, financée par la dépense publique.",
+    supportingParties: ["pcf"],
   },
 
   // EUROPE ET INTERNATIONAL
@@ -799,6 +1007,14 @@ export const propositions: Proposition[] = [
       evaluation:
         "Il n'existe pas de précédent de « désobéissance » pleinement assumée et durable au sein de l'UE ; l'épisode grec de 2015 s'est soldé par un recul du gouvernement face à la pression des créanciers.",
     },
+  },
+  {
+    id: "europe-federalisme",
+    themeId: "europe",
+    title: "Faire un saut fédéral européen",
+    description:
+      "Partager davantage de compétences entre États et Union européenne, en remplaçant les droits de veto nationaux par la majorité qualifiée sur les droits fondamentaux, la protection sociale et la politique étrangère commune.",
+    supportingParties: ["eelv"],
   },
   {
     id: "europe-defense-commune",
@@ -859,6 +1075,14 @@ export const propositions: Proposition[] = [
 
   // INSTITUTIONS ET DÉMOCRATIE
   {
+    id: "inst-cour-constitutionnelle",
+    themeId: "institutions",
+    title: "Transformer le Conseil constitutionnel en véritable Cour constitutionnelle",
+    description:
+      "Réformer le Conseil constitutionnel pour en faire une Cour constitutionnelle dont les membres seraient approuvés à la majorité qualifiée des commissions parlementaires, en supprimant la présence de droit des anciens présidents de la République.",
+    supportingParties: ["eelv"],
+  },
+  {
     id: "inst-6e-republique",
     themeId: "institutions",
     title: "Passer à une VIe République plus parlementaire",
@@ -880,7 +1104,7 @@ export const propositions: Proposition[] = [
     title: "Instaurer un référendum d'initiative citoyenne (RIC)",
     description:
       "Permettre aux citoyens de déclencher un référendum national sur toute question, à condition de réunir un certain nombre de signatures.",
-    supportingParties: ["lfi", "rn", "reconquete", "pcf"],
+    supportingParties: ["lfi", "rn", "reconquete", "pcf", "eelv", "ps"],
     internationalExample: {
       country: "Suisse, États-Unis (Californie)",
       when: "Démocratie directe suisse, référendums d'initiative californiens",
@@ -889,6 +1113,14 @@ export const propositions: Proposition[] = [
       evaluation:
         "Le cas suisse est documenté comme stable et associé à une forte légitimité perçue des décisions, mais avec un taux de participation aux votations parfois faible. Le cas californien est souvent cité pour ses effets pervers, comme les blocages budgétaires liés à des référendums contradictoires (Proposition 13 sur la fiscalité locale, 1978).",
     },
+  },
+  {
+    id: "inst-cese-citoyens",
+    themeId: "institutions",
+    title: "Transformer le CESE en Conseil de la société civile avec des citoyens tirés au sort",
+    description:
+      "Réformer le Conseil économique, social et environnemental pour y intégrer un collège de citoyens tirés au sort, pivot d'un futur droit de référendum d'initiative citoyenne.",
+    supportingParties: ["ps"],
   },
   {
     id: "inst-non-cumul",
@@ -937,6 +1169,30 @@ export const propositions: Proposition[] = [
     description:
       "Renforcer significativement les effectifs des services publics (éducation, santé, justice, administration) par un plan pluriannuel de recrutement.",
     supportingParties: ["pcf"],
+  },
+  {
+    id: "inst-referendum-constitution",
+    themeId: "institutions",
+    title: "Réserver au peuple seul le pouvoir de modifier la Constitution",
+    description:
+      "Retirer au Parlement réuni en Congrès la possibilité de réviser la Constitution, pour réserver cette compétence exclusivement au référendum populaire.",
+    supportingParties: ["rn"],
+  },
+  {
+    id: "inst-primaute-constitution",
+    themeId: "institutions",
+    title: "Inscrire la primauté de la Constitution sur le droit international",
+    description:
+      "Modifier la Constitution pour affirmer qu'aucun engagement international, règle de droit international ou décision d'une juridiction internationale ne peut remettre en cause la Constitution française.",
+    supportingParties: ["rn"],
+    internationalExample: {
+      country: "Pologne",
+      when: "Arrêt du Tribunal constitutionnel polonais, octobre 2021",
+      summary:
+        "Le Tribunal constitutionnel polonais a jugé en 2021 que certaines dispositions des traités européens étaient incompatibles avec la Constitution polonaise, affirmant la primauté du droit national.",
+      evaluation:
+        "Cette décision a provoqué une crise majeure avec l'Union européenne (gel de fonds européens, procédures d'infraction) et une controverse sur l'indépendance de la justice polonaise ; les juristes européens soulignent le risque d'affaiblissement de la sécurité juridique et des droits garantis par les traités en cas de généralisation de ce type de primauté nationale.",
+    },
   },
 
   // LOGEMENT
@@ -1043,6 +1299,14 @@ export const propositions: Proposition[] = [
     description:
       "Réformer les critères d'attribution des HLM pour prioriser les personnes qui travaillent et leurs familles.",
     supportingParties: ["lr"],
+  },
+  {
+    id: "log-reguler-meubles-touristiques",
+    themeId: "logement",
+    title: "Réguler les meublés touristiques type Airbnb",
+    description:
+      "Aligner fiscalement et réglementairement toute location de courte durée (hors résidence principale) sur les obligations du secteur hôtelier, et limiter le nombre de licences touristiques dans les zones tendues.",
+    supportingParties: ["eelv"],
   },
 ];
 

@@ -15,6 +15,23 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- 9 nouvelles propositions issues d'une relecture complète du programme du
+  Parti socialiste (mix énergétique nucléaire-renouvelable décidé par le
+  Parlement, taxe Zucman, écocide, légalisation encadrée du cannabis,
+  réforme du CESE en Conseil de la société civile, etc.).
+
+### Modifié
+
+- Ajout de partis manquants sur une vingtaine de propositions déjà
+  existantes après vérification de leurs positions officielles
+  (par exemple EELV et PCF sur la taxe Zucman et le barème progressif de
+  l'impôt, Reconquête sur la restriction de Schengen aux Européens, le
+  PCF sur l'opposition à l'accord Mercosur), afin de ne pas laisser penser
+  qu'un parti s'oppose à une mesure alors que sa position n'avait
+  simplement pas encore été recherchée.
+
 ## [1.4.0] - 2026-08-20
 
 ### Ajouté
