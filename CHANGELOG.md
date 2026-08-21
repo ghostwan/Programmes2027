@@ -31,6 +31,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   exactement le même pourcentage de correspondance (au global ou sur
   une thématique), ils sont désormais tous affichés ex æquo au lieu
   d'en choisir arbitrairement un seul.
+- Dans l'hémicycle, chaque parti de la coalition forme maintenant un
+  secteur radial continu (comme des parts de tarte, de l'intérieur
+  vers l'extérieur), au lieu de former par erreur des anneaux
+  concentriques qui mélangeaient les partis entre les rangées.
 
 ### Modifié
 
@@ -42,6 +46,9 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   forme une seule masse grise à droite — au lieu de disperser des
   points grisés un peu partout selon la position réelle de chaque
   parti.
+- L'hémicycle a été allégé (moins de rangées, taille plus compacte)
+  tout en conservant un point par siège, pour un rendu plus simple et
+  plus rapide à afficher.
 - L'hémicycle (marché des propositions et résultats du quiz) affiche
   désormais par défaut la coalition majoritaire virtuelle du mode de
   scrutin sélectionné, plutôt que la première coalition de la liste,

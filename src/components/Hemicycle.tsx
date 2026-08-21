@@ -33,14 +33,13 @@ const POLITICAL_ORDER: PartyId[] = [
 /**
  * Hemicycle visualization inspired by Le Monde's coalition simulator
  * (https://www.lemonde.fr/les-decodeurs/.../simulateur-de-coalition):
- * rather than showing every party in its "natural" seat block and
- * dimming the ones outside the coalition, seats belonging to the
- * coalition are packed together from the left, in political order, and
- * every other seat (any party not in the coalition, plus the "autres"
- * bloc) is grouped as a single grey mass on the right. This makes it
- * immediately visible how much of the hemicycle the coalition actually
- * fills, rather than requiring the reader to mentally sum scattered
- * colored dots.
+ * one dot per seat, arranged in concentric arcs from the center outward,
+ * but colored by *angular* position (not by row-fill order) so each
+ * party forms a contiguous radial wedge — like a slice of the half-pie —
+ * spanning from the inner arc to the outer arc, instead of a concentric
+ * ring. Coalition parties are packed left-to-right in political order;
+ * every seat outside the coalition (any other party, plus the "autres"
+ * bloc) is a single grey wedge on the right.
  */
 export function Hemicycle({
   seatsByParty,
@@ -83,53 +82,65 @@ export function Hemicycle({
         ...(inactiveCount > 0 ? [{ id: "inactifs", color: OTHER_COLOR, count: inactiveCount }] : []),
       ];
 
-  // Flatten into a single ordered list of per-seat colors, coalition
-  // (or all parties) first, grey mass last.
-  const seatColors: string[] = [];
-  for (const b of blocks) {
-    for (let i = 0; i < b.count; i++) seatColors.push(b.color);
+  const totalCount = blocks.reduce((sum, b) => sum + b.count, 0) || 1;
+
+  // Cumulative angular range (0-1 fraction of the half-circle) for each
+  // block, used to color a seat by its angular position `t` rather than
+  // by the order it was filled in — this is what makes each party a
+  // clean radial wedge instead of a concentric ring.
+  let cumulative = 0;
+  const blocksWithRange = blocks.map((b) => {
+    cumulative += b.count;
+    return { ...b, end: cumulative / totalCount };
+  });
+
+  function colorForFraction(t: number): string {
+    for (const b of blocksWithRange) {
+      if (t <= b.end) return b.color;
+    }
+    return OTHER_COLOR;
   }
 
-  const rows = 8;
-  const width = 520;
-  const height = 300;
+  // Compact layout: fewer rows and a smaller canvas than a full
+  // seat-by-seat Assemblée diagram, while keeping one dot per seat.
+  const rows = 6;
+  const width = 420;
+  const height = 230;
   const cx = width / 2;
   const cy = height - 10;
-  const rMin = 60;
-  const rMax = 260;
+  const rMin = 46;
+  const rMax = 200;
+  const dotRadius = 3.4;
 
   // Distribute seats across rows roughly proportionally to each arc's
   // circumference, so density looks even.
   const rowRadii = Array.from({ length: rows }, (_, i) => rMin + (i * (rMax - rMin)) / (rows - 1));
-  const rowWeights = rowRadii.map((r) => r);
-  const totalWeight = rowWeights.reduce((s, w) => s + w, 0);
-  const seatsPerRow = rowWeights.map((w) =>
-    Math.max(1, Math.round((w / totalWeight) * seatColors.length))
-  );
+  const totalWeight = rowRadii.reduce((s, r) => s + r, 0);
+  const seatsPerRow = rowRadii.map((r) => Math.max(1, Math.round((r / totalWeight) * totalCount)));
 
   const seatNodes: Array<{ x: number; y: number; color: string }> = [];
-  let seatIndex = 0;
+  let seatsPlaced = 0;
   for (let row = 0; row < rows; row++) {
     const r = rowRadii[row];
-    const count = row === rows - 1 ? seatColors.length - seatIndex : seatsPerRow[row];
-    for (let i = 0; i < count && seatIndex < seatColors.length; i++, seatIndex++) {
+    const count = row === rows - 1 ? totalCount - seatsPlaced : seatsPerRow[row];
+    for (let i = 0; i < count && seatsPlaced < totalCount; i++, seatsPlaced++) {
       const t = count === 1 ? 0.5 : i / (count - 1);
       const angle = Math.PI - t * Math.PI; // left (PI) to right (0)
       const x = cx + r * Math.cos(angle);
       const y = cy - r * Math.sin(angle);
-      seatNodes.push({ x, y, color: seatColors[seatIndex] });
+      seatNodes.push({ x, y, color: colorForFraction(t) });
     }
   }
 
   return (
     <div>
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full" role="img" aria-label="Hémicycle">
+      <svg viewBox={`0 0 ${width} ${height}`} className="mx-auto w-full max-w-sm" role="img" aria-label="Hémicycle">
         {seatNodes.map((s, i) => (
-          <circle key={i} cx={s.x} cy={s.y} r={4.2} fill={s.color} />
+          <circle key={i} cx={s.x} cy={s.y} r={dotRadius} fill={s.color} />
         ))}
         <text
           x={cx}
-          y={cy - 4}
+          y={cy - 6}
           textAnchor="middle"
           className="fill-slate-400"
           style={{ fontSize: 11 }}
@@ -138,28 +149,20 @@ export function Hemicycle({
         </text>
       </svg>
 
-      {!noHighlight && (
-        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-          {coalitionBlocks.map((b) => (
-            <span key={b.id} className="flex items-center gap-1.5 text-xs text-slate-600">
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: b.color }}
-              />
-              {partyById[b.id as PartyId].shortName} ({b.count})
-            </span>
-          ))}
-          {inactiveCount > 0 && (
-            <span className="flex items-center gap-1.5 text-xs text-slate-400">
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: OTHER_COLOR }}
-              />
-              Reste de l&apos;hémicycle ({inactiveCount})
-            </span>
-          )}
-        </div>
-      )}
+      <div className="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+        {(noHighlight ? blocks : coalitionBlocks).map((b) => (
+          <span key={b.id} className="flex items-center gap-1.5 text-xs text-slate-600">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.color }} />
+            {b.id === "autres" ? "Autres" : partyById[b.id as PartyId].shortName} ({b.count})
+          </span>
+        ))}
+        {!noHighlight && inactiveCount > 0 && (
+          <span className="flex items-center gap-1.5 text-xs text-slate-400">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: OTHER_COLOR }} />
+            Reste de l&apos;hémicycle ({inactiveCount})
+          </span>
+        )}
+      </div>
     </div>
   );
 }
