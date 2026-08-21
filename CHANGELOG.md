@@ -27,6 +27,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Modifié
 
+- L'hémicycle (marché des propositions et résultats du quiz) affiche
+  désormais par défaut la coalition majoritaire virtuelle du mode de
+  scrutin sélectionné, plutôt que la première coalition de la liste,
+  et se resynchronise automatiquement sur celle-ci à chaque changement
+  de mode de scrutin (sauf si une coalition a été choisie manuellement
+  entre-temps).
 - Le calcul des coalitions possibles explore désormais des
   regroupements allant jusqu'à 8 partis (au lieu de 5), pour trouver
   plus de coalitions capables de réaliser un programme.
