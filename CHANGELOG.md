@@ -34,6 +34,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Modifié
 
+- L'hémicycle est désormais présenté à la manière du simulateur de
+  coalition du Monde : les partis de la coalition sont regroupés à
+  gauche par ordre politique (chacun avec sa couleur et le nombre de
+  sièges obtenus, indiqué dans une légende), et tout le reste de
+  l'hémicycle (les autres partis, non concernés par cette coalition)
+  forme une seule masse grise à droite — au lieu de disperser des
+  points grisés un peu partout selon la position réelle de chaque
+  parti.
 - L'hémicycle (marché des propositions et résultats du quiz) affiche
   désormais par défaut la coalition majoritaire virtuelle du mode de
   scrutin sélectionné, plutôt que la première coalition de la liste,

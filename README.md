@@ -35,8 +35,9 @@ reprendre plus tard.
 
 ![Le jeu à l'aveugle](public/screenshots/jeu.png)
 
-À la fin, vos résultats vous indiquent le parti le plus proche de vos
-réponses, le détail par thématique (avec, pour chaque thématique, la
+À la fin, vos résultats vous indiquent le(s) parti(s) le(s) plus
+proche(s) de vos réponses (tous affichés ex æquo en cas d'égalité
+parfaite, plutôt qu'un choix arbitraire), le détail par thématique (avec, pour chaque thématique, la
 liste des propositions auxquelles vous avez répondu « pour » et les
 partis qui les soutiennent), un réglage pour choisir si l'absence de
 position connue d'un parti doit être traitée comme neutre ou comme une

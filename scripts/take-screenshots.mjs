@@ -18,7 +18,6 @@ const pages = [
   { url: "http://localhost:3000/", file: "accueil.png", wait: 500 },
   { url: "http://localhost:3000/themes/economie", file: "theme-economie.png", wait: 500 },
   { url: "http://localhost:3000/jeu", file: "jeu.png", wait: 800 },
-  { url: "http://localhost:3000/marche", file: "marche.png", wait: 500 },
   { url: "http://localhost:3000/partis", file: "partis.png", wait: 500 },
 ];
 
@@ -36,19 +35,19 @@ const pages = [
 
   // Build a small basket then capture the market/coalition view with content.
   await page.goto("http://localhost:3000/themes/economie", { waitUntil: "networkidle" });
-  const addButtons = await page.locator('button:has-text("Ajouter")').all();
+  const addButtons = await page.locator('[title="Ajouter au marché des propositions"]').all();
   for (const btn of addButtons.slice(0, 4)) {
     await btn.click();
   }
   await page.goto("http://localhost:3000/themes/environnement", { waitUntil: "networkidle" });
-  const addButtons2 = await page.locator('button:has-text("Ajouter")').all();
+  const addButtons2 = await page.locator('[title="Ajouter au marché des propositions"]').all();
   for (const btn of addButtons2.slice(0, 3)) {
     await btn.click();
   }
   await page.goto("http://localhost:3000/marche", { waitUntil: "networkidle" });
   await page.waitForTimeout(800);
-  await page.screenshot({ path: path.join(outDir, "marche-programme.png"), fullPage: true });
-  console.log("captured marche-programme.png");
+  await page.screenshot({ path: path.join(outDir, "marche.png"), fullPage: true });
+  console.log("captured marche.png (with basket content)");
 
   // Simulate a finished quiz (answers stored in localStorage) to capture
   // the results page with its coalition/hemicycle section populated.
