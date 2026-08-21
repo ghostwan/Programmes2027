@@ -21,6 +21,11 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   coalition choisie manuellement dans la liste n'est plus réinitialisée
   quand on change de mode de scrutin : elle reste sélectionnée, seul son
   nombre de sièges est recalculé pour le nouveau mode.
+- La vérification anti-robot ne bloque plus les fichiers statiques du
+  site (icônes, images, etc.) ni les robots légitimes reconnus par
+  Cloudflare (moteurs de recherche, aperçus de liens des messageries),
+  ce qui évitait des redirections en boucle et un dépassement inutile du
+  quota de requêtes quotidien.
 
 ## [2.7.0] - 2026-08-21
 
