@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.7.1] - 2026-08-21
+
 ### Corrigé
 
 - Sur le marché des propositions et la page de résultats du quiz, la
