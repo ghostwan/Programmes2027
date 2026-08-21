@@ -50,10 +50,10 @@ export function MarketBasketButton({
       aria-pressed={inBasket}
       className={
         compact
-          ? `inline-flex h-6 w-6 items-center justify-center rounded-full text-sm transition ${
+          ? `inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 transition ${
               inBasket
-                ? "bg-slate-900 text-white"
-                : "text-slate-300 hover:bg-slate-100 hover:text-slate-600"
+                ? "border-slate-900 bg-slate-900"
+                : "border-slate-300 bg-white hover:border-slate-400 hover:bg-slate-50"
             }`
           : `inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
               inBasket
@@ -62,7 +62,25 @@ export function MarketBasketButton({
             }`
       }
     >
-      {inBasket ? "✓ Au marché" : "🛒 Ajouter"}
+      {compact ? (
+        inBasket && (
+          <svg
+            viewBox="0 0 16 16"
+            className="h-4 w-4 text-white"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 8.5 L6.5 12 L13 4.5" />
+          </svg>
+        )
+      ) : inBasket ? (
+        "✓ Au marché"
+      ) : (
+        "🛒 Ajouter"
+      )}
     </button>
   );
 }

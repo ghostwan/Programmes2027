@@ -91,6 +91,10 @@ export function ThemeComparisonTable({
         <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50 text-left">
+              <th className="p-3 text-center font-semibold text-slate-700">
+                <span className="sr-only">Ajouter au marché</span>
+                🛒
+              </th>
               <th className="p-3 font-semibold text-slate-700">Proposition</th>
               {visibleParties.map((p) => (
                 <th key={p.id} className="p-3 text-center font-semibold text-slate-700">
@@ -106,9 +110,6 @@ export function ThemeComparisonTable({
               <th className="p-3 text-center font-semibold text-slate-700">
                 <span className="sr-only">Signaler une correction</span>
               </th>
-              <th className="p-3 text-center font-semibold text-slate-700">
-                <span className="sr-only">Ajouter au marché</span>
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -117,6 +118,9 @@ export function ThemeComparisonTable({
               const style = getAssessmentStyle(prop.internationalExample);
               return (
                 <tr key={prop.id} className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
+                  <td className="p-3 text-center">
+                    <MarketBasketButton propositionId={prop.id} compact />
+                  </td>
                   <td className="p-3">
                     <Link href={`/proposition/${prop.id}`} className="font-medium text-slate-900 hover:underline">
                       {prop.title}
@@ -159,9 +163,6 @@ export function ThemeComparisonTable({
                     >
                       ✏️
                     </a>
-                  </td>
-                  <td className="p-3 text-center">
-                    <MarketBasketButton propositionId={prop.id} compact />
                   </td>
                 </tr>
               );

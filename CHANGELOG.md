@@ -15,6 +15,16 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Modifié
+
+- Rendu le bouton d'ajout au marché plus visible dans les tableaux
+  thématiques : il prend désormais la forme d'une case à cocher en
+  toute première colonne (au lieu d'un petit bouton en fin de tableau),
+  avec une coche dessinée proprement plutôt qu'un glyphe de police mal
+  rendu selon les navigateurs.
+
+## [2.6.0] - 2026-08-21
+
 ### Ajouté
 
 - Un README complet en français avec captures d'écran, présentant
