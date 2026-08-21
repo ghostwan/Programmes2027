@@ -113,12 +113,47 @@ Règles pour le message de commit :
 - N'ajoute jamais de secrets, mots de passe ou fichiers `.env*` / `.dev.vars`
   au commit (ils sont déjà exclus par `.gitignore`).
 
+## README et captures d'écran
+
+À CHAQUE nouvelle fonctionnalité visible (nouvelle page, nouvelle section,
+changement notable de mise en page ou de comportement d'une page déjà
+documentée dans le README), tu dois aussi :
+
+1. Mettre à jour `README.md` : ajouter ou adapter le paragraphe qui décrit
+   la fonctionnalité, en français, dans le même style que le reste du
+   fichier.
+2. Régénérer les captures d'écran concernées avec
+   `scripts/take-screenshots.mjs` :
+
+   ```bash
+   npm run dev &                                   # dans un terminal séparé
+   npm install --no-save playwright                # une seule fois
+   node scripts/take-screenshots.mjs
+   ```
+
+   - Si la fonctionnalité ajoute une nouvelle page/section qui mérite sa
+     propre capture, ajoute une entrée correspondante dans le tableau
+     `pages` (ou dans la partie dédiée en bas du script si elle nécessite
+     une mise en situation, comme `marche-programme.png`) avant de lancer
+     le script.
+   - Les fichiers générés vont dans `public/screenshots/` et sont
+     référencés dans `README.md` via des balises `![...](public/screenshots/...)`.
+3. Vérifier que les nouvelles/modifiées captures reflètent bien l'état
+   actuel de l'UI avant de committer (elles ne doivent jamais montrer une
+   fonctionnalité obsolète ou un état vide non représentatif).
+
+Ne saute cette étape que si le changement est purement interne (pas
+d'impact visuel/UX) — dans ce cas, le README n'a pas besoin d'évoluer.
+
 ## Résumé pour un agent qui vient de terminer une tâche
 
 1. Termine le code, vérifie `npm run lint` et `npm run build`.
 2. Ajoute une entrée dans `## [Non publié]` de `CHANGELOG.md` (catégorie
    adaptée, en français, orientée utilisateur).
-3. Ne touche pas au numéro de version toi-même — il sera calculé au
+3. Si la fonctionnalité a un impact visuel/UX, mets à jour `README.md` et
+   régénère les captures d'écran concernées via
+   `scripts/take-screenshots.mjs` (voir section dédiée ci-dessus).
+4. Ne touche pas au numéro de version toi-même — il sera calculé au
    prochain `npm run deploy`.
-4. Committe et pousse le travail (message de commit en anglais, voir
+5. Committe et pousse le travail (message de commit en anglais, voir
    ci-dessus).
