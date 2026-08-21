@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.7.0] - 2026-08-21
+
 ### Ajouté
 
 - Sur la page de résultats du quiz, une nouvelle section « Quelle

@@ -1,5 +1,34 @@
 [
   {
+    "version": "2.7.0",
+    "date": "2026-08-21",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Sur la page de résultats du quiz, une nouvelle section « Quelle coalition pour réaliser votre programme ? » propose, à partir de toutes les propositions auxquelles vous avez répondu « pour », les coalitions de partis capables de les réaliser et le nombre de sièges qu'elles obtiendraient selon le mode de scrutin — la même fonctionnalité que celle déjà disponible dans le marché des propositions."
+        ]
+      },
+      {
+        "name": "Corrigé",
+        "items": [
+          "Sur la page de résultats du quiz, quand plusieurs partis obtiennent exactement le même pourcentage de correspondance (au global ou sur une thématique), ils sont désormais tous affichés ex æquo au lieu d'en choisir arbitrairement un seul.",
+          "Dans l'hémicycle, chaque parti de la coalition forme maintenant un secteur radial continu (comme des parts de tarte, de l'intérieur vers l'extérieur), au lieu de former par erreur des anneaux concentriques qui mélangeaient les partis entre les rangées."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "L'hémicycle est désormais présenté à la manière du simulateur de coalition du Monde : les partis de la coalition sont regroupés à gauche par ordre politique (chacun avec sa couleur et le nombre de sièges obtenus, indiqué dans une légende), et tout le reste de l'hémicycle (les autres partis, non concernés par cette coalition) forme une seule masse grise à droite — au lieu de disperser des points grisés un peu partout selon la position réelle de chaque parti.",
+          "L'hémicycle a été allégé (moins de rangées, taille plus compacte) tout en conservant un point par siège, pour un rendu plus simple et plus rapide à afficher.",
+          "L'hémicycle (marché des propositions et résultats du quiz) affiche désormais par défaut la coalition majoritaire virtuelle du mode de scrutin sélectionné, plutôt que la première coalition de la liste, et se resynchronise automatiquement sur celle-ci à chaque changement de mode de scrutin (sauf si une coalition a été choisie manuellement entre-temps).",
+          "Le calcul des coalitions possibles explore désormais des regroupements allant jusqu'à 8 partis (au lieu de 5), pour trouver plus de coalitions capables de réaliser un programme.",
+          "Rendu le bouton d'ajout au marché plus visible dans les tableaux thématiques : il prend désormais la forme d'une case à cocher en toute première colonne (au lieu d'un petit bouton en fin de tableau), avec une coche dessinée proprement plutôt qu'un glyphe de police mal rendu selon les navigateurs."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.6.0",
     "date": "2026-08-21",
     "categories": [
