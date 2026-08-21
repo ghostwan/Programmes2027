@@ -4,6 +4,7 @@ import { propositions } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { partyById } from "@/lib/data/parties";
 import { getAssessmentStyle } from "@/lib/assessmentStyles";
+import { MarketBasketButton } from "@/components/MarketBasketButton";
 
 export function generateStaticParams() {
   return propositions.map((p) => ({ id: p.id }));
@@ -33,6 +34,10 @@ export default async function PropositionDetailPage({
         {proposition.title}
       </h1>
       <p className="mt-3 text-slate-600">{proposition.description}</p>
+
+      <div className="mt-4">
+        <MarketBasketButton propositionId={proposition.id} />
+      </div>
 
       <section className="mt-8">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">

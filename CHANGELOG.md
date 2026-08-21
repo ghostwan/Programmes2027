@@ -17,6 +17,25 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un nouveau « Marché des propositions » (page /marche) : un bouton
+  « 🛒 Ajouter » sur chaque proposition (dans les tableaux thématiques
+  et les fiches détaillées) permet de composer son propre programme en
+  piochant librement parmi tous les partis et toutes les thématiques.
+- Sur cette page, calcul automatique des coalitions de partis capables
+  de réaliser ce programme (chaque parti apportant les mesures qu'il
+  soutient, comme dans un accord de coalition), classées par nombre de
+  partis nécessaires.
+- Pour la coalition choisie, simulation du nombre de sièges obtenus
+  selon trois modes de scrutin (scrutin majoritaire actuel, base réelle
+  des législatives 2024 ; proportionnelle intégrale à la plus forte
+  moyenne, seuil de 5% ; scrutin mixte à l'allemande avec seuil de 5%
+  ou 3 mandats directs), comparé au seuil de majorité absolue (289
+  sièges sur 577), avec une visualisation en hémicycle.
+
+## [2.5.0] - 2026-08-20
+
+### Ajouté
+
 - Un liseret coloré sur les bords de l'écran (rouge à gauche, vert à
   droite) qui s'intensifie en temps réel pendant qu'on swipe une
   proposition, pour rappeler visuellement si le geste va compter comme

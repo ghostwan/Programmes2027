@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.5.0",
+    "date": "2026-08-20",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Un liseret coloré sur les bords de l'écran (rouge à gauche, vert à droite) qui s'intensifie en temps réel pendant qu'on swipe une proposition, pour rappeler visuellement si le geste va compter comme « contre » ou « pour » avant même de relâcher la carte. Le swipe fonctionne depuis n'importe quel endroit de la carte."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.4.0",
     "date": "2026-08-20",
     "categories": [

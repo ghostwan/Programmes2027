@@ -7,6 +7,7 @@ import { parties, partyById } from "@/lib/data/parties";
 import { getCountryFlags } from "@/lib/countryFlags";
 import { buildCorrectionIssueUrl } from "@/lib/github";
 import { getAssessmentStyle } from "@/lib/assessmentStyles";
+import { MarketBasketButton } from "@/components/MarketBasketButton";
 
 export function ThemeComparisonTable({
   themeProps,
@@ -73,6 +74,9 @@ export function ThemeComparisonTable({
               <th className="p-3 text-center font-semibold text-slate-700">
                 <span className="sr-only">Signaler une correction</span>
               </th>
+              <th className="p-3 text-center font-semibold text-slate-700">
+                <span className="sr-only">Ajouter au marché</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -124,6 +128,9 @@ export function ThemeComparisonTable({
                       ✏️
                     </a>
                   </td>
+                  <td className="p-3 text-center">
+                    <MarketBasketButton propositionId={prop.id} compact />
+                  </td>
                 </tr>
               );
             })}
@@ -142,13 +149,22 @@ export function ThemeComparisonTable({
           const flags = getCountryFlags(prop.internationalExample?.country);
           const style = getAssessmentStyle(prop.internationalExample);
           return (
-            <Link
+            <div
               key={prop.id}
-              href={`/proposition/${prop.id}`}
               className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
             >
-              <h3 className="font-semibold text-slate-900">{prop.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{prop.description}</p>
+              <div className="flex items-start justify-between gap-2">
+                <Link
+                  href={`/proposition/${prop.id}`}
+                  className="font-semibold text-slate-900 hover:underline"
+                >
+                  {prop.title}
+                </Link>
+                <MarketBasketButton propositionId={prop.id} compact />
+              </div>
+              <Link href={`/proposition/${prop.id}`}>
+                <p className="mt-1 text-sm text-slate-600">{prop.description}</p>
+              </Link>
               <div className="mt-3 flex flex-wrap items-center gap-1.5">
                 {prop.supportingParties.map((id) => {
                   const party = partyById[id];
@@ -171,7 +187,7 @@ export function ThemeComparisonTable({
                   </span>
                 )}
               </div>
-            </Link>
+            </div>
           );
         })}
         {visibleProps.length === 0 && (
