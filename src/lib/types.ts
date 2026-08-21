@@ -8,6 +8,11 @@ export type PartyId =
   | "reconquete"
   | "pcf";
 
+export interface PartySource {
+  label: string;
+  url: string;
+}
+
 export interface Party {
   id: PartyId;
   name: string;
@@ -15,6 +20,14 @@ export interface Party {
   family: string;
   color: string; // tailwind-friendly hex
   description: string;
+  /**
+   * Official program pages/booklets used as sources for this party's
+   * propositions in this comparator. Best-effort: official sites change
+   * often, and some booklets were only available as manually-downloaded
+   * PDFs without a stable public URL — in that case we link to the
+   * party's general site or, failing that, a stable reference page.
+   */
+  sources?: PartySource[];
 }
 
 export type ThemeId =

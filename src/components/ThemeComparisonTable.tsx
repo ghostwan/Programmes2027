@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Proposition } from "@/lib/types";
+import { Proposition, PartyId } from "@/lib/types";
 import { parties, partyById } from "@/lib/data/parties";
 import { getCountryFlags } from "@/lib/countryFlags";
 import { buildCorrectionIssueUrl } from "@/lib/github";
@@ -15,6 +15,18 @@ export function ThemeComparisonTable({
   themeProps: Proposition[];
 }) {
   const [hideSingleParty, setHideSingleParty] = useState(false);
+  const [hiddenParties, setHiddenParties] = useState<Set<PartyId>>(new Set());
+
+  function toggleParty(id: PartyId) {
+    setHiddenParties((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  const visibleParties = parties.filter((p) => !hiddenParties.has(p.id));
 
   const visibleProps = hideSingleParty
     ? themeProps.filter((p) => p.supportingParties.length >= 2)
@@ -25,18 +37,32 @@ export function ThemeComparisonTable({
     <>
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2">
-          {parties.map((p) => (
-            <span
-              key={p.id}
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700"
-            >
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: p.color }}
-              />
-              {p.shortName}
-            </span>
-          ))}
+          {parties.map((p) => {
+            const isHidden = hiddenParties.has(p.id);
+            return (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => toggleParty(p.id)}
+                title={
+                  isHidden
+                    ? `Afficher la colonne ${p.shortName}`
+                    : `Masquer la colonne ${p.shortName}`
+                }
+                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition ${
+                  isHidden
+                    ? "border-slate-100 bg-slate-50 text-slate-300"
+                    : "border-slate-200 bg-white text-slate-700 hover:border-slate-300"
+                }`}
+              >
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{ backgroundColor: isHidden ? "#CBD5E1" : p.color }}
+                />
+                <span className={isHidden ? "line-through" : ""}>{p.shortName}</span>
+              </button>
+            );
+          })}
         </div>
         <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-600 select-none">
           <input
@@ -53,6 +79,12 @@ export function ThemeComparisonTable({
           )}
         </label>
       </div>
+      {hiddenParties.size > 0 && (
+        <p className="mt-2 text-xs text-slate-400">
+          Cliquez à nouveau sur un parti pour réafficher sa colonne.
+        </p>
+      )}
+
 
       {/* Desktop comparator table */}
       <div className="mt-4 hidden overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm lg:block">
@@ -60,7 +92,7 @@ export function ThemeComparisonTable({
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50 text-left">
               <th className="p-3 font-semibold text-slate-700">Proposition</th>
-              {parties.map((p) => (
+              {visibleParties.map((p) => (
                 <th key={p.id} className="p-3 text-center font-semibold text-slate-700">
                   {p.shortName}
                 </th>
@@ -90,7 +122,7 @@ export function ThemeComparisonTable({
                       {prop.title}
                     </Link>
                   </td>
-                  {parties.map((p) => (
+                  {visibleParties.map((p) => (
                     <td key={p.id} className="p-3 text-center">
                       {prop.supportingParties.includes(p.id) ? (
                         <span
@@ -166,7 +198,9 @@ export function ThemeComparisonTable({
                 <p className="mt-1 text-sm text-slate-600">{prop.description}</p>
               </Link>
               <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                {prop.supportingParties.map((id) => {
+                {prop.supportingParties
+                  .filter((id) => !hiddenParties.has(id))
+                  .map((id) => {
                   const party = partyById[id];
                   return (
                     <span

@@ -17,6 +17,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Ajouté
 
+- Un README complet en français avec captures d'écran, présentant
+  toutes les fonctionnalités du site.
+- Un lien GitHub et une licence MIT explicite (déjà présente en tant que
+  fichier `LICENSE`, maintenant aussi déclarée dans `package.json`) en
+  pied de page.
+- Des liens vers les programmes/livrets officiels de chaque parti,
+  affichés sur sa fiche.
+- Possibilité de cliquer sur un parti dans les tableaux thématiques pour
+  afficher/masquer sa colonne à la volée.
 - Un nouveau « Marché des propositions » (page /marche) : un bouton
   « 🛒 Ajouter » sur chaque proposition (dans les tableaux thématiques
   et les fiches détaillées) permet de composer son propre programme en

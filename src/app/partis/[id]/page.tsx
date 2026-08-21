@@ -49,6 +49,23 @@ export default async function PartyDetailPage({
 
       <p className="mt-4 text-slate-600">{party.description}</p>
 
+      {party.sources && party.sources.length > 0 && (
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+          <span className="text-slate-500">Sources du programme :</span>
+          {party.sources.map((source) => (
+            <a
+              key={source.url}
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+            >
+              🔗 {source.label}
+            </a>
+          ))}
+        </div>
+      )}
+
       <section className="mt-8 space-y-6">
         {Object.entries(byTheme).map(([themeId, props]) => {
           const theme = themeById[themeId as keyof typeof themeById];

@@ -9,6 +9,14 @@ export function Footer() {
         <p>© {new Date().getFullYear()} Programmes2027 — Projet indépendant à but informatif.</p>
         <div className="flex flex-wrap items-center justify-center gap-2">
           <a
+            href="https://github.com/ghostwan/Programmes2027"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1 font-mono text-xs font-medium text-slate-600 transition hover:bg-slate-50"
+          >
+            🐙 GitHub
+          </a>
+          <a
             href={buildFeedbackIssueUrl()}
             target="_blank"
             rel="noopener noreferrer"

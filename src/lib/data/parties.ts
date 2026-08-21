@@ -9,6 +9,9 @@ export const parties: Party[] = [
     color: "#DA291C",
     description:
       "Parti historique de la gauche, défend un protectionnisme solidaire et une forte intervention de l'État dans l'économie.",
+    sources: [
+      { label: "Le programme du PCF", url: "https://www.pcf.fr/le_programme" },
+    ],
   },
   {
     id: "lfi",
@@ -18,6 +21,12 @@ export const parties: Party[] = [
     color: "#CC2443",
     description:
       "Mouvement porté par Jean-Luc Mélenchon, prônant une VIe République, une rupture avec les traités européens jugés trop libéraux et une politique de partage des richesses.",
+    sources: [
+      {
+        label: "L'Avenir en commun, édition 2025",
+        url: "https://melenchon2027.fr/programme2025/livre/",
+      },
+    ],
   },
   {
     id: "ps",
@@ -27,6 +36,9 @@ export const parties: Party[] = [
     color: "#FF8080",
     description:
       "Parti historique de la gauche de gouvernement, en recomposition depuis la fin de la NUPES, positionné sur une ligne social-démocrate.",
+    sources: [
+      { label: "Le Projet socialiste", url: "https://projet-socialiste.fr/projet/" },
+    ],
   },
   {
     id: "eelv",
@@ -36,6 +48,9 @@ export const parties: Party[] = [
     color: "#2E7D32",
     description:
       "Parti écologiste plaçant la transition environnementale et la justice sociale au cœur de son projet.",
+    sources: [
+      { label: "Site officiel Les Écologistes", url: "https://lesecologistes.fr" },
+    ],
   },
   {
     id: "renaissance",
@@ -45,6 +60,12 @@ export const parties: Party[] = [
     color: "#FFD700",
     description:
       "Parti du camp présidentiel issu de LREM, ligne libérale et pro-européenne, porteur du bilan des deux quinquennats Macron.",
+    sources: [
+      {
+        label: "Conventions thématiques Renaissance",
+        url: "https://parti-renaissance.fr",
+      },
+    ],
   },
   {
     id: "lr",
@@ -54,6 +75,9 @@ export const parties: Party[] = [
     color: "#0066CC",
     description:
       "Parti de la droite classique, en pleine recomposition après le départ d'une partie de ses cadres vers le RN en 2024.",
+    sources: [
+      { label: "Nos propositions - Les Républicains", url: "https://republicains.fr" },
+    ],
   },
   {
     id: "rn",
@@ -63,6 +87,12 @@ export const parties: Party[] = [
     color: "#0D378A",
     description:
       "Parti national-populiste, a abandonné officiellement le Frexit et la sortie de l'euro depuis 2019 au profit d'une ligne europe des nations.",
+    sources: [
+      {
+        label: "Projet de gouvernement - Rassemblement National",
+        url: "https://rassemblementnational.fr",
+      },
+    ],
   },
   {
     id: "reconquete",
@@ -72,6 +102,12 @@ export const parties: Party[] = [
     color: "#6A0DAD",
     description:
       "Parti fondé par Éric Zemmour, ligne plus radicale sur l'immigration et l'identité, plus libérale que le RN sur l'économie.",
+    sources: [
+      {
+        label: "Reconquête (fiche Wikipédia)",
+        url: "https://fr.wikipedia.org/wiki/Reconqu%C3%AAte_(parti_politique)",
+      },
+    ],
   },
 ];
 
