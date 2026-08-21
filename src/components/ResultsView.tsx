@@ -81,7 +81,11 @@ export function ResultsView() {
     (s) => s.answeredRelevant > 0
   );
   const themeStats = computeThemeStats(answers, propositions, matchingOptions);
-  const top = partyScores[0];
+  const topPercent = partyScores[0]?.matchPercent ?? null;
+  const topParties =
+    topPercent === null
+      ? []
+      : partyScores.filter((s) => s.matchPercent === topPercent);
   const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
 
   return (
@@ -93,32 +97,49 @@ export function ResultsView() {
         Basé sur {totalAnswered} propositions auxquelles vous avez répondu.
       </p>
 
-      {top && (
-        <section className="mt-6 rounded-2xl border-2 p-6 shadow-sm" style={{ borderColor: partyById[top.partyId].color }}>
+      {topParties.length > 0 && (
+        <section
+          className="mt-6 rounded-2xl border-2 p-6 shadow-sm"
+          style={{
+            borderColor:
+              topParties.length === 1 ? partyById[topParties[0].partyId].color : "#0f172a",
+          }}
+        >
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Le parti le plus proche de vos réponses
+            {topParties.length === 1
+              ? "Le parti le plus proche de vos réponses"
+              : `${topParties.length} partis ex æquo, les plus proches de vos réponses`}
           </p>
-          <div className="mt-2 flex items-center gap-3">
-            <span
-              className="h-5 w-5 rounded-full"
-              style={{ backgroundColor: partyById[top.partyId].color }}
-            />
-            <h2 className="text-2xl font-bold text-slate-900">
-              {partyById[top.partyId].name}
-            </h2>
-          </div>
           <p className="mt-1 text-3xl font-black text-slate-900">
-            {top.matchPercent}%{" "}
+            {topPercent}%{" "}
             <span className="text-base font-medium text-slate-500">
-              d&apos;accord ({top.answeredRelevant} propositions communes)
+              d&apos;accord
             </span>
           </p>
-          <Link
-            href={`/partis/${top.partyId}`}
-            className="mt-3 inline-block text-sm font-medium text-slate-700 underline underline-offset-2"
-          >
-            Voir le programme complet de ce parti →
-          </Link>
+          <div className="mt-3 flex flex-col gap-3">
+            {topParties.map((s) => (
+              <div key={s.partyId} className="flex flex-wrap items-center gap-3">
+                <span
+                  className="h-5 w-5 flex-shrink-0 rounded-full"
+                  style={{ backgroundColor: partyById[s.partyId].color }}
+                />
+                <h2 className="text-lg font-bold text-slate-900 sm:text-xl">
+                  {partyById[s.partyId].name}
+                </h2>
+                <span className="text-xs text-slate-500">
+                  ({s.answeredRelevant} proposition
+                  {s.answeredRelevant > 1 ? "s" : ""} commune
+                  {s.answeredRelevant > 1 ? "s" : ""})
+                </span>
+                <Link
+                  href={`/partis/${s.partyId}`}
+                  className="text-sm font-medium text-slate-700 underline underline-offset-2"
+                >
+                  Voir le programme →
+                </Link>
+              </div>
+            ))}
+          </div>
         </section>
       )}
 
@@ -222,12 +243,22 @@ export function ResultsView() {
                         {stat.totalAnswered} propositions répondues ·{" "}
                         {stat.pourPercent}% pour
                       </p>
-                      {stat.topParty && (
+                      {stat.topParties.length > 0 && (
                         <p className="mt-2 text-sm">
-                          Le plus proche :{" "}
-                          <span className="font-semibold" style={{ color: partyById[stat.topParty].color }}>
-                            {partyById[stat.topParty].shortName}
-                          </span>{" "}
+                          {stat.topParties.length === 1
+                            ? "Le plus proche : "
+                            : "Ex æquo : "}
+                          {stat.topParties.map((pid, i) => (
+                            <span key={pid}>
+                              {i > 0 && ", "}
+                              <span
+                                className="font-semibold"
+                                style={{ color: partyById[pid].color }}
+                              >
+                                {partyById[pid].shortName}
+                              </span>
+                            </span>
+                          ))}{" "}
                           ({stat.topPartyPercent}%)
                         </p>
                       )}

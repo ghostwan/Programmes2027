@@ -12,7 +12,10 @@ export interface ThemeStat {
   contreCount: number;
   totalAnswered: number;
   pourPercent: number;
-  topParty: PartyId | null;
+  /** Every party tied for the best match percent (often just one, but can
+   * be several in case of an exact tie — we never arbitrarily pick a
+   * single "winner" among equally-matching parties). */
+  topParties: PartyId[];
   topPartyPercent: number | null;
 }
 
@@ -126,7 +129,11 @@ export function computeThemeStats(
     const partyScores = computePartyScores(answers, themeProps, options).filter(
       (s) => s.answeredRelevant > 0
     );
-    const top = partyScores[0];
+    const topPercent = partyScores[0]?.matchPercent ?? null;
+    const topParties =
+      topPercent === null
+        ? []
+        : partyScores.filter((s) => s.matchPercent === topPercent).map((s) => s.partyId);
 
     return {
       themeId,
@@ -137,8 +144,8 @@ export function computeThemeStats(
         answered.length > 0
           ? Math.round((pourCount / answered.length) * 1000) / 10
           : 0,
-      topParty: top ? top.partyId : null,
-      topPartyPercent: top ? top.matchPercent : null,
+      topParties,
+      topPartyPercent: topPercent,
     };
   });
 }

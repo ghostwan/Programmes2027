@@ -25,6 +25,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   fonctionnalité que celle déjà disponible dans le marché des
   propositions.
 
+### Corrigé
+
+- Sur la page de résultats du quiz, quand plusieurs partis obtiennent
+  exactement le même pourcentage de correspondance (au global ou sur
+  une thématique), ils sont désormais tous affichés ex æquo au lieu
+  d'en choisir arbitrairement un seul.
+
 ### Modifié
 
 - L'hémicycle (marché des propositions et résultats du quiz) affiche
