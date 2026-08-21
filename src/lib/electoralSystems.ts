@@ -178,7 +178,7 @@ export interface CoalitionOption {
  */
 export function findCoalitions(
   basket: Proposition[],
-  maxPartiesInCoalition = 5
+  maxPartiesInCoalition = 8
 ): CoalitionOption[] {
   if (basket.length === 0) return [];
 
@@ -229,4 +229,58 @@ export function coalitionSeats(
 ): number {
   const { seatsByParty } = computeSeats(system);
   return parties.reduce((sum, id) => sum + (seatsByParty[id] ?? 0), 0);
+}
+
+export interface MajorityCoalitionResult {
+  coalition: CoalitionOption;
+  seats: number;
+  hasMajority: boolean;
+}
+
+/**
+ * Finds the best "virtual majority" for a given electoral system: among
+ * all enumerated coalitions capable of realizing the program (fully, or
+ * as closely as possible), picks the one that reaches the 289-seat
+ * threshold under THIS specific system, preferring — in order — full
+ * program coverage, then fewer parties, then more seats.
+ *
+ * This is deliberately computed per electoral system rather than once:
+ * since a given party's seat count varies a lot between systems (e.g. a
+ * party under-represented by the current majoritarian system can gain
+ * many more seats under full proportional representation), the smallest
+ * coalition that reaches a majority can genuinely differ from one system
+ * to another. Returns null if no enumerated coalition reaches a majority
+ * under this system at all (not even the full union of every relevant
+ * party) — in that case, the program simply cannot get a majority with
+ * the tracked parties alone under this system.
+ */
+export function findVirtualMajority(
+  coalitions: CoalitionOption[],
+  system: ElectoralSystemId
+): MajorityCoalitionResult | null {
+  if (coalitions.length === 0) return null;
+
+  const withSeats = coalitions.map((c) => ({
+    coalition: c,
+    seats: coalitionSeats(c.parties, system),
+  }));
+
+  const majorityOnes = withSeats.filter((c) => c.seats >= MAJORITY_THRESHOLD);
+  if (majorityOnes.length === 0) return null;
+
+  majorityOnes.sort((a, b) => {
+    if (a.coalition.isFullCoverage !== b.coalition.isFullCoverage) {
+      return a.coalition.isFullCoverage ? -1 : 1;
+    }
+    if (a.coalition.coveragePercent !== b.coalition.coveragePercent) {
+      return b.coalition.coveragePercent - a.coalition.coveragePercent;
+    }
+    if (a.coalition.parties.length !== b.coalition.parties.length) {
+      return a.coalition.parties.length - b.coalition.parties.length;
+    }
+    return b.seats - a.seats;
+  });
+
+  const best = majorityOnes[0];
+  return { coalition: best.coalition, seats: best.seats, hasMajority: true };
 }

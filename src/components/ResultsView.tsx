@@ -7,6 +7,7 @@ import { partyById } from "@/lib/data/parties";
 import { themeById } from "@/lib/data/themes";
 import { AnswersMap } from "@/lib/types";
 import { computePartyScores, computeThemeStats } from "@/lib/matching";
+import { CoalitionExplorer } from "@/components/CoalitionExplorer";
 import {
   ANSWERS_STORAGE_KEY,
   GAME_STATE_STORAGE_KEY,
@@ -81,6 +82,7 @@ export function ResultsView() {
   );
   const themeStats = computeThemeStats(answers, propositions, matchingOptions);
   const top = partyScores[0];
+  const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
@@ -283,6 +285,27 @@ export function ResultsView() {
             })}
         </div>
       </section>
+
+      {pourPropositions.length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-lg font-bold text-slate-900">
+            🏛️ Quelle coalition pour réaliser votre programme ?
+          </h2>
+          <p className="mt-1 text-xs text-slate-500">
+            En traitant l&apos;ensemble des {pourPropositions.length}{" "}
+            propositions auxquelles vous avez répondu « pour » comme votre
+            propre programme, voici quelles coalitions de partis pourraient
+            le réaliser, et combien de sièges il leur faudrait selon le
+            mode de scrutin. Vous pouvez aussi construire ce programme à la
+            main dans le{" "}
+            <Link href="/marche" className="underline underline-offset-2">
+              marché des propositions
+            </Link>
+            .
+          </p>
+          <CoalitionExplorer propositions={pourPropositions} />
+        </section>
+      )}
 
       <div className="mt-10 flex flex-wrap gap-3">
         {unfinishedGame && (

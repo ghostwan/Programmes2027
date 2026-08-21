@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { propositionById } from "@/lib/data/propositions";
 import { partyById } from "@/lib/data/parties";
 import { themeById } from "@/lib/data/themes";
-import { PartyId, Proposition } from "@/lib/types";
+import { Proposition } from "@/lib/types";
 import {
   getMarketBasketServerSnapshot,
   getMarketBasketSnapshot,
@@ -13,16 +13,7 @@ import {
   removeFromMarketBasket,
   clearMarketBasket,
 } from "@/lib/storage";
-import {
-  ELECTORAL_SYSTEMS,
-  ElectoralSystemId,
-  MAJORITY_THRESHOLD,
-  TOTAL_SEATS,
-  computeSeats,
-  findCoalitions,
-  coalitionSeats,
-} from "@/lib/electoralSystems";
-import { Hemicycle } from "@/components/Hemicycle";
+import { CoalitionExplorer } from "@/components/CoalitionExplorer";
 
 function useBasketIds(): string[] {
   const raw = useSyncExternalStore(
@@ -45,12 +36,6 @@ export function MarketView() {
   const basket: Proposition[] = basketIds
     .map((id) => propositionById[id])
     .filter((p): p is Proposition => Boolean(p));
-
-  const [selectedCoalitionIndex, setSelectedCoalitionIndex] = useState(0);
-  const [system, setSystem] = useState<ElectoralSystemId>("majoritaire");
-
-  const coalitions = useMemo(() => findCoalitions(basket), [basket]);
-  const selectedCoalition = coalitions[selectedCoalitionIndex] ?? coalitions[0];
 
   const byTheme = useMemo(() => {
     const map = new Map<string, Proposition[]>();
@@ -162,119 +147,7 @@ export function MarketView() {
         </div>
       </section>
 
-      {/* Coalitions */}
-      <section className="mt-10">
-        <h2 className="text-lg font-bold text-slate-900">Coalitions possibles</h2>
-        <p className="mt-1 text-xs text-slate-500">
-          Une coalition est considérée comme réalisant votre programme si,
-          pour chaque proposition sélectionnée, au moins un parti de la
-          coalition la soutient — chaque parti apportant ses propres mesures
-          à l&apos;accord, comme dans un accord de coalition réel.
-        </p>
-
-        {coalitions.length === 0 ? (
-          <p className="mt-3 text-sm text-slate-500">
-            Aucun parti ne soutient l&apos;une des propositions sélectionnées.
-          </p>
-        ) : (
-          <div className="mt-3 flex flex-col gap-2">
-            {coalitions.slice(0, 8).map((c, i) => (
-              <button
-                key={c.parties.join(",")}
-                onClick={() => setSelectedCoalitionIndex(i)}
-                className={`flex flex-wrap items-center justify-between gap-2 rounded-xl border p-3 text-left shadow-sm transition ${
-                  i === selectedCoalitionIndex
-                    ? "border-slate-900 bg-slate-50"
-                    : "border-slate-200 bg-white hover:border-slate-300"
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {c.parties.map((pid) => (
-                    <span
-                      key={pid}
-                      className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
-                      style={{ backgroundColor: partyById[pid as PartyId].color }}
-                    >
-                      {partyById[pid as PartyId].shortName}
-                    </span>
-                  ))}
-                </div>
-                <span
-                  className={`text-sm font-semibold ${
-                    c.isFullCoverage ? "text-emerald-600" : "text-amber-600"
-                  }`}
-                >
-                  {c.isFullCoverage
-                    ? "Programme complet"
-                    : `${c.coveragePercent}% du programme (${c.coveredCount}/${c.totalCount})`}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Electoral system simulation for the selected coalition */}
-      {selectedCoalition && (
-        <section className="mt-10">
-          <h2 className="text-lg font-bold text-slate-900">
-            Sièges nécessaires selon le mode de scrutin
-          </h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Simulation basée sur les résultats réels des législatives 2024
-            (référence historique, pas une prédiction pour 2027). La
-            majorité absolue est fixée à {MAJORITY_THRESHOLD} sièges sur{" "}
-            {TOTAL_SEATS}.
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-2">
-            {ELECTORAL_SYSTEMS.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setSystem(s.id)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  system === s.id
-                    ? "bg-slate-900 text-white"
-                    : "border border-slate-300 text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-          <p className="mt-2 text-xs text-slate-500">
-            {ELECTORAL_SYSTEMS.find((s) => s.id === system)?.shortDescription}
-          </p>
-
-          {(() => {
-            const { seatsByParty, otherSeats } = computeSeats(system);
-            const seats = coalitionSeats(selectedCoalition.parties, system);
-            const hasMajority = seats >= MAJORITY_THRESHOLD;
-            return (
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
-                <Hemicycle
-                  seatsByParty={seatsByParty}
-                  otherSeats={otherSeats}
-                  totalSeats={TOTAL_SEATS}
-                  highlightParties={selectedCoalition.parties}
-                />
-                <p className="mt-2 text-center text-2xl font-black text-slate-900">
-                  {seats} <span className="text-base font-medium text-slate-500">sièges</span>
-                </p>
-                <p
-                  className={`text-center text-sm font-semibold ${
-                    hasMajority ? "text-emerald-600" : "text-rose-600"
-                  }`}
-                >
-                  {hasMajority
-                    ? `✓ Majorité absolue atteinte (seuil : ${MAJORITY_THRESHOLD})`
-                    : `Il manquerait ${MAJORITY_THRESHOLD - seats} sièges pour la majorité absolue`}
-                </p>
-              </div>
-            );
-          })()}
-        </section>
-      )}
+      <CoalitionExplorer propositions={basket} />
 
       <div className="mt-10">
         <Link

@@ -15,8 +15,21 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Sur la page de résultats du quiz, une nouvelle section « Quelle
+  coalition pour réaliser votre programme ? » propose, à partir de
+  toutes les propositions auxquelles vous avez répondu « pour »,
+  les coalitions de partis capables de les réaliser et le nombre de
+  sièges qu'elles obtiendraient selon le mode de scrutin — la même
+  fonctionnalité que celle déjà disponible dans le marché des
+  propositions.
+
 ### Modifié
 
+- Le calcul des coalitions possibles explore désormais des
+  regroupements allant jusqu'à 8 partis (au lieu de 5), pour trouver
+  plus de coalitions capables de réaliser un programme.
 - Rendu le bouton d'ajout au marché plus visible dans les tableaux
   thématiques : il prend désormais la forme d'une case à cocher en
   toute première colonne (au lieu d'un petit bouton en fin de tableau),
