@@ -38,9 +38,15 @@ reprendre plus tard.
 À la fin, vos résultats vous indiquent le parti le plus proche de vos
 réponses, le détail par thématique (avec, pour chaque thématique, la
 liste des propositions auxquelles vous avez répondu « pour » et les
-partis qui les soutiennent), et un réglage pour choisir si l'absence de
+partis qui les soutiennent), un réglage pour choisir si l'absence de
 position connue d'un parti doit être traitée comme neutre ou comme une
-opposition implicite.
+opposition implicite, et — à partir de l'ensemble de vos réponses
+« pour » traitées comme votre propre programme — la même exploration de
+**coalitions de partis et de sièges à l'Assemblée** que dans le marché
+des propositions (voir ci-dessous).
+
+![Résultats du jeu avec exploration de coalitions](public/screenshots/resultats.png)
+
 
 ### 📊 Comparateur par thématique
 
@@ -73,7 +79,13 @@ partis pour construire votre propre programme, puis découvrez :
   obtiendrait selon le mode de scrutin — scrutin majoritaire actuel
   (résultats réels des législatives 2024), proportionnelle intégrale, ou
   scrutin mixte à l'allemande — visualisés dans un hémicycle, comparés
-  au seuil de majorité absolue (289 sièges sur 577).
+  au seuil de majorité absolue (289 sièges sur 577) ;
+- la **coalition majoritaire virtuelle** : la plus petite coalition
+  capable à la fois de réaliser le programme et d'atteindre la majorité
+  absolue *sous le mode de scrutin choisi* — recalculée et affichée par
+  défaut dans l'hémicycle à chaque changement de mode, puisque la
+  répartition des sièges par parti (et donc la coalition minimale
+  nécessaire) diffère fortement d'un système à l'autre.
 
 ![Le marché des propositions avec simulation de coalition](public/screenshots/marche.png)
 

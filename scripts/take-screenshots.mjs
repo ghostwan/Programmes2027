@@ -50,5 +50,43 @@ const pages = [
   await page.screenshot({ path: path.join(outDir, "marche-programme.png"), fullPage: true });
   console.log("captured marche-programme.png");
 
+  // Simulate a finished quiz (answers stored in localStorage) to capture
+  // the results page with its coalition/hemicycle section populated.
+  const pourIds = [
+    "eco-isf",
+    "eco-is-baisse",
+    "eco-superprofits",
+    "eco-taxe-zucman",
+    "eco-bareme-progressif",
+    "eco-fonds-production",
+    "eco-renationalisation-energie",
+    "eco-separation-bancaire",
+    "eco-pole-public-bancaire",
+    "eco-audit-dette",
+    "eco-encadrement-dividendes",
+    "eco-austerite",
+    "eco-protectionnisme",
+    "eco-taxe-succession",
+    "eco-seuil-zero-cotisation",
+    "eco-compte-social-unique",
+    "eco-tva-verte",
+    "eco-exoneration-salaires",
+    "eco-iff",
+    "eco-cotisation-revenus-financiers",
+  ];
+  await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
+  await page.evaluate((ids) => {
+    const answers = Object.fromEntries(ids.map((id) => [id, "pour"]));
+    window.localStorage.setItem("programmes2027:answers", JSON.stringify(answers));
+    window.localStorage.setItem(
+      "programmes2027:game-state",
+      JSON.stringify({ deckIds: ids, index: ids.length })
+    );
+  }, pourIds);
+  await page.goto("http://localhost:3000/resultats", { waitUntil: "networkidle" });
+  await page.waitForTimeout(800);
+  await page.screenshot({ path: path.join(outDir, "resultats.png"), fullPage: true });
+  console.log("captured resultats.png");
+
   await browser.close();
 })();
