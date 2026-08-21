@@ -26,12 +26,13 @@ import { Hemicycle } from "@/components/Hemicycle";
  * benefit from the same coalition/seat logic.
  */
 export function CoalitionExplorer({ propositions }: { propositions: Proposition[] }) {
-  // `null` means "no manual pick yet" — in that case the hemicycle follows
-  // the virtual majority coalition automatically, and re-syncs to it
-  // whenever the electoral system changes (since the virtual majority can
-  // differ from one system to another). Once the user manually clicks a
-  // coalition in the list, we stop auto-following until they change the
-  // electoral system again.
+  // `null` means "no manual pick yet" — in that case the hemicycle
+  // follows the virtual majority coalition automatically, recomputed for
+  // whichever electoral system is selected. Once the user manually
+  // clicks a coalition in the list, that choice is kept as-is across
+  // electoral system changes (only its seat count is recomputed) —
+  // switching modes must never silently discard the coalition the user
+  // picked.
   const [manualCoalitionIndex, setManualCoalitionIndex] = useState<number | null>(
     null
   );
@@ -133,12 +134,7 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
             {ELECTORAL_SYSTEMS.map((s) => (
               <button
                 key={s.id}
-                onClick={() => {
-                  setSystem(s.id);
-                  // Re-sync the hemicycle to the new system's virtual
-                  // majority instead of keeping a stale manual pick.
-                  setManualCoalitionIndex(null);
-                }}
+                onClick={() => setSystem(s.id)}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   system === s.id
                     ? "bg-slate-900 text-white"
