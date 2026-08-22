@@ -42,6 +42,14 @@ function sortByPoliticalOrder(parties: PartyId[]): PartyId[] {
   );
 }
 
+/** All 8 tracked parties, in political order — shown as toggles
+ * regardless of whether they support anything in the current basket, so
+ * a party can still be added purely for its seats (e.g. to reach a
+ * majority) even if it wouldn't help realize the program at all. */
+const ALL_TRACKED_PARTIES: PartyId[] = sortByPoliticalOrder(
+  Object.keys(partyById) as PartyId[]
+);
+
 /** Stable key identifying a set of propositions, used to detect when the
  * basket itself changed (as opposed to just the user toggling parties),
  * so the coalition can be reset to the recommended one in that case. */
@@ -88,13 +96,6 @@ export function CoalitionExplorer({
   // partial coverage if none reaches 100%) — see `findCoalitions`'s
   // sort order.
   const recommendedCoalition = coalitions[0] ?? null;
-  const allRelevantParties = useMemo(
-    () =>
-      sortByPoliticalOrder(
-        Array.from(new Set(propositions.flatMap((p) => p.supportingParties)))
-      ),
-    [propositions]
-  );
 
   const [selectedParties, setSelectedParties] = useState<PartyId[]>(
     () => recommendedCoalition?.parties ?? []
@@ -160,325 +161,317 @@ export function CoalitionExplorer({
           propres mesures à l&apos;accord, comme dans un accord de
           coalition réel. Voici une coalition qui le réalise ; cochez ou
           décochez librement des partis pour voir comment changer de
-          partenaires affecterait votre programme sur mesure.
+          partenaires affecterait votre programme sur mesure (un parti qui
+          ne soutient aucune de vos propositions peut quand même être
+          ajouté, par exemple pour ses seuls sièges).
         </p>
 
-        {allRelevantParties.length === 0 ? (
-          <p className="mt-3 text-sm text-slate-500">
-            Aucun parti ne soutient l&apos;une de ces propositions.
-          </p>
-        ) : (
-          <>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              {allRelevantParties.map((pid) => {
-                const isIn = selectedParties.includes(pid);
-                return (
-                  <label
-                    key={pid}
-                    className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
-                      isIn
-                        ? "border-transparent text-white"
-                        : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
-                    }`}
-                    style={isIn ? { backgroundColor: partyById[pid].color } : undefined}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isIn}
-                      onChange={() => toggleParty(pid)}
-                      className="h-3.5 w-3.5"
-                    />
-                    {partyById[pid].shortName}
-                  </label>
-                );
-              })}
-              {isCustomized && recommendedCoalition && (
-                <button
-                  onClick={() => {
-                    setSelectedParties(recommendedCoalition.parties);
-                    setSelectedSupportGroups([]);
-                  }}
-                  className="ml-1 rounded-full border border-slate-900 px-3 py-1.5 text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
-                >
-                  ↺ Revenir à la coalition proposée
-                </button>
-              )}
-            </div>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          {ALL_TRACKED_PARTIES.map((pid) => {
+            const isIn = selectedParties.includes(pid);
+            return (
+              <label
+                key={pid}
+                className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                  isIn
+                    ? "border-transparent text-white"
+                    : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
+                }`}
+                style={isIn ? { backgroundColor: partyById[pid].color } : undefined}
+              >
+                <input
+                  type="checkbox"
+                  checked={isIn}
+                  onChange={() => toggleParty(pid)}
+                  className="h-3.5 w-3.5"
+                />
+                {partyById[pid].shortName}
+              </label>
+            );
+          })}
+          {isCustomized && recommendedCoalition && (
+            <button
+              onClick={() => {
+                setSelectedParties(recommendedCoalition.parties);
+                setSelectedSupportGroups([]);
+              }}
+              className="ml-1 rounded-full border border-slate-900 px-3 py-1.5 text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
+            >
+              ↺ Revenir à la coalition proposée
+            </button>
+          )}
+        </div>
 
-            <p className="mt-3 text-sm">
-              {selectedParties.length === 0 ? (
-                <span className="font-semibold text-rose-600">
-                  Aucun parti sélectionné : 0% du programme réalisé.
-                </span>
-              ) : isFullCoverage ? (
-                <span className="font-semibold text-emerald-600">
-                  ✓ Programme complet : ces {selectedParties.length} partis
-                  réalisent l&apos;intégralité de votre programme.
-                </span>
-              ) : (
-                <span className="font-semibold text-amber-600">
-                  {coveragePercent}% du programme réalisé ({coveredPropositions.length}/
-                  {propositions.length})
-                </span>
-              )}
+        <p className="mt-3 text-sm">
+          {selectedParties.length === 0 ? (
+            <span className="font-semibold text-rose-600">
+              Aucun parti sélectionné : 0% du programme réalisé.
+            </span>
+          ) : isFullCoverage ? (
+            <span className="font-semibold text-emerald-600">
+              ✓ Programme complet : ces {selectedParties.length} partis
+              réalisent l&apos;intégralité de votre programme.
+            </span>
+          ) : (
+            <span className="font-semibold text-amber-600">
+              {coveragePercent}% du programme réalisé ({coveredPropositions.length}/
+              {propositions.length})
+            </span>
+          )}
+        </p>
+
+        {uncoveredPropositions.length > 0 && selectedParties.length > 0 && (
+          <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50 p-3">
+            <p className="text-sm font-semibold text-rose-700">
+              {uncoveredPropositions.length} proposition
+              {uncoveredPropositions.length > 1 ? "s" : ""} ne serai
+              {uncoveredPropositions.length > 1 ? "ent" : "t"} pas
+              réalisée{uncoveredPropositions.length > 1 ? "s" : ""} par
+              cette coalition :
             </p>
-
-            {uncoveredPropositions.length > 0 && selectedParties.length > 0 && (
-              <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50 p-3">
-                <p className="text-sm font-semibold text-rose-700">
-                  {uncoveredPropositions.length} proposition
-                  {uncoveredPropositions.length > 1 ? "s" : ""} ne serai
-                  {uncoveredPropositions.length > 1 ? "ent" : "t"} pas
-                  réalisée{uncoveredPropositions.length > 1 ? "s" : ""} par
-                  cette coalition :
-                </p>
-                <ul className="mt-2 flex flex-col gap-1">
-                  {uncoveredPropositions.map((p) => (
-                    <li key={p.id} className="text-sm text-rose-900">
-                      • {p.title}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </>
+            <ul className="mt-2 flex flex-col gap-1">
+              {uncoveredPropositions.map((p) => (
+                <li key={p.id} className="text-sm text-rose-900">
+                  • {p.title}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </section>
 
       {/* Electoral system simulation for the selected coalition */}
-      {allRelevantParties.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-lg font-bold text-slate-900">
-            Sièges nécessaires selon le mode de scrutin
-          </h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Quatre façons de traduire cette coalition en sièges à
-            l&apos;Assemblée : sa composition réelle et actuelle, la même
-            élection de 2024 mais réallouée selon un autre mode de
-            scrutin (proportionnelle intégrale ou mixte à l&apos;allemande),
-            ou une Assemblée fictive taillée sur mesure. La majorité
-            absolue est fixée à {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
-            {partyCompatibility &&
-              " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
-          </p>
-          <p className="mt-2 rounded-lg bg-slate-100 p-3 text-xs text-slate-600">
-            💡 Le mode de scrutin reste très pertinent : la répartition des
-            sièges par parti change fortement d&apos;un système à
-            l&apos;autre (un parti peut être largement sous-représenté par
-            le scrutin actuel et bien mieux loti en proportionnelle, ou
-            inversement).
-          </p>
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-slate-900">
+          Sièges nécessaires selon le mode de scrutin
+        </h2>
+        <p className="mt-1 text-xs text-slate-500">
+          Quatre façons de traduire cette coalition en sièges à
+          l&apos;Assemblée : sa composition réelle et actuelle, la même
+          élection de 2024 mais réallouée selon un autre mode de
+          scrutin (proportionnelle intégrale ou mixte à l&apos;allemande),
+          ou une Assemblée fictive taillée sur mesure. La majorité
+          absolue est fixée à {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
+          {partyCompatibility &&
+            " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
+        </p>
+        <p className="mt-2 rounded-lg bg-slate-100 p-3 text-xs text-slate-600">
+          💡 Le mode de scrutin reste très pertinent : la répartition des
+          sièges par parti change fortement d&apos;un système à
+          l&apos;autre (un parti peut être largement sous-représenté par
+          le scrutin actuel et bien mieux loti en proportionnelle, ou
+          inversement).
+        </p>
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            {ELECTORAL_SYSTEMS.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setSystem(s.id)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  system === s.id
-                    ? "bg-slate-900 text-white"
-                    : "border border-slate-300 text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                {s.name}
-              </button>
-            ))}
-          </div>
-          <p className="mt-2 text-xs text-slate-500">
-            {ELECTORAL_SYSTEMS.find((s) => s.id === system)?.shortDescription}
-          </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {ELECTORAL_SYSTEMS.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => setSystem(s.id)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                system === s.id
+                  ? "bg-slate-900 text-white"
+                  : "border border-slate-300 text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              {s.name}
+            </button>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-slate-500">
+          {ELECTORAL_SYSTEMS.find((s) => s.id === system)?.shortDescription}
+        </p>
 
-          {/* Suggestion reaching a majority under the current system */}
-          {system === "utopique" ? (
-            <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
-              <h3 className="text-sm font-semibold text-slate-900">
-                🌈 Mode utopique : la majorité est garantie par construction
-              </h3>
-              <p className="mt-1 text-xs text-slate-500">
-                Dans ce mode, votre coalition obtient toujours la majorité,
-                puisqu&apos;on invente une Assemblée sur mesure rien que
-                pour ça — la personnalisez ci-dessus pour voir comment la
-                répartition des sièges (et le programme réalisé) changerait.
-              </p>
-            </div>
-          ) : (
-            <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
-              <h3 className="text-sm font-semibold text-slate-900">
-                🏆 Suggestion pour atteindre la majorité sous ce mode de scrutin
-              </h3>
-              {virtualMajority ? (
-                <>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {virtualMajority.coalition.isFullCoverage
-                      ? "Réalise l'intégralité du programme"
-                      : `Réalise ${virtualMajority.coalition.coveragePercent}% du programme (${virtualMajority.coalition.coveredCount}/${virtualMajority.coalition.totalCount})`}
-                    {" "}et obtient {virtualMajority.seats} sièges, la majorité
-                    absolue.
-                  </p>
-                  <div className="mt-2 flex flex-wrap items-center gap-2">
-                    {virtualMajority.coalition.parties.map((pid) => (
-                      <span
-                        key={pid}
-                        className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
-                        style={{ backgroundColor: partyById[pid as PartyId].color }}
-                      >
-                        {partyById[pid as PartyId].shortName}
-                      </span>
-                    ))}
-                    <button
-                      onClick={() => setSelectedParties(virtualMajority.coalition.parties)}
-                      className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
-                    >
-                      Utiliser cette coalition ↓
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <p className="mt-1 text-xs text-rose-600">
-                  Aucune coalition des partis soutenant ce programme
-                  n&apos;atteint la majorité absolue sous ce mode de scrutin,
-                  même en réunissant tous les partis pertinents.
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Optional extra support from parliamentary groups not
-              tracked as one of the 8 parties: seats only, never program
-              coverage — useful to build a broader "coalition de
-              soutien" than the program itself requires. */}
-          <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+        {/* Suggestion reaching a majority under the current system */}
+        {system === "utopique" ? (
+          <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
             <h3 className="text-sm font-semibold text-slate-900">
-              🤝 Renfort parlementaire (hors partis suivis)
+              🌈 Mode utopique : la majorité est garantie par construction
             </h3>
             <p className="mt-1 text-xs text-slate-500">
-              Ces groupes de l&apos;Assemblée ne sont pas suivis par le
-              comparateur (on ne connaît pas leur position sur vos
-              propositions) : les ajouter n&apos;augmente jamais le
-              pourcentage de programme réalisé, seulement le nombre de
-              sièges de votre coalition — utile pour viser une majorité
-              plus large que votre seul programme.
+              Dans ce mode, votre coalition obtient toujours la majorité,
+              puisqu&apos;on invente une Assemblée sur mesure rien que
+              pour ça — la personnalisez ci-dessus pour voir comment la
+              répartition des sièges (et le programme réalisé) changerait.
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-2">
-              {OTHER_ASSEMBLY_GROUPS.map((group) => {
-                const isIn = selectedSupportGroups.includes(group.id);
-                const seatsHere = system === "actuelle" ? group.seats : null;
-                return (
-                  <label
-                    key={group.id}
-                    title={group.name}
-                    className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
-                      isIn
-                        ? "border-transparent text-white"
-                        : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
-                    }`}
-                    style={isIn ? { backgroundColor: group.color } : undefined}
+          </div>
+        ) : (
+          <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
+            <h3 className="text-sm font-semibold text-slate-900">
+              🏆 Suggestion pour atteindre la majorité sous ce mode de scrutin
+            </h3>
+            {virtualMajority ? (
+              <>
+                <p className="mt-1 text-xs text-slate-500">
+                  {virtualMajority.coalition.isFullCoverage
+                    ? "Réalise l'intégralité du programme"
+                    : `Réalise ${virtualMajority.coalition.coveragePercent}% du programme (${virtualMajority.coalition.coveredCount}/${virtualMajority.coalition.totalCount})`}
+                  {" "}et obtient {virtualMajority.seats} sièges, la majorité
+                  absolue.
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  {virtualMajority.coalition.parties.map((pid) => (
+                    <span
+                      key={pid}
+                      className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
+                      style={{ backgroundColor: partyById[pid as PartyId].color }}
+                    >
+                      {partyById[pid as PartyId].shortName}
+                    </span>
+                  ))}
+                  <button
+                    onClick={() => setSelectedParties(virtualMajority.coalition.parties)}
+                    className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
                   >
-                    <input
-                      type="checkbox"
-                      checked={isIn}
-                      onChange={() => toggleSupportGroup(group.id)}
-                      className="h-3.5 w-3.5"
-                    />
-                    {group.shortName}
-                    {seatsHere !== null ? ` (${seatsHere})` : ""}
-                  </label>
-                );
-              })}
-            </div>
-            {selectedSupportGroups.length > 0 && system !== "actuelle" && (
-              <p className="mt-2 text-xs text-amber-600">
-                On ne connaît pas le poids électoral 2024 de ces groupes
-                pris isolément (la plupart n&apos;avaient pas d&apos;étiquette
-                propre à l&apos;époque) : ils n&apos;apportent de sièges que
-                sous « Assemblée actuelle ».
+                    Utiliser cette coalition ↓
+                  </button>
+                </div>
+              </>
+            ) : (
+              <p className="mt-1 text-xs text-rose-600">
+                Aucune coalition des partis soutenant ce programme
+                n&apos;atteint la majorité absolue sous ce mode de scrutin,
+                même en réunissant tous les partis pertinents.
               </p>
             )}
           </div>
+        )}
 
-          {(() => {
-            const { seatsByParty: rawSeatsByParty, otherSeats: rawOtherSeats } =
-              system === "utopique"
-                ? computeUtopianSeats(selectedParties, partyCompatibility)
-                : computeSeats(system);
-
-            // Weight each selected party's seats by compatibility (if
-            // available) so the headline seat count and the hemicycle's
-            // colored dots always match exactly — the "lost" seats from
-            // weighting go back into the grey "reste" bucket. Utopian
-            // mode is already compatibility-weighted at the source
-            // (`computeUtopianSeats`), so it's left untouched here.
-            const seatsByParty: SeatsByParty = { ...rawSeatsByParty };
-            let otherSeats = rawOtherSeats;
-            let trackedSeats = 0;
-            for (const id of selectedParties) {
-              const raw = rawSeatsByParty[id] ?? 0;
-              if (partyCompatibility && system !== "utopique") {
-                const weight = (partyCompatibility[id] ?? 100) / 100;
-                const weighted = Math.round(raw * weight);
-                seatsByParty[id] = weighted;
-                otherSeats += raw - weighted;
-                trackedSeats += weighted;
-              } else {
-                trackedSeats += raw;
-              }
-            }
-
-            const extraGroups = selectedSupportGroups.map((id) => {
-              const group = OTHER_ASSEMBLY_GROUPS.find((g) => g.id === id)!;
-              const count = system === "actuelle" ? group.seats : 0;
-              return { id: group.id, shortName: group.shortName, color: group.color, count };
-            });
-            const supportSeats = extraGroups.reduce((sum, g) => sum + g.count, 0);
-
-            const seats = trackedSeats + supportSeats;
-            const rawSeats =
-              selectedParties.reduce((sum, id) => sum + (rawSeatsByParty[id] ?? 0), 0) +
-              supportSeats;
-            const hasMajority = seats >= MAJORITY_THRESHOLD;
-            return (
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wide text-slate-400">
-                  Votre coalition
-                </p>
-
-                <Hemicycle
-                  seatsByParty={seatsByParty}
-                  otherSeats={otherSeats}
-                  totalSeats={TOTAL_SEATS}
-                  highlightParties={selectedParties}
-                  extraGroups={extraGroups}
-                />
-                <p className="mt-2 text-center text-2xl font-black text-slate-900">
-                  {seats} <span className="text-base font-medium text-slate-500">sièges</span>
-                </p>
-                {seats !== rawSeats && (
-                  <p className="text-center text-xs text-slate-400">
-                    ({rawSeats} sièges réels, pondérés à {seats} selon votre
-                    compatibilité avec chaque parti)
-                  </p>
-                )}
-                {system === "utopique" && (
-                  <p className="text-center text-xs text-slate-400">
-                    Assemblée fictive : les {TOTAL_SEATS - MAJORITY_THRESHOLD}{" "}
-                    autres sièges (en gris) ne sont attribués à aucun parti
-                    réel.
-                  </p>
-                )}
-                <p
-                  className={`text-center text-sm font-semibold ${
-                    hasMajority ? "text-emerald-600" : "text-rose-600"
+        {/* Optional extra support from parliamentary groups not
+            tracked as one of the 8 parties: seats only, never program
+            coverage — useful to build a broader "coalition de
+            soutien" than the program itself requires. */}
+        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+          <h3 className="text-sm font-semibold text-slate-900">
+            🤝 Renfort parlementaire (hors partis suivis)
+          </h3>
+          <p className="mt-1 text-xs text-slate-500">
+            Ces groupes de l&apos;Assemblée ne sont pas suivis par le
+            comparateur (on ne connaît pas leur position sur vos
+            propositions) : les ajouter n&apos;augmente jamais le
+            pourcentage de programme réalisé, seulement le nombre de
+            sièges de votre coalition — utile pour viser une majorité
+            plus large que votre seul programme.
+          </p>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            {OTHER_ASSEMBLY_GROUPS.map((group) => {
+              const isIn = selectedSupportGroups.includes(group.id);
+              const seatsHere = system === "actuelle" ? group.seats : null;
+              return (
+                <label
+                  key={group.id}
+                  title={group.name}
+                  className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                    isIn
+                      ? "border-transparent text-white"
+                      : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
                   }`}
+                  style={isIn ? { backgroundColor: group.color } : undefined}
                 >
-                  {hasMajority
-                    ? `✓ Majorité absolue atteinte (seuil : ${MAJORITY_THRESHOLD})`
-                    : `Il manquerait ${MAJORITY_THRESHOLD - seats} sièges pour la majorité absolue`}
+                  <input
+                    type="checkbox"
+                    checked={isIn}
+                    onChange={() => toggleSupportGroup(group.id)}
+                    className="h-3.5 w-3.5"
+                  />
+                  {group.shortName}
+                  {seatsHere !== null ? ` (${seatsHere})` : ""}
+                </label>
+              );
+            })}
+          </div>
+          {selectedSupportGroups.length > 0 && system !== "actuelle" && (
+            <p className="mt-2 text-xs text-amber-600">
+              On ne connaît pas le poids électoral 2024 de ces groupes
+              pris isolément (la plupart n&apos;avaient pas d&apos;étiquette
+              propre à l&apos;époque) : ils n&apos;apportent de sièges que
+              sous « Assemblée actuelle ».
+            </p>
+          )}
+        </div>
+
+        {(() => {
+          const { seatsByParty: rawSeatsByParty, otherSeats: rawOtherSeats } =
+            system === "utopique"
+              ? computeUtopianSeats(selectedParties, partyCompatibility)
+              : computeSeats(system);
+
+          // Weight each selected party's seats by compatibility (if
+          // available) so the headline seat count and the hemicycle's
+          // colored dots always match exactly — the "lost" seats from
+          // weighting go back into the grey "reste" bucket. Utopian
+          // mode is already compatibility-weighted at the source
+          // (`computeUtopianSeats`), so it's left untouched here.
+          const seatsByParty: SeatsByParty = { ...rawSeatsByParty };
+          let otherSeats = rawOtherSeats;
+          let trackedSeats = 0;
+          for (const id of selectedParties) {
+            const raw = rawSeatsByParty[id] ?? 0;
+            if (partyCompatibility && system !== "utopique") {
+              const weight = (partyCompatibility[id] ?? 100) / 100;
+              const weighted = Math.round(raw * weight);
+              seatsByParty[id] = weighted;
+              otherSeats += raw - weighted;
+              trackedSeats += weighted;
+            } else {
+              trackedSeats += raw;
+            }
+          }
+
+          const extraGroups = selectedSupportGroups.map((id) => {
+            const group = OTHER_ASSEMBLY_GROUPS.find((g) => g.id === id)!;
+            const count = system === "actuelle" ? group.seats : 0;
+            return { id: group.id, shortName: group.shortName, color: group.color, count };
+          });
+          const supportSeats = extraGroups.reduce((sum, g) => sum + g.count, 0);
+
+          const seats = trackedSeats + supportSeats;
+          const rawSeats =
+            selectedParties.reduce((sum, id) => sum + (rawSeatsByParty[id] ?? 0), 0) +
+            supportSeats;
+          const hasMajority = seats >= MAJORITY_THRESHOLD;
+          return (
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
+              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wide text-slate-400">
+                Votre coalition
+              </p>
+
+              <Hemicycle
+                seatsByParty={seatsByParty}
+                otherSeats={otherSeats}
+                totalSeats={TOTAL_SEATS}
+                highlightParties={selectedParties}
+                extraGroups={extraGroups}
+              />
+              <p className="mt-2 text-center text-2xl font-black text-slate-900">
+                {seats} <span className="text-base font-medium text-slate-500">sièges</span>
+              </p>
+              {seats !== rawSeats && (
+                <p className="text-center text-xs text-slate-400">
+                  ({rawSeats} sièges réels, pondérés à {seats} selon votre
+                  compatibilité avec chaque parti)
                 </p>
-              </div>
-            );
-          })()}
-        </section>
-      )}
+              )}
+              {system === "utopique" && (
+                <p className="text-center text-xs text-slate-400">
+                  Assemblée fictive : les {TOTAL_SEATS - MAJORITY_THRESHOLD}{" "}
+                  autres sièges (en gris) ne sont attribués à aucun parti
+                  réel.
+                </p>
+              )}
+              <p
+                className={`text-center text-sm font-semibold ${
+                  hasMajority ? "text-emerald-600" : "text-rose-600"
+                }`}
+              >
+                {hasMajority
+                  ? `✓ Majorité absolue atteinte (seuil : ${MAJORITY_THRESHOLD})`
+                  : `Il manquerait ${MAJORITY_THRESHOLD - seats} sièges pour la majorité absolue`}
+              </p>
+            </div>
+          );
+        })()}
+      </section>
     </>
   );
 }

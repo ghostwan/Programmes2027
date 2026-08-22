@@ -42,6 +42,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Corrigé
 
+- La liste de partis de « Votre coalition » n'affichait que les partis
+  soutenant au moins une proposition de votre programme : cocher tous
+  les partis visibles ne suffisait donc jamais à atteindre les 577
+  sièges de l'Assemblée si un ou plusieurs des 8 partis suivis ne
+  soutenaient aucune de vos propositions (ils n'apparaissaient tout
+  simplement pas dans la liste). Les 8 partis sont désormais toujours
+  proposés, qu'ils soutiennent ou non votre programme — un parti sans
+  rapport avec vos propositions peut être ajouté pour ses seuls sièges,
+  tout comme les groupes du bloc « Renfort parlementaire ».
 - Sur la page des résultats, quand les sièges étaient pondérés par votre
   compatibilité, le nombre total affiché ne correspondait pas à la somme
   des sièges de chaque parti indiquée sous l'hémicycle (l'hémicycle
