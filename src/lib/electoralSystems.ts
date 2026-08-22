@@ -53,7 +53,7 @@ export const ELECTORAL_SYSTEMS: ElectoralSystem[] = [
     id: "utopique",
     name: "🌈 Assemblée utopique",
     shortDescription:
-      "Feuille blanche : on ignore la réalité électorale et on invente une Assemblée sur mesure, où la coalition sélectionnée ci-dessous obtient tout juste la majorité absolue, chaque parti au prorata de son poids électoral 2024 — le reste des sièges est affiché en gris, sans couleur de parti.",
+      "Feuille blanche : on ignore la réalité électorale et on invente une Assemblée sur mesure, où la coalition sélectionnée ci-dessous obtient tout juste la majorité absolue, chaque parti au prorata de votre compatibilité avec lui (ou de son poids électoral 2024 si cette compatibilité n'est pas disponible) — le reste des sièges est affiché en gris, sans couleur de parti.",
   },
 ];
 
@@ -282,21 +282,28 @@ export type PartyCompatibility = Partial<Record<PartyId, number>>;
  * — and every other seat is left as an unattributed grey "reste" bloc
  * (deliberately not tied to any real party, per the "blank slate" idea).
  *
- * Seats within the coalition are split proportionally to each party's
- * real 2024 national vote share (not its real seat count, which can be
- * distorted by the majoritarian system) — so a party with a small but
- * real electorate (e.g. Reconquête) still gets a small, non-zero share
- * instead of being wiped out the way it was by the real 2024 result.
- * Uses the largest-remainder method so the total always lands exactly
- * on `MAJORITY_THRESHOLD`.
+ * Seats within the coalition are split proportionally to `compatibility`
+ * (your quiz compatibility percentage with each party) when available —
+ * this is the whole point of the "utopian" mode: a party you agree with
+ * on 90% of its program should dominate the fictional Assembly, not one
+ * you merely happen to share a few propositions with. Without a
+ * compatibility map (e.g. on the /marche page, built without a quiz),
+ * falls back to each party's real 2024 national vote share instead, so a
+ * party with a small but real electorate (e.g. Reconquête) still gets a
+ * small, non-zero share instead of being wiped out the way it was by the
+ * real 2024 result. Uses the largest-remainder method so the total
+ * always lands exactly on `MAJORITY_THRESHOLD`.
  */
-export function computeUtopianSeats(parties: PartyId[]): SeatSimulationResult {
+export function computeUtopianSeats(
+  parties: PartyId[],
+  compatibility?: PartyCompatibility
+): SeatSimulationResult {
   if (parties.length === 0) {
     return { seatsByParty: {}, otherSeats: TOTAL_SEATS };
   }
 
   const weights = parties.map((id) =>
-    Math.max(ELECTION_2024_BY_PARTY[id].voteShare2024, 0.1)
+    Math.max(compatibility?.[id] ?? ELECTION_2024_BY_PARTY[id].voteShare2024, 0.1)
   );
   const totalWeight = weights.reduce((sum, w) => sum + w, 0);
 
@@ -330,9 +337,10 @@ export function computeUtopianSeats(parties: PartyId[]): SeatSimulationResult {
  * in full — the result is rounded to the nearest seat.
  *
  * Under the "utopian" system, this is trivially `MAJORITY_THRESHOLD` by
- * construction (see `computeUtopianSeats`) — compatibility weighting
- * doesn't apply here, since the whole point of that mode is that the
- * coalition you pick gets exactly a majority.
+ * construction (see `computeUtopianSeats`) regardless of `compatibility`
+ * — the total is always exactly a majority, only the split *between*
+ * the coalition's parties (handled separately by `computeUtopianSeats`)
+ * reflects compatibility in that mode.
  */
 export function coalitionSeats(
   parties: PartyId[],

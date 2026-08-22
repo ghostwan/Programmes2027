@@ -22,6 +22,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Corrigé
 
+- En mode « Assemblée utopique » (page résultats), les sièges de la
+  coalition sélectionnée étaient répartis selon le poids électoral réel
+  de chaque parti (élection 2024), ce qui pouvait donner le plus de
+  sièges au parti avec lequel vous étiez le moins compatible dans la
+  coalition, du moment qu'il pesait lourd électoralement (ex. le RN).
+  Ils sont désormais répartis selon votre pourcentage de compatibilité
+  avec chaque parti, conformément à l'intention du mode : le parti que
+  vous soutenez le plus domine l'Assemblée fictive.
 - Sur la page des résultats, quand vous n'avez répondu « pour » à aucune
   proposition d'une thématique (ou du programme entier), on n'affiche
   plus de parti « le plus proche » à 0% : ça n'a pas de sens de désigner

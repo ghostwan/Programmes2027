@@ -260,7 +260,7 @@ export function CoalitionExplorer({
           {(() => {
             const { seatsByParty, otherSeats } =
               system === "utopique"
-                ? computeUtopianSeats(remainingParties)
+                ? computeUtopianSeats(remainingParties, partyCompatibility)
                 : computeSeats(system);
             const seats = coalitionSeats(remainingParties, system, partyCompatibility);
             const rawSeats = coalitionSeats(remainingParties, system);
