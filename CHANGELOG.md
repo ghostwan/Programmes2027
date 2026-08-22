@@ -15,6 +15,11 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Un badge « Bêta » à côté du logo, dans la barre de navigation, pour
+  rappeler que le site est encore en cours de construction.
+
 ### Corrigé
 
 - Sur la page des résultats, quand vous n'avez répondu « pour » à aucune

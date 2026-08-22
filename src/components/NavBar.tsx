@@ -22,6 +22,9 @@ export function NavBar() {
         <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
           <span className="text-xl">🗳️</span>
           <span>Programmes2027</span>
+          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-800">
+            Bêta
+          </span>
         </Link>
 
         <nav className="hidden gap-1 sm:flex">
