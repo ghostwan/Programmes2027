@@ -18,11 +18,44 @@ import {
 import { Hemicycle } from "@/components/Hemicycle";
 
 /**
+ * Left-to-right political ordering, matching Hemicycle.tsx, used to
+ * display party toggles in a sensible order instead of an arbitrary one.
+ */
+const POLITICAL_ORDER: PartyId[] = [
+  "lfi",
+  "pcf",
+  "eelv",
+  "ps",
+  "renaissance",
+  "lr",
+  "rn",
+  "reconquete",
+];
+
+function sortByPoliticalOrder(parties: PartyId[]): PartyId[] {
+  return [...parties].sort(
+    (a, b) => POLITICAL_ORDER.indexOf(a) - POLITICAL_ORDER.indexOf(b)
+  );
+}
+
+/** Stable key identifying a set of propositions, used to detect when the
+ * basket itself changed (as opposed to just the user toggling parties),
+ * so the coalition can be reset to the recommended one in that case. */
+function propositionsKey(propositions: Proposition[]): string {
+  return propositions
+    .map((p) => p.id)
+    .sort()
+    .join(",");
+}
+
+/**
  * Given a set of propositions (a "program" — either a manually built
  * market basket, or every proposition a quiz player answered "pour" to),
- * shows which party coalitions could realize it, and how many seats the
- * selected coalition would hold under three electoral systems, including
- * an automatically recomputed "virtual majority" coalition per system.
+ * proposes a single coalition capable of realizing it, then lets the
+ * user freely add or remove any party to see how changing partners
+ * affects their custom program: which propositions would no longer be
+ * covered, and how many seats the resulting coalition would hold under
+ * various electoral systems.
  *
  * Shared between the /marche page and the quiz results page so both
  * benefit from the same coalition/seat logic.
@@ -40,131 +73,174 @@ export function CoalitionExplorer({
   propositions: Proposition[];
   partyCompatibility?: PartyCompatibility;
 }) {
-  // `null` means "no manual pick yet" — in that case the hemicycle
-  // follows the virtual majority coalition automatically, recomputed for
-  // whichever electoral system is selected. Once the user manually
-  // clicks a coalition in the list, that choice is kept as-is across
-  // electoral system changes (only its seat count is recomputed) —
-  // switching modes must never silently discard the coalition the user
-  // picked.
-  const [manualCoalitionIndex, setManualCoalitionIndex] = useState<number | null>(
-    null
-  );
   const [system, setSystem] = useState<ElectoralSystemId>("actuelle");
-  // Parties temporarily excluded from the currently selected coalition,
-  // to preview which propositions could no longer be realized without
-  // them. Reset whenever the selected coalition changes (picking a
-  // different coalition, or the virtual majority changing) so exclusions
-  // never silently linger on an unrelated coalition.
-  const [excludedParties, setExcludedParties] = useState<PartyId[]>([]);
 
   const coalitions = useMemo(() => findCoalitions(propositions), [propositions]);
+  // The single best coalition proposed by default: fewest parties among
+  // those reaching full program coverage (falls back to the highest
+  // partial coverage if none reaches 100%) — see `findCoalitions`'s
+  // sort order.
+  const recommendedCoalition = coalitions[0] ?? null;
+  const allRelevantParties = useMemo(
+    () =>
+      sortByPoliticalOrder(
+        Array.from(new Set(propositions.flatMap((p) => p.supportingParties)))
+      ),
+    [propositions]
+  );
+
+  const [selectedParties, setSelectedParties] = useState<PartyId[]>(
+    () => recommendedCoalition?.parties ?? []
+  );
+
+  // Reset the customized coalition to the newly recommended one whenever
+  // the underlying basket of propositions changes (not just when the
+  // user toggles parties) — adjusts state during rendering rather than
+  // in an effect, as recommended for "resetting state when a prop/derived
+  // value changes" (see https://react.dev/learn/you-might-not-need-an-effect).
+  const [prevKey, setPrevKey] = useState(propositionsKey(propositions));
+  const currentKey = propositionsKey(propositions);
+  if (currentKey !== prevKey) {
+    setPrevKey(currentKey);
+    setSelectedParties(recommendedCoalition?.parties ?? []);
+  }
+
   const virtualMajority = useMemo(
     () => findVirtualMajority(coalitions, system, partyCompatibility),
     [coalitions, system, partyCompatibility]
   );
-  const virtualMajorityIndex = virtualMajority
-    ? coalitions.indexOf(virtualMajority.coalition)
-    : -1;
-  const selectedCoalitionIndex =
-    manualCoalitionIndex ?? (virtualMajorityIndex >= 0 ? virtualMajorityIndex : 0);
-  const selectedCoalition = coalitions[selectedCoalitionIndex] ?? coalitions[0];
-
-  // Reset the exclusion preview whenever the selected coalition changes
-  // (a different coalition picked, or the virtual majority changing) so
-  // exclusions never silently linger on an unrelated coalition. This
-  // adjusts state during rendering rather than in an effect, as
-  // recommended for "resetting state when a prop/derived value changes"
-  // (see https://react.dev/learn/you-might-not-need-an-effect).
-  const [prevSelectedCoalitionIndex, setPrevSelectedCoalitionIndex] = useState(
-    selectedCoalitionIndex
-  );
-  if (selectedCoalitionIndex !== prevSelectedCoalitionIndex) {
-    setPrevSelectedCoalitionIndex(selectedCoalitionIndex);
-    setExcludedParties([]);
-  }
 
   if (propositions.length === 0) return null;
 
-  const remainingParties = selectedCoalition
-    ? selectedCoalition.parties.filter((id) => !excludedParties.includes(id))
-    : [];
-  const uncoveredPropositions = selectedCoalition
-    ? propositions.filter(
-        (p) => !p.supportingParties.some((id) => remainingParties.includes(id))
-      )
-    : [];
+  function toggleParty(id: PartyId) {
+    setSelectedParties((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+  }
+
+  const coveredPropositions = propositions.filter((p) =>
+    p.supportingParties.some((id) => selectedParties.includes(id))
+  );
+  const uncoveredPropositions = propositions.filter(
+    (p) => !p.supportingParties.some((id) => selectedParties.includes(id))
+  );
+  const coveragePercent =
+    propositions.length > 0
+      ? Math.round((coveredPropositions.length / propositions.length) * 1000) / 10
+      : 0;
+  const isFullCoverage = uncoveredPropositions.length === 0;
+
+  const isCustomized =
+    recommendedCoalition !== null &&
+    (selectedParties.length !== recommendedCoalition.parties.length ||
+      !recommendedCoalition.parties.every((id) => selectedParties.includes(id)));
 
   return (
     <>
-      {/* Coalitions */}
+      {/* Coalition picker */}
       <section className="mt-10">
-        <h2 className="text-lg font-bold text-slate-900">Coalitions possibles</h2>
+        <h2 className="text-lg font-bold text-slate-900">Votre coalition</h2>
         <p className="mt-1 text-xs text-slate-500">
-          Une coalition est considérée comme réalisant ce programme si, pour
-          chaque proposition, au moins un parti de la coalition la soutient —
-          chaque parti apportant ses propres mesures à l&apos;accord, comme
-          dans un accord de coalition réel. Cliquez sur une coalition
-          ci-dessous pour la sélectionner, puis décochez un de ses partis
-          plus bas pour simuler son retrait.
+          Une coalition réalise ce programme si, pour chaque proposition, au
+          moins un de ses partis la soutient — chaque parti apportant ses
+          propres mesures à l&apos;accord, comme dans un accord de
+          coalition réel. Voici une coalition qui le réalise ; cochez ou
+          décochez librement des partis pour voir comment changer de
+          partenaires affecterait votre programme sur mesure.
         </p>
 
-        {coalitions.length === 0 ? (
+        {allRelevantParties.length === 0 ? (
           <p className="mt-3 text-sm text-slate-500">
             Aucun parti ne soutient l&apos;une de ces propositions.
           </p>
         ) : (
-          <div className="mt-3 flex flex-col gap-2">
-            {coalitions.slice(0, 8).map((c, i) => (
-              <button
-                key={c.parties.join(",")}
-                onClick={() => setManualCoalitionIndex(i)}
-                className={`flex flex-wrap items-center justify-between gap-2 rounded-xl border p-3 text-left shadow-sm transition ${
-                  i === selectedCoalitionIndex
-                    ? "border-slate-900 bg-slate-50"
-                    : "border-slate-200 bg-white hover:border-slate-300"
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {c.parties.map((pid) => (
-                    <span
-                      key={pid}
-                      className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
-                      style={{ backgroundColor: partyById[pid as PartyId].color }}
-                    >
-                      {partyById[pid as PartyId].shortName}
-                    </span>
-                  ))}
-                </div>
-                <span
-                  className={`text-sm font-semibold ${
-                    c.isFullCoverage ? "text-emerald-600" : "text-amber-600"
-                  }`}
+          <>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              {allRelevantParties.map((pid) => {
+                const isIn = selectedParties.includes(pid);
+                return (
+                  <label
+                    key={pid}
+                    className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                      isIn
+                        ? "border-transparent text-white"
+                        : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
+                    }`}
+                    style={isIn ? { backgroundColor: partyById[pid].color } : undefined}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isIn}
+                      onChange={() => toggleParty(pid)}
+                      className="h-3.5 w-3.5"
+                    />
+                    {partyById[pid].shortName}
+                  </label>
+                );
+              })}
+              {isCustomized && recommendedCoalition && (
+                <button
+                  onClick={() => setSelectedParties(recommendedCoalition.parties)}
+                  className="ml-1 rounded-full border border-slate-900 px-3 py-1.5 text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
                 >
-                  {c.isFullCoverage
-                    ? "Programme complet"
-                    : `${c.coveragePercent}% du programme (${c.coveredCount}/${c.totalCount})`}
+                  ↺ Revenir à la coalition proposée
+                </button>
+              )}
+            </div>
+
+            <p className="mt-3 text-sm">
+              {selectedParties.length === 0 ? (
+                <span className="font-semibold text-rose-600">
+                  Aucun parti sélectionné : 0% du programme réalisé.
                 </span>
-              </button>
-            ))}
-          </div>
+              ) : isFullCoverage ? (
+                <span className="font-semibold text-emerald-600">
+                  ✓ Programme complet : ces {selectedParties.length} partis
+                  réalisent l&apos;intégralité de votre programme.
+                </span>
+              ) : (
+                <span className="font-semibold text-amber-600">
+                  {coveragePercent}% du programme réalisé ({coveredPropositions.length}/
+                  {propositions.length})
+                </span>
+              )}
+            </p>
+
+            {uncoveredPropositions.length > 0 && selectedParties.length > 0 && (
+              <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50 p-3">
+                <p className="text-sm font-semibold text-rose-700">
+                  {uncoveredPropositions.length} proposition
+                  {uncoveredPropositions.length > 1 ? "s" : ""} ne serai
+                  {uncoveredPropositions.length > 1 ? "ent" : "t"} pas
+                  réalisée{uncoveredPropositions.length > 1 ? "s" : ""} par
+                  cette coalition :
+                </p>
+                <ul className="mt-2 flex flex-col gap-1">
+                  {uncoveredPropositions.map((p) => (
+                    <li key={p.id} className="text-sm text-rose-900">
+                      • {p.title}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
         )}
       </section>
 
       {/* Electoral system simulation for the selected coalition */}
-      {selectedCoalition && (
+      {allRelevantParties.length > 0 && (
         <section className="mt-10">
           <h2 className="text-lg font-bold text-slate-900">
             Sièges nécessaires selon le mode de scrutin
           </h2>
           <p className="mt-1 text-xs text-slate-500">
-            Quatre façons de traduire ce programme en sièges à
+            Quatre façons de traduire cette coalition en sièges à
             l&apos;Assemblée : sa composition réelle et actuelle, la même
             élection de 2024 mais réallouée selon un autre mode de
             scrutin (proportionnelle intégrale ou mixte à l&apos;allemande),
-            ou une Assemblée fictive taillée sur mesure pour votre
-            coalition. La majorité absolue est fixée à{" "}
-            {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
+            ou une Assemblée fictive taillée sur mesure. La majorité
+            absolue est fixée à {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
             {partyCompatibility &&
               " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
           </p>
@@ -173,11 +249,7 @@ export function CoalitionExplorer({
             sièges par parti change fortement d&apos;un système à
             l&apos;autre (un parti peut être largement sous-représenté par
             le scrutin actuel et bien mieux loti en proportionnelle, ou
-            inversement). La coalition minimale capable d&apos;obtenir une
-            majorité peut donc différer selon le mode choisi —
-            c&apos;est justement ce que la « coalition majoritaire
-            virtuelle » ci-dessous recalcule pour vous à chaque changement
-            de mode.
+            inversement).
           </p>
 
           <div className="mt-3 flex flex-wrap gap-2">
@@ -199,25 +271,23 @@ export function CoalitionExplorer({
             {ELECTORAL_SYSTEMS.find((s) => s.id === system)?.shortDescription}
           </p>
 
-          {/* Virtual majority coalition for the current system */}
+          {/* Suggestion reaching a majority under the current system */}
           {system === "utopique" ? (
             <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
               <h3 className="text-sm font-semibold text-slate-900">
                 🌈 Mode utopique : la majorité est garantie par construction
               </h3>
               <p className="mt-1 text-xs text-slate-500">
-                Dans ce mode, on ne cherche pas la plus petite coalition
-                capable d&apos;obtenir la majorité : elle l&apos;obtient
-                toujours, puisqu&apos;on invente une Assemblée sur mesure
-                rien que pour ça. La coalition affichée ci-dessous est
-                celle sélectionnée dans la liste plus haut — décochez un de
-                ses partis pour voir ce que ça change.
+                Dans ce mode, votre coalition obtient toujours la majorité,
+                puisqu&apos;on invente une Assemblée sur mesure rien que
+                pour ça — la personnalisez ci-dessus pour voir comment la
+                répartition des sièges (et le programme réalisé) changerait.
               </p>
             </div>
           ) : (
             <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
               <h3 className="text-sm font-semibold text-slate-900">
-                🏆 Coalition majoritaire virtuelle pour ce mode de scrutin
+                🏆 Suggestion pour atteindre la majorité sous ce mode de scrutin
               </h3>
               {virtualMajority ? (
                 <>
@@ -238,14 +308,12 @@ export function CoalitionExplorer({
                         {partyById[pid as PartyId].shortName}
                       </span>
                     ))}
-                    {manualCoalitionIndex !== null && (
-                      <button
-                        onClick={() => setManualCoalitionIndex(null)}
-                        className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
-                      >
-                        Utiliser cette coalition ↓
-                      </button>
-                    )}
+                    <button
+                      onClick={() => setSelectedParties(virtualMajority.coalition.parties)}
+                      className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
+                    >
+                      Utiliser cette coalition ↓
+                    </button>
                   </div>
                 </>
               ) : (
@@ -261,64 +329,22 @@ export function CoalitionExplorer({
           {(() => {
             const { seatsByParty, otherSeats } =
               system === "utopique"
-                ? computeUtopianSeats(remainingParties, partyCompatibility)
+                ? computeUtopianSeats(selectedParties, partyCompatibility)
                 : computeSeats(system);
-            const seats = coalitionSeats(remainingParties, system, partyCompatibility);
-            const rawSeats = coalitionSeats(remainingParties, system);
+            const seats = coalitionSeats(selectedParties, system, partyCompatibility);
+            const rawSeats = coalitionSeats(selectedParties, system);
             const hasMajority = seats >= MAJORITY_THRESHOLD;
             return (
               <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
                 <p className="mb-2 text-center text-xs font-semibold uppercase tracking-wide text-slate-400">
-                  {manualCoalitionIndex === null && virtualMajorityIndex >= 0
-                    ? "Coalition majoritaire virtuelle"
-                    : "Coalition actuellement sélectionnée"}
+                  Votre coalition
                 </p>
-
-                <div className="mb-3 flex flex-wrap items-center justify-center gap-2">
-                  {selectedCoalition.parties.map((pid) => {
-                    const isExcluded = excludedParties.includes(pid);
-                    return (
-                      <label
-                        key={pid}
-                        className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition ${
-                          isExcluded
-                            ? "border-slate-200 bg-slate-50 text-slate-400 line-through"
-                            : "border-transparent text-white"
-                        }`}
-                        style={isExcluded ? undefined : { backgroundColor: partyById[pid as PartyId].color }}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={!isExcluded}
-                          onChange={() =>
-                            setExcludedParties((prev) =>
-                              isExcluded
-                                ? prev.filter((id) => id !== pid)
-                                : [...prev, pid]
-                            )
-                          }
-                          className="h-3 w-3"
-                        />
-                        {partyById[pid as PartyId].shortName}
-                      </label>
-                    );
-                  })}
-                </div>
-                {excludedParties.length > 0 && (
-                  <p className="mb-3 text-center text-xs text-slate-500">
-                    Décochez un parti pour simuler son retrait de la
-                    coalition sélectionnée et voir ce qui ne pourrait plus
-                    être réalisé sans lui.
-                    {system === "utopique" &&
-                      " En mode utopique, le reste des partis obtient de toute façon la majorité (l'Assemblée est reconstruite sur mesure) : c'est la liste des propositions perdues ci-dessous qui montre le vrai impact du retrait."}
-                  </p>
-                )}
 
                 <Hemicycle
                   seatsByParty={seatsByParty}
                   otherSeats={otherSeats}
                   totalSeats={TOTAL_SEATS}
-                  highlightParties={remainingParties}
+                  highlightParties={selectedParties}
                 />
                 <p className="mt-2 text-center text-2xl font-black text-slate-900">
                   {seats} <span className="text-base font-medium text-slate-500">sièges</span>
@@ -345,33 +371,6 @@ export function CoalitionExplorer({
                     ? `✓ Majorité absolue atteinte (seuil : ${MAJORITY_THRESHOLD})`
                     : `Il manquerait ${MAJORITY_THRESHOLD - seats} sièges pour la majorité absolue`}
                 </p>
-
-                {excludedParties.length > 0 && (
-                  <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3">
-                    <p className="text-sm font-semibold text-rose-700">
-                      {uncoveredPropositions.length === 0
-                        ? "Bonne nouvelle : le reste de la coalition suffit à réaliser tout le programme, même sans ce(s) parti(s)."
-                        : `Sans ${excludedParties
-                            .map((pid) => partyById[pid as PartyId].shortName)
-                            .join(", ")}, ${uncoveredPropositions.length} proposition${
-                            uncoveredPropositions.length > 1 ? "s" : ""
-                          } du programme ne pourrai${
-                            uncoveredPropositions.length > 1 ? "ent" : "t"
-                          } plus être réalisée${
-                            uncoveredPropositions.length > 1 ? "s" : ""
-                          } :`}
-                    </p>
-                    {uncoveredPropositions.length > 0 && (
-                      <ul className="mt-2 flex flex-col gap-1">
-                        {uncoveredPropositions.map((p) => (
-                          <li key={p.id} className="text-sm text-rose-900">
-                            • {p.title}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                )}
               </div>
             );
           })()}

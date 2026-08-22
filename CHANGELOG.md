@@ -15,6 +15,16 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Modifié
+
+- La simulation de coalitions ne propose plus une longue liste de
+  combinaisons de partis à choisir : elle affiche directement **une
+  seule coalition** capable de réaliser votre programme, avec une case à
+  cocher par parti pertinent pour librement en ajouter ou en retirer.
+  L'effet du changement de partenaires est visible immédiatement : le
+  pourcentage du programme encore réalisé, la liste des propositions qui
+  ne le seraient plus, et le nombre de sièges recalculé.
+
 ### Ajouté
 
 - Un badge « Bêta » à côté du logo, dans la barre de navigation, pour

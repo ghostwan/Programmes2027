@@ -85,30 +85,27 @@ tableau comparatif complet :
 Piochez librement des propositions à travers tous les thèmes et tous les
 partis pour construire votre propre programme, puis découvrez :
 
-- quelles **coalitions de partis** pourraient le réaliser (chaque parti
-  apportant les mesures qu'il soutient, comme dans un accord de
-  coalition réel) ;
+- une **coalition proposée** capable de réaliser ce programme (chaque
+  parti apportant les mesures qu'il soutient, comme dans un accord de
+  coalition réel), avec une case à cocher par parti pour **ajouter ou
+  retirer librement des partenaires** et voir en direct l'effet sur
+  votre programme sur mesure : pourcentage encore réalisé, liste des
+  propositions qui ne le seraient plus, et sièges recalculés ;
 - combien de **sièges à l'Assemblée nationale** cette coalition
   obtiendrait selon le mode de scrutin — **composition actuelle et à
   jour de l'Assemblée** (qui a évolué depuis 2024 : scissions, nouveaux
   groupes...), la même élection de 2024 réallouée en **proportionnelle
   intégrale** ou en **scrutin mixte à l'allemande**, ou **Assemblée
   utopique** (feuille blanche qui ignore la réalité électorale et
-  reconstruit une Assemblée fictive où la coalition sélectionnée obtient
-  tout juste la majorité absolue, chaque parti au prorata de votre
+  reconstruit une Assemblée fictive où votre coalition obtient tout
+  juste la majorité absolue, chaque parti au prorata de votre
   compatibilité avec lui, le reste des sièges étant affiché en gris) —
   visualisés dans un hémicycle, comparés au seuil de majorité absolue
   (289 sièges sur 577) ;
-- la **coalition majoritaire virtuelle** : la plus petite coalition
-  capable à la fois de réaliser le programme et d'atteindre la majorité
-  absolue *sous le mode de scrutin choisi* — recalculée et affichée par
-  défaut dans l'hémicycle à chaque changement de mode, puisque la
-  répartition des sièges par parti (et donc la coalition minimale
-  nécessaire) diffère fortement d'un système à l'autre ;
-- l'**exclusion d'un parti de la coalition sélectionnée** (case à cocher
-  sur chaque parti) pour voir instantanément le nombre de sièges perdus
-  et la liste des propositions de votre programme qui ne pourraient
-  alors plus être réalisées sans lui.
+- une **suggestion de coalition atteignant la majorité** *sous le mode
+  de scrutin choisi*, en un clic — puisque la répartition des sièges par
+  parti (et donc la coalition minimale nécessaire) diffère fortement
+  d'un système à l'autre.
 
 Sur la page des résultats du quiz, les sièges de chaque parti sont en
 plus **pondérés par votre pourcentage de compatibilité** avec lui : un
