@@ -6,7 +6,12 @@ import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { Answer, AnswersMap, GameState } from "@/lib/types";
-import { createBalancedDeckOrder } from "@/lib/deckOrdering";
+import {
+  createBalancedDeckOrder,
+  countPropositionsByParty,
+  medianPropositionsPerParty,
+  selectCappedPropositions,
+} from "@/lib/deckOrdering";
 import {
   ANSWERS_STORAGE_KEY,
   GAME_STATE_STORAGE_KEY,
@@ -14,8 +19,26 @@ import {
   QUIZ_WARNING_DISMISSED_KEY,
 } from "@/lib/storage";
 
-function createNewDeckIds(): string[] {
-  return createBalancedDeckOrder(propositions).map((p) => p.id);
+/**
+ * - "complet": every proposition is shown, once each, in an order
+ *   balanced so each party's questions are spread out evenly (see
+ *   `createBalancedDeckOrder`).
+ * - "equilibre": shortens the quiz by capping how many propositions a
+ *   single party can contribute, using the median count across parties
+ *   as the cap. Niche parties with fewer documented propositions (e.g.
+ *   Reconquête) simply keep all of theirs — there's no attempt to
+ *   "make up" for their smaller footprint, that's expected — while
+ *   well-documented parties (LR, LFI...) get trimmed down so no party
+ *   dominates the questions asked.
+ */
+export type DeckMode = "complet" | "equilibre";
+
+function createNewDeckIds(mode: DeckMode): string[] {
+  const pool =
+    mode === "equilibre"
+      ? selectCappedPropositions(propositions, medianPropositionsPerParty(propositions))
+      : propositions;
+  return createBalancedDeckOrder(pool).map((p) => p.id);
 }
 
 function parseSavedGameState(raw: string): GameState | null {
@@ -25,8 +48,8 @@ function parseSavedGameState(raw: string): GameState | null {
     const allIds = new Set(propositions.map((p) => p.id));
     const isValid =
       Array.isArray(parsed.deckIds) &&
-      parsed.deckIds.length === propositions.length &&
-      new Set(parsed.deckIds).size === propositions.length &&
+      parsed.deckIds.length > 0 &&
+      new Set(parsed.deckIds).size === parsed.deckIds.length &&
       parsed.deckIds.every((id) => allIds.has(id)) &&
       typeof parsed.index === "number" &&
       parsed.index >= 0 &&
@@ -74,6 +97,10 @@ function getServerSnapshot(): Snapshot {
  * localStorage. Once that's known, it mounts <GamePlay> exactly once with
  * that initial data — all further game state lives in GamePlay's own
  * component state (no repeated localStorage reads needed).
+ *
+ * If there's no game to resume, the player first picks a deck mode (see
+ * `DeckMode`) via `<DeckModeGate>` before `<GamePlay>` is mounted, since
+ * the deck is built once at mount time from that choice.
  */
 export function SwipeGame() {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
@@ -86,10 +113,88 @@ export function SwipeGame() {
     );
   }
 
-  return <GamePlay initialSavedState={parseSavedGameState(snapshot)} />;
+  const initialSavedState = parseSavedGameState(snapshot);
+  if (initialSavedState) {
+    return <GamePlay initialSavedState={initialSavedState} mode="complet" />;
+  }
+
+  return <DeckModeGate />;
 }
 
-function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }) {
+function DeckModeGate() {
+  const [mode, setMode] = useState<DeckMode | null>(null);
+  if (mode) return <GamePlay initialSavedState={null} mode={mode} />;
+  return <DeckModeSelector onSelect={setMode} />;
+}
+
+/**
+ * Pre-game screen letting the player choose between the full deck and
+ * the party-capped one. Computes a live preview of how many questions
+ * each mode would ask (the capped count varies slightly run to run
+ * because of randomized tie-breaking in `selectCappedPropositions`, so
+ * it's recomputed here rather than hardcoded).
+ */
+function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) {
+  const cap = useMemo(() => medianPropositionsPerParty(propositions), []);
+  const maxPartyCount = useMemo(
+    () => Math.max(...countPropositionsByParty(propositions).values()),
+    []
+  );
+  const equilibreCount = useMemo(
+    () => selectCappedPropositions(propositions, cap).length,
+    [cap]
+  );
+
+  return (
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
+      <div>
+        <h1 className="text-2xl font-bold text-slate-900">Choisissez votre partie</h1>
+        <p className="mt-2 text-sm text-slate-600">
+          Les partis n&apos;ont pas tous le même nombre de propositions
+          documentées (certains, comme Reconquête, sont plus des partis de
+          niche avec un programme moins étoffé sur les sujets couverts
+          ici). Ce n&apos;est pas un problème en soi — mais si vous
+          préférez un jeu où aucun parti ne domine le nombre de questions,
+          choisissez le mode équilibré.
+        </p>
+      </div>
+
+      <div className="grid w-full gap-4 sm:grid-cols-2">
+        <button
+          onClick={() => onSelect("complet")}
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+        >
+          <span className="text-lg font-bold text-slate-900">🗂️ Jeu complet</span>
+          <span className="text-sm text-slate-600">
+            Les {propositions.length} propositions, avec le nombre réel de
+            propositions par parti (jusqu&apos;à {maxPartyCount} pour les
+            partis les plus documentés).
+          </span>
+        </button>
+        <button
+          onClick={() => onSelect("equilibre")}
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+        >
+          <span className="text-lg font-bold text-slate-900">⚖️ Jeu équilibré</span>
+          <span className="text-sm text-slate-600">
+            Environ {equilibreCount} propositions : aucun parti n&apos;a
+            plus que la médiane ({cap}) de propositions posées, les partis
+            avec moins de propositions documentées (ex. Reconquête) gardent
+            simplement toutes les leurs.
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function GamePlay({
+  initialSavedState,
+  mode,
+}: {
+  initialSavedState: GameState | null;
+  mode: DeckMode;
+}) {
   const router = useRouter();
   const controls = useAnimation();
   // Real-time drag position, used both to tilt the card and to drive the
@@ -100,7 +205,7 @@ function GamePlay({ initialSavedState }: { initialSavedState: GameState | null }
   const rightGlowOpacity = useTransform(x, [20, 160], [0, 0.9]);
 
   const [deckIds] = useState<string[]>(
-    () => initialSavedState?.deckIds ?? createNewDeckIds()
+    () => initialSavedState?.deckIds ?? createNewDeckIds(mode)
   );
   const [index, setIndex] = useState(() => initialSavedState?.index ?? 0);
   const [answers, setAnswers] = useState<AnswersMap>(

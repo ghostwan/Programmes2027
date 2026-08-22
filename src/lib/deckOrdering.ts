@@ -87,3 +87,98 @@ export function createBalancedDeckOrder(props: Proposition[]): Proposition[] {
 
   return ordered;
 }
+
+/** Number of propositions each tracked party currently supports. */
+export function countPropositionsByParty(props: Proposition[]): Map<PartyId, number> {
+  const counts = new Map<PartyId, number>();
+  for (const p of props) {
+    for (const partyId of p.supportingParties) {
+      counts.set(partyId, (counts.get(partyId) ?? 0) + 1);
+    }
+  }
+  return counts;
+}
+
+/** Median across parties of their supported-proposition count (rounded to
+ * the nearest integer). Used as the default cap for the "balanced" quiz
+ * mode below. */
+export function medianPropositionsPerParty(props: Proposition[]): number {
+  const counts = [...countPropositionsByParty(props).values()].sort((a, b) => a - b);
+  if (counts.length === 0) return 0;
+  const mid = Math.floor(counts.length / 2);
+  const median =
+    counts.length % 2 === 0 ? (counts[mid - 1] + counts[mid]) / 2 : counts[mid];
+  return Math.round(median);
+}
+
+/**
+ * Selects a subset of propositions so that no party contributes more
+ * than `capPerParty` propositions to the quiz — small/niche parties
+ * (e.g. Reconquête, with far fewer documented propositions than others)
+ * simply keep all of theirs (since they never reach the cap), while
+ * well-documented parties (e.g. LR, LFI) get trimmed down to the cap.
+ *
+ * Unlike `createBalancedDeckOrder` (which keeps every proposition and
+ * only changes their *order* to spread exposure evenly), this actually
+ * shortens the quiz: it deliberately gives up some of the extra
+ * granularity available for well-documented parties in exchange for a
+ * shorter, more evenly-weighted-by-party quiz — a reasonable tradeoff
+ * when a party's small footprint (like a niche party such as
+ * Reconquête) is expected and not something to compensate for.
+ *
+ * Greedy selection: repeatedly pick, among the not-yet-selected
+ * propositions, the one that helps the most parties still under their
+ * cap (weighted by how much headroom each still has) — a proposition
+ * supporting several currently under-cap parties at once is prioritized,
+ * since picking it "spends" only one quiz question to make progress on
+ * multiple parties' quotas. Stops once no remaining proposition can help
+ * any party that hasn't already reached its cap.
+ */
+export function selectCappedPropositions(
+  props: Proposition[],
+  capPerParty: number
+): Proposition[] {
+  const target = new Map<PartyId, number>();
+  for (const [partyId, total] of countPropositionsByParty(props)) {
+    target.set(partyId, Math.min(total, capPerParty));
+  }
+
+  const placed = new Map<PartyId, number>();
+  const remaining = shuffle(props);
+  const selected: Proposition[] = [];
+
+  while (true) {
+    let bestIndex = -1;
+    let bestScore = -Infinity;
+
+    for (let i = 0; i < remaining.length; i++) {
+      const candidate = remaining[i];
+      let score = 0;
+      let helpsAny = false;
+      for (const partyId of candidate.supportingParties) {
+        const t = target.get(partyId) ?? 0;
+        const p = placed.get(partyId) ?? 0;
+        if (p < t) {
+          helpsAny = true;
+          score += t - p;
+        }
+      }
+      if (helpsAny && score > bestScore) {
+        bestScore = score;
+        bestIndex = i;
+      }
+    }
+
+    if (bestIndex === -1) break; // nothing left can help an under-cap party
+
+    const [chosen] = remaining.splice(bestIndex, 1);
+    selected.push(chosen);
+    for (const partyId of chosen.supportingParties) {
+      const t = target.get(partyId) ?? 0;
+      const p = placed.get(partyId) ?? 0;
+      if (p < t) placed.set(partyId, p + 1);
+    }
+  }
+
+  return selected;
+}

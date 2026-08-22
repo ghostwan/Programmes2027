@@ -15,6 +15,19 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Avant de démarrer le jeu, un nouvel écran propose de choisir entre le
+  « jeu complet » (toutes les propositions, chaque parti avec son
+  nombre réel de propositions) et un « jeu équilibré » plus court, où
+  aucun parti ne peut fournir plus que la médiane du nombre de
+  propositions posées : les partis moins documentés (ex. Reconquête,
+  qui reste une niche avec un programme plus restreint sur les sujets
+  couverts ici) gardent simplement toutes leurs propositions, tandis
+  que les partis les mieux documentés sont ramenés à cette médiane.
+
+## [2.7.2] - 2026-08-22
+
 ### Sécurité
 
 - Ajout d'une limite de fréquence (20 requêtes par minute et par IP) sur

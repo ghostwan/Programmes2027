@@ -1,5 +1,23 @@
 [
   {
+    "version": "2.7.2",
+    "date": "2026-08-22",
+    "categories": [
+      {
+        "name": "Sécurité",
+        "items": [
+          "Ajout d'une limite de fréquence (20 requêtes par minute et par IP) sur le point d'entrée de vérification anti-robot (Turnstile), qui était jusqu'ici public et sans aucune protection : un client pouvait auparavant l'appeler en boucle sans limite, ce qui aurait pu épuiser le quota de vérification Cloudflare ainsi que le quota de requêtes du Worker."
+        ]
+      },
+      {
+        "name": "Corrigé",
+        "items": [
+          "L'ordre des propositions du jeu est désormais équilibré par parti : chaque parti voit ses propositions apparaître à un rythme régulier et proportionnel tout au long de la partie, au lieu de dépendre du hasard pur du mélange. Avant ce correctif, un parti peu documenté (par exemple Reconquête, avec une vingtaine de propositions contre une centaine pour d'autres) pouvait, par malchance, se retrouver avec très peu voire aucune de ses propositions parmi les premières questions — rendant son score final instable pour qui consulte ses résultats avant la fin du jeu."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.7.1",
     "date": "2026-08-21",
     "categories": [

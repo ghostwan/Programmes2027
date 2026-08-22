@@ -25,10 +25,22 @@ déjà ailleurs dans le monde.
 
 ### 🕹️ Le jeu — jugez les propositions à l'aveugle
 
+Avant de commencer, choisissez entre le **jeu complet** (toutes les
+propositions, chaque parti avec son nombre réel de propositions
+documentées) et un **jeu équilibré** plus court, où aucun parti ne
+fournit plus que la médiane du nombre de propositions posées — les
+partis moins documentés (par exemple Reconquête, qui reste une niche
+avec un programme plus restreint sur les sujets couverts ici) gardent
+simplement toutes les leurs.
+
 Swipez (ou cliquez) chaque proposition « pour » ou « contre », sans
-savoir quel parti la porte. L'ordre est mélangé à chaque partie. Vous
-pouvez revenir en arrière pour changer une réponse, sauter une question
-que vous ne maîtrisez pas, et voir vos résultats à tout moment (même sans
+savoir quel parti la porte. L'ordre est mélangé à chaque partie, mais
+équilibré pour que les propositions de chaque parti apparaissent à un
+rythme régulier tout au long du jeu (plutôt que de dépendre du seul
+hasard, ce qui pourrait sinon fortement biaiser le score d'un parti peu
+documenté si vous consultez vos résultats avant la fin). Vous pouvez
+revenir en arrière pour changer une réponse, sauter une question que
+vous ne maîtrisez pas, et voir vos résultats à tout moment (même sans
 avoir terminé) une fois un nombre minimal de réponses atteint. Votre
 progression est sauvegardée automatiquement dans votre navigateur pour
 reprendre plus tard.
