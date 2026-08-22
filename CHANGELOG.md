@@ -15,6 +15,17 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Modifié
+
+- Le score de compatibilité affiché sur la page des résultats ne se base
+  plus uniquement sur le taux d'accord brut avec chaque parti : il tient
+  aussi compte du nombre de propositions communes. Concrètement, être
+  d'accord avec un petit parti sur seulement 2 ou 3 propositions ne le
+  fait plus automatiquement passer devant un parti avec lequel vous
+  êtes d'accord sur des dizaines de propositions. Le taux d'accord brut
+  et le nombre de propositions utilisées restent affichés en petit sous
+  chaque pourcentage, pour la transparence du calcul.
+
 ## [2.8.0] - 2026-08-22
 
 ### Ajouté

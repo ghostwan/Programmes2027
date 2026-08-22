@@ -113,7 +113,7 @@ export function ResultsView() {
           <p className="mt-1 text-3xl font-black text-slate-900">
             {topPercent}%{" "}
             <span className="text-base font-medium text-slate-500">
-              d&apos;accord
+              de compatibilité
             </span>
           </p>
           <div className="mt-3 flex flex-col gap-3">
@@ -191,17 +191,27 @@ export function ResultsView() {
                     }}
                   />
                 </div>
-                <span className="w-14 flex-shrink-0 text-right text-sm font-bold text-slate-900">
-                  {s.matchPercent}%
-                </span>
+                <div className="flex w-16 flex-shrink-0 flex-col items-end">
+                  <span className="text-sm font-bold text-slate-900">
+                    {s.matchPercent}%
+                  </span>
+                  <span className="text-[10px] text-slate-400">
+                    {s.rawAgreementPercent}% sur {s.answeredRelevant}
+                  </span>
+                </div>
               </Link>
             );
           })}
         </div>
         <p className="mt-2 text-xs text-slate-400">
           {assumeOpposition
-            ? "Le score reflète le taux d'accord sur l'ensemble des propositions auxquelles vous avez répondu : une proposition non soutenue par un parti est traitée comme une position implicite « contre » de ce parti."
-            : "Le score reflète le taux d'accord uniquement sur les propositions documentées comme soutenues par chaque parti et pour lesquelles vous avez répondu."}
+            ? "Le score reflète le taux d'accord sur l'ensemble des propositions auxquelles vous avez répondu (une proposition non soutenue par un parti est traitée comme une position implicite « contre » de ce parti), pondéré par le nombre de propositions communes : "
+            : "Le score reflète le taux d'accord sur les propositions documentées comme soutenues par chaque parti et pour lesquelles vous avez répondu, pondéré par le nombre de propositions communes : "}
+          un parti avec beaucoup de propositions partagées et un bon taux
+          d&apos;accord passe devant un parti avec un taux d&apos;accord
+          élevé mais obtenu sur très peu de propositions. Le petit texte
+          gris sous chaque pourcentage indique le taux d&apos;accord brut
+          et le nombre de propositions utilisées.
         </p>
       </section>
 

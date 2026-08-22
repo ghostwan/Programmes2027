@@ -2,8 +2,44 @@ import { Answer, AnswersMap, Party, PartyId, Proposition, ThemeId } from "@/lib/
 
 export interface PartyScore {
   partyId: PartyId;
+  /**
+   * 0-100 confidence-adjusted compatibility score, used for ranking and
+   * display. See `wilsonLowerBound` below: this is NOT a plain agreement
+   * ratio, it also accounts for how many propositions the score is based
+   * on, so a party with a handful of shared propositions doesn't
+   * outrank a party you agree with on dozens of them just because its
+   * (small-sample) ratio happens to be higher.
+   */
   matchPercent: number; // 0-100
+  /** Plain agreement ratio (matched / answeredRelevant), 0-100, kept for
+   * transparency/debugging but not meant to be used for ranking. */
+  rawAgreementPercent: number;
   answeredRelevant: number; // number of propositions used to compute the score
+}
+
+/**
+ * Lower bound of the Wilson score confidence interval for a binomial
+ * proportion, expressed as a percentage. Given `matched` successes out of
+ * `n` trials, this returns a conservative estimate of the "true" agreement
+ * rate that gets closer to the raw ratio as `n` grows, but stays cautious
+ * when `n` is small.
+ *
+ * This is the standard technique used to rank things by "rating" without
+ * letting a handful of 5-star reviews outrank a product with thousands of
+ * mostly-positive ones (e.g. Reddit's "best" comment sorting). Here it
+ * prevents a party you agree with on only 2-3 propositions from
+ * outranking one you agree with on dozens, just because its tiny sample
+ * happens to be 100% "pour".
+ */
+function wilsonLowerBound(matched: number, n: number, z = 1.44): number {
+  if (n === 0) return 0;
+  const phat = matched / n;
+  const z2 = z * z;
+  const denominator = 1 + z2 / n;
+  const center = phat + z2 / (2 * n);
+  const margin = z * Math.sqrt((phat * (1 - phat) + z2 / (4 * n)) / n);
+  const lowerBound = (center - margin) / denominator;
+  return Math.round(Math.max(0, lowerBound) * 1000) / 10;
 }
 
 export interface ThemeStat {
@@ -71,7 +107,12 @@ export function computePartyScores(
     );
     for (const partyId of partyIds) {
       if (answeredProps.length === 0) {
-        scores.push({ partyId, matchPercent: 0, answeredRelevant: 0 });
+        scores.push({
+          partyId,
+          matchPercent: 0,
+          rawAgreementPercent: 0,
+          answeredRelevant: 0,
+        });
         continue;
       }
       const matched = answeredProps.filter((p) => {
@@ -81,7 +122,9 @@ export function computePartyScores(
       }).length;
       scores.push({
         partyId,
-        matchPercent: Math.round((matched / answeredProps.length) * 1000) / 10,
+        matchPercent: wilsonLowerBound(matched, answeredProps.length),
+        rawAgreementPercent:
+          Math.round((matched / answeredProps.length) * 1000) / 10,
         answeredRelevant: answeredProps.length,
       });
     }
@@ -93,13 +136,19 @@ export function computePartyScores(
           (answers[p.id] === "pour" || answers[p.id] === "contre")
       );
       if (relevant.length === 0) {
-        scores.push({ partyId, matchPercent: 0, answeredRelevant: 0 });
+        scores.push({
+          partyId,
+          matchPercent: 0,
+          rawAgreementPercent: 0,
+          answeredRelevant: 0,
+        });
         continue;
       }
       const matched = relevant.filter((p) => answers[p.id] === "pour").length;
       scores.push({
         partyId,
-        matchPercent: Math.round((matched / relevant.length) * 1000) / 10,
+        matchPercent: wilsonLowerBound(matched, relevant.length),
+        rawAgreementPercent: Math.round((matched / relevant.length) * 1000) / 10,
         answeredRelevant: relevant.length,
       });
     }
