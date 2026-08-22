@@ -15,6 +15,18 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Corrigé
+
+- L'ordre des propositions du jeu est désormais équilibré par parti :
+  chaque parti voit ses propositions apparaître à un rythme régulier et
+  proportionnel tout au long de la partie, au lieu de dépendre du hasard
+  pur du mélange. Avant ce correctif, un parti peu documenté (par
+  exemple Reconquête, avec une vingtaine de propositions contre une
+  centaine pour d'autres) pouvait, par malchance, se retrouver avec très
+  peu voire aucune de ses propositions parmi les premières questions —
+  rendant son score final instable pour qui consulte ses résultats avant
+  la fin du jeu.
+
 ## [2.7.1] - 2026-08-21
 
 ### Corrigé

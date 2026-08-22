@@ -6,6 +6,7 @@ import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
 import { Answer, AnswersMap, GameState } from "@/lib/types";
+import { createBalancedDeckOrder } from "@/lib/deckOrdering";
 import {
   ANSWERS_STORAGE_KEY,
   GAME_STATE_STORAGE_KEY,
@@ -13,17 +14,8 @@ import {
   QUIZ_WARNING_DISMISSED_KEY,
 } from "@/lib/storage";
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 function createNewDeckIds(): string[] {
-  return shuffle(propositions).map((p) => p.id);
+  return createBalancedDeckOrder(propositions).map((p) => p.id);
 }
 
 function parseSavedGameState(raw: string): GameState | null {
