@@ -1,5 +1,43 @@
 [
   {
+    "version": "2.10.0",
+    "date": "2026-08-22",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Dans la simulation de coalitions, un nouveau bloc « Renfort parlementaire » permet d'ajouter à votre coalition les groupes de l'Assemblée qui ne sont pas suivis par le comparateur (Les Démocrates, Horizons, LIOT, UDR, non-inscrits) : on ne connaît pas leur position sur vos propositions, donc les ajouter n'augmente jamais le pourcentage de programme réalisé, seulement le nombre de sièges — utile pour construire une coalition de soutien plus large que le programme lui-même. Disponible avec leurs vrais sièges sous « Assemblée actuelle » uniquement (aucune donnée électorale 2024 propre à ces groupes n'existe pour les autres modes).",
+          "Un badge « Bêta » à côté du logo, dans la barre de navigation, pour rappeler que le site est encore en cours de construction."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "La simulation de coalitions ne propose plus une longue liste de combinaisons de partis à choisir : elle affiche directement **une seule coalition** capable de réaliser votre programme, avec une case à cocher par parti pertinent pour librement en ajouter ou en retirer. L'effet du changement de partenaires est visible immédiatement : le pourcentage du programme encore réalisé, la liste des propositions qui ne le seraient plus, et le nombre de sièges recalculé."
+        ]
+      },
+      {
+        "name": "Corrigé",
+        "items": [
+          "Sous « Assemblée actuelle », « Si scrutin proportionnel intégral » et « Si scrutin mixte à l'allemande », les sièges de chaque parti étaient à tort pondérés par votre pourcentage de compatibilité avec lui (ex. un parti dont vous ne partagez que la moitié du programme ne comptait que pour la moitié de ses sièges réels) — ce qui donnait un total très éloigné des vrais chiffres de ces groupes à l'Assemblée. Ces trois modes comptent maintenant chaque parti pour la totalité de ses sièges réels, sans aucune pondération ; seule l'« Assemblée utopique » (dont c'est justement le principe) continue de pondérer par compatibilité.",
+          "La liste de partis de « Votre coalition » n'affichait que les partis soutenant au moins une proposition de votre programme : cocher tous les partis visibles ne suffisait donc jamais à atteindre les 577 sièges de l'Assemblée si un ou plusieurs des 8 partis suivis ne soutenaient aucune de vos propositions (ils n'apparaissaient tout simplement pas dans la liste). Les 8 partis sont désormais toujours proposés, qu'ils soutiennent ou non votre programme — un parti sans rapport avec vos propositions peut être ajouté pour ses seuls sièges, tout comme les groupes du bloc « Renfort parlementaire ».",
+          "Sur la page des résultats, quand les sièges étaient pondérés par votre compatibilité, le nombre total affiché ne correspondait pas à la somme des sièges de chaque parti indiquée sous l'hémicycle (l'hémicycle affichait les vrais sièges de chaque parti, mais le total tenait compte de la pondération). Les deux correspondent maintenant exactement : les points colorés de l'hémicycle et la légende reflètent aussi les sièges pondérés.",
+          "Les 5 modes de scrutin de la simulation de coalitions faisaient doublon et prêtaient à confusion (« Scrutin majoritaire actuel » basé sur 2024 vs « Assemblée actuelle » basée sur aujourd'hui). Il n'y en a plus que 4, avec des noms plus clairs : **Assemblée actuelle** (composition réelle d'aujourd'hui, sélectionnée par défaut), **Si scrutin proportionnel intégral** et **Si scrutin mixte à l'allemande** (la même élection de 2024, mais avec les sièges réattribués selon ce mode de scrutin), et **Assemblée utopique**.",
+          "En mode « Assemblée utopique » (page résultats), les sièges de la coalition sélectionnée étaient répartis selon le poids électoral réel de chaque parti (élection 2024), ce qui pouvait donner le plus de sièges au parti avec lequel vous étiez le moins compatible dans la coalition, du moment qu'il pesait lourd électoralement (ex. le RN). Ils sont désormais répartis selon votre pourcentage de compatibilité avec chaque parti, conformément à l'intention du mode : le parti que vous soutenez le plus domine l'Assemblée fictive.",
+          "Sur la page des résultats, quand vous n'avez répondu « pour » à aucune proposition d'une thématique (ou du programme entier), on n'affiche plus de parti « le plus proche » à 0% : ça n'a pas de sens de désigner un ou plusieurs partis comme les plus proches quand vous n'êtes en fait d'accord avec aucune de leurs propositions."
+        ]
+      },
+      {
+        "name": "Ajouté",
+        "items": [
+          "Deux nouveaux modes de scrutin dans la simulation de coalitions :",
+          "**Assemblée actuelle** : la composition réelle et à jour de l'Assemblée nationale (groupes parlementaires), qui a évolué depuis les élections de 2024 (scissions, nouveaux groupes...), au lieu de se baser uniquement sur les résultats de l'élection elle-même.",
+          "**Assemblée utopique** : un mode « feuille blanche » qui ignore entièrement la réalité électorale et reconstruit une Assemblée fictive où la coalition que vous avez sélectionnée obtient tout juste la majorité absolue (chaque parti au prorata de son poids électoral 2024), le reste des sièges étant affiché en gris, sans couleur de parti."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.9.0",
     "date": "2026-08-22",
     "categories": [

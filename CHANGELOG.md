@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.10.0] - 2026-08-22
+
 ### Ajouté
 
 - Dans la simulation de coalitions, un nouveau bloc « Renfort
