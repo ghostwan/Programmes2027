@@ -109,9 +109,10 @@ partis pour construire votre propre programme, puis découvrez :
 - un **renfort parlementaire optionnel** : les groupes de l'Assemblée
   non suivis par le comparateur (Les Démocrates, Horizons, LIOT, UDR,
   non-inscrits) peuvent être ajoutés à la coalition pour leurs sièges
-  réels (sous « Assemblée actuelle » uniquement), sans jamais compter
-  dans le pourcentage de programme réalisé puisqu'on ne connaît pas
-  leur position sur vos propositions.
+  (réels sous « Assemblée actuelle », estimés au prorata de leur poids
+  actuel sous les modes proportionnel/mixte), sans jamais compter dans
+  le pourcentage de programme réalisé puisqu'on ne connaît pas leur
+  position sur vos propositions.
 
 Sur la page des résultats du quiz, les sièges de chaque parti sont en
 plus **pondérés par votre pourcentage de compatibilité** avec lui : un

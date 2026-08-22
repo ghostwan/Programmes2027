@@ -9,6 +9,8 @@ import {
   CURRENT_ASSEMBLY_DATE,
   CURRENT_ASSEMBLY_OTHER_SEATS,
   CURRENT_ASSEMBLY_SEATS_BY_PARTY,
+  OTHER_ASSEMBLY_GROUPS,
+  SupportGroupId,
 } from "@/lib/data/currentAssembly";
 
 export type ElectoralSystemId =
@@ -90,6 +92,35 @@ function partyIds(): PartyId[] {
   return Object.keys(ELECTION_2024_BY_PARTY) as PartyId[];
 }
 
+/**
+ * Splits `total` (an integer) into `weights.length` non-negative integers,
+ * each as close as possible to `total * weights[i] / sum(weights)`, using
+ * the largest-remainder method so they always sum to exactly `total`
+ * (unlike naively rounding each share independently, which can be off by
+ * one or two seats due to rounding).
+ */
+function distributeByLargestRemainder(total: number, weights: number[]): number[] {
+  if (weights.length === 0 || total <= 0) return weights.map(() => 0);
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+  if (totalWeight <= 0) return weights.map(() => 0);
+
+  const rawShares = weights.map((w) => (w / totalWeight) * total);
+  const floors = rawShares.map(Math.floor);
+  let assigned = floors.reduce((sum, f) => sum + f, 0);
+
+  const remainders = rawShares
+    .map((r, i) => ({ i, frac: r - floors[i] }))
+    .sort((a, b) => b.frac - a.frac);
+
+  let cursor = 0;
+  while (assigned < total) {
+    floors[remainders[cursor % remainders.length].i] += 1;
+    assigned += 1;
+    cursor += 1;
+  }
+  return floors;
+}
+
 /** Strict 5% national threshold, no exceptions. */
 export function computeProportionnelleSeats(): SeatSimulationResult {
   const candidates = [
@@ -158,6 +189,51 @@ export function computeActuelleSeats(): SeatSimulationResult {
     seatsByParty: { ...CURRENT_ASSEMBLY_SEATS_BY_PARTY },
     otherSeats: CURRENT_ASSEMBLY_OTHER_SEATS,
   };
+}
+
+/**
+ * Seats for the 5 real parliamentary groups not tracked as one of the 8
+ * parties (see `OTHER_ASSEMBLY_GROUPS`), under a given electoral system:
+ *
+ * - "actuelle": their real, current seats (exact — see
+ *   `src/lib/data/currentAssembly.ts`).
+ * - "proportionnelle"/"mixte": these 5 groups have no distinct 2024
+ *   first-round vote share of their own (most ran under joint labels
+ *   like "Ensemble" with Renaissance, or the RN-Ciotti "Union de
+ *   l'extrême droite" ticket — see Wikipedia's nuance-level 2024
+ *   results), so we can't re-run a real D'Hondt allocation for them
+ *   individually. Instead, we split the "autres" seat pool that
+ *   `computeProportionnelleSeats`/`computeMixteSeats` already allocates
+ *   to non-tracked parties, proportionally to each group's *current*
+ *   real seat count — a reasonable approximation given their actual
+ *   present-day relative weight, clearly not a real 2024 result.
+ * - "utopique": not applicable (that mode has no real-world reference
+ *   weight for untracked groups, only quiz compatibility for tracked
+ *   ones) — always 0.
+ */
+export function computeSupportGroupSeats(
+  system: ElectoralSystemId
+): Record<SupportGroupId, number> {
+  const result = {} as Record<SupportGroupId, number>;
+
+  if (system === "actuelle") {
+    for (const g of OTHER_ASSEMBLY_GROUPS) result[g.id] = g.seats;
+    return result;
+  }
+  if (system === "utopique") {
+    for (const g of OTHER_ASSEMBLY_GROUPS) result[g.id] = 0;
+    return result;
+  }
+
+  const { otherSeats } = computeSeats(system);
+  const split = distributeByLargestRemainder(
+    otherSeats,
+    OTHER_ASSEMBLY_GROUPS.map((g) => g.seats)
+  );
+  OTHER_ASSEMBLY_GROUPS.forEach((g, i) => {
+    result[g.id] = split[i];
+  });
+  return result;
 }
 
 export function computeSeats(system: ElectoralSystemId): SeatSimulationResult {
@@ -289,26 +365,11 @@ export function computeUtopianSeats(
   const weights = parties.map((id) =>
     Math.max(compatibility?.[id] ?? ELECTION_2024_BY_PARTY[id].voteShare2024, 0.1)
   );
-  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
-
-  const rawShares = weights.map((w) => (w / totalWeight) * MAJORITY_THRESHOLD);
-  const floors = rawShares.map(Math.floor);
-  let assigned = floors.reduce((sum, f) => sum + f, 0);
-
-  const remainders = rawShares
-    .map((r, i) => ({ i, frac: r - floors[i] }))
-    .sort((a, b) => b.frac - a.frac);
-
-  let cursor = 0;
-  while (assigned < MAJORITY_THRESHOLD) {
-    floors[remainders[cursor % remainders.length].i] += 1;
-    assigned += 1;
-    cursor += 1;
-  }
+  const split = distributeByLargestRemainder(MAJORITY_THRESHOLD, weights);
 
   const seatsByParty: SeatsByParty = {};
   parties.forEach((id, i) => {
-    seatsByParty[id] = floors[i];
+    seatsByParty[id] = split[i];
   });
 
   return { seatsByParty, otherSeats: TOTAL_SEATS - MAJORITY_THRESHOLD };

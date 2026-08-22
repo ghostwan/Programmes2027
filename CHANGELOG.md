@@ -15,6 +15,18 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Le bloc « Renfort parlementaire » apporte désormais aussi des sièges
+  sous « Si scrutin proportionnel intégral » et « Si scrutin mixte à
+  l'allemande », pas seulement sous « Assemblée actuelle » : ces 5
+  groupes n'ayant pas d'étiquette électorale propre en 2024 (la plupart
+  étaient rattachés à « Ensemble » ou au Rassemblement national), leurs
+  sièges sous ces deux modes sont estimés au prorata de leur poids
+  actuel au sein du bloc « autres » déjà calculé par le comparateur —
+  une estimation clairement présentée comme telle, pas un vrai résultat
+  électoral 2024 par groupe.
+
 ## [2.10.0] - 2026-08-22
 
 ### Ajouté

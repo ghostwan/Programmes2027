@@ -15,6 +15,7 @@ import {
   SeatsByParty,
   TOTAL_SEATS,
   computeSeats,
+  computeSupportGroupSeats,
   computeUtopianSeats,
   findCoalitions,
   findVirtualMajority,
@@ -118,6 +119,7 @@ export function CoalitionExplorer({
     () => findVirtualMajority(coalitions, system, partyCompatibility),
     [coalitions, system, partyCompatibility]
   );
+  const supportGroupSeats = useMemo(() => computeSupportGroupSeats(system), [system]);
 
   if (propositions.length === 0) return null;
 
@@ -355,11 +357,13 @@ export function CoalitionExplorer({
             pourcentage de programme réalisé, seulement le nombre de
             sièges de votre coalition — utile pour viser une majorité
             plus large que votre seul programme.
+            {system !== "actuelle" && system !== "utopique" &&
+              " Ces 5 groupes n'avaient pas d'étiquette électorale propre en 2024 (la plupart étaient rattachés à « Ensemble » ou au RN) : leurs sièges sous ce mode sont donc estimés au prorata de leur poids actuel, pas un vrai résultat 2024."}
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             {OTHER_ASSEMBLY_GROUPS.map((group) => {
               const isIn = selectedSupportGroups.includes(group.id);
-              const seatsHere = system === "actuelle" ? group.seats : null;
+              const seatsHere = supportGroupSeats[group.id];
               return (
                 <label
                   key={group.id}
@@ -377,18 +381,16 @@ export function CoalitionExplorer({
                     onChange={() => toggleSupportGroup(group.id)}
                     className="h-3.5 w-3.5"
                   />
-                  {group.shortName}
-                  {seatsHere !== null ? ` (${seatsHere})` : ""}
+                  {group.shortName} ({seatsHere})
                 </label>
               );
             })}
           </div>
-          {selectedSupportGroups.length > 0 && system !== "actuelle" && (
+          {selectedSupportGroups.length > 0 && system === "utopique" && (
             <p className="mt-2 text-xs text-amber-600">
-              On ne connaît pas le poids électoral 2024 de ces groupes
-              pris isolément (la plupart n&apos;avaient pas d&apos;étiquette
-              propre à l&apos;époque) : ils n&apos;apportent de sièges que
-              sous « Assemblée actuelle ».
+              Le renfort parlementaire n&apos;est pas disponible en mode
+              utopique (on ne connaît que votre compatibilité avec les 8
+              partis suivis, pas avec ces groupes).
             </p>
           )}
         </div>
@@ -414,8 +416,12 @@ export function CoalitionExplorer({
 
           const extraGroups = selectedSupportGroups.map((id) => {
             const group = OTHER_ASSEMBLY_GROUPS.find((g) => g.id === id)!;
-            const count = system === "actuelle" ? group.seats : 0;
-            return { id: group.id, shortName: group.shortName, color: group.color, count };
+            return {
+              id: group.id,
+              shortName: group.shortName,
+              color: group.color,
+              count: supportGroupSeats[id],
+            };
           });
           const supportSeats = extraGroups.reduce((sum, g) => sum + g.count, 0);
 
