@@ -12,5 +12,22 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"ratelimits": [
+		{
+			// Guards POST /api/turnstile-verify (custom-worker.ts) against a
+			// single client hammering it in a loop: each call makes an
+			// outbound request to Cloudflare's Turnstile siteverify API, so
+			// without this limit a scripted client could burn through both
+			// the siteverify quota and the Workers request quota with zero
+			// cost to itself (that endpoint is intentionally public/ungated
+			// so legitimate visitors can complete the challenge).
+			"name": "TURNSTILE_VERIFY_LIMITER",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 20,
+				"period": 60
+			}
+		}
+	]
 }

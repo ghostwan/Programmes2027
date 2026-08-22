@@ -75,8 +75,30 @@ function isVerifiedBot(request: Request): boolean {
 }
 
 export default {
-  async fetch(request: Request, env: unknown, ctx: ExecutionContext) {
+  async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext) {
     const url = new URL(request.url);
+
+    // The Turnstile verification endpoint is deliberately public (see
+    // PUBLIC_PATH_PREFIXES below) so legitimate visitors can complete the
+    // challenge before getting a gate cookie — but that also means it's
+    // reachable with zero prior authentication. Each call makes an
+    // outbound request to Cloudflare's siteverify API, so a client
+    // hammering this endpoint in a loop could burn through both that
+    // quota and the Workers request quota. Rate-limit it per IP before
+    // even reaching Next.js.
+    if (url.pathname === "/api/turnstile-verify" && request.method === "POST") {
+      const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
+      const { success } = await env.TURNSTILE_VERIFY_LIMITER.limit({ key: ip });
+      if (!success) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "Trop de tentatives, réessayez dans une minute.",
+          }),
+          { status: 429, headers: { "Content-Type": "application/json" } }
+        );
+      }
+    }
 
     if (
       !isPublicPath(url.pathname) &&

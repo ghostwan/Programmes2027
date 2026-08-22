@@ -15,6 +15,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Sécurité
+
+- Ajout d'une limite de fréquence (20 requêtes par minute et par IP) sur
+  le point d'entrée de vérification anti-robot (Turnstile), qui était
+  jusqu'ici public et sans aucune protection : un client pouvait
+  auparavant l'appeler en boucle sans limite, ce qui aurait pu épuiser
+  le quota de vérification Cloudflare ainsi que le quota de requêtes du
+  Worker.
+
 ### Corrigé
 
 - L'ordre des propositions du jeu est désormais équilibré par parti :
