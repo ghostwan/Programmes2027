@@ -250,10 +250,13 @@ export function CoalitionExplorer({
           l&apos;Assemblée : sa composition réelle et actuelle, la même
           élection de 2024 mais réallouée selon un autre mode de
           scrutin (proportionnelle intégrale ou mixte à l&apos;allemande),
-          ou une Assemblée fictive taillée sur mesure. La majorité
-          absolue est fixée à {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
+          ou une Assemblée fictive taillée sur mesure. Sous ces trois
+          premiers modes, chaque parti compte pour la totalité de ses
+          sièges réels, qu&apos;il soutienne ou non votre programme.
           {partyCompatibility &&
-            " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
+            " Seule l'Assemblée utopique tient compte de votre pourcentage de compatibilité avec chaque parti."}{" "}
+          La majorité absolue est fixée à {MAJORITY_THRESHOLD} sièges sur{" "}
+          {TOTAL_SEATS}.
         </p>
         <p className="mt-2 rounded-lg bg-slate-100 p-3 text-xs text-slate-600">
           💡 Le mode de scrutin reste très pertinent : la répartition des
@@ -396,27 +399,18 @@ export function CoalitionExplorer({
               ? computeUtopianSeats(selectedParties, partyCompatibility)
               : computeSeats(system);
 
-          // Weight each selected party's seats by compatibility (if
-          // available) so the headline seat count and the hemicycle's
-          // colored dots always match exactly — the "lost" seats from
-          // weighting go back into the grey "reste" bucket. Utopian
-          // mode is already compatibility-weighted at the source
-          // (`computeUtopianSeats`), so it's left untouched here.
-          const seatsByParty: SeatsByParty = { ...rawSeatsByParty };
-          let otherSeats = rawOtherSeats;
-          let trackedSeats = 0;
-          for (const id of selectedParties) {
-            const raw = rawSeatsByParty[id] ?? 0;
-            if (partyCompatibility && system !== "utopique") {
-              const weight = (partyCompatibility[id] ?? 100) / 100;
-              const weighted = Math.round(raw * weight);
-              seatsByParty[id] = weighted;
-              otherSeats += raw - weighted;
-              trackedSeats += weighted;
-            } else {
-              trackedSeats += raw;
-            }
-          }
+          // Compatibility only ever changes anything in "utopique" mode
+          // (already applied above, at the source, by
+          // `computeUtopianSeats`): under "actuelle"/"proportionnelle"/
+          // "mixte" this shows the real, full seat count of each party —
+          // your compatibility with a party doesn't change how many real
+          // deputies it actually has.
+          const seatsByParty: SeatsByParty = rawSeatsByParty;
+          const otherSeats = rawOtherSeats;
+          const trackedSeats = selectedParties.reduce(
+            (sum, id) => sum + (rawSeatsByParty[id] ?? 0),
+            0
+          );
 
           const extraGroups = selectedSupportGroups.map((id) => {
             const group = OTHER_ASSEMBLY_GROUPS.find((g) => g.id === id)!;
@@ -426,9 +420,6 @@ export function CoalitionExplorer({
           const supportSeats = extraGroups.reduce((sum, g) => sum + g.count, 0);
 
           const seats = trackedSeats + supportSeats;
-          const rawSeats =
-            selectedParties.reduce((sum, id) => sum + (rawSeatsByParty[id] ?? 0), 0) +
-            supportSeats;
           const hasMajority = seats >= MAJORITY_THRESHOLD;
           return (
             <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
@@ -446,12 +437,6 @@ export function CoalitionExplorer({
               <p className="mt-2 text-center text-2xl font-black text-slate-900">
                 {seats} <span className="text-base font-medium text-slate-500">sièges</span>
               </p>
-              {seats !== rawSeats && (
-                <p className="text-center text-xs text-slate-400">
-                  ({rawSeats} sièges réels, pondérés à {seats} selon votre
-                  compatibilité avec chaque parti)
-                </p>
-              )}
               {system === "utopique" && (
                 <p className="text-center text-xs text-slate-400">
                   Assemblée fictive : les {TOTAL_SEATS - MAJORITY_THRESHOLD}{" "}

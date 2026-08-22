@@ -315,16 +315,13 @@ export function computeUtopianSeats(
 }
 
 /**
- * Total seats a coalition would hold under a given electoral system. If
- * `compatibility` is provided, each party's seats are weighted by its
- * compatibility percentage (see `PartyCompatibility`) instead of counted
- * in full — the result is rounded to the nearest seat.
- *
- * Under the "utopian" system, this is trivially `MAJORITY_THRESHOLD` by
- * construction (see `computeUtopianSeats`) regardless of `compatibility`
- * — the total is always exactly a majority, only the split *between*
- * the coalition's parties (handled separately by `computeUtopianSeats`)
- * reflects compatibility in that mode.
+ * Total seats a coalition would hold under a given electoral system.
+ * Compatibility weighting (`compatibility`) only ever applies under the
+ * "utopian" system (handled entirely by `computeUtopianSeats`, which
+ * `coalitionSeats` just totals up below): under every other system, a
+ * party's seats are counted in full regardless of your compatibility
+ * with it — your compatibility with a party doesn't change how many
+ * real deputies it actually has.
  */
 export function coalitionSeats(
   parties: PartyId[],
@@ -332,15 +329,15 @@ export function coalitionSeats(
   compatibility?: PartyCompatibility
 ): number {
   if (system === "utopique") {
-    return parties.length === 0 ? 0 : MAJORITY_THRESHOLD;
+    return parties.length === 0
+      ? 0
+      : Object.values(computeUtopianSeats(parties, compatibility).seatsByParty).reduce(
+          (sum, s) => sum + (s ?? 0),
+          0
+        );
   }
   const { seatsByParty } = computeSeats(system);
-  const total = parties.reduce((sum, id) => {
-    const raw = seatsByParty[id] ?? 0;
-    const weight = compatibility ? (compatibility[id] ?? 100) / 100 : 1;
-    return sum + raw * weight;
-  }, 0);
-  return Math.round(total);
+  return parties.reduce((sum, id) => sum + (seatsByParty[id] ?? 0), 0);
 }
 
 export interface MajorityCoalitionResult {

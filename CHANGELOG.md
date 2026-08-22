@@ -42,6 +42,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Corrigé
 
+- Sous « Assemblée actuelle », « Si scrutin proportionnel intégral » et
+  « Si scrutin mixte à l'allemande », les sièges de chaque parti étaient
+  à tort pondérés par votre pourcentage de compatibilité avec lui (ex.
+  un parti dont vous ne partagez que la moitié du programme ne comptait
+  que pour la moitié de ses sièges réels) — ce qui donnait un total très
+  éloigné des vrais chiffres de ces groupes à l'Assemblée. Ces trois
+  modes comptent maintenant chaque parti pour la totalité de ses sièges
+  réels, sans aucune pondération ; seule l'« Assemblée utopique » (dont
+  c'est justement le principe) continue de pondérer par compatibilité.
 - La liste de partis de « Votre coalition » n'affichait que les partis
   soutenant au moins une proposition de votre programme : cocher tous
   les partis visibles ne suffisait donc jamais à atteindre les 577
