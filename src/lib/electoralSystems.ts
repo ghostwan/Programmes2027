@@ -2,7 +2,6 @@ import { PartyId, Proposition } from "@/lib/types";
 import {
   ELECTION_2024_BY_PARTY,
   MAJORITY_THRESHOLD,
-  OTHER_SEATS_2024,
   OTHER_VOTE_SHARE_2024,
   TOTAL_SEATS,
 } from "@/lib/data/electionResults2024";
@@ -13,10 +12,9 @@ import {
 } from "@/lib/data/currentAssembly";
 
 export type ElectoralSystemId =
-  | "majoritaire"
+  | "actuelle"
   | "proportionnelle"
   | "mixte"
-  | "actuelle"
   | "utopique";
 
 export interface ElectoralSystem {
@@ -27,27 +25,21 @@ export interface ElectoralSystem {
 
 export const ELECTORAL_SYSTEMS: ElectoralSystem[] = [
   {
-    id: "majoritaire",
-    name: "Scrutin majoritaire actuel",
-    shortDescription:
-      "Résultat réel des législatives 2024 : scrutin uninominal à deux tours, par circonscription.",
-  },
-  {
-    id: "proportionnelle",
-    name: "Proportionnelle intégrale",
-    shortDescription:
-      "Répartition nationale stricte des sièges au prorata des voix du 1er tour 2024 (méthode D'Hondt), seuil de 5% sans exception.",
-  },
-  {
-    id: "mixte",
-    name: "Mixte à l'allemande",
-    shortDescription:
-      "Moitié des sièges par circonscription, moitié en compensation proportionnelle nationale (méthode D'Hondt), seuil de 5% des voix OU 3 mandats directs (règle réellement utilisée en Allemagne).",
-  },
-  {
     id: "actuelle",
     name: "Assemblée actuelle",
     shortDescription: `Composition réelle et actuelle de l'Assemblée nationale (groupes parlementaires au ${CURRENT_ASSEMBLY_DATE}), qui a évolué depuis les élections de 2024 (scissions, nouveaux groupes...).`,
+  },
+  {
+    id: "proportionnelle",
+    name: "Si scrutin proportionnel intégral",
+    shortDescription:
+      "Mêmes résultats électoraux (1er tour des législatives 2024), mais sièges réattribués en proportionnelle intégrale nationale (méthode D'Hondt), seuil de 5% sans exception, au lieu du scrutin uninominal réellement utilisé.",
+  },
+  {
+    id: "mixte",
+    name: "Si scrutin mixte à l'allemande",
+    shortDescription:
+      "Mêmes résultats électoraux (2024), mais moitié des sièges par circonscription et moitié en compensation proportionnelle nationale (méthode D'Hondt), seuil de 5% des voix OU 3 mandats directs (règle réellement utilisée en Allemagne).",
   },
   {
     id: "utopique",
@@ -96,15 +88,6 @@ function allocateDHondt(
 
 function partyIds(): PartyId[] {
   return Object.keys(ELECTION_2024_BY_PARTY) as PartyId[];
-}
-
-/** The real, historical 2024 seat distribution — used as-is. */
-export function computeMajoritaireSeats(): SeatSimulationResult {
-  const seatsByParty: SeatsByParty = {};
-  for (const id of partyIds()) {
-    seatsByParty[id] = ELECTION_2024_BY_PARTY[id].seats2024;
-  }
-  return { seatsByParty, otherSeats: OTHER_SEATS_2024 };
 }
 
 /** Strict 5% national threshold, no exceptions. */
@@ -162,10 +145,13 @@ export function computeMixteSeats(): SeatSimulationResult {
 }
 
 /**
- * The current, present-day balance of power in the Assemblée nationale
- * — distinct from `computeMajoritaireSeats`, which reflects the 2024
- * election results as they stood on election night. See
- * `src/lib/data/currentAssembly.ts` for sourcing and the snapshot date.
+ * The current, present-day balance of power in the Assemblée nationale.
+ * See `src/lib/data/currentAssembly.ts` for sourcing and the snapshot
+ * date — this is the "real" baseline for the coalition simulator; the
+ * "proportionnelle"/"mixte" systems below simulate what the SAME 2024
+ * election result would have produced under a different voting system,
+ * not what today's Assembly would look like reallocated (we have no
+ * newer national vote-share data to do that with).
  */
 export function computeActuelleSeats(): SeatSimulationResult {
   return {
@@ -176,8 +162,6 @@ export function computeActuelleSeats(): SeatSimulationResult {
 
 export function computeSeats(system: ElectoralSystemId): SeatSimulationResult {
   switch (system) {
-    case "majoritaire":
-      return computeMajoritaireSeats();
     case "proportionnelle":
       return computeProportionnelleSeats();
     case "mixte":

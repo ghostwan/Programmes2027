@@ -50,7 +50,7 @@ export function CoalitionExplorer({
   const [manualCoalitionIndex, setManualCoalitionIndex] = useState<number | null>(
     null
   );
-  const [system, setSystem] = useState<ElectoralSystemId>("majoritaire");
+  const [system, setSystem] = useState<ElectoralSystemId>("actuelle");
   // Parties temporarily excluded from the currently selected coalition,
   // to preview which propositions could no longer be realized without
   // them. Reset whenever the selected coalition changes (picking a
@@ -159,11 +159,12 @@ export function CoalitionExplorer({
           </h2>
           <p className="mt-1 text-xs text-slate-500">
             Quatre façons de traduire ce programme en sièges à
-            l&apos;Assemblée : les résultats réels des législatives 2024,
-            la composition réelle et actuelle de l&apos;Assemblée, ou une
-            Assemblée fictive taillée sur mesure pour votre coalition. La
-            majorité absolue est fixée à {MAJORITY_THRESHOLD} sièges sur{" "}
-            {TOTAL_SEATS}.
+            l&apos;Assemblée : sa composition réelle et actuelle, la même
+            élection de 2024 mais réallouée selon un autre mode de
+            scrutin (proportionnelle intégrale ou mixte à l&apos;allemande),
+            ou une Assemblée fictive taillée sur mesure pour votre
+            coalition. La majorité absolue est fixée à{" "}
+            {MAJORITY_THRESHOLD} sièges sur {TOTAL_SEATS}.
             {partyCompatibility &&
               " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
           </p>
@@ -171,10 +172,10 @@ export function CoalitionExplorer({
             💡 Le mode de scrutin reste très pertinent : la répartition des
             sièges par parti change fortement d&apos;un système à
             l&apos;autre (un parti peut être largement sous-représenté par
-            le scrutin majoritaire actuel et bien mieux loti en
-            proportionnelle, ou inversement). La coalition minimale capable
-            d&apos;obtenir une majorité peut donc différer selon le mode
-            choisi — c&apos;est justement ce que la « coalition majoritaire
+            le scrutin actuel et bien mieux loti en proportionnelle, ou
+            inversement). La coalition minimale capable d&apos;obtenir une
+            majorité peut donc différer selon le mode choisi —
+            c&apos;est justement ce que la « coalition majoritaire
             virtuelle » ci-dessous recalcule pour vous à chaque changement
             de mode.
           </p>

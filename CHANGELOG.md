@@ -22,6 +22,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Corrigé
 
+- Les 5 modes de scrutin de la simulation de coalitions faisaient
+  doublon et prêtaient à confusion (« Scrutin majoritaire actuel » basé
+  sur 2024 vs « Assemblée actuelle » basée sur aujourd'hui). Il n'y en a
+  plus que 4, avec des noms plus clairs : **Assemblée actuelle**
+  (composition réelle d'aujourd'hui, sélectionnée par défaut), **Si
+  scrutin proportionnel intégral** et **Si scrutin mixte à l'allemande**
+  (la même élection de 2024, mais avec les sièges réattribués selon ce
+  mode de scrutin), et **Assemblée utopique**.
 - En mode « Assemblée utopique » (page résultats), les sièges de la
   coalition sélectionnée étaient répartis selon le poids électoral réel
   de chaque parti (élection 2024), ce qui pouvait donner le plus de
