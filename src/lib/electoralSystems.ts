@@ -6,8 +6,18 @@ import {
   OTHER_VOTE_SHARE_2024,
   TOTAL_SEATS,
 } from "@/lib/data/electionResults2024";
+import {
+  CURRENT_ASSEMBLY_DATE,
+  CURRENT_ASSEMBLY_OTHER_SEATS,
+  CURRENT_ASSEMBLY_SEATS_BY_PARTY,
+} from "@/lib/data/currentAssembly";
 
-export type ElectoralSystemId = "majoritaire" | "proportionnelle" | "mixte";
+export type ElectoralSystemId =
+  | "majoritaire"
+  | "proportionnelle"
+  | "mixte"
+  | "actuelle"
+  | "utopique";
 
 export interface ElectoralSystem {
   id: ElectoralSystemId;
@@ -33,6 +43,17 @@ export const ELECTORAL_SYSTEMS: ElectoralSystem[] = [
     name: "Mixte à l'allemande",
     shortDescription:
       "Moitié des sièges par circonscription, moitié en compensation proportionnelle nationale (méthode D'Hondt), seuil de 5% des voix OU 3 mandats directs (règle réellement utilisée en Allemagne).",
+  },
+  {
+    id: "actuelle",
+    name: "Assemblée actuelle",
+    shortDescription: `Composition réelle et actuelle de l'Assemblée nationale (groupes parlementaires au ${CURRENT_ASSEMBLY_DATE}), qui a évolué depuis les élections de 2024 (scissions, nouveaux groupes...).`,
+  },
+  {
+    id: "utopique",
+    name: "🌈 Assemblée utopique",
+    shortDescription:
+      "Feuille blanche : on ignore la réalité électorale et on invente une Assemblée sur mesure, où la coalition sélectionnée ci-dessous obtient tout juste la majorité absolue, chaque parti au prorata de son poids électoral 2024 — le reste des sièges est affiché en gris, sans couleur de parti.",
   },
 ];
 
@@ -140,6 +161,19 @@ export function computeMixteSeats(): SeatSimulationResult {
   return { seatsByParty, otherSeats: allocated["autres"] ?? 0 };
 }
 
+/**
+ * The current, present-day balance of power in the Assemblée nationale
+ * — distinct from `computeMajoritaireSeats`, which reflects the 2024
+ * election results as they stood on election night. See
+ * `src/lib/data/currentAssembly.ts` for sourcing and the snapshot date.
+ */
+export function computeActuelleSeats(): SeatSimulationResult {
+  return {
+    seatsByParty: { ...CURRENT_ASSEMBLY_SEATS_BY_PARTY },
+    otherSeats: CURRENT_ASSEMBLY_OTHER_SEATS,
+  };
+}
+
 export function computeSeats(system: ElectoralSystemId): SeatSimulationResult {
   switch (system) {
     case "majoritaire":
@@ -148,6 +182,14 @@ export function computeSeats(system: ElectoralSystemId): SeatSimulationResult {
       return computeProportionnelleSeats();
     case "mixte":
       return computeMixteSeats();
+    case "actuelle":
+      return computeActuelleSeats();
+    case "utopique":
+      // The "utopian" system has no fixed seat map: it's entirely built
+      // around whichever coalition is selected. Callers that need a
+      // hemicycle for this mode must use `computeUtopianSeats(parties)`
+      // directly instead of this generic dispatcher.
+      return { seatsByParty: {}, otherSeats: TOTAL_SEATS };
   }
 }
 
@@ -233,16 +275,73 @@ export function findCoalitions(
 export type PartyCompatibility = Partial<Record<PartyId, number>>;
 
 /**
+ * "Utopian / blank slate" mode: instead of reflecting any real election
+ * or the current Assembly, this builds a fictional 577-seat Assembly
+ * from scratch where the given coalition holds exactly enough seats to
+ * reach the absolute majority (`MAJORITY_THRESHOLD`) — no more, no less
+ * — and every other seat is left as an unattributed grey "reste" bloc
+ * (deliberately not tied to any real party, per the "blank slate" idea).
+ *
+ * Seats within the coalition are split proportionally to each party's
+ * real 2024 national vote share (not its real seat count, which can be
+ * distorted by the majoritarian system) — so a party with a small but
+ * real electorate (e.g. Reconquête) still gets a small, non-zero share
+ * instead of being wiped out the way it was by the real 2024 result.
+ * Uses the largest-remainder method so the total always lands exactly
+ * on `MAJORITY_THRESHOLD`.
+ */
+export function computeUtopianSeats(parties: PartyId[]): SeatSimulationResult {
+  if (parties.length === 0) {
+    return { seatsByParty: {}, otherSeats: TOTAL_SEATS };
+  }
+
+  const weights = parties.map((id) =>
+    Math.max(ELECTION_2024_BY_PARTY[id].voteShare2024, 0.1)
+  );
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+
+  const rawShares = weights.map((w) => (w / totalWeight) * MAJORITY_THRESHOLD);
+  const floors = rawShares.map(Math.floor);
+  let assigned = floors.reduce((sum, f) => sum + f, 0);
+
+  const remainders = rawShares
+    .map((r, i) => ({ i, frac: r - floors[i] }))
+    .sort((a, b) => b.frac - a.frac);
+
+  let cursor = 0;
+  while (assigned < MAJORITY_THRESHOLD) {
+    floors[remainders[cursor % remainders.length].i] += 1;
+    assigned += 1;
+    cursor += 1;
+  }
+
+  const seatsByParty: SeatsByParty = {};
+  parties.forEach((id, i) => {
+    seatsByParty[id] = floors[i];
+  });
+
+  return { seatsByParty, otherSeats: TOTAL_SEATS - MAJORITY_THRESHOLD };
+}
+
+/**
  * Total seats a coalition would hold under a given electoral system. If
  * `compatibility` is provided, each party's seats are weighted by its
  * compatibility percentage (see `PartyCompatibility`) instead of counted
  * in full — the result is rounded to the nearest seat.
+ *
+ * Under the "utopian" system, this is trivially `MAJORITY_THRESHOLD` by
+ * construction (see `computeUtopianSeats`) — compatibility weighting
+ * doesn't apply here, since the whole point of that mode is that the
+ * coalition you pick gets exactly a majority.
  */
 export function coalitionSeats(
   parties: PartyId[],
   system: ElectoralSystemId,
   compatibility?: PartyCompatibility
 ): number {
+  if (system === "utopique") {
+    return parties.length === 0 ? 0 : MAJORITY_THRESHOLD;
+  }
   const { seatsByParty } = computeSeats(system);
   const total = parties.reduce((sum, id) => {
     const raw = seatsByParty[id] ?? 0;

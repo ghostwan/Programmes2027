@@ -10,6 +10,7 @@ import {
   PartyCompatibility,
   TOTAL_SEATS,
   computeSeats,
+  computeUtopianSeats,
   findCoalitions,
   coalitionSeats,
   findVirtualMajority,
@@ -157,8 +158,10 @@ export function CoalitionExplorer({
             Sièges nécessaires selon le mode de scrutin
           </h2>
           <p className="mt-1 text-xs text-slate-500">
-            Simulation basée sur les résultats réels des législatives 2024
-            (référence historique, pas une prédiction pour 2027). La
+            Quatre façons de traduire ce programme en sièges à
+            l&apos;Assemblée : les résultats réels des législatives 2024,
+            la composition réelle et actuelle de l&apos;Assemblée, ou une
+            Assemblée fictive taillée sur mesure pour votre coalition. La
             majorité absolue est fixée à {MAJORITY_THRESHOLD} sièges sur{" "}
             {TOTAL_SEATS}.
             {partyCompatibility &&
@@ -196,50 +199,69 @@ export function CoalitionExplorer({
           </p>
 
           {/* Virtual majority coalition for the current system */}
-          <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
-            <h3 className="text-sm font-semibold text-slate-900">
-              🏆 Coalition majoritaire virtuelle pour ce mode de scrutin
-            </h3>
-            {virtualMajority ? (
-              <>
-                <p className="mt-1 text-xs text-slate-500">
-                  {virtualMajority.coalition.isFullCoverage
-                    ? "Réalise l'intégralité du programme"
-                    : `Réalise ${virtualMajority.coalition.coveragePercent}% du programme (${virtualMajority.coalition.coveredCount}/${virtualMajority.coalition.totalCount})`}
-                  {" "}et obtient {virtualMajority.seats} sièges, la majorité
-                  absolue.
-                </p>
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  {virtualMajority.coalition.parties.map((pid) => (
-                    <span
-                      key={pid}
-                      className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
-                      style={{ backgroundColor: partyById[pid as PartyId].color }}
-                    >
-                      {partyById[pid as PartyId].shortName}
-                    </span>
-                  ))}
-                  {manualCoalitionIndex !== null && (
-                    <button
-                      onClick={() => setManualCoalitionIndex(null)}
-                      className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
-                    >
-                      Utiliser cette coalition ↓
-                    </button>
-                  )}
-                </div>
-              </>
-            ) : (
-              <p className="mt-1 text-xs text-rose-600">
-                Aucune coalition des partis soutenant ce programme
-                n&apos;atteint la majorité absolue sous ce mode de scrutin,
-                même en réunissant tous les partis pertinents.
+          {system === "utopique" ? (
+            <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
+              <h3 className="text-sm font-semibold text-slate-900">
+                🌈 Mode utopique : la majorité est garantie par construction
+              </h3>
+              <p className="mt-1 text-xs text-slate-500">
+                Dans ce mode, on ne cherche pas la plus petite coalition
+                capable d&apos;obtenir la majorité : elle l&apos;obtient
+                toujours, puisqu&apos;on invente une Assemblée sur mesure
+                rien que pour ça. La coalition affichée ci-dessous est
+                celle sélectionnée dans la liste plus haut — décochez un de
+                ses partis pour voir ce que ça change.
               </p>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="mt-4 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-4">
+              <h3 className="text-sm font-semibold text-slate-900">
+                🏆 Coalition majoritaire virtuelle pour ce mode de scrutin
+              </h3>
+              {virtualMajority ? (
+                <>
+                  <p className="mt-1 text-xs text-slate-500">
+                    {virtualMajority.coalition.isFullCoverage
+                      ? "Réalise l'intégralité du programme"
+                      : `Réalise ${virtualMajority.coalition.coveragePercent}% du programme (${virtualMajority.coalition.coveredCount}/${virtualMajority.coalition.totalCount})`}
+                    {" "}et obtient {virtualMajority.seats} sièges, la majorité
+                    absolue.
+                  </p>
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    {virtualMajority.coalition.parties.map((pid) => (
+                      <span
+                        key={pid}
+                        className="rounded-full px-2.5 py-1 text-xs font-medium text-white"
+                        style={{ backgroundColor: partyById[pid as PartyId].color }}
+                      >
+                        {partyById[pid as PartyId].shortName}
+                      </span>
+                    ))}
+                    {manualCoalitionIndex !== null && (
+                      <button
+                        onClick={() => setManualCoalitionIndex(null)}
+                        className="ml-2 rounded-full border border-slate-900 px-3 py-1 text-xs font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
+                      >
+                        Utiliser cette coalition ↓
+                      </button>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <p className="mt-1 text-xs text-rose-600">
+                  Aucune coalition des partis soutenant ce programme
+                  n&apos;atteint la majorité absolue sous ce mode de scrutin,
+                  même en réunissant tous les partis pertinents.
+                </p>
+              )}
+            </div>
+          )}
 
           {(() => {
-            const { seatsByParty, otherSeats } = computeSeats(system);
+            const { seatsByParty, otherSeats } =
+              system === "utopique"
+                ? computeUtopianSeats(remainingParties)
+                : computeSeats(system);
             const seats = coalitionSeats(remainingParties, system, partyCompatibility);
             const rawSeats = coalitionSeats(remainingParties, system);
             const hasMajority = seats >= MAJORITY_THRESHOLD;
@@ -286,6 +308,8 @@ export function CoalitionExplorer({
                     Décochez un parti pour simuler son retrait de la
                     coalition sélectionnée et voir ce qui ne pourrait plus
                     être réalisé sans lui.
+                    {system === "utopique" &&
+                      " En mode utopique, le reste des partis obtient de toute façon la majorité (l'Assemblée est reconstruite sur mesure) : c'est la liste des propositions perdues ci-dessous qui montre le vrai impact du retrait."}
                   </p>
                 )}
 
@@ -302,6 +326,13 @@ export function CoalitionExplorer({
                   <p className="text-center text-xs text-slate-400">
                     ({rawSeats} sièges réels, pondérés à {seats} selon votre
                     compatibilité avec chaque parti)
+                  </p>
+                )}
+                {system === "utopique" && (
+                  <p className="text-center text-xs text-slate-400">
+                    Assemblée fictive : les {TOTAL_SEATS - MAJORITY_THRESHOLD}{" "}
+                    autres sièges (en gris) ne sont attribués à aucun parti
+                    réel.
                   </p>
                 )}
                 <p

@@ -15,6 +15,20 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Deux nouveaux modes de scrutin dans la simulation de coalitions :
+  - **Assemblée actuelle** : la composition réelle et à jour de
+    l'Assemblée nationale (groupes parlementaires), qui a évolué depuis
+    les élections de 2024 (scissions, nouveaux groupes...), au lieu de
+    se baser uniquement sur les résultats de l'élection elle-même.
+  - **Assemblée utopique** : un mode « feuille blanche » qui ignore
+    entièrement la réalité électorale et reconstruit une Assemblée
+    fictive où la coalition que vous avez sélectionnée obtient tout
+    juste la majorité absolue (chaque parti au prorata de son poids
+    électoral 2024), le reste des sièges étant affiché en gris, sans
+    couleur de parti.
+
 ## [2.9.0] - 2026-08-22
 
 ### Ajouté

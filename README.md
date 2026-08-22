@@ -90,9 +90,14 @@ partis pour construire votre propre programme, puis découvrez :
   coalition réel) ;
 - combien de **sièges à l'Assemblée nationale** cette coalition
   obtiendrait selon le mode de scrutin — scrutin majoritaire actuel
-  (résultats réels des législatives 2024), proportionnelle intégrale, ou
-  scrutin mixte à l'allemande — visualisés dans un hémicycle, comparés
-  au seuil de majorité absolue (289 sièges sur 577) ;
+  (résultats réels des législatives 2024), proportionnelle intégrale,
+  scrutin mixte à l'allemande, **composition actuelle et à jour de
+  l'Assemblée** (qui a évolué depuis 2024 : scissions, nouveaux
+  groupes...), ou **Assemblée utopique** (feuille blanche qui ignore la
+  réalité électorale et reconstruit une Assemblée fictive où la
+  coalition sélectionnée obtient tout juste la majorité absolue, le
+  reste des sièges étant affiché en gris) — visualisés dans un
+  hémicycle, comparés au seuil de majorité absolue (289 sièges sur 577) ;
 - la **coalition majoritaire virtuelle** : la plus petite coalition
   capable à la fois de réaliser le programme et d'atteindre la majorité
   absolue *sous le mode de scrutin choisi* — recalculée et affichée par
