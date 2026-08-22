@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.8.1] - 2026-08-22
+
 ### Modifié
 
 - Le score de compatibilité affiché sur la page des résultats ne se base
