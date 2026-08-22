@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.11.0] - 2026-08-22
+
 ### Ajouté
 
 - Le bloc « Renfort parlementaire » apporte désormais aussi des sièges
