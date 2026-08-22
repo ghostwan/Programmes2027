@@ -15,6 +15,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Corrigé
+
+- Sur la page des résultats, quand vous n'avez répondu « pour » à aucune
+  proposition d'une thématique (ou du programme entier), on n'affiche
+  plus de parti « le plus proche » à 0% : ça n'a pas de sens de désigner
+  un ou plusieurs partis comme les plus proches quand vous n'êtes en fait
+  d'accord avec aucune de leurs propositions.
+
 ### Ajouté
 
 - Deux nouveaux modes de scrutin dans la simulation de coalitions :

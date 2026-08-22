@@ -81,12 +81,17 @@ export function ResultsView() {
     (s) => s.answeredRelevant > 0
   );
   const themeStats = computeThemeStats(answers, propositions, matchingOptions);
-  const topPercent = partyScores[0]?.matchPercent ?? null;
+  const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
+  // If the user answered "contre" to everything (no "pour" at all), every
+  // party's match percent is trivially 0% — not a meaningful "closest
+  // party" tie, so we show nothing instead of an uninformative "8 partis
+  // ex æquo (0%)".
+  const topPercent =
+    pourPropositions.length === 0 ? null : partyScores[0]?.matchPercent ?? null;
   const topParties =
     topPercent === null
       ? []
       : partyScores.filter((s) => s.matchPercent === topPercent);
-  const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
   const partyCompatibility = Object.fromEntries(
     partyScores.map((s) => [s.partyId, s.matchPercent])
   );

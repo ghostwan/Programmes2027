@@ -178,7 +178,12 @@ export function computeThemeStats(
     const partyScores = computePartyScores(answers, themeProps, options).filter(
       (s) => s.answeredRelevant > 0
     );
-    const topPercent = partyScores[0]?.matchPercent ?? null;
+    // If the user answered "contre" to everything in this theme (no
+    // "pour" at all), every party's match percent is trivially 0% —
+    // that's not a meaningful "closest party" tie, it just means nobody
+    // was picked, so we show nothing instead of an uninformative
+    // "ex æquo: <all 8 parties> (0%)".
+    const topPercent = pourCount === 0 ? null : partyScores[0]?.matchPercent ?? null;
     const topParties =
       topPercent === null
         ? []
