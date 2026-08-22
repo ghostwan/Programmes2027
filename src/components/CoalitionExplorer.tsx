@@ -7,6 +7,7 @@ import {
   ELECTORAL_SYSTEMS,
   ElectoralSystemId,
   MAJORITY_THRESHOLD,
+  PartyCompatibility,
   TOTAL_SEATS,
   computeSeats,
   findCoalitions,
@@ -24,8 +25,20 @@ import { Hemicycle } from "@/components/Hemicycle";
  *
  * Shared between the /marche page and the quiz results page so both
  * benefit from the same coalition/seat logic.
+ *
+ * `partyCompatibility` (optional, only available on the quiz results
+ * page where we actually know how much of each party's program you
+ * agree with) weights each party's seats by that percentage instead of
+ * counting its full delegation: a party you're only 40% compatible with
+ * only brings 40% of its real seats to the coalition's total.
  */
-export function CoalitionExplorer({ propositions }: { propositions: Proposition[] }) {
+export function CoalitionExplorer({
+  propositions,
+  partyCompatibility,
+}: {
+  propositions: Proposition[];
+  partyCompatibility?: PartyCompatibility;
+}) {
   // `null` means "no manual pick yet" — in that case the hemicycle
   // follows the virtual majority coalition automatically, recomputed for
   // whichever electoral system is selected. Once the user manually
@@ -37,11 +50,17 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
     null
   );
   const [system, setSystem] = useState<ElectoralSystemId>("majoritaire");
+  // Parties temporarily excluded from the currently selected coalition,
+  // to preview which propositions could no longer be realized without
+  // them. Reset whenever the selected coalition changes (picking a
+  // different coalition, or the virtual majority changing) so exclusions
+  // never silently linger on an unrelated coalition.
+  const [excludedParties, setExcludedParties] = useState<PartyId[]>([]);
 
   const coalitions = useMemo(() => findCoalitions(propositions), [propositions]);
   const virtualMajority = useMemo(
-    () => findVirtualMajority(coalitions, system),
-    [coalitions, system]
+    () => findVirtualMajority(coalitions, system, partyCompatibility),
+    [coalitions, system, partyCompatibility]
   );
   const virtualMajorityIndex = virtualMajority
     ? coalitions.indexOf(virtualMajority.coalition)
@@ -50,7 +69,30 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
     manualCoalitionIndex ?? (virtualMajorityIndex >= 0 ? virtualMajorityIndex : 0);
   const selectedCoalition = coalitions[selectedCoalitionIndex] ?? coalitions[0];
 
+  // Reset the exclusion preview whenever the selected coalition changes
+  // (a different coalition picked, or the virtual majority changing) so
+  // exclusions never silently linger on an unrelated coalition. This
+  // adjusts state during rendering rather than in an effect, as
+  // recommended for "resetting state when a prop/derived value changes"
+  // (see https://react.dev/learn/you-might-not-need-an-effect).
+  const [prevSelectedCoalitionIndex, setPrevSelectedCoalitionIndex] = useState(
+    selectedCoalitionIndex
+  );
+  if (selectedCoalitionIndex !== prevSelectedCoalitionIndex) {
+    setPrevSelectedCoalitionIndex(selectedCoalitionIndex);
+    setExcludedParties([]);
+  }
+
   if (propositions.length === 0) return null;
+
+  const remainingParties = selectedCoalition
+    ? selectedCoalition.parties.filter((id) => !excludedParties.includes(id))
+    : [];
+  const uncoveredPropositions = selectedCoalition
+    ? propositions.filter(
+        (p) => !p.supportingParties.some((id) => remainingParties.includes(id))
+      )
+    : [];
 
   return (
     <>
@@ -61,7 +103,9 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
           Une coalition est considérée comme réalisant ce programme si, pour
           chaque proposition, au moins un parti de la coalition la soutient —
           chaque parti apportant ses propres mesures à l&apos;accord, comme
-          dans un accord de coalition réel.
+          dans un accord de coalition réel. Cliquez sur une coalition
+          ci-dessous pour la sélectionner, puis décochez un de ses partis
+          plus bas pour simuler son retrait.
         </p>
 
         {coalitions.length === 0 ? (
@@ -117,6 +161,8 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
             (référence historique, pas une prédiction pour 2027). La
             majorité absolue est fixée à {MAJORITY_THRESHOLD} sièges sur{" "}
             {TOTAL_SEATS}.
+            {partyCompatibility &&
+              " Les sièges de chaque parti sont pondérés par votre pourcentage de compatibilité avec lui : un parti dont vous ne soutenez qu'une partie du programme ne compte que pour cette part de ses sièges réels."}
           </p>
           <p className="mt-2 rounded-lg bg-slate-100 p-3 text-xs text-slate-600">
             💡 Le mode de scrutin reste très pertinent : la répartition des
@@ -194,7 +240,8 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
 
           {(() => {
             const { seatsByParty, otherSeats } = computeSeats(system);
-            const seats = coalitionSeats(selectedCoalition.parties, system);
+            const seats = coalitionSeats(remainingParties, system, partyCompatibility);
+            const rawSeats = coalitionSeats(remainingParties, system);
             const hasMajority = seats >= MAJORITY_THRESHOLD;
             return (
               <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
@@ -203,15 +250,60 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
                     ? "Coalition majoritaire virtuelle"
                     : "Coalition actuellement sélectionnée"}
                 </p>
+
+                <div className="mb-3 flex flex-wrap items-center justify-center gap-2">
+                  {selectedCoalition.parties.map((pid) => {
+                    const isExcluded = excludedParties.includes(pid);
+                    return (
+                      <label
+                        key={pid}
+                        className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition ${
+                          isExcluded
+                            ? "border-slate-200 bg-slate-50 text-slate-400 line-through"
+                            : "border-transparent text-white"
+                        }`}
+                        style={isExcluded ? undefined : { backgroundColor: partyById[pid as PartyId].color }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={!isExcluded}
+                          onChange={() =>
+                            setExcludedParties((prev) =>
+                              isExcluded
+                                ? prev.filter((id) => id !== pid)
+                                : [...prev, pid]
+                            )
+                          }
+                          className="h-3 w-3"
+                        />
+                        {partyById[pid as PartyId].shortName}
+                      </label>
+                    );
+                  })}
+                </div>
+                {excludedParties.length > 0 && (
+                  <p className="mb-3 text-center text-xs text-slate-500">
+                    Décochez un parti pour simuler son retrait de la
+                    coalition sélectionnée et voir ce qui ne pourrait plus
+                    être réalisé sans lui.
+                  </p>
+                )}
+
                 <Hemicycle
                   seatsByParty={seatsByParty}
                   otherSeats={otherSeats}
                   totalSeats={TOTAL_SEATS}
-                  highlightParties={selectedCoalition.parties}
+                  highlightParties={remainingParties}
                 />
                 <p className="mt-2 text-center text-2xl font-black text-slate-900">
                   {seats} <span className="text-base font-medium text-slate-500">sièges</span>
                 </p>
+                {partyCompatibility && seats !== rawSeats && (
+                  <p className="text-center text-xs text-slate-400">
+                    ({rawSeats} sièges réels, pondérés à {seats} selon votre
+                    compatibilité avec chaque parti)
+                  </p>
+                )}
                 <p
                   className={`text-center text-sm font-semibold ${
                     hasMajority ? "text-emerald-600" : "text-rose-600"
@@ -221,6 +313,33 @@ export function CoalitionExplorer({ propositions }: { propositions: Proposition[
                     ? `✓ Majorité absolue atteinte (seuil : ${MAJORITY_THRESHOLD})`
                     : `Il manquerait ${MAJORITY_THRESHOLD - seats} sièges pour la majorité absolue`}
                 </p>
+
+                {excludedParties.length > 0 && (
+                  <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3">
+                    <p className="text-sm font-semibold text-rose-700">
+                      {uncoveredPropositions.length === 0
+                        ? "Bonne nouvelle : le reste de la coalition suffit à réaliser tout le programme, même sans ce(s) parti(s)."
+                        : `Sans ${excludedParties
+                            .map((pid) => partyById[pid as PartyId].shortName)
+                            .join(", ")}, ${uncoveredPropositions.length} proposition${
+                            uncoveredPropositions.length > 1 ? "s" : ""
+                          } du programme ne pourrai${
+                            uncoveredPropositions.length > 1 ? "ent" : "t"
+                          } plus être réalisée${
+                            uncoveredPropositions.length > 1 ? "s" : ""
+                          } :`}
+                    </p>
+                    {uncoveredPropositions.length > 0 && (
+                      <ul className="mt-2 flex flex-col gap-1">
+                        {uncoveredPropositions.map((p) => (
+                          <li key={p.id} className="text-sm text-rose-900">
+                            • {p.title}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })()}

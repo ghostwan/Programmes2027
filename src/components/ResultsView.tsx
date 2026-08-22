@@ -87,6 +87,9 @@ export function ResultsView() {
       ? []
       : partyScores.filter((s) => s.matchPercent === topPercent);
   const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
+  const partyCompatibility = Object.fromEntries(
+    partyScores.map((s) => [s.partyId, s.matchPercent])
+  );
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
@@ -344,7 +347,10 @@ export function ResultsView() {
             </Link>
             .
           </p>
-          <CoalitionExplorer propositions={pourPropositions} />
+          <CoalitionExplorer
+            propositions={pourPropositions}
+            partyCompatibility={partyCompatibility}
+          />
         </section>
       )}
 

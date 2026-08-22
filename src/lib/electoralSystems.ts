@@ -222,13 +222,34 @@ export function findCoalitions(
   return results;
 }
 
-/** Total seats a coalition would hold under a given electoral system. */
+/**
+ * Per-party compatibility percentages (0-100), typically the quiz results'
+ * matching score. When passed to `coalitionSeats`/`findVirtualMajority`,
+ * each party's seats are weighted by how much of its program you actually
+ * agree with, instead of counting its full delegation as if it fully
+ * backed your program: a party you're only 40% compatible with
+ * contributes only 40% of its real seats to the coalition's total.
+ */
+export type PartyCompatibility = Partial<Record<PartyId, number>>;
+
+/**
+ * Total seats a coalition would hold under a given electoral system. If
+ * `compatibility` is provided, each party's seats are weighted by its
+ * compatibility percentage (see `PartyCompatibility`) instead of counted
+ * in full — the result is rounded to the nearest seat.
+ */
 export function coalitionSeats(
   parties: PartyId[],
-  system: ElectoralSystemId
+  system: ElectoralSystemId,
+  compatibility?: PartyCompatibility
 ): number {
   const { seatsByParty } = computeSeats(system);
-  return parties.reduce((sum, id) => sum + (seatsByParty[id] ?? 0), 0);
+  const total = parties.reduce((sum, id) => {
+    const raw = seatsByParty[id] ?? 0;
+    const weight = compatibility ? (compatibility[id] ?? 100) / 100 : 1;
+    return sum + raw * weight;
+  }, 0);
+  return Math.round(total);
 }
 
 export interface MajorityCoalitionResult {
@@ -256,13 +277,14 @@ export interface MajorityCoalitionResult {
  */
 export function findVirtualMajority(
   coalitions: CoalitionOption[],
-  system: ElectoralSystemId
+  system: ElectoralSystemId,
+  compatibility?: PartyCompatibility
 ): MajorityCoalitionResult | null {
   if (coalitions.length === 0) return null;
 
   const withSeats = coalitions.map((c) => ({
     coalition: c,
-    seats: coalitionSeats(c.parties, system),
+    seats: coalitionSeats(c.parties, system, compatibility),
   }));
 
   const majorityOnes = withSeats.filter((c) => c.seats >= MAJORITY_THRESHOLD);

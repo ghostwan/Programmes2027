@@ -98,7 +98,17 @@ partis pour construire votre propre programme, puis découvrez :
   absolue *sous le mode de scrutin choisi* — recalculée et affichée par
   défaut dans l'hémicycle à chaque changement de mode, puisque la
   répartition des sièges par parti (et donc la coalition minimale
-  nécessaire) diffère fortement d'un système à l'autre.
+  nécessaire) diffère fortement d'un système à l'autre ;
+- l'**exclusion d'un parti de la coalition sélectionnée** (case à cocher
+  sur chaque parti) pour voir instantanément le nombre de sièges perdus
+  et la liste des propositions de votre programme qui ne pourraient
+  alors plus être réalisées sans lui.
+
+Sur la page des résultats du quiz, les sièges de chaque parti sont en
+plus **pondérés par votre pourcentage de compatibilité** avec lui : un
+parti dont vous ne soutenez qu'une partie du programme ne compte plus
+que pour cette part de ses sièges réels dans le total de la coalition
+(le nombre de sièges réels reste affiché à titre indicatif).
 
 ![Le marché des propositions avec simulation de coalition](public/screenshots/marche.png)
 
