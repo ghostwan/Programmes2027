@@ -42,8 +42,9 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   qu'à une poignée de paires de propositions vérifiées manuellement
   comme réellement incompatibles (nucléaire, fonctionnaires,
   encadrement des loyers, Frontex, droit du sol, renouvelables, quotas
-  SRU) — la grande majorité des propositions n'ont aucune position
-  déduite et restent traitées comme avant (silence = on ne sait pas).
+  SRU, sortie de l'UE vs fédéralisme européen) — la grande majorité des
+  propositions n'ont aucune position déduite et restent traitées comme
+  avant (silence = on ne sait pas).
 
 ## [2.11.0] - 2026-08-22
 

@@ -1071,6 +1071,7 @@ export const propositions: Proposition[] = [
     description:
       "Organiser un référendum sur la sortie de la France de l'Union européenne.",
     supportingParties: ["reconquete"],
+    contradicts: ["europe-federalisme"],
     internationalExample: {
       country: "Royaume-Uni",
       when: "Brexit effectif en janvier 2020",
@@ -1105,6 +1106,7 @@ export const propositions: Proposition[] = [
     description:
       "Partager davantage de compétences entre États et Union européenne, en remplaçant les droits de veto nationaux par la majorité qualifiée sur les droits fondamentaux, la protection sociale et la politique étrangère commune.",
     supportingParties: ["eelv"],
+    contradicts: ["europe-frexit"],
   },
   {
     id: "europe-defense-commune",
