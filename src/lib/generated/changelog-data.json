@@ -1,5 +1,18 @@
 [
   {
+    "version": "2.9.0",
+    "date": "2026-08-22",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Dans la simulation de coalitions, vous pouvez maintenant décocher un parti de la coalition sélectionnée pour simuler son retrait : le nombre de sièges et la liste des propositions de votre programme qui ne pourraient alors plus être réalisées s'affichent aussitôt.",
+          "Sur la page des résultats du quiz, les sièges de chaque coalition sont désormais pondérés par votre pourcentage de compatibilité avec chaque parti : un parti dont vous ne soutenez qu'une partie du programme ne compte plus que pour cette part de ses sièges réels (au lieu de compter pour la totalité de sa délégation dès qu'il soutient au moins une proposition commune). Le nombre de sièges réels reste affiché à titre indicatif."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.8.1",
     "date": "2026-08-22",
     "categories": [
