@@ -15,8 +15,24 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Supprimé
+
+- Retiré l'option « Considérer qu'un parti sans position connue y est
+  opposé » de la page des résultats : elle présupposait qu'un parti sans
+  proposition documentée sur un sujet y était forcément opposé, ce qui
+  n'est pas une hypothèse raisonnable (silence ≠ désaccord). Le
+  comparateur ne compte désormais que les positions explicitement
+  documentées (ou logiquement déduites d'une contradiction directe, voir
+  ci-dessous), jamais une simple absence de position.
+
 ### Ajouté
 
+- Les tableaux comparatifs par thématique et les fiches propositions
+  affichent désormais visuellement les partis « logiquement opposés »
+  déduits d'une contradiction directe (croix colorée ✕ dans le tableau,
+  distincte du tiret gris « — » qui signifie « position inconnue » ;
+  section dédiée avec lien vers la proposition contradictoire sur la
+  fiche de chaque proposition concernée).
 - L'algorithme de correspondance déduit désormais automatiquement
   qu'un parti est opposé à une proposition quand elle est directement
   contradictoire avec une autre qu'il soutient explicitement (ex. un

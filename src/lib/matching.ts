@@ -52,12 +52,11 @@ function wilsonLowerBound(matched: number, n: number, z = 1.44): number {
  * power"), it is necessarily opposed to this one too — that's not a
  * guess, it's a contradiction a party cannot hold at the same time.
  *
- * This is deliberately much narrower than `assumeOppositionWhenMissing`
- * (which blanket-assumes opposition for every undocumented position):
- * here we only ever infer "contre" when there's an explicit, documented
- * "pour" on a genuinely mutually-exclusive proposition — most
- * propositions have no `contradicts` link at all and fall back to
- * "unknown" (`null`), same as before.
+ * This is deliberately a narrow, sound deduction — not a blanket
+ * "silence means opposition" assumption: we only ever infer "contre"
+ * when there's an explicit, documented "pour" on a genuinely
+ * mutually-exclusive proposition — most propositions have no
+ * `contradicts` link at all and fall back to "unknown" (`null`).
  *
  * Always resolves `contradicts` IDs against the full propositions
  * dataset (not just whatever subset is being scored, e.g. a single
@@ -65,13 +64,32 @@ function wilsonLowerBound(matched: number, n: number, z = 1.44): number {
  * can belong to a different theme (e.g. a fiscal-policy proposition
  * contradicting an institutional one).
  */
-function impliedPartyPosition(partyId: PartyId, prop: Proposition): Answer | null {
+export function impliedPartyPosition(partyId: PartyId, prop: Proposition): Answer | null {
   if (prop.supportingParties.includes(partyId)) return "pour";
   if (prop.contradicts) {
     for (const oppositeId of prop.contradicts) {
       const opposite = allPropositionsById[oppositeId];
       if (opposite?.supportingParties.includes(partyId)) return "contre";
     }
+  }
+  return null;
+}
+
+/**
+ * If a party is inferred to oppose `prop` (see `impliedPartyPosition`),
+ * returns the contradicting proposition that inference is based on (so
+ * the UI can explain *why*, e.g. "ce parti soutient X, qui contredit
+ * directement Y" with a link to X) — `null` if the party has no
+ * documented position and no contradiction applies (genuinely unknown).
+ */
+export function findContradictingSupport(
+  partyId: PartyId,
+  prop: Proposition
+): Proposition | null {
+  if (!prop.contradicts) return null;
+  for (const oppositeId of prop.contradicts) {
+    const opposite = allPropositionsById[oppositeId];
+    if (opposite?.supportingParties.includes(partyId)) return opposite;
   }
   return null;
 }
@@ -89,109 +107,54 @@ export interface ThemeStat {
   topPartyPercent: number | null;
 }
 
-export interface MatchingOptions {
-  /**
-   * When false (default), a party's score is computed only from the
-   * propositions it is documented as supporting: "pour" counts as a
-   * match, "contre" counts against it, and propositions with no
-   * documented position for that party are simply ignored (we don't
-   * know, so we don't guess).
-   *
-   * When true, silence is treated as implicit opposition: for every
-   * proposition the user answered "pour" or "contre", a party's assumed
-   * position is "pour" if it's in `supportingParties`, otherwise
-   * "contre". The score becomes the share of ALL answered propositions
-   * where the user's answer matches that (explicit or assumed) position,
-   * which lets un-listed parties be scored down instead of skipped.
-   */
-  assumeOppositionWhenMissing?: boolean;
-}
-
 /**
  * Compute, for each party, the percentage of alignment between the user's
  * answers and the party's known supported propositions.
  *
- * Methodology (default, `assumeOppositionWhenMissing: false`): we only have
- * positive data (which propositions a party supports). For each party we
- * look only at the propositions it supports AND that the user actually
- * answered (pour/contre, skips excluded), plus any proposition it doesn't
- * support but that directly contradicts one it does (see
- * `impliedPartyPosition`/`Proposition.contradicts`) — a sound logical
- * deduction, not a guess. The match percent is the share of those where
- * the user's answer matches the party's (explicit or deduced) position.
- * This avoids assuming a party opposes a proposition it simply has no
- * documented position on and no logical contradiction with.
- *
- * See `MatchingOptions.assumeOppositionWhenMissing` for the alternative
- * mode, which treats a missing position as implicit opposition instead.
+ * Methodology: we only have positive data (which propositions a party
+ * supports). For each party we look only at the propositions it supports
+ * AND that the user actually answered (pour/contre, skips excluded), plus
+ * any proposition it doesn't support but that directly contradicts one it
+ * does (see `impliedPartyPosition`/`Proposition.contradicts`) — a sound
+ * logical deduction, not a guess. The match percent is the share of those
+ * where the user's answer matches the party's (explicit or deduced)
+ * position. A party's silence on a proposition (no documented position,
+ * and no logical contradiction with one it does hold) never counts
+ * against it — we simply don't know, so we don't guess.
  */
 export function computePartyScores(
   answers: AnswersMap,
-  propositions: Proposition[],
-  options: MatchingOptions = {}
+  propositions: Proposition[]
 ): PartyScore[] {
-  const { assumeOppositionWhenMissing = false } = options;
   const partyIds = new Set<PartyId>();
   propositions.forEach((p) => p.supportingParties.forEach((id) => partyIds.add(id)));
 
   const scores: PartyScore[] = [];
 
-  if (assumeOppositionWhenMissing) {
-    // Silence counts as opposition: every answered proposition is
-    // "relevant" for every party, with an assumed position of "pour" if
-    // the party supports it, "contre" otherwise.
-    const answeredProps = propositions.filter(
-      (p) => answers[p.id] === "pour" || answers[p.id] === "contre"
+  for (const partyId of partyIds) {
+    const relevant = propositions.filter(
+      (p) =>
+        impliedPartyPosition(partyId, p) !== null &&
+        (answers[p.id] === "pour" || answers[p.id] === "contre")
     );
-    for (const partyId of partyIds) {
-      if (answeredProps.length === 0) {
-        scores.push({
-          partyId,
-          matchPercent: 0,
-          rawAgreementPercent: 0,
-          answeredRelevant: 0,
-        });
-        continue;
-      }
-      const matched = answeredProps.filter((p) => {
-        const partySupports = p.supportingParties.includes(partyId);
-        const assumedPosition: Answer = partySupports ? "pour" : "contre";
-        return answers[p.id] === assumedPosition;
-      }).length;
+    if (relevant.length === 0) {
       scores.push({
         partyId,
-        matchPercent: wilsonLowerBound(matched, answeredProps.length),
-        rawAgreementPercent:
-          Math.round((matched / answeredProps.length) * 1000) / 10,
-        answeredRelevant: answeredProps.length,
+        matchPercent: 0,
+        rawAgreementPercent: 0,
+        answeredRelevant: 0,
       });
+      continue;
     }
-  } else {
-    for (const partyId of partyIds) {
-      const relevant = propositions.filter(
-        (p) =>
-          impliedPartyPosition(partyId, p) !== null &&
-          (answers[p.id] === "pour" || answers[p.id] === "contre")
-      );
-      if (relevant.length === 0) {
-        scores.push({
-          partyId,
-          matchPercent: 0,
-          rawAgreementPercent: 0,
-          answeredRelevant: 0,
-        });
-        continue;
-      }
-      const matched = relevant.filter(
-        (p) => answers[p.id] === impliedPartyPosition(partyId, p)
-      ).length;
-      scores.push({
-        partyId,
-        matchPercent: wilsonLowerBound(matched, relevant.length),
-        rawAgreementPercent: Math.round((matched / relevant.length) * 1000) / 10,
-        answeredRelevant: relevant.length,
-      });
-    }
+    const matched = relevant.filter(
+      (p) => answers[p.id] === impliedPartyPosition(partyId, p)
+    ).length;
+    scores.push({
+      partyId,
+      matchPercent: wilsonLowerBound(matched, relevant.length),
+      rawAgreementPercent: Math.round((matched / relevant.length) * 1000) / 10,
+      answeredRelevant: relevant.length,
+    });
   }
 
   return scores.sort((a, b) => {
@@ -202,8 +165,7 @@ export function computePartyScores(
 
 export function computeThemeStats(
   answers: AnswersMap,
-  propositions: Proposition[],
-  options: MatchingOptions = {}
+  propositions: Proposition[]
 ): ThemeStat[] {
   const themeIds = Array.from(new Set(propositions.map((p) => p.themeId)));
 
@@ -215,7 +177,7 @@ export function computeThemeStats(
     const pourCount = answered.filter((p) => answers[p.id] === "pour").length;
     const contreCount = answered.length - pourCount;
 
-    const partyScores = computePartyScores(answers, themeProps, options).filter(
+    const partyScores = computePartyScores(answers, themeProps).filter(
       (s) => s.answeredRelevant > 0
     );
     // If the user answered "contre" to everything in this theme (no

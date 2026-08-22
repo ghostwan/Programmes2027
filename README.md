@@ -51,9 +51,7 @@ reprendre plus tard.
 proche(s) de vos réponses (tous affichés ex æquo en cas d'égalité
 parfaite, plutôt qu'un choix arbitraire), le détail par thématique (avec, pour chaque thématique, la
 liste des propositions auxquelles vous avez répondu « pour » et les
-partis qui les soutiennent), un réglage pour choisir si l'absence de
-position connue d'un parti doit être traitée comme neutre ou comme une
-opposition implicite, et — à partir de l'ensemble de vos réponses
+partis qui les soutiennent), et — à partir de l'ensemble de vos réponses
 « pour » traitées comme votre propre programme — la même exploration de
 **coalitions de partis et de sièges à l'Assemblée** que dans le marché
 des propositions (voir ci-dessous).

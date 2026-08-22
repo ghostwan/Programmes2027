@@ -8,6 +8,7 @@ import { getCountryFlags } from "@/lib/countryFlags";
 import { buildCorrectionIssueUrl } from "@/lib/github";
 import { getAssessmentStyle } from "@/lib/assessmentStyles";
 import { MarketBasketButton } from "@/components/MarketBasketButton";
+import { findContradictingSupport } from "@/lib/matching";
 
 export function ThemeComparisonTable({
   themeProps,
@@ -126,21 +127,40 @@ export function ThemeComparisonTable({
                       {prop.title}
                     </Link>
                   </td>
-                  {visibleParties.map((p) => (
-                    <td key={p.id} className="p-3 text-center">
-                      {prop.supportingParties.includes(p.id) ? (
-                        <span
-                          className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white"
-                          style={{ backgroundColor: p.color }}
-                          title={p.name}
-                        >
-                          ✓
-                        </span>
-                      ) : (
+                  {visibleParties.map((p) => {
+                    if (prop.supportingParties.includes(p.id)) {
+                      return (
+                        <td key={p.id} className="p-3 text-center">
+                          <span
+                            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white"
+                            style={{ backgroundColor: p.color }}
+                            title={p.name}
+                          >
+                            ✓
+                          </span>
+                        </td>
+                      );
+                    }
+                    const contradicting = findContradictingSupport(p.id, prop);
+                    if (contradicting) {
+                      return (
+                        <td key={p.id} className="p-3 text-center">
+                          <span
+                            className="inline-flex h-6 w-6 items-center justify-center rounded-full border-2 bg-white text-xs font-bold"
+                            style={{ borderColor: p.color, color: p.color }}
+                            title={`${p.name} : position déduite « contre » — ce parti soutient « ${contradicting.title} », directement contradictoire avec cette proposition.`}
+                          >
+                            ✕
+                          </span>
+                        </td>
+                      );
+                    }
+                    return (
+                      <td key={p.id} className="p-3 text-center">
                         <span className="text-slate-300">—</span>
-                      )}
-                    </td>
-                  ))}
+                      </td>
+                    );
+                  })}
                   <td className="p-3 text-center text-base">
                     {flags.length > 0 ? (
                       <span
@@ -213,6 +233,22 @@ export function ThemeComparisonTable({
                     </span>
                   );
                 })}
+                {parties
+                  .filter((p) => !hiddenParties.has(p.id) && !prop.supportingParties.includes(p.id))
+                  .map((p) => {
+                    const contradicting = findContradictingSupport(p.id, prop);
+                    if (!contradicting) return null;
+                    return (
+                      <span
+                        key={p.id}
+                        className="rounded-full border-2 bg-white px-2.5 py-1 text-xs font-medium"
+                        style={{ borderColor: p.color, color: p.color }}
+                        title={`Position déduite « contre » — ce parti soutient « ${contradicting.title} », directement contradictoire avec cette proposition.`}
+                      >
+                        ✕ {p.shortName}
+                      </span>
+                    );
+                  })}
                 {flags.length > 0 && (
                   <span
                     className={`ml-1 inline-flex items-center gap-1 rounded-full ${style.pillBg} px-2 py-0.5 text-sm`}

@@ -12,10 +12,6 @@ import {
   ANSWERS_STORAGE_KEY,
   GAME_STATE_STORAGE_KEY,
   hasUnfinishedGame,
-  getAssumeOppositionSnapshot,
-  getAssumeOppositionServerSnapshot,
-  subscribeAssumeOpposition,
-  setAssumeOppositionSetting,
 } from "@/lib/storage";
 
 function subscribe(callback: () => void) {
@@ -45,12 +41,6 @@ export function ResultsView() {
   const answers: AnswersMap = raw ? JSON.parse(raw) : {};
   const unfinishedGame = gameStateRaw !== null && hasUnfinishedGame();
   const [expandedTheme, setExpandedTheme] = useState<string | null>(null);
-  const assumeOppositionRaw = useSyncExternalStore(
-    subscribeAssumeOpposition,
-    getAssumeOppositionSnapshot,
-    getAssumeOppositionServerSnapshot
-  );
-  const assumeOpposition = assumeOppositionRaw === "1";
 
   const totalAnswered = Object.values(answers).filter(
     (a) => a === "pour" || a === "contre"
@@ -76,11 +66,10 @@ export function ResultsView() {
     );
   }
 
-  const matchingOptions = { assumeOppositionWhenMissing: assumeOpposition };
-  const partyScores = computePartyScores(answers, propositions, matchingOptions).filter(
+  const partyScores = computePartyScores(answers, propositions).filter(
     (s) => s.answeredRelevant > 0
   );
-  const themeStats = computeThemeStats(answers, propositions, matchingOptions);
+  const themeStats = computeThemeStats(answers, propositions);
   const pourPropositions = propositions.filter((p) => answers[p.id] === "pour");
   // If the user answered "contre" to everything (no "pour" at all), every
   // party's match percent is trivially 0% — not a meaningful "closest
@@ -151,31 +140,6 @@ export function ResultsView() {
         </section>
       )}
 
-      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <label className="flex cursor-pointer items-start gap-3 select-none">
-          <input
-            type="checkbox"
-            checked={assumeOpposition}
-            onChange={(e) => setAssumeOppositionSetting(e.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-500"
-          />
-          <span>
-            <span className="block text-sm font-semibold text-slate-900">
-              Considérer qu&apos;un parti sans position connue y est opposé
-            </span>
-            <span className="mt-0.5 block text-xs text-slate-500">
-              Par défaut, quand aucune source ne documente la position d&apos;un
-              parti sur une proposition, on considère qu&apos;on ne sait
-              simplement pas — ça ne compte ni pour ni contre lui. En activant
-              cette option, l&apos;absence de position documentée sera traitée
-              comme si le parti s&apos;y opposait, ce qui peut faire baisser
-              son score sur les propositions qu&apos;il ne soutient pas
-              explicitement.
-            </span>
-          </span>
-        </label>
-      </section>
-
       <section className="mt-8">
         <h2 className="text-lg font-bold text-slate-900">Classement complet</h2>
         <div className="mt-3 flex flex-col gap-2">
@@ -212,10 +176,12 @@ export function ResultsView() {
           })}
         </div>
         <p className="mt-2 text-xs text-slate-400">
-          {assumeOpposition
-            ? "Le score reflète le taux d'accord sur l'ensemble des propositions auxquelles vous avez répondu (une proposition non soutenue par un parti est traitée comme une position implicite « contre » de ce parti), pondéré par le nombre de propositions communes : "
-            : "Le score reflète le taux d'accord sur les propositions documentées comme soutenues par chaque parti (ou logiquement contradictoires avec une proposition qu'il soutient explicitement, ex. « relancer le nucléaire » vs « en sortir ») et pour lesquelles vous avez répondu, pondéré par le nombre de propositions communes : "}
-          un parti avec beaucoup de propositions partagées et un bon taux
+          Le score reflète le taux d&apos;accord sur les propositions
+          documentées comme soutenues par chaque parti (ou logiquement
+          contradictoires avec une proposition qu&apos;il soutient
+          explicitement, ex. « relancer le nucléaire » vs « en sortir »)
+          et pour lesquelles vous avez répondu, pondéré par le nombre de
+          propositions communes : un parti avec beaucoup de propositions partagées et un bon taux
           d&apos;accord passe devant un parti avec un taux d&apos;accord
           élevé mais obtenu sur très peu de propositions. Le petit texte
           gris sous chaque pourcentage indique le taux d&apos;accord brut

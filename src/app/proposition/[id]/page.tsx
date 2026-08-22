@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { propositions } from "@/lib/data/propositions";
+import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
-import { partyById } from "@/lib/data/parties";
+import { parties, partyById } from "@/lib/data/parties";
 import { getAssessmentStyle } from "@/lib/assessmentStyles";
+import { findContradictingSupport } from "@/lib/matching";
 import { MarketBasketButton } from "@/components/MarketBasketButton";
 
 export function generateStaticParams() {
@@ -62,6 +63,52 @@ export default async function PropositionDetailPage({
           })}
         </div>
       </section>
+
+      {proposition.contradicts && proposition.contradicts.length > 0 && (
+        <section className="mt-6">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Partis logiquement opposés (déduit)
+          </h2>
+          <p className="mt-1 text-xs text-slate-500">
+            Ces partis ne sont pas documentés comme opposés à cette
+            proposition, mais soutiennent une proposition directement
+            contradictoire — ils ne peuvent donc pas soutenir les deux à
+            la fois : {" "}
+            {proposition.contradicts.map((oppositeId, i) => {
+              const opposite = propositionById[oppositeId];
+              if (!opposite) return null;
+              return (
+                <span key={oppositeId}>
+                  {i > 0 && ", "}
+                  <Link href={`/proposition/${oppositeId}`} className="underline underline-offset-2">
+                    {opposite.title}
+                  </Link>
+                </span>
+              );
+            })}
+            .
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {parties
+              .filter((p) => !proposition.supportingParties.includes(p.id))
+              .map((p) => {
+                const contradicting = findContradictingSupport(p.id, proposition);
+                if (!contradicting) return null;
+                return (
+                  <Link
+                    key={p.id}
+                    href={`/proposition/${contradicting.id}`}
+                    title={`${p.name} soutient « ${contradicting.title} »`}
+                    className="flex items-center gap-2 rounded-full border-2 bg-white px-3 py-1.5 text-sm font-medium shadow-sm transition hover:shadow-md"
+                    style={{ borderColor: p.color, color: p.color }}
+                  >
+                    ✕ {p.name}
+                  </Link>
+                );
+              })}
+          </div>
+        </section>
+      )}
 
       {proposition.internationalExample ? (
         (() => {

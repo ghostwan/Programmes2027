@@ -44,43 +44,6 @@ export function hasUnfinishedGame(): boolean {
 export const TURNSTILE_GATE_COOKIE_NAME = "cf_turnstile_ok";
 
 /**
- * Whether missing party positions should be treated as implicit
- * opposition when computing match scores (see `MatchingOptions` in
- * matching.ts). Persisted so the choice survives a page reload.
- */
-export const ASSUME_OPPOSITION_STORAGE_KEY = "programmes2027:assume-opposition";
-
-// Fired whenever `setAssumeOppositionSetting` is called, so components in
-// the SAME tab can react via `useSyncExternalStore` (the native "storage"
-// event only fires for OTHER tabs/windows, never the one that made the
-// change).
-const ASSUME_OPPOSITION_CHANGE_EVENT = "programmes2027:assume-opposition-change";
-
-export function getAssumeOppositionSnapshot(): string {
-  if (typeof window === "undefined") return "0";
-  return window.localStorage.getItem(ASSUME_OPPOSITION_STORAGE_KEY) ?? "0";
-}
-
-export function getAssumeOppositionServerSnapshot(): string {
-  return "0";
-}
-
-export function subscribeAssumeOpposition(callback: () => void) {
-  window.addEventListener("storage", callback);
-  window.addEventListener(ASSUME_OPPOSITION_CHANGE_EVENT, callback);
-  return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(ASSUME_OPPOSITION_CHANGE_EVENT, callback);
-  };
-}
-
-export function setAssumeOppositionSetting(value: boolean) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(ASSUME_OPPOSITION_STORAGE_KEY, value ? "1" : "0");
-  window.dispatchEvent(new Event(ASSUME_OPPOSITION_CHANGE_EVENT));
-}
-
-/**
  * Whether the user has dismissed the "random order / algorithm still
  * being refined" disclaimer shown in the quiz. Persisted so it stays
  * hidden on future visits once acknowledged.
