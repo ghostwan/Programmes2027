@@ -15,6 +15,20 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- L'algorithme de correspondance déduit désormais automatiquement
+  qu'un parti est opposé à une proposition quand elle est directement
+  contradictoire avec une autre qu'il soutient explicitement (ex. un
+  parti qui soutient « relancer le nucléaire et construire de nouveaux
+  EPR » est logiquement opposé à « sortir du nucléaire », même sans
+  position documentée sur cette dernière). Cette déduction ne s'applique
+  qu'à une poignée de paires de propositions vérifiées manuellement
+  comme réellement incompatibles (nucléaire, fonctionnaires,
+  encadrement des loyers, Frontex, droit du sol, renouvelables, quotas
+  SRU) — la grande majorité des propositions n'ont aucune position
+  déduite et restent traitées comme avant (silence = on ne sait pas).
+
 ## [2.11.0] - 2026-08-22
 
 ### Ajouté

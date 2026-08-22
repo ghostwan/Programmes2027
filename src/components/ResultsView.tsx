@@ -214,7 +214,7 @@ export function ResultsView() {
         <p className="mt-2 text-xs text-slate-400">
           {assumeOpposition
             ? "Le score reflète le taux d'accord sur l'ensemble des propositions auxquelles vous avez répondu (une proposition non soutenue par un parti est traitée comme une position implicite « contre » de ce parti), pondéré par le nombre de propositions communes : "
-            : "Le score reflète le taux d'accord sur les propositions documentées comme soutenues par chaque parti et pour lesquelles vous avez répondu, pondéré par le nombre de propositions communes : "}
+            : "Le score reflète le taux d'accord sur les propositions documentées comme soutenues par chaque parti (ou logiquement contradictoires avec une proposition qu'il soutient explicitement, ex. « relancer le nucléaire » vs « en sortir ») et pour lesquelles vous avez répondu, pondéré par le nombre de propositions communes : "}
           un parti avec beaucoup de propositions partagées et un bon taux
           d&apos;accord passe devant un parti avec un taux d&apos;accord
           élevé mais obtenu sur très peu de propositions. Le petit texte

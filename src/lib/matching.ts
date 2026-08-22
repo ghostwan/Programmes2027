@@ -1,4 +1,5 @@
 import { Answer, AnswersMap, Party, PartyId, Proposition, ThemeId } from "@/lib/types";
+import { propositionById as allPropositionsById } from "@/lib/data/propositions";
 
 export interface PartyScore {
   partyId: PartyId;
@@ -42,6 +43,39 @@ function wilsonLowerBound(matched: number, n: number, z = 1.44): number {
   return Math.round(Math.max(0, lowerBound) * 1000) / 10;
 }
 
+/**
+ * A party's *implied* position on a proposition, combining its documented
+ * support with a logical deduction from `Proposition.contradicts`: if a
+ * party isn't documented as supporting this proposition but explicitly
+ * supports one of its direct logical opposites (e.g. it backs "build new
+ * nuclear reactors", which is `contradicts`-linked to "phase out nuclear
+ * power"), it is necessarily opposed to this one too — that's not a
+ * guess, it's a contradiction a party cannot hold at the same time.
+ *
+ * This is deliberately much narrower than `assumeOppositionWhenMissing`
+ * (which blanket-assumes opposition for every undocumented position):
+ * here we only ever infer "contre" when there's an explicit, documented
+ * "pour" on a genuinely mutually-exclusive proposition — most
+ * propositions have no `contradicts` link at all and fall back to
+ * "unknown" (`null`), same as before.
+ *
+ * Always resolves `contradicts` IDs against the full propositions
+ * dataset (not just whatever subset is being scored, e.g. a single
+ * theme or a manually built basket), since a contradicting proposition
+ * can belong to a different theme (e.g. a fiscal-policy proposition
+ * contradicting an institutional one).
+ */
+function impliedPartyPosition(partyId: PartyId, prop: Proposition): Answer | null {
+  if (prop.supportingParties.includes(partyId)) return "pour";
+  if (prop.contradicts) {
+    for (const oppositeId of prop.contradicts) {
+      const opposite = allPropositionsById[oppositeId];
+      if (opposite?.supportingParties.includes(partyId)) return "contre";
+    }
+  }
+  return null;
+}
+
 export interface ThemeStat {
   themeId: ThemeId;
   pourCount: number;
@@ -80,9 +114,13 @@ export interface MatchingOptions {
  * Methodology (default, `assumeOppositionWhenMissing: false`): we only have
  * positive data (which propositions a party supports). For each party we
  * look only at the propositions it supports AND that the user actually
- * answered (pour/contre, skips excluded). The match percent is the share
- * of those the user answered "pour" on. This avoids assuming a party
- * opposes a proposition it simply has no documented position on.
+ * answered (pour/contre, skips excluded), plus any proposition it doesn't
+ * support but that directly contradicts one it does (see
+ * `impliedPartyPosition`/`Proposition.contradicts`) — a sound logical
+ * deduction, not a guess. The match percent is the share of those where
+ * the user's answer matches the party's (explicit or deduced) position.
+ * This avoids assuming a party opposes a proposition it simply has no
+ * documented position on and no logical contradiction with.
  *
  * See `MatchingOptions.assumeOppositionWhenMissing` for the alternative
  * mode, which treats a missing position as implicit opposition instead.
@@ -132,7 +170,7 @@ export function computePartyScores(
     for (const partyId of partyIds) {
       const relevant = propositions.filter(
         (p) =>
-          p.supportingParties.includes(partyId) &&
+          impliedPartyPosition(partyId, p) !== null &&
           (answers[p.id] === "pour" || answers[p.id] === "contre")
       );
       if (relevant.length === 0) {
@@ -144,7 +182,9 @@ export function computePartyScores(
         });
         continue;
       }
-      const matched = relevant.filter((p) => answers[p.id] === "pour").length;
+      const matched = relevant.filter(
+        (p) => answers[p.id] === impliedPartyPosition(partyId, p)
+      ).length;
       scores.push({
         partyId,
         matchPercent: wilsonLowerBound(matched, relevant.length),

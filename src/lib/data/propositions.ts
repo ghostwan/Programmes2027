@@ -60,6 +60,7 @@ export const propositions: Proposition[] = [
     description:
       "Diminuer le poids de la dépense publique dans le PIB et réduire les effectifs de la fonction publique pour redresser les comptes publics.",
     supportingParties: ["lr", "rn", "reconquete", "renaissance"],
+    contradicts: ["inst-fonctionnaires-500k"],
     internationalExample: {
       country: "Royaume-Uni, Grèce",
       when: "Austérité post-2010 (RU) et plan de la Troïka 2010-2018 (Grèce)",
@@ -345,6 +346,7 @@ export const propositions: Proposition[] = [
     description:
       "Conditionner ou supprimer l'acquisition automatique de la nationalité française par la naissance sur le territoire.",
     supportingParties: ["rn", "reconquete", "lr"],
+    contradicts: ["immi-droit-sol-integral"],
     internationalExample: {
       country: "Irlande",
       when: "Référendum de 2004",
@@ -379,6 +381,7 @@ export const propositions: Proposition[] = [
     description:
       "Augmenter les moyens humains et matériels de l'agence européenne de garde-frontières et de garde-côtes.",
     supportingParties: ["renaissance", "lr", "rn", "reconquete"],
+    contradicts: ["immi-frontex-demanteler"],
     internationalExample: {
       country: "Union européenne",
       when: "Rapport de la Cour des comptes européenne, 2021",
@@ -396,6 +399,7 @@ export const propositions: Proposition[] = [
     description:
       "Remplacer l'agence européenne de garde-frontières Frontex par une nouvelle agence dédiée à la protection des droits fondamentaux et au sauvetage en mer et sur terre des personnes migrantes.",
     supportingParties: ["eelv"],
+    contradicts: ["immi-frontex"],
   },
   {
     id: "immi-renouvellement-auto-titres",
@@ -902,6 +906,7 @@ export const propositions: Proposition[] = [
     description:
       "Construire de nouveaux réacteurs nucléaires pour sécuriser l'approvisionnement électrique et décarboner le mix énergétique, avec pour certains partis un objectif chiffré allant jusqu'à 14 nouveaux réacteurs et le lancement d'un plan de petits réacteurs modulaires (SMR).",
     supportingParties: ["renaissance", "lr", "rn", "reconquete", "pcf"],
+    contradicts: ["env-sortie-nucleaire", "env-nucleaire-sortie"],
     internationalExample: {
       country: "France, Royaume-Uni",
       when: "Parc français existant (≈70% du mix électrique) ; relance britannique depuis 2016",
@@ -919,6 +924,7 @@ export const propositions: Proposition[] = [
     description:
       "Diminuer progressivement la dépendance au nucléaire au profit des énergies renouvelables.",
     supportingParties: ["eelv"],
+    contradicts: ["env-nucleaire-relance"],
     internationalExample: {
       country: "Allemagne",
       when: "Sortie complète du nucléaire en 2023 (Atomausstieg)",
@@ -953,6 +959,7 @@ export const propositions: Proposition[] = [
     description:
       "Accélérer fortement le déploiement de l'éolien et du solaire dans le mix électrique français.",
     supportingParties: ["eelv", "lfi", "ps", "renaissance"],
+    contradicts: ["env-moratoire-eolien", "env-stop-subventions-eolien-solaire"],
     internationalExample: {
       country: "Allemagne, Danemark",
       when: "Energiewende (Allemagne), développement de l'éolien (Danemark)",
@@ -1036,6 +1043,7 @@ export const propositions: Proposition[] = [
     description:
       "Suspendre toutes les subventions à l'éolien et au solaire, et démanteler progressivement les parcs éoliens arrivant en fin de vie.",
     supportingParties: ["rn"],
+    contradicts: ["env-renouvelables"],
     internationalExample: {
       country: "Comparaisons internationales sur les moratoires éoliens",
       when: "Débats similaires dans plusieurs régions allemandes et au Royaume-Uni",
@@ -1273,6 +1281,7 @@ export const propositions: Proposition[] = [
     description:
       "Renforcer significativement les effectifs des services publics (éducation, santé, justice, administration) par un plan pluriannuel de recrutement.",
     supportingParties: ["pcf"],
+    contradicts: ["eco-austerite", "inst-automatisation-postes-publics"],
   },
   {
     id: "inst-referendum-constitution",
@@ -1317,6 +1326,7 @@ export const propositions: Proposition[] = [
     description:
       "Étendre l'encadrement des loyers à davantage de villes et le rendre plus strict dans les zones tendues.",
     supportingParties: ["lfi", "ps", "eelv", "pcf"],
+    contradicts: ["log-suppression-encadrement-loyers"],
     internationalExample: {
       country: "Allemagne (Berlin)",
       when: "Mietpreisbremse depuis 2015, Mietendeckel à Berlin 2020 (annulé en 2021)",
@@ -1450,6 +1460,7 @@ export const propositions: Proposition[] = [
     description:
       "Relever de 25% à 30% le seuil obligatoire de logements sociaux dans les communes soumises à la loi SRU et durcir les sanctions contre les maires récalcitrants (jusqu'à l'inéligibilité et la reprise des permis de construire par le préfet), en contrepartie d'une dotation de fonctionnement pour les villes qui en construisent beaucoup.",
     supportingParties: ["pcf", "lfi"],
+    contradicts: ["log-reforme-sru-objectifs-negocies"],
   },
   {
     id: "log-aide-pierre",
@@ -1845,6 +1856,7 @@ export const propositions: Proposition[] = [
     description:
       "Abandonner les nouveaux projets d'EPR et planifier le démantèlement progressif des centrales nucléaires existantes, avec un accompagnement à la reconversion des salariés et bassins d'emploi concernés.",
     supportingParties: ["lfi"],
+    contradicts: ["env-nucleaire-relance"],
     internationalExample: {
       country: "Allemagne",
       when: "2011-2023",
@@ -1962,6 +1974,7 @@ export const propositions: Proposition[] = [
     description:
       "Garantir à tout enfant né en France l'accès à la nationalité française par le droit du sol, y compris à Mayotte où ce droit a été restreint, et faciliter les démarches de naturalisation.",
     supportingParties: ["lfi"],
+    contradicts: ["immi-droit-du-sol"],
   },
   {
     id: "immi-vote-etrangers-locales",
@@ -2670,6 +2683,7 @@ export const propositions: Proposition[] = [
     description:
       "Automatiser les tâches administratives répétitives par l'intelligence artificielle pour redéployer une partie des agents vers le terrain et ne pas remplacer 125 000 départs à la retraite, pour environ 15 milliards d'euros d'économies annuelles.",
     supportingParties: ["lr"],
+    contradicts: ["inst-fonctionnaires-500k"],
   },
   {
     id: "inst-agriculture-interet-fondamental",
@@ -2750,6 +2764,7 @@ export const propositions: Proposition[] = [
     description:
       "Ne plus lancer de nouveaux appels d'offres subventionnés pour l'éolien terrestre et offshore et le solaire, et supprimer les avantages fiscaux et tarifaires associés aux nouvelles installations.",
     supportingParties: ["lr"],
+    contradicts: ["env-renouvelables"],
   },
   {
     id: "env-priorite-dispatch-nucleaire",
@@ -2998,6 +3013,7 @@ export const propositions: Proposition[] = [
     description:
       "Abroger les dispositifs d'encadrement des loyers (loi ELAN et plafonnements de la loi de 1989), pour laisser le loyer être librement fixé entre bailleur et locataire.",
     supportingParties: ["lr"],
+    contradicts: ["log-encadrement-loyers"],
   },
   {
     id: "log-statut-bailleur-prive",
@@ -3030,6 +3046,7 @@ export const propositions: Proposition[] = [
     description:
       "Remplacer les quotas uniformes de logements sociaux de la loi SRU par des objectifs de production négociés par contrats territoriaux, avec un plafonnement à 30% de logements sociaux par territoire.",
     supportingParties: ["lr"],
+    contradicts: ["log-sru-acte2"],
   },
   {
     id: "log-extinction-dalo",

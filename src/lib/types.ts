@@ -69,6 +69,20 @@ export interface Proposition {
   description: string;
   supportingParties: PartyId[];
   internationalExample?: InternationalExample;
+  /**
+   * IDs of other propositions that are direct logical opposites of this
+   * one (mutually exclusive, not just "a different approach to the same
+   * problem"): e.g. "build new nuclear reactors" contradicts "phase out
+   * nuclear power". Used to *deduce* that a party explicitly supporting
+   * one of these is necessarily opposed to this one, even without a
+   * documented "contre" position — a much stronger inference than the
+   * "assume opposition when missing" setting, which blanket-assumes
+   * opposition for ALL undocumented positions regardless of any actual
+   * contradiction. Only set for pairs a human has manually verified are
+   * truly mutually exclusive (see `scripts/` or PR history for the
+   * reasoning) — most propositions have none.
+   */
+  contradicts?: string[];
 }
 
 export type Answer = "pour" | "contre" | "skip";
