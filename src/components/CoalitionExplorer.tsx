@@ -4,15 +4,19 @@ import { useMemo, useState } from "react";
 import { partyById } from "@/lib/data/parties";
 import { PartyId, Proposition } from "@/lib/types";
 import {
+  OTHER_ASSEMBLY_GROUPS,
+  SupportGroupId,
+} from "@/lib/data/currentAssembly";
+import {
   ELECTORAL_SYSTEMS,
   ElectoralSystemId,
   MAJORITY_THRESHOLD,
   PartyCompatibility,
+  SeatsByParty,
   TOTAL_SEATS,
   computeSeats,
   computeUtopianSeats,
   findCoalitions,
-  coalitionSeats,
   findVirtualMajority,
 } from "@/lib/electoralSystems";
 import { Hemicycle } from "@/components/Hemicycle";
@@ -74,6 +78,9 @@ export function CoalitionExplorer({
   partyCompatibility?: PartyCompatibility;
 }) {
   const [system, setSystem] = useState<ElectoralSystemId>("actuelle");
+  const [selectedSupportGroups, setSelectedSupportGroups] = useState<
+    SupportGroupId[]
+  >([]);
 
   const coalitions = useMemo(() => findCoalitions(propositions), [propositions]);
   // The single best coalition proposed by default: fewest parties among
@@ -103,6 +110,7 @@ export function CoalitionExplorer({
   if (currentKey !== prevKey) {
     setPrevKey(currentKey);
     setSelectedParties(recommendedCoalition?.parties ?? []);
+    setSelectedSupportGroups([]);
   }
 
   const virtualMajority = useMemo(
@@ -115,6 +123,12 @@ export function CoalitionExplorer({
   function toggleParty(id: PartyId) {
     setSelectedParties((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+  }
+
+  function toggleSupportGroup(id: SupportGroupId) {
+    setSelectedSupportGroups((prev) =>
+      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
     );
   }
 
@@ -180,7 +194,10 @@ export function CoalitionExplorer({
               })}
               {isCustomized && recommendedCoalition && (
                 <button
-                  onClick={() => setSelectedParties(recommendedCoalition.parties)}
+                  onClick={() => {
+                    setSelectedParties(recommendedCoalition.parties);
+                    setSelectedSupportGroups([]);
+                  }}
                   className="ml-1 rounded-full border border-slate-900 px-3 py-1.5 text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white"
                 >
                   ↺ Revenir à la coalition proposée
@@ -326,13 +343,98 @@ export function CoalitionExplorer({
             </div>
           )}
 
+          {/* Optional extra support from parliamentary groups not
+              tracked as one of the 8 parties: seats only, never program
+              coverage — useful to build a broader "coalition de
+              soutien" than the program itself requires. */}
+          <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+            <h3 className="text-sm font-semibold text-slate-900">
+              🤝 Renfort parlementaire (hors partis suivis)
+            </h3>
+            <p className="mt-1 text-xs text-slate-500">
+              Ces groupes de l&apos;Assemblée ne sont pas suivis par le
+              comparateur (on ne connaît pas leur position sur vos
+              propositions) : les ajouter n&apos;augmente jamais le
+              pourcentage de programme réalisé, seulement le nombre de
+              sièges de votre coalition — utile pour viser une majorité
+              plus large que votre seul programme.
+            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              {OTHER_ASSEMBLY_GROUPS.map((group) => {
+                const isIn = selectedSupportGroups.includes(group.id);
+                const seatsHere = system === "actuelle" ? group.seats : null;
+                return (
+                  <label
+                    key={group.id}
+                    title={group.name}
+                    className={`flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                      isIn
+                        ? "border-transparent text-white"
+                        : "border-slate-300 bg-white text-slate-500 hover:border-slate-400"
+                    }`}
+                    style={isIn ? { backgroundColor: group.color } : undefined}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isIn}
+                      onChange={() => toggleSupportGroup(group.id)}
+                      className="h-3.5 w-3.5"
+                    />
+                    {group.shortName}
+                    {seatsHere !== null ? ` (${seatsHere})` : ""}
+                  </label>
+                );
+              })}
+            </div>
+            {selectedSupportGroups.length > 0 && system !== "actuelle" && (
+              <p className="mt-2 text-xs text-amber-600">
+                On ne connaît pas le poids électoral 2024 de ces groupes
+                pris isolément (la plupart n&apos;avaient pas d&apos;étiquette
+                propre à l&apos;époque) : ils n&apos;apportent de sièges que
+                sous « Assemblée actuelle ».
+              </p>
+            )}
+          </div>
+
           {(() => {
-            const { seatsByParty, otherSeats } =
+            const { seatsByParty: rawSeatsByParty, otherSeats: rawOtherSeats } =
               system === "utopique"
                 ? computeUtopianSeats(selectedParties, partyCompatibility)
                 : computeSeats(system);
-            const seats = coalitionSeats(selectedParties, system, partyCompatibility);
-            const rawSeats = coalitionSeats(selectedParties, system);
+
+            // Weight each selected party's seats by compatibility (if
+            // available) so the headline seat count and the hemicycle's
+            // colored dots always match exactly — the "lost" seats from
+            // weighting go back into the grey "reste" bucket. Utopian
+            // mode is already compatibility-weighted at the source
+            // (`computeUtopianSeats`), so it's left untouched here.
+            const seatsByParty: SeatsByParty = { ...rawSeatsByParty };
+            let otherSeats = rawOtherSeats;
+            let trackedSeats = 0;
+            for (const id of selectedParties) {
+              const raw = rawSeatsByParty[id] ?? 0;
+              if (partyCompatibility && system !== "utopique") {
+                const weight = (partyCompatibility[id] ?? 100) / 100;
+                const weighted = Math.round(raw * weight);
+                seatsByParty[id] = weighted;
+                otherSeats += raw - weighted;
+                trackedSeats += weighted;
+              } else {
+                trackedSeats += raw;
+              }
+            }
+
+            const extraGroups = selectedSupportGroups.map((id) => {
+              const group = OTHER_ASSEMBLY_GROUPS.find((g) => g.id === id)!;
+              const count = system === "actuelle" ? group.seats : 0;
+              return { id: group.id, shortName: group.shortName, color: group.color, count };
+            });
+            const supportSeats = extraGroups.reduce((sum, g) => sum + g.count, 0);
+
+            const seats = trackedSeats + supportSeats;
+            const rawSeats =
+              selectedParties.reduce((sum, id) => sum + (rawSeatsByParty[id] ?? 0), 0) +
+              supportSeats;
             const hasMajority = seats >= MAJORITY_THRESHOLD;
             return (
               <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
@@ -345,11 +447,12 @@ export function CoalitionExplorer({
                   otherSeats={otherSeats}
                   totalSeats={TOTAL_SEATS}
                   highlightParties={selectedParties}
+                  extraGroups={extraGroups}
                 />
                 <p className="mt-2 text-center text-2xl font-black text-slate-900">
                   {seats} <span className="text-base font-medium text-slate-500">sièges</span>
                 </p>
-                {partyCompatibility && seats !== rawSeats && (
+                {seats !== rawSeats && (
                   <p className="text-center text-xs text-slate-400">
                     ({rawSeats} sièges réels, pondérés à {seats} selon votre
                     compatibilité avec chaque parti)

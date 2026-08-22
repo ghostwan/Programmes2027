@@ -15,6 +15,21 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Dans la simulation de coalitions, un nouveau bloc « Renfort
+  parlementaire » permet d'ajouter à votre coalition les groupes de
+  l'Assemblée qui ne sont pas suivis par le comparateur (Les Démocrates,
+  Horizons, LIOT, UDR, non-inscrits) : on ne connaît pas leur position
+  sur vos propositions, donc les ajouter n'augmente jamais le
+  pourcentage de programme réalisé, seulement le nombre de sièges —
+  utile pour construire une coalition de soutien plus large que le
+  programme lui-même. Disponible avec leurs vrais sièges sous
+  « Assemblée actuelle » uniquement (aucune donnée électorale 2024
+  propre à ces groupes n'existe pour les autres modes).
+- Un badge « Bêta » à côté du logo, dans la barre de navigation, pour
+  rappeler que le site est encore en cours de construction.
+
 ### Modifié
 
 - La simulation de coalitions ne propose plus une longue liste de
@@ -25,13 +40,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   pourcentage du programme encore réalisé, la liste des propositions qui
   ne le seraient plus, et le nombre de sièges recalculé.
 
-### Ajouté
-
-- Un badge « Bêta » à côté du logo, dans la barre de navigation, pour
-  rappeler que le site est encore en cours de construction.
-
 ### Corrigé
 
+- Sur la page des résultats, quand les sièges étaient pondérés par votre
+  compatibilité, le nombre total affiché ne correspondait pas à la somme
+  des sièges de chaque parti indiquée sous l'hémicycle (l'hémicycle
+  affichait les vrais sièges de chaque parti, mais le total tenait
+  compte de la pondération). Les deux correspondent maintenant
+  exactement : les points colorés de l'hémicycle et la légende
+  reflètent aussi les sièges pondérés.
 - Les 5 modes de scrutin de la simulation de coalitions faisaient
   doublon et prêtaient à confusion (« Scrutin majoritaire actuel » basé
   sur 2024 vs « Assemblée actuelle » basée sur aujourd'hui). Il n'y en a

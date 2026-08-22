@@ -105,7 +105,13 @@ partis pour construire votre propre programme, puis découvrez :
 - une **suggestion de coalition atteignant la majorité** *sous le mode
   de scrutin choisi*, en un clic — puisque la répartition des sièges par
   parti (et donc la coalition minimale nécessaire) diffère fortement
-  d'un système à l'autre.
+  d'un système à l'autre ;
+- un **renfort parlementaire optionnel** : les groupes de l'Assemblée
+  non suivis par le comparateur (Les Démocrates, Horizons, LIOT, UDR,
+  non-inscrits) peuvent être ajoutés à la coalition pour leurs sièges
+  réels (sous « Assemblée actuelle » uniquement), sans jamais compter
+  dans le pourcentage de programme réalisé puisqu'on ne connaît pas
+  leur position sur vos propositions.
 
 Sur la page des résultats du quiz, les sièges de chaque parti sont en
 plus **pondérés par votre pourcentage de compatibilité** avec lui : un

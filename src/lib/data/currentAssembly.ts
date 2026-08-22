@@ -44,3 +44,40 @@ const TRACKED_CURRENT_SEATS = Object.values(
 
 /** DEM (37) + HOR (36) + LIOT (23) + UDR (17) + non-inscrits (10) = 123. */
 export const CURRENT_ASSEMBLY_OTHER_SEATS = TOTAL_SEATS - TRACKED_CURRENT_SEATS;
+
+export type SupportGroupId = "dem" | "hor" | "liot" | "udr" | "ni";
+
+export interface SupportGroup {
+  id: SupportGroupId;
+  shortName: string;
+  name: string;
+  /** Real seats in the current Assembly (see module doc for date/source). */
+  seats: number;
+  /** Neutral, distinguishable colors — deliberately NOT one of the 8
+   * tracked parties' colors, since these groups aren't tracked for
+   * proposition support: adding them to a coalition only ever contributes
+   * seats, never program coverage. */
+  color: string;
+}
+
+/**
+ * The 5 real parliamentary groups making up "autres"/`CURRENT_ASSEMBLY_OTHER_SEATS`
+ * above, exposed individually so users can add them to a coalition as
+ * potential extra seats of support (e.g. a centrist or regionalist group
+ * that might vote for a bill without being one of the 8 parties whose
+ * proposition-level positions this site tracks). Seats sum to 123,
+ * matching `CURRENT_ASSEMBLY_OTHER_SEATS`.
+ *
+ * Only meaningful under the "actuelle" electoral system: we have no
+ * equivalent 2024 national vote-share breakdown for these groups (most
+ * ran under joint labels like "Ensemble" with Renaissance, or didn't
+ * exist as distinct groups until after the election), so they can't be
+ * re-simulated under "proportionnelle"/"mixte"/"utopique".
+ */
+export const OTHER_ASSEMBLY_GROUPS: SupportGroup[] = [
+  { id: "dem", shortName: "DEM", name: "Les Démocrates (MoDem)", seats: 37, color: "#94a3b8" },
+  { id: "hor", shortName: "HOR", name: "Horizons et indépendants", seats: 36, color: "#78716c" },
+  { id: "liot", shortName: "LIOT", name: "Libertés, indépendants, outre-mer et territoires", seats: 23, color: "#a8a29e" },
+  { id: "udr", shortName: "UDR", name: "Union des droites pour la République", seats: 17, color: "#57534e" },
+  { id: "ni", shortName: "NI", name: "Non-inscrits", seats: 10, color: "#d6d3d1" },
+];

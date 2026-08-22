@@ -4,11 +4,23 @@ import { partyById } from "@/lib/data/parties";
 import { PartyId } from "@/lib/types";
 import { SeatsByParty } from "@/lib/electoralSystems";
 
+export interface ExtraHemicycleGroup {
+  id: string;
+  shortName: string;
+  color: string;
+  count: number;
+}
+
 interface HemicycleProps {
   seatsByParty: SeatsByParty;
   otherSeats: number;
   totalSeats: number;
   highlightParties?: PartyId[];
+  /** Additional highlighted blocks not part of `seatsByParty` (e.g. a
+   * parliamentary group not tracked as one of the 8 parties, added by
+   * the user as potential extra support) — rendered with their own
+   * color, and subtracted from the grey "reste" bucket. */
+  extraGroups?: ExtraHemicycleGroup[];
 }
 
 const OTHER_COLOR = "#CBD5E1"; // slate-300
@@ -30,6 +42,13 @@ const POLITICAL_ORDER: PartyId[] = [
   "reconquete",
 ];
 
+interface Block {
+  id: string;
+  shortName: string;
+  color: string;
+  count: number;
+}
+
 /**
  * Hemicycle visualization inspired by Le Monde's coalition simulator
  * (https://www.lemonde.fr/les-decodeurs/.../simulateur-de-coalition):
@@ -46,6 +65,7 @@ export function Hemicycle({
   otherSeats,
   totalSeats,
   highlightParties,
+  extraGroups,
 }: HemicycleProps) {
   const highlightSet = new Set(highlightParties ?? []);
 
@@ -53,17 +73,28 @@ export function Hemicycle({
     (a, b) => POLITICAL_ORDER.indexOf(a as PartyId) - POLITICAL_ORDER.indexOf(b as PartyId)
   ) as PartyId[];
 
-  const coalitionBlocks: Array<{ id: string; color: string; count: number }> = [];
+  const coalitionBlocks: Block[] = [];
   let inactiveCount = otherSeats;
 
   for (const id of orderedPartyIds) {
     const count = seatsByParty[id] ?? 0;
     if (count <= 0) continue;
     if (highlightSet.has(id)) {
-      coalitionBlocks.push({ id, color: partyById[id].color, count });
+      coalitionBlocks.push({ id, shortName: partyById[id].shortName, color: partyById[id].color, count });
     } else {
       inactiveCount += count;
     }
+  }
+
+  for (const group of extraGroups ?? []) {
+    if (group.count <= 0) continue;
+    coalitionBlocks.push({
+      id: group.id,
+      shortName: group.shortName,
+      color: group.color,
+      count: group.count,
+    });
+    inactiveCount -= group.count;
   }
 
   // If no coalition was specified at all, show every party in its own
@@ -74,12 +105,19 @@ export function Hemicycle({
     ? [
         ...orderedPartyIds
           .filter((id) => (seatsByParty[id] ?? 0) > 0)
-          .map((id) => ({ id, color: partyById[id].color, count: seatsByParty[id] ?? 0 })),
-        ...(otherSeats > 0 ? [{ id: "autres", color: OTHER_COLOR, count: otherSeats }] : []),
+          .map((id) => ({
+            id,
+            shortName: partyById[id].shortName,
+            color: partyById[id].color,
+            count: seatsByParty[id] ?? 0,
+          })),
+        ...(otherSeats > 0 ? [{ id: "autres", shortName: "Autres", color: OTHER_COLOR, count: otherSeats }] : []),
       ]
     : [
         ...coalitionBlocks,
-        ...(inactiveCount > 0 ? [{ id: "inactifs", color: OTHER_COLOR, count: inactiveCount }] : []),
+        ...(inactiveCount > 0
+          ? [{ id: "inactifs", shortName: "Reste de l'hémicycle", color: OTHER_COLOR, count: inactiveCount }]
+          : []),
       ];
 
   const totalCount = blocks.reduce((sum, b) => sum + b.count, 0) || 1;
@@ -153,7 +191,7 @@ export function Hemicycle({
         {(noHighlight ? blocks : coalitionBlocks).map((b) => (
           <span key={b.id} className="flex items-center gap-1.5 text-xs text-slate-600">
             <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.color }} />
-            {b.id === "autres" ? "Autres" : partyById[b.id as PartyId].shortName} ({b.count})
+            {b.shortName} ({b.count})
           </span>
         ))}
         {!noHighlight && inactiveCount > 0 && (
