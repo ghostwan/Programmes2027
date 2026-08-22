@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.8.0] - 2026-08-22
+
 ### Ajouté
 
 - Avant de démarrer le jeu, un nouvel écran propose de choisir entre le
