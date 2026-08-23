@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.13.1] - 2026-08-23
+
 ### Modifié
 
 - Dans les tableaux thématiques, les propositions sont maintenant triées

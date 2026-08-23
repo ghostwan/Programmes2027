@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.13.1",
+    "date": "2026-08-23",
+    "categories": [
+      {
+        "name": "Modifié",
+        "items": [
+          "Dans les tableaux thématiques, les propositions sont maintenant triées par nombre de partis qui les soutiennent (les mesures les plus consensuelles en premier, celles soutenues par un seul parti en fin de tableau)."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.13.0",
     "date": "2026-08-23",
     "categories": [
