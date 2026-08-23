@@ -15,6 +15,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Modifié
+
+- Dans les tableaux thématiques, les propositions sont maintenant triées
+  par nombre de partis qui les soutiennent (les mesures les plus
+  consensuelles en premier, celles soutenues par un seul parti en fin de
+  tableau).
+
 ## [2.13.0] - 2026-08-23
 
 ### Ajouté

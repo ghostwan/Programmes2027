@@ -29,9 +29,13 @@ export function ThemeComparisonTable({
 
   const visibleParties = parties.filter((p) => !hiddenParties.has(p.id));
 
+  const sortedThemeProps = [...themeProps].sort(
+    (a, b) => b.supportingParties.length - a.supportingParties.length
+  );
+
   const visibleProps = hideSingleParty
-    ? themeProps.filter((p) => p.supportingParties.length >= 2)
-    : themeProps;
+    ? sortedThemeProps.filter((p) => p.supportingParties.length >= 2)
+    : sortedThemeProps;
   const hiddenCount = themeProps.length - visibleProps.length;
 
   return (
