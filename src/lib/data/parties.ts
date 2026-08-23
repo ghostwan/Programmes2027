@@ -49,7 +49,10 @@ export const parties: Party[] = [
     description:
       "Parti écologiste plaçant la transition environnementale et la justice sociale au cœur de son projet.",
     sources: [
-      { label: "Site officiel Les Écologistes", url: "https://lesecologistes.fr" },
+      {
+        label: "Le nouveau programme des Écologistes, « Pour une prospérité écologique »",
+        url: "https://lesecologistes.fr/share/page/6ImK65GKUnvibm33WGkjkj/projet",
+      },
     ],
   },
   {
