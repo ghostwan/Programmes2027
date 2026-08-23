@@ -51,37 +51,57 @@ const pages = [
 
   // Simulate a finished quiz (answers stored in localStorage) to capture
   // the results page with its coalition/hemicycle section populated.
-  const pourIds = [
-    "eco-isf",
-    "eco-is-baisse",
-    "eco-superprofits",
-    "eco-taxe-zucman",
-    "eco-bareme-progressif",
-    "eco-fonds-production",
-    "eco-renationalisation-energie",
-    "eco-separation-bancaire",
-    "eco-pole-public-bancaire",
-    "eco-audit-dette",
-    "eco-encadrement-dividendes",
-    "eco-austerite",
-    "eco-protectionnisme",
-    "eco-taxe-succession",
-    "eco-seuil-zero-cotisation",
-    "eco-compte-social-unique",
-    "eco-tva-verte",
-    "eco-exoneration-salaires",
-    "eco-iff",
-    "eco-cotisation-revenus-financiers",
+  // Answers are chosen so the PS ends up as the top match (highest
+  // compatibility percentage) in the screenshot: "pour" to every
+  // proposition the PS supports (across many themes, for a good spread
+  // in the "Classement complet" list), plus "contre" to a handful of
+  // propositions supported by LFI but not PS, which otherwise would be
+  // the PS's closest rival.
+  const psSupportedIds = [
+    "eco-isf", "eco-superprofits", "eco-taxe-zucman", "eco-taxe-succession",
+    "eco-bareme-progressif", "travail-retraites-62", "travail-4jours",
+    "travail-smic", "travail-plafond-salaires", "travail-cetu",
+    "travail-secu-independants", "immi-regularisation",
+    "immi-renouvellement-auto-titres", "immi-droit-travail-asile",
+    "immi-titre-sejour-automatique", "immi-ofpra-independance",
+    "immi-asile-genre", "secu-effectifs", "secu-peines-alternatives",
+    "secu-legalisation-cannabis", "secu-police-proximite", "secu-recepisse",
+    "secu-doctrine-maintien-ordre", "edu-salaires-enseignants",
+    "edu-effectifs-classe", "edu-parcoursup", "edu-allocation-autonomie",
+    "sante-recrutement-soignants", "sante-deserts-medicaux",
+    "sante-formation-medecins", "sante-100-sante", "sante-t2a",
+    "sante-grande-secu", "sante-prevention", "env-taxe-carbone",
+    "env-renouvelables", "env-mix-nucleaire-renouvelable-parlement",
+    "env-ecocide", "env-mercosur", "env-pfas", "europe-defense-commune",
+    "europe-soutien-ukraine", "europe-pac", "europe-avoirs-russes",
+    "europe-suspension-israel", "inst-ric", "inst-cese-citoyens",
+    "inst-non-cumul", "inst-proportionnelle", "inst-defenseur-laicite",
+    "log-encadrement-loyers", "log-logements-sociaux", "log-taxation-vacance",
+    "log-taxe-multipropriete", "log-leasing", "log-prime-climat",
+    "edu-petite-enfance", "sante-mentale-plan", "sante-malbouffe",
+    "env-eau-bien-commun", "immi-schengen-refonte",
+    "europe-onu-reforme-conseil-securite",
+  ];
+  const lfiNotPsIds = [
+    "eco-protectionnisme", "eco-cotisation-revenus-financiers",
+    "eco-renationalisation-energie", "travail-35h", "travail-retraite-60",
+    "edu-choc-savoirs", "edu-gratuite-cantines", "sante-onbam",
+    "env-regle-verte", "env-crime-climatique", "europe-desobeissance-budgetaire",
+    "europe-sortie-otan", "inst-6e-republique", "log-sru-acte2",
+    "log-moratoire-expulsions",
   ];
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
-  await page.evaluate((ids) => {
-    const answers = Object.fromEntries(ids.map((id) => [id, "pour"]));
-    window.localStorage.setItem("programmes2027:answers", JSON.stringify(answers));
-    window.localStorage.setItem(
-      "programmes2027:game-state",
-      JSON.stringify({ deckIds: ids, index: ids.length })
-    );
-  }, pourIds);
+  await page.evaluate(
+    ({ pourIds, contreIds }) => {
+      const answers = {
+        ...Object.fromEntries(pourIds.map((id) => [id, "pour"])),
+        ...Object.fromEntries(contreIds.map((id) => [id, "contre"])),
+      };
+      window.localStorage.setItem("programmes2027:answers", JSON.stringify(answers));
+      window.localStorage.removeItem("programmes2027:game-state");
+    },
+    { pourIds: psSupportedIds, contreIds: lfiNotPsIds }
+  );
   await page.goto("http://localhost:3000/resultats", { waitUntil: "networkidle" });
   await page.waitForTimeout(800);
   await page.screenshot({ path: path.join(outDir, "resultats.png"), fullPage: true });
