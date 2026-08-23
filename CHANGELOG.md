@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.14.0] - 2026-08-23
+
 ### Ajouté
 
 - Ajout d'un mode de jeu « égalitaire » : chaque parti est représenté par

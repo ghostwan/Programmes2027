@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.14.0",
+    "date": "2026-08-23",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Ajout d'un mode de jeu « égalitaire » : chaque parti est représenté par exactement le même nombre de propositions (déterminé par le parti le moins documenté, plafonné à 30), tirées au hasard."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.13.1",
     "date": "2026-08-23",
     "categories": [
