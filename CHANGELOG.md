@@ -21,6 +21,14 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   accessible sur `https://quiz.programmes2027.workers.dev` (l'ancienne
   adresse `programmes2027.ghostwan.workers.dev` a été désactivée).
 
+### Corrigé
+
+- La limite globale de requêtes ajoutée précédemment pouvait, dans de
+  rares cas, bloquer la page de vérification anti-robot elle-même
+  (message "La vérification a échoué" malgré un Turnstile résolu avec
+  succès). Cette page reste désormais toujours accessible ; seule la
+  navigation sur le site une fois la vérification passée est limitée.
+
 ## [2.14.1] - 2026-08-23
 
 ### Sécurité

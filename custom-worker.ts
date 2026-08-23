@@ -79,22 +79,6 @@ export default {
     const url = new URL(request.url);
     const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
 
-    // Global per-IP ceiling applied before anything else, including
-    // verified bots and visitors who already hold the gate cookie. On
-    // 2026-08-23 a single client sustained ~130 requests/second for over
-    // an hour without ever erroring out, which alone exceeded the
-    // account's daily Workers request quota. 600 req/min (10/s) is far
-    // above any plausible human browsing rate but stops that pattern.
-    {
-      const { success } = await env.GLOBAL_RATE_LIMITER.limit({ key: ip });
-      if (!success) {
-        return new Response("Trop de requêtes, réessayez plus tard.", {
-          status: 429,
-          headers: { "Retry-After": "60" },
-        });
-      }
-    }
-
     // The Turnstile verification endpoint is deliberately public (see
     // PUBLIC_PATH_PREFIXES below) so legitimate visitors can complete the
     // challenge before getting a gate cookie — but that also means it's
@@ -124,6 +108,24 @@ export default {
       const verifyUrl = new URL("/verify", url.origin);
       verifyUrl.searchParams.set("redirect", url.pathname + url.search);
       return Response.redirect(verifyUrl.toString(), 307);
+    }
+
+    // Global per-IP ceiling applied to actual app content (never to public
+    // paths like /verify, /api/turnstile-verify or static assets, which
+    // must always stay reachable so a real visitor can never get locked
+    // out of completing the anti-bot check itself). On 2026-08-23 a single
+    // client sustained ~130 requests/second for over an hour without ever
+    // erroring out, which alone exceeded the account's daily Workers
+    // request quota. 600 req/min (10/s) is far above any plausible human
+    // browsing rate but stops that pattern.
+    if (!isPublicPath(url.pathname)) {
+      const { success } = await env.GLOBAL_RATE_LIMITER.limit({ key: ip });
+      if (!success) {
+        return new Response("Trop de requêtes, réessayez plus tard.", {
+          status: 429,
+          headers: { "Retry-After": "60" },
+        });
+      }
     }
 
     return handler.fetch(request, env, ctx);
