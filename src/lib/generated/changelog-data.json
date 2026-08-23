@@ -1,5 +1,17 @@
 [
   {
+    "version": "2.14.1",
+    "date": "2026-08-23",
+    "categories": [
+      {
+        "name": "Sécurité",
+        "items": [
+          "Ajout d'une limite globale de requêtes par visiteur (au-delà d'un rythme raisonnable, une réponse \"trop de requêtes\" est renvoyée) afin d'empêcher un script isolé de saturer à lui seul le quota quotidien de requêtes du site, comme observé le 23/08."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.14.0",
     "date": "2026-08-23",
     "categories": [

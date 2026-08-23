@@ -15,6 +15,21 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Cassant
+
+- Le site a changé de compte Cloudflare et d'adresse : il est désormais
+  accessible sur `https://quiz.programmes2027.workers.dev` (l'ancienne
+  adresse `programmes2027.ghostwan.workers.dev` a été désactivée).
+
+## [2.14.1] - 2026-08-23
+
+### Sécurité
+
+- Ajout d'une limite globale de requêtes par visiteur (au-delà d'un
+  rythme raisonnable, une réponse "trop de requêtes" est renvoyée) afin
+  d'empêcher un script isolé de saturer à lui seul le quota quotidien de
+  requêtes du site, comme observé le 23/08.
+
 ## [2.14.0] - 2026-08-23
 
 ### Ajouté

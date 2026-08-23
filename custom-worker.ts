@@ -77,6 +77,23 @@ function isVerifiedBot(request: Request): boolean {
 export default {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext) {
     const url = new URL(request.url);
+    const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
+
+    // Global per-IP ceiling applied before anything else, including
+    // verified bots and visitors who already hold the gate cookie. On
+    // 2026-08-23 a single client sustained ~130 requests/second for over
+    // an hour without ever erroring out, which alone exceeded the
+    // account's daily Workers request quota. 600 req/min (10/s) is far
+    // above any plausible human browsing rate but stops that pattern.
+    {
+      const { success } = await env.GLOBAL_RATE_LIMITER.limit({ key: ip });
+      if (!success) {
+        return new Response("Trop de requêtes, réessayez plus tard.", {
+          status: 429,
+          headers: { "Retry-After": "60" },
+        });
+      }
+    }
 
     // The Turnstile verification endpoint is deliberately public (see
     // PUBLIC_PATH_PREFIXES below) so legitimate visitors can complete the
@@ -87,7 +104,6 @@ export default {
     // quota and the Workers request quota. Rate-limit it per IP before
     // even reaching Next.js.
     if (url.pathname === "/api/turnstile-verify" && request.method === "POST") {
-      const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
       const { success } = await env.TURNSTILE_VERIFY_LIMITER.limit({ key: ip });
       if (!success) {
         return new Response(

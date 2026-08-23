@@ -1,7 +1,7 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"main": "custom-worker.ts",
-	"name": "programmes2027",
+	"name": "quiz",
 	"compatibility_date": "2026-08-20",
 	"compatibility_flags": [
 		"nodejs_compat"
@@ -26,6 +26,23 @@
 			"namespace_id": "1001",
 			"simple": {
 				"limit": 20,
+				"period": 60
+			}
+		},
+		{
+			// Global per-IP guard applied to every request in custom-worker.ts
+			// (including verified bots and already-gated visitors). On
+			// 2026-08-23 a single client, seemingly located in France (almost
+			// all requests hit the CDG colo), sustained ~130 req/s for over
+			// an hour with zero errors — i.e. legitimately reaching the app,
+			// just far too often for any real visitor — which alone blew
+			// through the account's daily Workers request quota. A generous
+			// per-IP ceiling (well above any plausible human browsing rate)
+			// stops that pattern without affecting real users.
+			"name": "GLOBAL_RATE_LIMITER",
+			"namespace_id": "1002",
+			"simple": {
+				"limit": 600,
 				"period": 60
 			}
 		}
