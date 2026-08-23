@@ -112,3 +112,34 @@ export function removeFromMarketBasket(propositionId: string) {
 export function clearMarketBasket() {
   writeBasketIds([]);
 }
+
+/**
+ * Whether there are saved answers from a completed (or early-viewed)
+ * quiz sitting in localStorage. Used to gate starting a brand new game:
+ * we never want to silently overwrite previous results just because the
+ * user navigated back to /jeu, only when they explicitly confirm they
+ * want to start over (see PreviousResultsGate in SwipeGame.tsx).
+ */
+export function hasFinishedAnswers(): boolean {
+  if (typeof window === "undefined") return false;
+  const raw = window.localStorage.getItem(ANSWERS_STORAGE_KEY);
+  if (!raw) return false;
+  try {
+    const parsed = JSON.parse(raw);
+    return (
+      typeof parsed === "object" && parsed !== null && Object.keys(parsed).length > 0
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Clears previously saved quiz answers. Only ever called when the user
+ * explicitly chooses to start a new game (see PreviousResultsGate /
+ * restart() in SwipeGame.tsx) — never automatically.
+ */
+export function clearAnswers() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(ANSWERS_STORAGE_KEY);
+}

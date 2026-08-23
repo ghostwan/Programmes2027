@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
@@ -17,6 +18,7 @@ import {
   GAME_STATE_STORAGE_KEY,
   MIN_ANSWERS_FOR_EARLY_RESULTS,
   QUIZ_WARNING_DISMISSED_KEY,
+  clearAnswers,
 } from "@/lib/storage";
 
 /**
@@ -87,8 +89,22 @@ function getSnapshot(): Snapshot {
   return window.localStorage.getItem(GAME_STATE_STORAGE_KEY) ?? "";
 }
 
+function getAnswersSnapshot(): Snapshot {
+  return window.localStorage.getItem(ANSWERS_STORAGE_KEY) ?? "";
+}
+
 function getServerSnapshot(): Snapshot {
   return LOADING;
+}
+
+function hasAnswersContent(raw: string): boolean {
+  if (!raw) return false;
+  try {
+    const parsed = JSON.parse(raw);
+    return typeof parsed === "object" && parsed !== null && Object.keys(parsed).length > 0;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -98,14 +114,24 @@ function getServerSnapshot(): Snapshot {
  * that initial data — all further game state lives in GamePlay's own
  * component state (no repeated localStorage reads needed).
  *
- * If there's no game to resume, the player first picks a deck mode (see
- * `DeckMode`) via `<DeckModeGate>` before `<GamePlay>` is mounted, since
+ * If there's no game to resume, but there ARE saved results from a
+ * previous, already-finished game, we show <PreviousResultsGate> first:
+ * results must stay available (and never be silently overwritten) until
+ * the user explicitly asks to start a new game. Only once that's
+ * confirmed (or if there was nothing to preserve) does the player pick a
+ * deck mode via `<DeckModeGate>` before `<GamePlay>` is mounted, since
  * the deck is built once at mount time from that choice.
  */
 export function SwipeGame() {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const answersSnapshot = useSyncExternalStore(
+    subscribe,
+    getAnswersSnapshot,
+    getServerSnapshot
+  );
+  const [forceNewGame, setForceNewGame] = useState(false);
 
-  if (snapshot === LOADING) {
+  if (snapshot === LOADING || answersSnapshot === LOADING) {
     return (
       <div className="flex flex-1 items-center justify-center py-20 text-slate-500">
         Chargement...
@@ -118,7 +144,55 @@ export function SwipeGame() {
     return <GamePlay initialSavedState={initialSavedState} mode="complet" />;
   }
 
+  if (!forceNewGame && hasAnswersContent(answersSnapshot)) {
+    return (
+      <PreviousResultsGate
+        onStartNew={() => {
+          clearAnswers();
+          setForceNewGame(true);
+        }}
+      />
+    );
+  }
+
   return <DeckModeGate />;
+}
+
+/**
+ * Shown when the player has finished (or early-viewed) a previous game
+ * and has no game currently in progress. Never starts a new game (which
+ * would eventually overwrite the saved results on finish) without an
+ * explicit confirmation click.
+ */
+function PreviousResultsGate({ onStartNew }: { onStartNew: () => void }) {
+  return (
+    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col items-center justify-center gap-6 px-4 py-20 text-center">
+      <div className="text-4xl">📌</div>
+      <div>
+        <h1 className="text-xl font-bold text-slate-900">
+          Vous avez déjà des résultats sauvegardés
+        </h1>
+        <p className="mt-2 text-sm text-slate-600">
+          Ils restent disponibles tant que vous ne recommencez pas
+          explicitement une nouvelle partie.
+        </p>
+      </div>
+      <div className="flex flex-wrap justify-center gap-3">
+        <Link
+          href="/resultats"
+          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          Voir mes résultats
+        </Link>
+        <button
+          onClick={onStartNew}
+          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+        >
+          🔄 Recommencer une nouvelle partie
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function DeckModeGate() {
@@ -275,6 +349,7 @@ function GamePlay({
 
   function restart() {
     clearSavedGameState();
+    clearAnswers();
     // Force a full remount with a brand new shuffled deck.
     window.location.reload();
   }

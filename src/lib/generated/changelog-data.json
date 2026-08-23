@@ -1,5 +1,24 @@
 [
   {
+    "version": "2.12.0",
+    "date": "2026-08-22",
+    "categories": [
+      {
+        "name": "Supprimé",
+        "items": [
+          "Retiré l'option « Considérer qu'un parti sans position connue y est opposé » de la page des résultats : elle présupposait qu'un parti sans proposition documentée sur un sujet y était forcément opposé, ce qui n'est pas une hypothèse raisonnable (silence ≠ désaccord). Le comparateur ne compte désormais que les positions explicitement documentées (ou logiquement déduites d'une contradiction directe, voir ci-dessous), jamais une simple absence de position."
+        ]
+      },
+      {
+        "name": "Ajouté",
+        "items": [
+          "Les tableaux comparatifs par thématique et les fiches propositions affichent désormais visuellement les partis « logiquement opposés » déduits d'une contradiction directe (croix colorée ✕ dans le tableau, distincte du tiret gris « — » qui signifie « position inconnue » ; section dédiée avec lien vers la proposition contradictoire sur la fiche de chaque proposition concernée).",
+          "L'algorithme de correspondance déduit désormais automatiquement qu'un parti est opposé à une proposition quand elle est directement contradictoire avec une autre qu'il soutient explicitement (ex. un parti qui soutient « relancer le nucléaire et construire de nouveaux EPR » est logiquement opposé à « sortir du nucléaire », même sans position documentée sur cette dernière). Cette déduction ne s'applique qu'à une poignée de paires de propositions vérifiées manuellement comme réellement incompatibles (nucléaire, fonctionnaires, encadrement des loyers, Frontex, droit du sol, renouvelables, quotas SRU, sortie de l'UE vs fédéralisme européen) — la grande majorité des propositions n'ont aucune position déduite et restent traitées comme avant (silence = on ne sait pas)."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.11.0",
     "date": "2026-08-22",
     "categories": [

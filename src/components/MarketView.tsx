@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { propositionById } from "@/lib/data/propositions";
 import { partyById } from "@/lib/data/parties";
@@ -31,6 +31,12 @@ function useBasketIds(): string[] {
   }, [raw]);
 }
 
+// Theme groups with more items than this are collapsed by default so a
+// large basket (many propositions added across many themes) stays
+// readable — the user can still expand any group, or all of them at
+// once, with the "Tout déplier" control.
+const COLLAPSE_THRESHOLD = 4;
+
 export function MarketView() {
   const basketIds = useBasketIds();
   const basket: Proposition[] = basketIds
@@ -46,6 +52,36 @@ export function MarketView() {
     }
     return map;
   }, [basket]);
+
+  // Explicit user overrides of a theme group's collapsed/expanded state.
+  // When a theme id has no entry here, its openness falls back to the
+  // default (open if it has few items, collapsed if it has many).
+  const [expandedOverrides, setExpandedOverrides] = useState<
+    Record<string, boolean>
+  >({});
+
+  function isThemeExpanded(themeId: string, itemCount: number): boolean {
+    return expandedOverrides[themeId] ?? itemCount <= COLLAPSE_THRESHOLD;
+  }
+
+  function toggleTheme(themeId: string, itemCount: number) {
+    setExpandedOverrides((prev) => ({
+      ...prev,
+      [themeId]: !isThemeExpanded(themeId, itemCount),
+    }));
+  }
+
+  function expandAll() {
+    setExpandedOverrides(
+      Object.fromEntries(Array.from(byTheme.keys()).map((id) => [id, true]))
+    );
+  }
+
+  function collapseAll() {
+    setExpandedOverrides(
+      Object.fromEntries(Array.from(byTheme.keys()).map((id) => [id, false]))
+    );
+  }
 
   if (basket.length === 0) {
     return (
@@ -83,71 +119,117 @@ export function MarketView() {
         faudrait selon le mode de scrutin.
       </p>
 
-      {/* Basket content, grouped by theme */}
-      <section className="mt-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-slate-900">Votre programme</h2>
-          <button
-            onClick={clearMarketBasket}
-            className="text-xs font-semibold text-slate-400 underline underline-offset-2 hover:text-slate-700"
-          >
-            Vider le marché
-          </button>
+      <CoalitionExplorer propositions={basket} />
+
+      {/* Basket content, grouped by theme, shown at the end of the page so
+          the coalition analysis comes first. Groups collapse automatically
+          once the basket grows large, to keep the list readable. */}
+      <section className="mt-10">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">
+              Votre programme ({basket.length})
+            </h2>
+            <p className="text-xs text-slate-500">
+              Regroupé par thématique · cliquez sur une thématique pour la
+              déplier ou la replier.
+            </p>
+          </div>
+          <div className="flex shrink-0 gap-3 text-xs font-semibold">
+            {byTheme.size > 1 && (
+              <>
+                <button
+                  onClick={expandAll}
+                  className="text-slate-500 underline underline-offset-2 hover:text-slate-800"
+                >
+                  Tout déplier
+                </button>
+                <button
+                  onClick={collapseAll}
+                  className="text-slate-500 underline underline-offset-2 hover:text-slate-800"
+                >
+                  Tout replier
+                </button>
+              </>
+            )}
+            <button
+              onClick={clearMarketBasket}
+              className="text-slate-400 underline underline-offset-2 hover:text-rose-600"
+            >
+              Vider le marché
+            </button>
+          </div>
         </div>
-        <div className="mt-3 flex flex-col gap-4">
+        <div className="mt-3 flex flex-col gap-3">
           {Array.from(byTheme.entries()).map(([themeId, props]) => {
             const theme = themeById[themeId as keyof typeof themeById];
+            const expanded = isThemeExpanded(themeId, props.length);
             return (
-              <div key={themeId}>
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <span>{theme.icon}</span> {theme.name}
-                </div>
-                <div className="mt-2 flex flex-col gap-2">
-                  {props.map((p) => (
-                    <div
-                      key={p.id}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3"
-                    >
-                      <div>
-                        <Link
-                          href={`/proposition/${p.id}`}
-                          className="text-sm font-medium text-slate-900 hover:underline"
-                        >
-                          {p.title}
-                        </Link>
-                        <div className="mt-1 flex flex-wrap gap-1">
-                          {p.supportingParties.length === 0 ? (
-                            <span className="text-xs text-slate-400">Aucun parti identifié</span>
-                          ) : (
-                            p.supportingParties.map((pid) => (
-                              <span
-                                key={pid}
-                                className="rounded-full px-2 py-0.5 text-[11px] font-medium text-white"
-                                style={{ backgroundColor: partyById[pid].color }}
-                              >
-                                {partyById[pid].shortName}
-                              </span>
-                            ))
-                          )}
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => removeFromMarketBasket(p.id)}
-                        aria-label="Retirer du marché"
-                        className="shrink-0 rounded-full px-2 py-1 text-slate-400 hover:bg-slate-100 hover:text-rose-600"
+              <div
+                key={themeId}
+                className="rounded-xl border border-slate-200 bg-white"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleTheme(themeId, props.length)}
+                  className="flex w-full items-center justify-between gap-2 px-4 py-3 text-left"
+                >
+                  <span className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                    <span>{theme.icon}</span> {theme.name}
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500">
+                      {props.length}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-slate-400">
+                    {expanded ? "▲" : "▼"}
+                  </span>
+                </button>
+                {expanded && (
+                  <div className="flex flex-col gap-2 border-t border-slate-100 p-3">
+                    {props.map((p) => (
+                      <div
+                        key={p.id}
+                        className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3"
                       >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
+                        <div>
+                          <Link
+                            href={`/proposition/${p.id}`}
+                            className="text-sm font-medium text-slate-900 hover:underline"
+                          >
+                            {p.title}
+                          </Link>
+                          <div className="mt-1 flex flex-wrap gap-1">
+                            {p.supportingParties.length === 0 ? (
+                              <span className="text-xs text-slate-400">Aucun parti identifié</span>
+                            ) : (
+                              p.supportingParties.map((pid) => (
+                                <span
+                                  key={pid}
+                                  className="rounded-full px-2 py-0.5 text-[11px] font-medium text-white"
+                                  style={{ backgroundColor: partyById[pid].color }}
+                                >
+                                  {partyById[pid].shortName}
+                                </span>
+                              ))
+                            )}
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => removeFromMarketBasket(p.id)}
+                          aria-label="Retirer du marché"
+                          className="shrink-0 rounded-full px-2 py-1 text-slate-400 hover:bg-slate-100 hover:text-rose-600"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       </section>
-
-      <CoalitionExplorer propositions={basket} />
 
       <div className="mt-10">
         <Link

@@ -33,7 +33,7 @@ project from scratch each time.
 | Renaissance | Convention thématique PDFs published irregularly (past examples: "Nouvelle donne économique et climatique", "Une République ferme, une France apaisée" — check `renaissance` official site / press for newer ones) |
 | LR | Thematic PDF booklets, e.g. "NOS PROPOSITIONS POUR LA FRANCE" series (electricité, agriculture, logement, IA, "Produire Plus", famille...) — user has downloaded these manually before into `~/Downloads/Programmes 2027/lr/` |
 | RN | PDF booklets under `docs-sources/` (`202406-programme.pdf`, `projet-la-securite.pdf`, `projet-lecologie.pdf`, `projet-l-ecole.pdf`, `projet-la-sante.pdf`, `projet-controle-de-limmigration.pdf`) — check `rassemblementnational.fr` for newer ones; direct URL fetches to this domain have repeatedly failed/404'd in this environment, PDFs downloaded manually by the user are more reliable. |
-| Reconquête | Not yet covered as of this skill's writing — no established source. Ask the user for a PDF/URL if needed. |
+| Reconquête | `https://leprogrammepourlafrance.fr/` — Sarah Knafo's citizen participation platform. As of 2026-08-23 it has NO stable/citable content yet: `/voter` and `/statistiques` are pure client-side JS pages (empty on static fetch), and the homepage explicitly states that strong proposals will only be integrated into the actual program later, once "expertisées et chiffrées". Do not add propositions from it yet — re-check periodically for when it publishes an actual written program/PDF. |
 
 If the user says "j'ai téléchargé des PDFs dans [folder]", look there first
 (commonly `~/Downloads/` or `~/Downloads/Programmes 2027/<party>/`) before

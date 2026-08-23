@@ -58,6 +58,12 @@ des propositions (voir ci-dessous).
 
 ![Résultats du jeu avec exploration de coalitions](public/screenshots/resultats.png)
 
+Vos résultats restent sauvegardés indéfiniment dans votre navigateur, même
+une fois le quiz terminé : ils ne sont jamais écrasés silencieusement — il
+faut explicitement confirmer vouloir recommencer une nouvelle partie. Un
+bouton **« Partager mes résultats »** permet aussi d'envoyer votre
+compatibilité (partage natif sur mobile, lien copié sur ordinateur).
+
 
 ### 📊 Comparateur par thématique
 
@@ -119,6 +125,11 @@ que pour cette part de ses sièges réels dans le total de la coalition
 (le nombre de sièges réels reste affiché à titre indicatif).
 
 ![Le marché des propositions avec simulation de coalition](public/screenshots/marche.png)
+
+En fin de page, le détail de votre panier est listé, regroupé par
+thématique dans des sections dépliables/repliables (repliées
+automatiquement pour les thématiques comptant beaucoup de propositions),
+afin de rester lisible même après en avoir ajouté un grand nombre.
 
 ### 🏛️ Fiches partis
 

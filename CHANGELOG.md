@@ -15,6 +15,26 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Ajout d'un bouton « Partager mes résultats » sur la page des résultats
+  du quiz (partage natif sur mobile, ou copie du lien dans le
+  presse-papiers sur ordinateur).
+
+### Modifié
+
+- Vos résultats de quiz restent désormais sauvegardés indéfiniment, même
+  après avoir terminé la partie : ils ne sont plus jamais écrasés
+  silencieusement en retournant sur la page du jeu. Un écran de
+  confirmation demande explicitement de recommencer une nouvelle partie
+  avant d'effacer les résultats précédents.
+- Dans le marché des propositions, la liste détaillée de votre panier est
+  désormais affichée en fin de page (après l'analyse des coalitions), et
+  regroupée par thématique dans des sections dépliables/repliables pour
+  rester lisible même avec de nombreuses propositions ajoutées.
+
+## [2.12.0] - 2026-08-22
+
 ### Supprimé
 
 - Retiré l'option « Considérer qu'un parti sans position connue y est

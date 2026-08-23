@@ -41,6 +41,7 @@ export function ResultsView() {
   const answers: AnswersMap = raw ? JSON.parse(raw) : {};
   const unfinishedGame = gameStateRaw !== null && hasUnfinishedGame();
   const [expandedTheme, setExpandedTheme] = useState<string | null>(null);
+  const [shareFeedback, setShareFeedback] = useState<string | null>(null);
 
   const totalAnswered = Object.values(answers).filter(
     (a) => a === "pour" || a === "contre"
@@ -84,6 +85,42 @@ export function ResultsView() {
   const partyCompatibility = Object.fromEntries(
     partyScores.map((s) => [s.partyId, s.matchPercent])
   );
+
+  async function shareResults() {
+    const shareText =
+      topParties.length === 1
+        ? `Je suis ${topPercent}% compatible avec ${
+            partyById[topParties[0].partyId].name
+          } sur Programmes2027, le comparateur des programmes politiques pour 2027. Fais le test toi aussi :`
+        : topParties.length > 1
+          ? `Je suis ${topPercent}% compatible avec ${topParties.length} partis ex æquo sur Programmes2027, le comparateur des programmes politiques pour 2027. Fais le test toi aussi :`
+          : `J'ai fait le comparateur de programmes politiques Programmes2027 pour 2027. Fais le test toi aussi :`;
+    const shareUrl = typeof window !== "undefined" ? window.location.origin : "";
+    const nav: Navigator | undefined =
+      typeof navigator !== "undefined" ? navigator : undefined;
+
+    if (nav?.share) {
+      try {
+        await nav.share({
+          title: "Programmes2027",
+          text: shareText,
+          url: shareUrl,
+        });
+      } catch {
+        // User cancelled the native share sheet or it failed silently — no
+        // fallback needed in that case.
+      }
+      return;
+    }
+
+    try {
+      await nav?.clipboard.writeText(`${shareText} ${shareUrl}`);
+      setShareFeedback("Lien copié dans le presse-papiers !");
+    } catch {
+      setShareFeedback(null);
+    }
+    setTimeout(() => setShareFeedback(null), 3000);
+  }
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
@@ -332,10 +369,21 @@ export function ResultsView() {
             répondu à toutes les propositions.
           </p>
         )}
+        {shareFeedback && (
+          <p className="w-full text-sm font-medium text-emerald-600">
+            {shareFeedback}
+          </p>
+        )}
+        <button
+          onClick={shareResults}
+          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          📤 Partager mes résultats
+        </button>
         {unfinishedGame ? (
           <Link
             href="/jeu"
-            className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+            className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
           >
             ▶️ Continuer le quiz
           </Link>
@@ -349,11 +397,7 @@ export function ResultsView() {
         )}
         <Link
           href="/themes"
-          className={
-            unfinishedGame
-              ? "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-              : "rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
-          }
+          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
         >
           Explorer les thématiques en détail
         </Link>
