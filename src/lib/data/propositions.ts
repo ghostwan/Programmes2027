@@ -293,7 +293,7 @@ export const propositions: Proposition[] = [
     title: "Créer un compte épargne temps universel",
     description:
       "Permettre à chaque salarié de cumuler RTT, heures supplémentaires et jours de repos non pris dans un compte mobilisable librement (formation, enfants, loisirs).",
-    supportingParties: ["ps", "renaissance"],
+    supportingParties: ["ps", "renaissance", "eelv"],
   },
   {
     id: "travail-secu-independants",
@@ -549,7 +549,7 @@ export const propositions: Proposition[] = [
     title: "Légaliser et encadrer strictement la production et la vente de cannabis",
     description:
       "Soumettre la légalisation du cannabis à une convention citoyenne, avec un contrôle étatique strict de sa production et de sa commercialisation, pour assécher les circuits du narcotrafic.",
-    supportingParties: ["ps", "lfi"],
+    supportingParties: ["ps", "lfi", "eelv"],
     internationalExample: {
       country: "Uruguay",
       when: "Depuis 2013",
@@ -1018,7 +1018,7 @@ export const propositions: Proposition[] = [
     title: "Interdire tous les PFAS (polluants éternels) d'ici 2030",
     description:
       "Fixer un calendrier précis d'interdiction totale des PFAS, avec dépistage systématique et création d'un fonds public de dépollution.",
-    supportingParties: ["ps"],
+    supportingParties: ["ps", "eelv"],
   },
   {
     id: "env-regle-verte",
@@ -1691,7 +1691,7 @@ export const propositions: Proposition[] = [
     title: "Créer une garantie d'emploi pour les chômeurs de longue durée",
     description:
       "Proposer à tout chômeur de longue durée un emploi rémunéré au SMIC revalorisé dans un secteur d'utilité écologique ou sociale, sur le modèle des Territoires zéro chômeur de longue durée.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv"],
   },
   {
     id: "travail-6e-semaine-conges",
@@ -1815,7 +1815,7 @@ export const propositions: Proposition[] = [
     title: "Créer un pôle public du médicament",
     description:
       "Relocaliser la production de médicaments jugés stratégiques, constituer une réserve publique et nationaliser certaines filiales critiques en cas de rupture d'approvisionnement.",
-    supportingParties: ["lfi", "pcf"],
+    supportingParties: ["lfi", "pcf", "eelv"],
   },
   {
     id: "sante-mentale-plan",
@@ -1909,7 +1909,7 @@ export const propositions: Proposition[] = [
     title: "Interdire les fermes-usines et les pratiques d'élevage les plus cruelles",
     description:
       "Interdire l'élevage industriel en cage ou en bâtiment fermé de type ferme-usine, ainsi que le broyage des poussins et d'autres pratiques d'élevage jugées les plus cruelles.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv"],
   },
   {
     id: "env-zero-dechet",
@@ -1925,7 +1925,7 @@ export const propositions: Proposition[] = [
     title: "Remplacer l'IGPN et l'IGGN par une autorité de contrôle indépendante",
     description:
       "Supprimer les inspections internes de la police et de la gendarmerie pour les remplacer par une autorité indépendante (magistrats, universitaires, citoyens) dotée d'un pouvoir de sanction disciplinaire propre.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv"],
     internationalExample: {
       country: "Royaume-Uni",
       when: "Depuis 2018",
@@ -1975,7 +1975,7 @@ export const propositions: Proposition[] = [
     title: "Garantir un droit du sol intégral, y compris à Mayotte",
     description:
       "Garantir à tout enfant né en France l'accès à la nationalité française par le droit du sol, y compris à Mayotte où ce droit a été restreint, et faciliter les démarches de naturalisation.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv"],
     contradicts: ["immi-droit-du-sol"],
   },
   {
@@ -2001,7 +2001,7 @@ export const propositions: Proposition[] = [
     title: "Créer un Commissariat à l'égalité contre les discriminations",
     description:
       "Créer une autorité indépendante dotée d'un observatoire des discriminations et de pôles spécialisés dans les services publics et les cours d'appel, pour lutter contre les discriminations à l'emploi, au logement et à l'éducation.",
-    supportingParties: ["lfi"],
+    supportingParties: ["lfi", "eelv"],
     internationalExample: {
       country: "Royaume-Uni",
       when: "Depuis 2007",
@@ -2210,7 +2210,7 @@ export const propositions: Proposition[] = [
     title: "Encadrer strictement l'enseignement supérieur privé lucratif",
     description:
       "Imposer une accréditation stricte, une transparence financière obligatoire et un encadrement des pratiques commerciales (publicité, promesses d'insertion) aux écoles privées de l'enseignement supérieur.",
-    supportingParties: ["renaissance"],
+    supportingParties: ["renaissance", "eelv"],
   },
   {
     id: "env-loi-programmation-energie-climat",
@@ -3074,6 +3074,1416 @@ export const propositions: Proposition[] = [
       "Supprimer sur cinq ans l'exonération d'impôt sur les sociétés dont bénéficient les bailleurs sociaux, en redistribuant les recettes vers les organismes qui construisent le plus.",
     supportingParties: ["lr"],
   },
+  // NOUVEAU PROGRAMME DES ÉCOLOGISTES (2026) — mesures supplémentaires
+  {
+    id: "env-eelv-renouvelables-44pct-2030",
+    themeId: "environnement",
+    title: "Fixer un objectif de 44% d'énergies renouvelables dans l'électricité en 2030",
+    description:
+      "Fixer un objectif de 44 % d'énergies renouvelables dans la consommation finale brute d'électricité en 2030 via la révision de la programmation pluriannuelle de l'énergie.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-arret-epr2-smr",
+    themeId: "environnement",
+    title: "Mettre fin aux nouveaux réacteurs EPR2 et SMR",
+    description:
+      "Mettre fin aux nouveaux programmes EPR2 et SMR et planifier l'arrêt progressif du parc nucléaire existant sur une vingtaine d'années.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-fusion-irsn-asn",
+    themeId: "environnement",
+    title: "Revenir sur la fusion de l'IRSN et de l'ASN",
+    description:
+      "Revenir sur la fusion de l'IRSN et de l'ASN et adopter un moratoire sur le projet de stockage de déchets nucléaires Cigéo.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-communautes-energetiques",
+    themeId: "environnement",
+    title: "Déployer 10 000 communautés énergétiques citoyennes",
+    description:
+      "Soutenir le déploiement de 10 000 communautés énergétiques renouvelables portées par des citoyens ou des collectivités locales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-sortie-pesticides-2050",
+    themeId: "environnement",
+    title: "Planifier la sortie des pesticides de synthèse d'ici 2050",
+    description:
+      "Planifier une sortie progressive des pesticides de synthèse et des engrais azotés d'ici 2050, avec interdiction immédiate des pesticides CMR et du prosulfocarbe.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-plantation-haies",
+    themeId: "environnement",
+    title: "Lancer un plan de plantation de haies",
+    description:
+      "Lancer un grand plan de plantation de haies visant un gain net de 60 000 km d'ici 2030.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-amp-30pct-no-take",
+    themeId: "environnement",
+    title: "Protéger 30% des zones maritimes en aires marines protégées",
+    description:
+      "Renforcer la protection de 30 % des zones maritimes via des Aires Marines Protégées avec des zones de non-prélèvement, dont 10 % strictement protégées sans activité extractive d'ici 2030.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-chalutage-3milles",
+    themeId: "environnement",
+    title: "Interdire le chalutage dans les 3 milles nautiques",
+    description:
+      "Interdire totalement le chalutage dans les 3 milles nautiques et interdire les navires-usines et bateaux de plus de 25 mètres dans la bande côtière des 12 milles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-moratoire-mines-fonds-marins",
+    themeId: "environnement",
+    title: "Soutenir un moratoire sur l'exploitation minière des fonds marins",
+    description:
+      "Soutenir un moratoire international sur l'exploitation minière des fonds marins.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-onf-statut-epa",
+    themeId: "environnement",
+    title: "Donner à l'ONF un statut d'établissement public administratif",
+    description:
+      "Donner à l'Office National des Forêts un statut d'Établissement Public Administratif pour subordonner sa dimension économique aux objectifs écologiques, et rétablir les postes supprimés.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-coupes-rases",
+    themeId: "environnement",
+    title: "Interdire les coupes rases dans les vieilles forêts",
+    description:
+      "Interdire les coupes rases dans les vieilles forêts et les limiter à un hectare dans les plantations.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-statut-commun-forestier",
+    themeId: "environnement",
+    title: "Créer un statut de « commun forestier »",
+    description:
+      "Créer un statut de « commun forestier » et interdire la détention spéculative des forêts par des acteurs financiers.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-corrida-combats-coqs",
+    themeId: "environnement",
+    title: "Interdire la corrida et les combats de coqs",
+    description:
+      "Interdire la corrida, les combats de coqs, le gavage, les écoles taurines et le broyage des poussins mâles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-personnalite-juridique-animaux",
+    themeId: "environnement",
+    title: "Créer une personnalité juridique pour les animaux",
+    description:
+      "Définir une personnalité juridique pour les animaux et créer un secrétariat d'État à la condition animale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-journee-sans-chasse",
+    themeId: "environnement",
+    title: "Instaurer une journée sans chasse par semaine",
+    description:
+      "Instaurer une journée sans chasse par semaine et interdire les pratiques de chasse cruelle (chasse à courre, piège à colle).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-plan-adaptation-7mds",
+    themeId: "environnement",
+    title: "Doter le plan d'adaptation climatique de 7 milliards d'euros par an",
+    description:
+      "Doter de 7 milliards d'euros par an d'ici 2032 le Plan national d'adaptation au changement climatique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-caisse-securite-climatique",
+    themeId: "environnement",
+    title: "Créer une Caisse Nationale de Sécurité Climatique",
+    description:
+      "Créer une Caisse Nationale de Sécurité Climatique unifiant la couverture des risques climatiques pour les résidences principales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-vols-4h30",
+    themeId: "environnement",
+    title: "Interdire les vols intra-européens quand une alternative train existe",
+    description:
+      "Interdire les vols intra-européens lorsqu'une alternative de moins de 4h30 en train existe, et interdire l'atterrissage des jets privés sur les aéroports français.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-moratoire-grands-projets",
+    themeId: "environnement",
+    title: "Moratoire sur les grands projets routiers et aéroportuaires",
+    description:
+      "Adopter un moratoire sur les grands projets routiers et aéroportuaires jugés inutiles (canal Seine-Nord Europe, autoroute A69, TGV Lyon-Turin, extensions d'aéroport).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-vitesse-110-autoroute",
+    themeId: "environnement",
+    title: "Réduire la vitesse des véhicules thermiques à 110 km/h sur autoroute",
+    description:
+      "Réduire la vitesse maximale des véhicules thermiques à 110 km/h sur autoroute.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-poids-lourds-2040",
+    themeId: "environnement",
+    title: "Interdire la vente de poids lourds thermiques neufs en 2040",
+    description:
+      "Interdire la vente de poids lourds thermiques neufs en 2040.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-fret-ferroviaire-35pct",
+    themeId: "environnement",
+    title: "Atteindre 35% de fret par rail, fleuve et mer en 2050",
+    description:
+      "Atteindre 35 % de part du transport de marchandises par fret ferroviaire, fluvial et maritime en 2050.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-garantie-universelle-loyers",
+    themeId: "logement",
+    title: "Créer une garantie universelle des loyers",
+    description:
+      "Remplacer la garantie Visale par une garantie universelle des loyers couvrant l'ensemble des locataires.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-sru-30pct-2035",
+    themeId: "logement",
+    title: "Porter l'obligation SRU à 30% de logements sociaux d'ici 2035",
+    description:
+      "Ajouter une obligation d'atteindre 30 % de logements sociaux d'ici 2035 dans les communes aux marchés immobiliers les plus tendus.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-fin-fioul-2032",
+    themeId: "logement",
+    title: "Mettre fin aux chauffages au fioul en 2032",
+    description:
+      "Mettre fin aux chauffages au fioul en 2032 en visant le changement de système de chauffage de 300 000 ménages par an.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-500000-renovations",
+    themeId: "logement",
+    title: "Atteindre 500 000 rénovations énergétiques performantes par an",
+    description:
+      "Sortir un million de personnes par an de la précarité énergétique en atteignant 500 000 rénovations performantes par an via MaPrimeRénov'.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-abrogation-loi-kasbarian",
+    themeId: "logement",
+    title: "Abroger la loi Kasbarian sur les expulsions locatives",
+    description:
+      "Abroger la loi Kasbarian qui criminalise les locataires et utiliser le droit de réquisition contre les logements vacants.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "log-eelv-habitat-leger-statut",
+    themeId: "logement",
+    title: "Reconnaître l'habitat léger permanent comme logement",
+    description:
+      "Reconnaître l'habitat léger permanent (yourte, tiny house, caravane) comme logement en définissant des normes de décence adaptées.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-moratoire-megabassines",
+    themeId: "environnement",
+    title: "Décréter un moratoire sur les méga-bassines",
+    description:
+      "Décréter un moratoire sur tous les nouveaux projets de méga-bassines, en conditionnant tout projet de retenue artificielle à une trajectoire de réduction de la consommation d'eau ou à un projet agroécologique maîtrisé.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-droit-eau-potable",
+    themeId: "environnement",
+    title: "Rendre le droit à l'eau potable applicable",
+    description:
+      "Rendre le droit à l'eau potable applicable en imposant aux collectivités des régies publiques de l'eau, la gratuité des premiers mètres cubes et une tarification progressive selon les usages.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-plomb-cvm",
+    themeId: "environnement",
+    title: "Interdire le plomb laminé et le CVM",
+    description:
+      "Interdire l'usage de plomb laminé et de chlorure de vinyle monomère (CVM) en France, et étendre le constat de risque d'exposition au plomb aux eaux, tuyaux et sols des jardins.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-renforcement-zan",
+    themeId: "environnement",
+    title: "Renforcer la trajectoire Zéro Artificialisation Nette",
+    description:
+      "Renforcer la trajectoire ZAN pour la période 2031-2041 en tenant compte de l'équité territoriale, avec des sanctions en cas de non-respect.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-loi-fonciere-agricole",
+    themeId: "environnement",
+    title: "Adopter une grande loi foncière agricole",
+    description:
+      "Proposer une grande loi foncière incluant la préservation de l'usage agricole des terres lors des transmissions, la prévention de l'accaparement des terres et l'encadrement des prix de vente du foncier agricole.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-accaparement-terres",
+    themeId: "environnement",
+    title: "Interdire l'accaparement financier des terres agricoles",
+    description:
+      "Interdire l'accaparement spéculatif de terres agricoles par des fonds de pension, des investisseurs financiers ou sous forme de holding.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-securite-sociale-alimentation",
+    themeId: "environnement",
+    title: "Créer une Sécurité Sociale de l'Alimentation",
+    description:
+      "Développer et soutenir les expérimentations de caisses locales de Sécurité Sociale de l'Alimentation, avec à terme la création d'une allocation universelle concrétisant le droit à l'alimentation.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-100pct-bio-restauration-collective",
+    themeId: "environnement",
+    title: "Atteindre 100% de bio dans la restauration collective d'ici 2040",
+    description:
+      "Atteindre 100% de produits bio dans la restauration collective d'ici 2040, et rendre obligatoire 50% de produits issus de l'agriculture biologique, locale et végétale dans la restauration commerciale en 2032.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-additifs-nocifs",
+    themeId: "environnement",
+    title: "Interdire les additifs alimentaires les plus nocifs",
+    description:
+      "Interdire l'utilisation des nitrites et la présence de solvants comme l'hexane dans l'alimentation, et interdire les produits ultra-transformés dans les cantines.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-encadrement-publicite-alimentaire",
+    themeId: "environnement",
+    title: "Encadrer la publicité alimentaire",
+    description:
+      "Interdire la publicité pour les boissons classées D et E au Nutriscore ainsi que celle ciblant les enfants pour les produits très gras et très sucrés.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-reduction-proteines-animales-50pct",
+    themeId: "environnement",
+    title: "Réduire de 50% la consommation de protéines animales d'ici 2050",
+    description:
+      "Adopter un plan de réduction progressive de la consommation de produits animaux issus de l'agro-industrie, avec un objectif de réduction de 50% de la consommation de protéines animales en 2050.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-prix-planchers-agricoles",
+    themeId: "environnement",
+    title: "Adopter des prix planchers pour les produits agricoles",
+    description:
+      "Adopter des prix planchers pour les produits agricoles, un affichage obligatoire de la répartition des marges et un blocage des prix en cas d'inflation anormale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-objectifs-bio-2030",
+    themeId: "environnement",
+    title: "Atteindre 21% d'agriculture biologique en 2030",
+    description:
+      "Atteindre 21% d'agriculture bio en 2030, 25% en 2032 et 100% à la fin du siècle, en garantissant un revenu sur trois ans aux agriculteurs s'engageant dans une transition agroécologique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-megafermes",
+    themeId: "environnement",
+    title: "Interdire les mégafermes d'élevage",
+    description:
+      "Interdire les mégaporcheries, les mégapoulaillers et les autres mégafermes d'élevage, en accompagnant la réduction planifiée et progressive des cheptels bovins.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "env-eelv-interdiction-ngt",
+    themeId: "environnement",
+    title: "Interdire les nouveaux OGM (NGT)",
+    description:
+      "Interdire les « nouveaux OGM » (Nouvelles Techniques Génomiques), refuser le brevetage du vivant et autoriser la vente de semences anciennes pour libérer les agriculteurs de la dépendance aux multinationales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-smic-2000-brut",
+    themeId: "travail",
+    title: "Porter le salaire minimum à 2000€ brut dès 2027",
+    description:
+      "Fixer un salaire minimum à 2000€ brut mensuel dès 2027, avec des dispositifs de soutien ciblés pour les TPE, PME et associations.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-securite-sociale-professionnelle",
+    themeId: "travail",
+    title: "Créer une Sécurité Sociale Professionnelle",
+    description:
+      "Garantir un salaire équivalent pendant deux ans en cas de perte d'emploi pour les travailleur·ses des secteurs les plus exposés à la transition écologique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-ratio-salaires-1-20",
+    themeId: "travail",
+    title: "Conditionner les aides publiques à un écart de salaires de 1 à 20",
+    description:
+      "Conditionner les aides publiques au respect d'un écart maximal de 1 à 20 entre le salaire des dirigeants et le salaire médian dans l'entreprise, avec un objectif par branche pour les entreprises de plus de 1000 salarié·es.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-conge-climatique",
+    themeId: "travail",
+    title: "Créer un congé climatique de 5 jours par an",
+    description:
+      "Instaurer un congé pour protéger les travailleur·ses face aux températures extrêmes ou aux catastrophes climatiques, financé à parité par les employeurs et la Sécurité sociale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-principe-faveur",
+    themeId: "travail",
+    title: "Rétablir le principe de faveur",
+    description:
+      "Abroger les dispositions régressives des lois travail (loi El Khomri, ordonnances Macron) et relever les minima conventionnels au niveau du salaire minimum.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-zero-mort-travail-2032",
+    themeId: "travail",
+    title: "Adopter un plan « zéro mort au travail » en 2032",
+    description:
+      "Créer 200 postes d'inspecteur·ices du travail et réformer la médecine du travail pour la rendre pleinement indépendante.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-assurance-chomage-europeenne",
+    themeId: "travail",
+    title: "Créer une assurance-chômage européenne",
+    description:
+      "Indexer les allocations sur l'inflation, abroger les réformes régressives et unifier progressivement les systèmes d'assurance chômage européens vers le haut.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-droit-social-numerique",
+    themeId: "travail",
+    title: "Instaurer un droit social numérique",
+    description:
+      "Reconnaître un droit opposable à la déconnexion, un droit à la transparence algorithmique et un droit de non-surveillance en télétravail, avec transposition de la présomption de salariat pour les travailleurs des plateformes.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-codetermination-entreprises",
+    themeId: "travail",
+    title: "Instaurer la codétermination dans les grandes entreprises",
+    description:
+      "Attribuer des postes de droit aux travailleur·ses dans les Conseils d'administration (2 postes dès 250 salariés, un tiers dès 1000, la moitié dès 5000).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-encadrement-sous-traitance",
+    themeId: "travail",
+    title: "Encadrer la sous-traitance et responsabiliser le donneur d'ordre",
+    description:
+      "Conditionner l'accès aux marchés publics des grandes entreprises internationales à des accords-cadres internationaux garantissant droits des travailleurs et protection de l'environnement tout au long de la chaîne de valeur.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-taxe-zucman",
+    themeId: "economie",
+    title: "Créer une taxe Zucman de 2% sur les patrimoines de plus de 100 millions d'euros",
+    description:
+      "Rétablir la fiscalité sur la grande fortune en taxant les très hauts patrimoines et en orientant celui-ci vers des actifs verts, tout en rétablissant l'ISF.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-impot-minimal-grandes-societes",
+    themeId: "economie",
+    title: "Adopter un impôt minimal sur les bénéfices des grandes entreprises",
+    description:
+      "Taxer les bénéfices des grandes entreprises (chiffre d'affaires > 1 milliard) à proportion de l'activité réalisée en France et moduler le taux selon l'affectation des bénéfices pour encourager le réinvestissement.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-taxe-services-numeriques-5pct",
+    themeId: "economie",
+    title: "Relever la taxe sur les services numériques à 5%",
+    description:
+      "Relever la taxe sur les services numériques (TSN) de 3 à 5% et abaisser le seuil d'assujettissement à 5 milliards de chiffre d'affaires pour intégrer les plateformes de e-commerce et les gestionnaires de data centers.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-tranche-ir-60pct",
+    themeId: "economie",
+    title: "Créer une tranche d'impôt sur le revenu à 60% au-delà de 250 000€",
+    description:
+      "Rendre l'impôt sur le revenu plus progressif tout en diminuant l'imposition des tranches les plus basses et en plafonnant les niches fiscales par foyer.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-taxe-transactions-financieres-07",
+    themeId: "economie",
+    title: "Augmenter la taxe sur les transactions financières à 0,7%",
+    description:
+      "Étendre son assiette à davantage d'instruments spéculatifs et abaisser le seuil de capitalisation concerné.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-separation-banques-depot-speculation",
+    themeId: "economie",
+    title: "Séparer les banques de dépôt des activités spéculatives",
+    description:
+      "Interdire aux banques détenant l'épargne des ménages de pratiquer des activités de trading pour compte propre ou des produits dérivés complexes.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-community-reinvestment-act",
+    themeId: "economie",
+    title: "Créer un Community Reinvestment Act français",
+    description:
+      "Imposer aux banques de réinvestir une partie de l'épargne collectée sur une région donnée dans l'économie réelle de cette région.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-reduction-actifs-fossiles-banques",
+    themeId: "economie",
+    title: "Contraindre les banques à réduire leurs actifs fossiles",
+    description:
+      "Rendre obligatoire la publication de plans de transition visant -50% d'actifs fossiles dans les portefeuilles d'ici 2030 et -90% d'ici 2040.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-encadrement-prix-biens-essentiels",
+    themeId: "economie",
+    title: "Encadrer les prix d'un panier de biens essentiels",
+    description:
+      "Lutter contre la logique spéculative sur le logement, l'énergie, l'eau et l'alimentation via prix unique, encadrement des marges ou blocage des prix en cas d'inflation anormale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-indicateurs-alternatifs-pib",
+    themeId: "economie",
+    title: "Piloter la politique économique via des indicateurs alternatifs au PIB",
+    description:
+      "Piloter la politique économique via des indicateurs de prospérité écologique (espérance de vie en bonne santé, empreinte carbone, biodiversité) plutôt que le seul PIB.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-livret-industrie",
+    themeId: "economie",
+    title: "Créer un fonds souverain « livret industrie »",
+    description:
+      "Financer des entreprises françaises produisant l'essentiel de leur valeur ajoutée en Europe, rémunéré au même taux que le livret A et conditionné à des critères environnementaux et sociaux.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-preemption-machines-outils",
+    themeId: "economie",
+    title: "Créer un droit de préemption sur les machines-outils en cas de fermeture d'usine",
+    description:
+      "Permettre aux collectivités territoriales de relancer l'activité industrielle avec la participation des salarié·es, en s'appuyant sur le décret Montebourg renforcé.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-ecoconception-obligatoire",
+    themeId: "economie",
+    title: "Réglementer l'écoconception pour allonger la durée de vie des produits",
+    description:
+      "Rendre les produits démontables et réparables, garantir la disponibilité des pièces détachées, et rendre obligatoire un taux minimal de matières recyclées.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-interdiction-obsolescence-logicielle",
+    themeId: "economie",
+    title: "Interdire l'obsolescence logicielle programmée",
+    description:
+      "Imposer une durée minimale de mise à disposition des mises à jour (10 ans pour smartphones, 15 ans pour ordinateurs, 20 ans pour véhicules) et généraliser le Passeport Numérique des Produits.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-application-stricte-fast-fashion",
+    themeId: "economie",
+    title: "Appliquer strictement la loi contre la fast fashion",
+    description:
+      "Fixer un seuil de 5000 nouvelles références annuelles maximum, interdire la publicité des marques concernées et instaurer un malus progressif selon l'impact environnemental.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-logiciels-libres-administrations",
+    themeId: "economie",
+    title: "Généraliser l'usage des logiciels libres dans les administrations",
+    description:
+      "Évaluer systématiquement les solutions open source dans les appels d'offre publics (principe « open source first »).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-encadrement-data-centers",
+    themeId: "economie",
+    title: "Encadrer strictement l'implantation des data centers",
+    description:
+      "Supprimer le label « projet d'intérêt national majeur » qui les exonère d'études d'impact, et planifier leur consommation électrique et leur usage de l'eau potable.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-csg-progressive-assurance-maladie",
+    themeId: "economie",
+    title: "Rendre la CSG progressive pour financer l'assurance-maladie",
+    description:
+      "Augmenter la CSG d'un point pour équilibrer la Caisse Nationale d'Assurance Maladie sans pénaliser soignant·es ni malades.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-encadrement-depassements-honoraires",
+    themeId: "sante",
+    title: "Encadrer les dépassements d'honoraires des spécialistes",
+    description:
+      "Limiter les dépassements d'honoraires à 50 % du tarif de la Sécurité Sociale et les interdire pour la moitié des ménages les moins aisés, en contrepartie d'une revalorisation du tarif des spécialités peu valorisées.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-2000-centres-sante",
+    themeId: "sante",
+    title: "Créer 2000 nouveaux centres de santé",
+    description:
+      "Créer 2 000 nouveaux centres de santé d'ici 2030, notamment dans les zones rurales et les quartiers prioritaires, avec des permanences de médecins généralistes, infirmier·es, psychologues, kinésithérapeutes et dentistes.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-permanence-soins-cliniques-privees",
+    themeId: "sante",
+    title: "Conditionner le remboursement des cliniques privées à une permanence des soins",
+    description:
+      "Conditionner le remboursement public des soins dans les cliniques privées à leur participation à une permanence des soins sans sélection ni limitation horaire, et interdire aux fonds d'investissement de contrôler un établissement de santé.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-service-public-sante-mentale",
+    themeId: "sante",
+    title: "Créer un service public territorial de santé mentale",
+    description:
+      "S'appuyer sur les conseils locaux de santé mentale, déstigmatiser les maladies mentales, renforcer les moyens et revaloriser les métiers de la psychiatrie et de la pédopsychiatrie publique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-reduction-antibioresistance",
+    themeId: "sante",
+    title: "Réduire l'usage des antibiotiques critiques de 30%",
+    description:
+      "Réduire de 30 % l'usage des antibiotiques critiques en santé humaine et animale pour éviter l'émergence de bactéries résistantes, avec publication annuelle des consommations par établissement de santé.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-plan-urgence-sante-scolaire",
+    themeId: "sante",
+    title: "Lancer un plan d'urgence pour la santé scolaire et universitaire",
+    description:
+      "Pourvoir les postes vacants de médecins et psychologues scolaires, recruter des infirmier·es scolaires supplémentaires et créer des centres de santé dans chaque université.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-remboursement-100pct-soins-essentiels",
+    themeId: "sante",
+    title: "Rembourser à 100% les soins essentiels",
+    description:
+      "Garantir un remboursement total des soins essentiels par l'Assurance maladie, supprimer les franchises et concentrer la couverture des mutuelles aux seuls soins optionnels.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-depenalisation-usage-drogues",
+    themeId: "sante",
+    title: "Dépénaliser l'usage personnel de drogues",
+    description:
+      "Dépénaliser l'usage, l'achat et la détention de toutes les drogues pour usage personnel afin de mettre en place des politiques de prévention et d'accompagnement social et sanitaire.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-interdiction-tabac-generation",
+    themeId: "sante",
+    title: "Interdire la vente de tabac aux générations nées après 2014",
+    description:
+      "Interdire la vente de tabac à toute personne née en 2014 et après, sur le modèle britannique, et interdire la publicité pour l'alcool.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "sante-eelv-prescription-sociale",
+    themeId: "sante",
+    title: "Développer la prescription sociale",
+    description:
+      "Autoriser un professionnel de santé à orienter un patient vers des activités collectives (atelier artistique, activité physique adaptée, engagement associatif) plutôt que vers un traitement médicamenteux seul.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-abrogation-64ans",
+    themeId: "travail",
+    title: "Abroger l'âge légal de départ à la retraite à 64 ans",
+    description:
+      "Revenir immédiatement à un âge minimum de 62 ans en visant une retraite à 60 ans, avec une priorité pour les personnes ayant travaillé tôt et dans des conditions pénibles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-criteres-penibilite-2017",
+    themeId: "travail",
+    title: "Réintroduire les critères de pénibilité supprimés en 2017",
+    description:
+      "Réintroduire les 4 critères ouvrant droit à une retraite anticipée (manutention manuelle, postures pénibles, vibrations mécaniques, agents chimiques dangereux) et ajouter un critère lié aux risques psychosociaux.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-augmentation-petites-retraites",
+    themeId: "travail",
+    title: "Augmenter les petites retraites au niveau du seuil de pauvreté",
+    description:
+      "Augmenter le minimum contributif (Mico) et l'allocation spécifique aux personnes âgées (ASPA) pour atteindre progressivement le seuil de pauvreté, et réformer le système de retraite agricole.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-elargissement-assiette-cotisations",
+    themeId: "travail",
+    title: "Élargir l'assiette des cotisations retraite",
+    description:
+      "Étendre les cotisations à l'épargne salariale, l'intéressement, la participation et l'attribution gratuite d'actions, et augmenter d'un point la cotisation retraite déplafonnée pour les hauts salaires.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-refus-capitalisation",
+    themeId: "travail",
+    title: "Refuser toute évolution vers la retraite par capitalisation",
+    description:
+      "Refuser toute forme d'évolution vers une retraite par capitalisation, en particulier la retraite à points, et privilégier l'équilibre du régime par répartition.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-fonds-retraite-transition-ecologique",
+    themeId: "travail",
+    title: "Investir les fonds de retraite dans la transition écologique",
+    description:
+      "Obliger les fonds de retraite (Fonds de Réserve des Retraites, Agirc-Arrco, ERAFP) à adopter des investissements responsables et interdire les investissements dans les secteurs fossiles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "travail-eelv-banque-stages-alternances",
+    themeId: "travail",
+    title: "Rémunérer tous les stages et l'alternance au niveau du Smic",
+    description:
+      "Rémunérer les stages quelle que soit la durée et les alternants au niveau du Smic, et faciliter la reprise d'études pour les jeunes entrés tôt dans la vie professionnelle.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-garantie-autonomie-rsa",
+    themeId: "economie",
+    title: "Remplacer le RSA par une garantie d'autonomie",
+    description:
+      "Créer une garantie d'autonomie augmentée à 50 % du Smic net, accessible dès 18 ans pour les personnes indépendantes fiscalement, et supprimer la contrepartie de 15 heures d'activités hebdomadaires.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-revalorisation-apl-10pct",
+    themeId: "economie",
+    title: "Revaloriser les APL de 10%",
+    description:
+      "Revaloriser les APL de 10 % avec un mécanisme empêchant la répercussion sur les montants des loyers, et ouvrir les aides au logement aux résidents mobiles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-solidarite-a-la-source",
+    themeId: "economie",
+    title: "Créer un droit opposable à l'accompagnement social",
+    description:
+      "Lutter contre le non-recours aux prestations via une solidarité à la source automatisant le versement des aides sociales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-credit-impot-energie",
+    themeId: "economie",
+    title: "Remplacer les chèques énergie par un crédit d'impôt automatique",
+    description:
+      "Remplacer les chèques énergie par un crédit d'impôt ciblé vers l'ensemble des personnes en situation de précarité et versé automatiquement, et abolir les coupures d'électricité pour impayés en les remplaçant par une réduction de puissance.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-logement-dabord",
+    themeId: "economie",
+    title: "Accélérer le dispositif « Logement d'abord »",
+    description:
+      "Protéger les personnes sans-abris par l'accélération du dispositif « Logement d'abord » sur le modèle finlandais et créer des places d'hébergement en accueil inconditionnel.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-droit-universel-compte-bancaire",
+    themeId: "economie",
+    title: "Garantir un droit universel au compte bancaire",
+    description:
+      "Plafonner les frais bancaires et supprimer les frais pour les services bancaires essentiels pour les personnes en situation de pauvreté.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-plan-chomage-jeunes",
+    themeId: "economie",
+    title: "Adopter un plan contre le chômage des jeunes",
+    description:
+      "Renforcer les aides à l'apprentissage pour les jeunes peu qualifiés, créer un programme d'emplois jeunes dans les quartiers populaires et prendre en charge le permis de conduire pour les jeunes sans qualification.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-service-public-dependance",
+    themeId: "economie",
+    title: "Construire un service public de la dépendance",
+    description:
+      "Développer des établissements publics type EHPAD en gestion publique ou via l'économie sociale et solidaire, avec une tarification encadrée et progressive.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "eco-eelv-statut-aidants-familiaux",
+    themeId: "economie",
+    title: "Reconnaître un statut des aidant·es familiaux",
+    description:
+      "Établir un statut reconnu pour les aidant·es familiaux garantissant des droits précis et une couverture sociale, avec une rémunération revalorisée du congé de proche aidant.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-fusion-metropole-paris",
+    themeId: "institutions",
+    title: "Dissoudre la métropole du Grand Paris",
+    description:
+      "Dissoudre la métropole du Grand Paris pour attribuer ses compétences à la Région Ile-de-France.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-fin-mise-concurrence-territoires",
+    themeId: "institutions",
+    title: "En finir avec la mise en concurrence des territoires",
+    description:
+      "Abandonner la logique de mise en concurrence des territoires en reconnaissant des régions historiques et en permettant la création de régions choisies par leurs habitants.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-fin-new-public-management",
+    themeId: "institutions",
+    title: "En finir avec le New Public Management",
+    description:
+      "En finir avec le New Public Management dans les services publics et la dépendance aux cabinets de conseil.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-titularisation-agents-publics",
+    themeId: "institutions",
+    title: "Titulariser les agents publics sous contrats précaires",
+    description:
+      "Adopter un plan de titularisation des agents publics embauchés sur des contrats de droit privé.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-prefets-premier-ministre",
+    themeId: "institutions",
+    title: "Rattacher les préfets au Premier ministre",
+    description:
+      "Rattacher les préfets au niveau du Premier ministre plutôt qu'au ministère de l'Intérieur.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-experimentation-collectivites",
+    themeId: "institutions",
+    title: "Renforcer le droit d'expérimentation des collectivités",
+    description:
+      "Renforcer le droit d'expérimentation des collectivités territoriales, évalué scientifiquement avant généralisation.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-guichets-physiques-administrations",
+    themeId: "institutions",
+    title: "Garantir un accès effectif à des guichets physiques",
+    description:
+      "Garantir un accès effectif à des guichets physiques des administrations et créer un droit opposable à la non-connexion administrative.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-classes-19-eleves",
+    themeId: "education",
+    title: "Réduire la taille des classes à 19 élèves en primaire",
+    description:
+      "Réduire la taille des classes à 19 élèves en primaire (12 en REP/REP+).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-hausse-salaires-enseignants-15pct",
+    themeId: "education",
+    title: "Augmenter les salaires des enseignant·es de 15% en 5 ans",
+    description:
+      "Augmenter les salaires des enseignant·es de 15 % en 5 ans.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-eps-4h-college",
+    themeId: "education",
+    title: "Renforcer l'EPS à 4h au collège et 3h au lycée",
+    description:
+      "Renforcer l'éducation physique et sportive à l'école en passant à 4h au collège et 3h au lycée.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-service-orientation-lycees",
+    themeId: "education",
+    title: "Créer un service public de l'orientation dans les lycées",
+    description:
+      "Créer un véritable service public de l'orientation dans les lycées avec des heures dédiées en effectifs réduits.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-bac-pro-4-ans",
+    themeId: "education",
+    title: "Rétablir le baccalauréat professionnel en 4 ans",
+    description:
+      "Rétablir le baccalauréat professionnel en 4 ans en abrogeant la réforme de la voie professionnelle.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-liberte-pedagogique-etablissements",
+    themeId: "education",
+    title: "Développer la liberté pédagogique des établissements",
+    description:
+      "Développer la liberté pédagogique des établissements avec un budget pédagogique dédié.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-financement-prive-loi-debre",
+    themeId: "education",
+    title: "Réviser la loi Debré sur le financement de l'enseignement privé",
+    description:
+      "Réviser la loi Debré pour diminuer à 50 % la part de financement public de l'enseignement privé sous contrat, conditionnée à des obligations de mixité sociale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-lutte-harcelement-scolaire",
+    themeId: "education",
+    title: "Lutter contre le harcèlement scolaire",
+    description:
+      "Lutter contre le harcèlement scolaire par la formation de toute la communauté éducative et la création de postes spécialisés par académie.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-remplacement-parcoursup",
+    themeId: "education",
+    title: "Remplacer Parcoursup par une plateforme d'orientation sans lettre de motivation",
+    description:
+      "Remplacer Parcoursup et MonMaster par une plateforme d'orientation sans lettre de motivation ni mention du lycée d'origine, avec algorithmes publics et quotas de boursiers.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-financement-universites-publiques",
+    themeId: "education",
+    title: "Garantir un financement durable des universités publiques",
+    description:
+      "Garantir un financement durable et suffisant aux universités publiques pour l'accueil des étudiants et le recrutement de personnels qualifiés.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-cpge-integrees-licences",
+    themeId: "education",
+    title: "Intégrer les classes préparatoires au sein de licences universitaires",
+    description:
+      "Intégrer les classes préparatoires (CPGE) au sein de licences universitaires pour diversifier leur recrutement.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-hausse-salaires-chercheurs",
+    themeId: "education",
+    title: "Augmenter les salaires des personnels de recherche",
+    description:
+      "Augmenter significativement les salaires des personnels de recherche (+10 % dès la première année).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-statut-jeune-chercheur",
+    themeId: "education",
+    title: "Créer un statut du jeune chercheur",
+    description:
+      "Créer un statut du jeune chercheur et étendre les Chaires de Professeurs Juniors pour limiter la précarité post-doctorale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-objectif-3pct-pib-recherche",
+    themeId: "education",
+    title: "Porter la recherche et développement à 3% du PIB d'ici 2032",
+    description:
+      "Porter les investissements en recherche et développement à 3 % du PIB d'ici 2032.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "edu-eelv-liberte-academique",
+    themeId: "education",
+    title: "Défendre la liberté académique face aux procédures-bâillons",
+    description:
+      "Défendre la liberté académique face aux procédures-bâillons et prévoir des sanctions pénales en cas d'entrave.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-loi-integrale-vss",
+    themeId: "securite",
+    title: "Adopter une loi intégrale contre les violences sexistes et sexuelles",
+    description:
+      "Adopter une loi intégrale dotée de 3 milliards d'euros pour lutter contre les violences sexistes et sexuelles, former la haute fonction publique (justice, gendarmerie, corps préfectoral) et lutter contre le harcèlement en ligne.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-centres-urgence-violences-sexuelles",
+    themeId: "securite",
+    title: "Créer des centres d'urgence pour les victimes de violences sexuelles",
+    description:
+      "Créer des centres d'urgence accessibles 24h/24 offrant une porte d'entrée unique (soins, constat médico-légal, soutien psychologique, dépôt de plainte).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-imprescriptibilite-crimes-mineurs",
+    themeId: "securite",
+    title: "Rendre imprescriptibles les crimes sexuels sur mineurs",
+    description:
+      "Inscrire dans la loi l'imprescriptibilité des crimes sexuels sur mineurs, reconnaître le crime d'inceste et l'élargir aux cousin·es germains.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-juridictions-specialisees-genre",
+    themeId: "securite",
+    title: "Créer des juridictions spécialisées sur les violences de genre",
+    description:
+      "Créer une juridiction et des magistrat·es spécialisés sur les violences de genre dans chaque tribunal judiciaire et cour d'assise, sur le modèle espagnol, avec plus de téléphones grave danger et bracelets anti-rapprochement.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-suspension-autorite-parentale-enquete",
+    themeId: "securite",
+    title: "Suspendre l'autorité parentale pendant l'enquête sur des violences sexuelles",
+    description:
+      "Autoriser les juges à suspendre l'autorité parentale d'un agresseur présumé le temps de l'enquête pour violences sexuelles sur enfant.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-fin-controles-facies",
+    themeId: "securite",
+    title: "Mettre fin aux contrôles d'identité au faciès",
+    description:
+      "Interdire les contrôles d'identité aléatoires, les limiter aux cas de flagrance, d'enquête judiciaire ou d'ordre public, avec récépissé attestant des motifs.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-tolerance-zero-actes-racistes",
+    themeId: "securite",
+    title: "Assurer la poursuite systématique des actes racistes et antisémites",
+    description:
+      "Donner à la justice les moyens de poursuivre systématiquement les auteurs d'actes racistes, islamophobes ou antisémites et renforcer la protection policière des lieux de culte.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-commissariats-proximite",
+    themeId: "securite",
+    title: "Créer des commissariats de proximité dans les quartiers populaires",
+    description:
+      "Mettre en place des commissariats de proximité dans les zones sensibles pour recréer un lien de confiance et assurer une sécurité du quotidien.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-ministere-enfance",
+    themeId: "institutions",
+    title: "Créer un ministère de l'Enfance de plein exercice",
+    description:
+      "Créer un ministère de l'Enfance doté de tous les moyens nécessaires pour protéger les enfants.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-controleur-etablissements-sociaux",
+    themeId: "institutions",
+    title: "Créer un contrôleur indépendant des établissements de l'Aide Sociale à l'Enfance",
+    description:
+      "Rendre obligatoire la création d'une autorité administrative indépendante chargée de contrôler les structures d'accueil de l'Aide Sociale à l'Enfance.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-maisons-france-service",
+    themeId: "institutions",
+    title: "Créer 500 nouvelles Maisons France Service",
+    description:
+      "Créer 500 nouvelles Maisons France Service et des unités mobiles, avec des agents assermentés capables d'accompagner les usagers au-delà des démarches de premier niveau.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-regulation-plateformes-contenus-racistes",
+    themeId: "institutions",
+    title: "Réguler les plateformes contre les contenus racistes en ligne",
+    description:
+      "Contraindre les plateformes et réseaux sociaux à réguler et modérer les contenus négationnistes et racistes, avec durcissement des amendes en cas de récidive.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-constituante-democratique",
+    themeId: "institutions",
+    title: "Convoquer une Constituante pour une nouvelle République",
+    description:
+      "Convoquer un processus constituant transparent, participatif et pluraliste pour abolir la « monarchie présidentielle » et passer à une Première République écologique et citoyenne.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-suppression-cjr",
+    themeId: "institutions",
+    title: "Supprimer la Cour de Justice de la République",
+    description:
+      "Supprimer la Cour de Justice de la République et aligner le statut du parquet sur celui des magistrats du siège pour garantir l'indépendance de la justice.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-septennat-unique",
+    themeId: "institutions",
+    title: "Établir un septennat présidentiel unique non renouvelable",
+    description:
+      "Établir un septennat unique pour le/la Président·e de la République et abroger les pouvoirs de l'article 16.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-fin-49-3",
+    themeId: "institutions",
+    title: "Supprimer le 49-3 et renforcer le pouvoir législatif",
+    description:
+      "Renforcer le pouvoir législatif en supprimant les limites imposées par les articles 34, 40 et 49-3, et démocratiser le Sénat sur une base régionale.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-vote-16-ans",
+    themeId: "institutions",
+    title: "Ouvrir le droit de vote à 16 ans",
+    description:
+      "Ouvrir le droit de vote à 16 ans avec une formation civique et généraliser l'inscription automatique sur les listes électorales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-election-directe-intercommunalites",
+    themeId: "institutions",
+    title: "Élire directement les dirigeant·es des intercommunalités",
+    description:
+      "Élire directement les dirigeant·es des communautés urbaines, communautés d'agglomération et métropoles, transformées en collectivités de plein droit.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-bon-public-financement-partis",
+    themeId: "institutions",
+    title: "Créer un bon public pour financer les partis politiques",
+    description:
+      "Remplacer la déduction fiscale des dons aux partis par un bon public que chaque citoyen distribue à un parti via sa déclaration d'impôt.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-reconnaissance-vote-blanc",
+    themeId: "institutions",
+    title: "Reconnaître le vote blanc par des sièges tirés au sort",
+    description:
+      "Reconnaître le vote blanc en attribuant le taux équivalent de sièges à des citoyens tirés au sort sur les listes électorales pour les élections territoriales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-interdiction-reconnaissance-faciale",
+    themeId: "securite",
+    title: "Interdire la reconnaissance faciale",
+    description:
+      "Interdire la reconnaissance faciale et évaluer indépendamment les dispositifs de vidéosurveillance.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-loi-anti-concentration-medias",
+    themeId: "institutions",
+    title: "Adopter une loi anti-concentration des médias",
+    description:
+      "Adopter une loi anti-concentration des médias inspirée du modèle norvégien, interdisant à un groupe de détenir plus de deux titres de presse, une chaîne et une radio nationales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-nomination-parlement-audiovisuel-public",
+    themeId: "institutions",
+    title: "Faire valider les nominations à la tête de l'audiovisuel public par le Parlement",
+    description:
+      "Faire valider les nominations à la tête de France Télévisions et Radio France à la majorité qualifiée du Parlement, et renoncer au projet de holding de l'audiovisuel public.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-droit-agrement-journalistes",
+    themeId: "institutions",
+    title: "Donner aux journalistes un droit d'agrément sur leur direction de rédaction",
+    description:
+      "Donner aux journalistes un droit d'agrément sur la nomination du directeur de rédaction et rendre opposables les chartes d'indépendance.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-ministere-laicite",
+    themeId: "institutions",
+    title: "Créer un ministère de la Laïcité",
+    description:
+      "Transformer le ministère chargé des Cultes en ministère de la Laïcité et abroger la loi Séparatisme.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-ineligibilite-vie-corruption",
+    themeId: "institutions",
+    title: "Instaurer l'inéligibilité à vie pour corruption",
+    description:
+      "Instaurer l'inéligibilité à vie et la démission automatique pour les élus condamnés pour détournement de fonds publics ou corruption.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "inst-eelv-registre-deports-elus",
+    themeId: "institutions",
+    title: "Créer un registre public des déports des élus",
+    description:
+      "Créer un registre public des déports des élu·es et augmenter les moyens de la HATVP et de l'Agence Française Anticorruption.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-police-proximite",
+    themeId: "securite",
+    title: "Créer une police nationale de proximité",
+    description:
+      "Créer une police nationale de proximité pour rétablir un lien quotidien avec la population et sortir de la politique du chiffre.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-interdiction-lbd40",
+    themeId: "securite",
+    title: "Interdire les lanceurs de balles de défense (LBD40)",
+    description:
+      "Interdire les lanceurs de balles de défense (LBD40) et les grenades mutilantes, et démanteler les unités de type BRAV-M.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-abrogation-loi-cazeneuve",
+    themeId: "securite",
+    title: "Abroger les dispositions de la loi Cazeneuve sur l'ouverture du feu",
+    description:
+      "Abroger les dispositions de la loi Cazeneuve pour mettre fin aux morts par refus d'obtempérer et rétablir la stricte condition de nécessité.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-suppression-fichiers-discriminants",
+    themeId: "securite",
+    title: "Supprimer les fichiers policiers discriminants",
+    description:
+      "Supprimer les fichiers policiers qui portent atteinte aux libertés, notamment ceux mentionnant l'appartenance syndicale, religieuse ou politique.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-port-matricule-rio",
+    themeId: "securite",
+    title: "Assurer le respect du port du matricule (RIO)",
+    description:
+      "Assurer le respect du port du matricule (RIO) et l'usage effectif des caméras-piétons par les forces de l'ordre.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-9000-postes-magistrats",
+    themeId: "securite",
+    title: "Créer 9000 postes de magistrats sur dix ans",
+    description:
+      "Créer 9000 postes de magistrats, 10 000 postes de greffiers et 7000 postes d'attachés de justice sur dix ans.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-amendes-indexees-revenu",
+    themeId: "securite",
+    title: "Indexer les amendes sur le revenu pour les infractions graves",
+    description:
+      "Indexer les amendes sur le revenu pour les crimes et délits graves, et sur le chiffre d'affaires pour les personnes morales.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-numerus-clausus-carceral",
+    themeId: "securite",
+    title: "Instaurer un numerus clausus carcéral",
+    description:
+      "Limiter la surpopulation carcérale à 100 % des capacités par un numerus clausus et un moratoire sur la construction de nouvelles prisons hors remplacement des prisons insalubres.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-primaute-educatif-mineurs",
+    themeId: "securite",
+    title: "Réaffirmer la primauté de l'éducatif sur le répressif pour les mineurs",
+    description:
+      "Réaffirmer la primauté de l'éducatif sur le répressif pour les mineurs délinquants et abroger la loi Attal de 2025.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-juridictions-specialisees-narcotrafic",
+    themeId: "securite",
+    title: "Créer des juridictions spécialisées contre le narcotrafic",
+    description:
+      "Créer des juridictions pénales spécialisées (JIRS) dans chaque cour d'appel contre le narcotrafic, en priorisant le démantèlement des réseaux et la saisie des avoirs sur les interpellations.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-pole-cyber-juridictions",
+    themeId: "securite",
+    title: "Créer des pôles cybercriminalité dans chaque grande juridiction",
+    description:
+      "Créer des pôles cybercriminalité dans chaque grande juridiction avec enquêteurs spécialisés et magistrats référents dédiés.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "secu-eelv-lutte-extreme-droite-violente",
+    themeId: "securite",
+    title: "Renforcer la lutte contre l'extrême droite violente",
+    description:
+      "Renforcer le renseignement, l'analyse et la recherche académique pour mieux prévenir la menace terroriste d'extrême droite, notamment liée aux réseaux ukrainiens et étrangers.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-abrogation-lois-macron",
+    themeId: "immigration",
+    title: "Abroger les lois asile et immigration adoptées sous Macron",
+    description:
+      "Abroger les lois asile et immigration adoptées sous Emmanuel Macron ainsi que les mesures restreignant les droits des personnes exilées.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-suppression-oqtf-automatiques",
+    themeId: "immigration",
+    title: "Supprimer les OQTF automatiques ou inapplicables",
+    description:
+      "Supprimer les Obligations de Quitter le Territoire Français (OQTF) automatiques ou inapplicables et régulariser travailleurs, étudiants et parents d'enfants scolarisés sur critères objectifs.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-fin-retention-administrative",
+    themeId: "immigration",
+    title: "Mettre fin à la rétention administrative",
+    description:
+      "Mettre fin à la rétention administrative, jugée coûteuse et indigne, et cesser les refoulements illégaux aux frontières (Briançonnais, littoral Nord).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-collegialite-cnda",
+    themeId: "immigration",
+    title: "Rétablir la collégialité à la Cour nationale du droit d'asile",
+    description:
+      "Rétablir le principe de collégialité à la Cour nationale du droit d'asile, supprimé par la loi Darmanin, et réserver la procédure accélérée aux demandes ultérieures.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-revalorisation-ada",
+    themeId: "immigration",
+    title: "Revaloriser l'Allocation pour Demandeurs d'Asile",
+    description:
+      "Augmenter et indexer sur l'inflation l'Allocation pour Demandeurs d'Asile (ADA).",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-reforme-delit-solidarite",
+    themeId: "immigration",
+    title: "Réformer le délit de solidarité",
+    description:
+      "Réformer le délit d'aide à l'entrée et au séjour irréguliers pour protéger les citoyens et associations qui hébergent ou nourrissent des personnes sans titre de séjour.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-voies-legales-immigration",
+    themeId: "immigration",
+    title: "Créer des voies légales et sécurisées d'immigration",
+    description:
+      "Créer des voies légales et sécurisées d'immigration par une révision du Pacte européen sur la migration et l'asile, autorisant la mobilité circulaire des migrants.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "immi-eelv-fin-externalisation-migratoire",
+    themeId: "immigration",
+    title: "Mettre fin à l'externalisation des politiques migratoires de l'UE",
+    description:
+      "Dénoncer les accords d'externalisation des politiques migratoires de l'UE avec des pays tiers et abandonner la notion de « pays tiers sûr ».",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-listes-transnationales",
+    themeId: "europe",
+    title: "Élire le Parlement européen sur listes transnationales",
+    description:
+      "Créer un droit d'initiative parlementaire et élire le Parlement européen sur la base de listes transnationales, en partageant la décision sur la politique extérieure entre Conseil et Parlement.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-elargissement-balkans-ukraine",
+    themeId: "europe",
+    title: "Accélérer l'élargissement de l'UE aux Balkans, à l'Ukraine et la Moldavie",
+    description:
+      "Soutenir l'adhésion graduelle de nouveaux États membres tout en appliquant la réversibilité du processus en cas d'atteinte à l'état de droit.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-budget-ue-5pct-pib",
+    themeId: "europe",
+    title: "Porter le budget de l'UE à 5% du PIB en 2050",
+    description:
+      "Augmenter les ressources fiscales propres de l'UE via le mécanisme d'ajustement carbone aux frontières, une taxation des GAFAM et créer un emprunt commun pour des Grands Travaux Européens Écologiques.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-commandement-militaire-integre",
+    themeId: "europe",
+    title: "Créer un commandement militaire intégré européen",
+    description:
+      "Placer ce commandement sous la tutelle du Conseil de l'UE, sans capacité de mobiliser directement les armées nationales, en s'appuyant sur les capacités multinationales existantes.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-desarmement-nucleaire-multilateral",
+    themeId: "europe",
+    title: "Relancer une initiative de désarmement nucléaire multilatéral",
+    description:
+      "Fonder cette initiative sur l'article VI du Traité de Non-Prolifération Nucléaire et rejoindre le Traité sur l'Interdiction des Armes Nucléaires (TIAN) en tant que membre observateur.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-cour-penale-environnement",
+    themeId: "europe",
+    title: "Créer une Cour pénale internationale de l'environnement",
+    description:
+      "Juger les crimes environnementaux ne relevant pas de la CPI (trafics d'espèces, écocide, marées noires) et soutenir un Traité de non-prolifération des énergies fossiles.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-politique-spatiale-demilitarisee",
+    themeId: "europe",
+    title: "Adopter une politique spatiale européenne démilitarisée",
+    description:
+      "Assurer la démilitarisation de l'espace, interdire le tourisme spatial, empêcher la privatisation du ciel via les méga-constellations et conditionner les financements publics à des critères écologiques.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-limiter-lobbys-fossiles",
+    themeId: "europe",
+    title: "Limiter l'influence des lobbys fossiles sur les institutions européennes",
+    description:
+      "Restreindre au strict minimum les contacts entre institutions européennes et lobbys des énergies fossiles, sur le modèle de la Convention-cadre de l'OMS pour la lutte antitabac.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-embargo-armes-droit-international",
+    themeId: "europe",
+    title: "Instaurer un embargo sur les armes vers les pays violant le droit international",
+    description:
+      "Interdire strictement les exportations d'armes françaises et européennes vers des pays dont les interventions militaires violent le droit international, en commençant par un embargo sur les armes réexportées vers le Soudan.",
+    supportingParties: ["eelv"],
+  },
+  {
+    id: "europe-eelv-aide-publique-developpement-07pct",
+    themeId: "europe",
+    title: "Porter l'aide publique au développement à 0,7% du PNB",
+    description:
+      "Transformer l'Aide Publique au Développement en Aide Publique à la Coopération, en renforçant la part des dons et en priorisant la transition énergétique et l'agroécologie.",
+    supportingParties: ["eelv"],
+  },
+
 ];
 
 export const propositionById = Object.fromEntries(
