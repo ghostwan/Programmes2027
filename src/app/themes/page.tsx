@@ -18,6 +18,7 @@ export default function ThemesPage() {
             <Link
               key={theme.id}
               href={`/themes/${theme.id}`}
+              prefetch={false}
               className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div className="text-3xl">{theme.icon}</div>

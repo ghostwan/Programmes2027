@@ -85,6 +85,7 @@ export default function Home() {
             <Link
               key={theme.id}
               href={`/themes/${theme.id}`}
+              prefetch={false}
               className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div className="text-2xl">{theme.icon}</div>

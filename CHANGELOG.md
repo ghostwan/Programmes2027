@@ -33,6 +33,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   réseaux mobiles, où de nombreux visiteurs partagent la même adresse
   IP : la limite est désormais appliquée par visiteur (via son cookie
   de vérification) plutôt que par adresse IP.
+- Le message « Trop de requêtes » pouvait aussi apparaître de façon
+  systématique en naviguant normalement (menu, page de résultats,
+  listes de partis/thématiques/propositions) : les liens y étaient
+  préchargés automatiquement en boucle par le navigateur, ce qui
+  finissait par déclencher la limite. Ce préchargement automatique est
+  désormais désactivé sur ces liens.
 
 ## [2.14.1] - 2026-08-23
 

@@ -194,6 +194,7 @@ export function MarketView() {
                         <div>
                           <Link
                             href={`/proposition/${p.id}`}
+                            prefetch={false}
                             className="text-sm font-medium text-slate-900 hover:underline"
                           >
                             {p.title}

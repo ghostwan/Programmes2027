@@ -19,7 +19,11 @@ export function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
+        <Link
+          href="/"
+          prefetch={false}
+          className="flex items-center gap-2 font-bold text-slate-900"
+        >
           <span className="text-xl">🗳️</span>
           <span>Programmes2027</span>
           <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-800">
@@ -37,6 +41,7 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active
                     ? "bg-slate-900 text-white"
@@ -69,6 +74,7 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className={`rounded-lg px-4 py-2.5 text-sm font-medium ${
                   active

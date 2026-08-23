@@ -127,7 +127,7 @@ export function ThemeComparisonTable({
                     <MarketBasketButton propositionId={prop.id} compact />
                   </td>
                   <td className="p-3">
-                    <Link href={`/proposition/${prop.id}`} className="font-medium text-slate-900 hover:underline">
+                    <Link href={`/proposition/${prop.id}`} prefetch={false} className="font-medium text-slate-900 hover:underline">
                       {prop.title}
                     </Link>
                   </td>
@@ -213,13 +213,14 @@ export function ThemeComparisonTable({
               <div className="flex items-start justify-between gap-2">
                 <Link
                   href={`/proposition/${prop.id}`}
+                  prefetch={false}
                   className="font-semibold text-slate-900 hover:underline"
                 >
                   {prop.title}
                 </Link>
                 <MarketBasketButton propositionId={prop.id} compact />
               </div>
-              <Link href={`/proposition/${prop.id}`}>
+              <Link href={`/proposition/${prop.id}`} prefetch={false}>
                 <p className="mt-1 text-sm text-slate-600">{prop.description}</p>
               </Link>
               <div className="mt-3 flex flex-wrap items-center gap-1.5">

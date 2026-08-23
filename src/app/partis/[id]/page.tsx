@@ -79,6 +79,7 @@ export default async function PartyDetailPage({
                   <li key={p.id}>
                     <Link
                       href={`/proposition/${p.id}`}
+                      prefetch={false}
                       className="text-sm text-slate-600 hover:text-slate-900 hover:underline"
                     >
                       {p.title}

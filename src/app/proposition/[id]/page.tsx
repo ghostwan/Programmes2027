@@ -51,6 +51,7 @@ export default async function PropositionDetailPage({
               <Link
                 key={pid}
                 href={`/partis/${pid}`}
+                prefetch={false}
                 className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium shadow-sm transition hover:shadow-md"
               >
                 <span
@@ -80,7 +81,7 @@ export default async function PropositionDetailPage({
               return (
                 <span key={oppositeId}>
                   {i > 0 && ", "}
-                  <Link href={`/proposition/${oppositeId}`} className="underline underline-offset-2">
+                  <Link href={`/proposition/${oppositeId}`} prefetch={false} className="underline underline-offset-2">
                     {opposite.title}
                   </Link>
                 </span>
@@ -98,6 +99,7 @@ export default async function PropositionDetailPage({
                   <Link
                     key={p.id}
                     href={`/proposition/${contradicting.id}`}
+                    prefetch={false}
                     title={`${p.name} soutient « ${contradicting.title} »`}
                     className="flex items-center gap-2 rounded-full border-2 bg-white px-3 py-1.5 text-sm font-medium shadow-sm transition hover:shadow-md"
                     style={{ borderColor: p.color, color: p.color }}

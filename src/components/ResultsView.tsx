@@ -59,6 +59,7 @@ export function ResultsView() {
         </p>
         <Link
           href="/jeu"
+          prefetch={false}
           className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
         >
           Aller au jeu
@@ -167,6 +168,7 @@ export function ResultsView() {
                 </span>
                 <Link
                   href={`/partis/${s.partyId}`}
+                  prefetch={false}
                   className="text-sm font-medium text-slate-700 underline underline-offset-2"
                 >
                   Voir le programme →
@@ -186,6 +188,7 @@ export function ResultsView() {
               <Link
                 key={s.partyId}
                 href={`/partis/${s.partyId}`}
+                prefetch={false}
                 className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm hover:shadow-md"
               >
                 <span className="w-28 flex-shrink-0 text-sm font-semibold text-slate-700">
@@ -301,6 +304,7 @@ export function ResultsView() {
                           <Link
                             key={prop.id}
                             href={`/proposition/${prop.id}`}
+                            prefetch={false}
                             className="rounded-lg border border-slate-100 bg-slate-50 p-3 hover:bg-slate-100"
                           >
                             <p className="text-sm font-medium text-slate-900">
@@ -350,7 +354,7 @@ export function ResultsView() {
             le réaliser, et combien de sièges il leur faudrait selon le
             mode de scrutin. Vous pouvez aussi construire ce programme à la
             main dans le{" "}
-            <Link href="/marche" className="underline underline-offset-2">
+            <Link href="/marche" prefetch={false} className="underline underline-offset-2">
               marché des propositions
             </Link>
             .
@@ -383,6 +387,7 @@ export function ResultsView() {
         {unfinishedGame ? (
           <Link
             href="/jeu"
+            prefetch={false}
             className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
           >
             ▶️ Continuer le quiz
@@ -390,6 +395,7 @@ export function ResultsView() {
         ) : (
           <Link
             href="/jeu"
+            prefetch={false}
             className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
           >
             🔄 Rejouer
@@ -397,6 +403,7 @@ export function ResultsView() {
         )}
         <Link
           href="/themes"
+          prefetch={false}
           className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
         >
           Explorer les thématiques en détail
