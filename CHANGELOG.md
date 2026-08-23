@@ -28,6 +28,11 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   (message "La vérification a échoué" malgré un Turnstile résolu avec
   succès). Cette page reste désormais toujours accessible ; seule la
   navigation sur le site une fois la vérification passée est limitée.
+- Le message « Trop de requêtes » pouvait apparaître pendant une
+  utilisation normale du site (notamment en jouant au jeu) sur les
+  réseaux mobiles, où de nombreux visiteurs partagent la même adresse
+  IP : la limite est désormais appliquée par visiteur (via son cookie
+  de vérification) plutôt que par adresse IP.
 
 ## [2.14.1] - 2026-08-23
 

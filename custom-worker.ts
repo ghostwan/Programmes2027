@@ -54,10 +54,29 @@ function isPublicPath(pathname: string): boolean {
 }
 
 function hasGateCookie(request: Request): boolean {
+  return getGateCookieValue(request) !== null;
+}
+
+/**
+ * Returns the raw value of the anti-bot gate cookie, if present. Used as
+ * the rate-limiting key for gated traffic instead of the client IP: on
+ * French mobile networks in particular, thousands of unrelated
+ * subscribers can share the same public IP behind carrier-grade NAT, so
+ * an IP-based limit can be exhausted by other people's traffic entirely
+ * unrelated to the current visitor. The cookie value is a random
+ * per-browser token (see randomToken() in the turnstile-verify route),
+ * so it uniquely identifies one visitor without that false-sharing
+ * problem.
+ */
+function getGateCookieValue(request: Request): string | null {
   const cookieHeader = request.headers.get("cookie") ?? "";
-  return cookieHeader
-    .split(";")
-    .some((part) => part.trim().startsWith(`${TURNSTILE_GATE_COOKIE_NAME}=`));
+  for (const part of cookieHeader.split(";")) {
+    const trimmed = part.trim();
+    if (trimmed.startsWith(`${TURNSTILE_GATE_COOKIE_NAME}=`)) {
+      return trimmed.slice(TURNSTILE_GATE_COOKIE_NAME.length + 1);
+    }
+  }
+  return null;
 }
 
 /**
@@ -110,16 +129,23 @@ export default {
       return Response.redirect(verifyUrl.toString(), 307);
     }
 
-    // Global per-IP ceiling applied to actual app content (never to public
-    // paths like /verify, /api/turnstile-verify or static assets, which
-    // must always stay reachable so a real visitor can never get locked
-    // out of completing the anti-bot check itself). On 2026-08-23 a single
-    // client sustained ~130 requests/second for over an hour without ever
+    // Global ceiling applied to actual app content (never to public paths
+    // like /verify, /api/turnstile-verify or static assets, which must
+    // always stay reachable so a real visitor can never get locked out of
+    // completing the anti-bot check itself). On 2026-08-23 a single client
+    // sustained ~130 requests/second for over an hour without ever
     // erroring out, which alone exceeded the account's daily Workers
     // request quota. 600 req/min (10/s) is far above any plausible human
     // browsing rate but stops that pattern.
+    //
+    // Keyed by the gate cookie's value when present (one key per browser)
+    // rather than by IP, to avoid one visitor's quota being eaten by
+    // unrelated traffic from other subscribers sharing the same
+    // carrier-NAT IP (see getGateCookieValue()). Verified bots have no
+    // cookie, so they still fall back to the IP.
     if (!isPublicPath(url.pathname)) {
-      const { success } = await env.GLOBAL_RATE_LIMITER.limit({ key: ip });
+      const rateLimitKey = getGateCookieValue(request) ?? ip;
+      const { success } = await env.GLOBAL_RATE_LIMITER.limit({ key: rateLimitKey });
       if (!success) {
         return new Response("Trop de requêtes, réessayez plus tard.", {
           status: 429,
