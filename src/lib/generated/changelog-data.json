@@ -1,5 +1,26 @@
 [
   {
+    "version": "2.13.0",
+    "date": "2026-08-23",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Ajout de plus de 180 nouvelles propositions des Écologistes, issues de leur nouveau programme 2027 « Pour une prospérité écologique » (557 mesures), couvrant l'ensemble des thèmes du comparateur : économie, travail, immigration, sécurité, éducation, santé, environnement, Europe, institutions et logement.",
+          "Ajout d'un bouton « Partager mes résultats » sur la page des résultats du quiz (partage natif sur mobile, ou copie du lien dans le presse-papiers sur ordinateur)."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "Fusion de plusieurs propositions déjà présentes dans la base avec des propositions équivalentes des Écologistes, en ajoutant leur parti à la liste des soutiens plutôt que de dupliquer la mesure.",
+          "Vos résultats de quiz restent désormais sauvegardés indéfiniment, même après avoir terminé la partie : ils ne sont plus jamais écrasés silencieusement en retournant sur la page du jeu. Un écran de confirmation demande explicitement de recommencer une nouvelle partie avant d'effacer les résultats précédents.",
+          "Dans le marché des propositions, la liste détaillée de votre panier est désormais affichée en fin de page (après l'analyse des coalitions), et regroupée par thématique dans des sections dépliables/repliables pour rester lisible même avec de nombreuses propositions ajoutées."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.12.0",
     "date": "2026-08-22",
     "categories": [

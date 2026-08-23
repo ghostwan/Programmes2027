@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [2.13.0] - 2026-08-23
+
 ### Ajouté
 
 - Ajout de plus de 180 nouvelles propositions des Écologistes, issues de
