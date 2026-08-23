@@ -26,6 +26,7 @@ export function Footer() {
           </a>
           <Link
             href="/changelog"
+            prefetch={false}
             className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1 font-mono text-xs font-medium text-slate-600 transition hover:bg-slate-50"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
