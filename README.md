@@ -27,11 +27,13 @@ déjà ailleurs dans le monde.
 
 Avant de commencer, choisissez entre le **jeu complet** (toutes les
 propositions, chaque parti avec son nombre réel de propositions
-documentées) et un **jeu équilibré** plus court, où aucun parti ne
+documentées), le **jeu équilibré** plus court, où aucun parti ne
 fournit plus que la médiane du nombre de propositions posées — les
 partis moins documentés (par exemple Reconquête, qui reste une niche
 avec un programme plus restreint sur les sujets couverts ici) gardent
-simplement toutes les leurs.
+simplement toutes les leurs — et le **jeu égalitaire**, où chaque parti
+est représenté par exactement le même nombre de propositions (fixé par
+le parti le moins documenté, plafonné à 30), tirées au hasard.
 
 Swipez (ou cliquez) chaque proposition « pour » ou « contre », sans
 savoir quel parti la porte. L'ordre est mélangé à chaque partie, mais

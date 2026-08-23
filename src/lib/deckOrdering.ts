@@ -134,6 +134,57 @@ export function medianPropositionsPerParty(props: Proposition[]): number {
  * multiple parties' quotas. Stops once no remaining proposition can help
  * any party that hasn't already reached its cap.
  */
+/**
+ * Selects a pool where every party ends up backing the exact same
+ * number of propositions in the quiz — the "égalitaire" mode. The
+ * target count is the smallest number of propositions any tracked party
+ * supports (a niche party can't be given more than it actually has),
+ * capped at `maxPerParty` so the quiz never gets unreasonably long even
+ * if every party happened to have a huge, similar footprint.
+ *
+ * For each party, `target` of its supporting propositions are picked at
+ * random (without replacement within that party's own list). A
+ * proposition supported by several parties at once can satisfy more
+ * than one party's quota simultaneously — it's only added to the
+ * returned pool once, but still counts towards the quota of every party
+ * it supports, exactly like it would if shown in the finished quiz.
+ */
+export function selectEgalitarianPropositions(
+  props: Proposition[],
+  maxPerParty = 30
+): Proposition[] {
+  const counts = countPropositionsByParty(props);
+  if (counts.size === 0) return [];
+  const minCount = Math.min(...counts.values());
+  const target = Math.min(minCount, maxPerParty);
+
+  const byParty = new Map<PartyId, Proposition[]>();
+  for (const p of props) {
+    for (const partyId of p.supportingParties) {
+      if (!byParty.has(partyId)) byParty.set(partyId, []);
+      byParty.get(partyId)!.push(p);
+    }
+  }
+
+  const selectedIds = new Set<string>();
+  const selected: Proposition[] = [];
+
+  for (const list of byParty.values()) {
+    const shuffled = shuffle(list);
+    let taken = 0;
+    for (const p of shuffled) {
+      if (taken >= target) break;
+      if (!selectedIds.has(p.id)) {
+        selectedIds.add(p.id);
+        selected.push(p);
+      }
+      taken++;
+    }
+  }
+
+  return selected;
+}
+
 export function selectCappedPropositions(
   props: Proposition[],
   capPerParty: number

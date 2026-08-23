@@ -15,6 +15,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Ajout d'un mode de jeu « égalitaire » : chaque parti est représenté par
+  exactement le même nombre de propositions (déterminé par le parti le
+  moins documenté, plafonné à 30), tirées au hasard.
+
 ## [2.13.1] - 2026-08-23
 
 ### Modifié

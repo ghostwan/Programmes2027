@@ -12,6 +12,7 @@ import {
   countPropositionsByParty,
   medianPropositionsPerParty,
   selectCappedPropositions,
+  selectEgalitarianPropositions,
 } from "@/lib/deckOrdering";
 import {
   ANSWERS_STORAGE_KEY,
@@ -32,14 +33,21 @@ import {
  *   "make up" for their smaller footprint, that's expected — while
  *   well-documented parties (LR, LFI...) get trimmed down so no party
  *   dominates the questions asked.
+ * - "egalitaire": every party ends up backing the exact same number of
+ *   propositions, using whichever party has the fewest as the shared
+ *   target (capped at `EGALITAIRE_MAX_PER_PARTY`), picked at random.
  */
-export type DeckMode = "complet" | "equilibre";
+export type DeckMode = "complet" | "equilibre" | "egalitaire";
+
+const EGALITAIRE_MAX_PER_PARTY = 30;
 
 function createNewDeckIds(mode: DeckMode): string[] {
   const pool =
     mode === "equilibre"
       ? selectCappedPropositions(propositions, medianPropositionsPerParty(propositions))
-      : propositions;
+      : mode === "egalitaire"
+        ? selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY)
+        : propositions;
   return createBalancedDeckOrder(pool).map((p) => p.id);
 }
 
@@ -218,6 +226,14 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
     () => selectCappedPropositions(propositions, cap).length,
     [cap]
   );
+  const egalitaireTarget = useMemo(() => {
+    const counts = [...countPropositionsByParty(propositions).values()];
+    return Math.min(Math.min(...counts), EGALITAIRE_MAX_PER_PARTY);
+  }, []);
+  const egalitaireCount = useMemo(
+    () => selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY).length,
+    []
+  );
 
   return (
     <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
@@ -229,11 +245,11 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
           niche avec un programme moins étoffé sur les sujets couverts
           ici). Ce n&apos;est pas un problème en soi — mais si vous
           préférez un jeu où aucun parti ne domine le nombre de questions,
-          choisissez le mode équilibré.
+          choisissez le mode équilibré ou égalitaire.
         </p>
       </div>
 
-      <div className="grid w-full gap-4 sm:grid-cols-2">
+      <div className="grid w-full gap-4 sm:grid-cols-3">
         <button
           onClick={() => onSelect("complet")}
           className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
@@ -255,6 +271,18 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
             plus que la médiane ({cap}) de propositions posées, les partis
             avec moins de propositions documentées (ex. Reconquête) gardent
             simplement toutes les leurs.
+          </span>
+        </button>
+        <button
+          onClick={() => onSelect("egalitaire")}
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+        >
+          <span className="text-lg font-bold text-slate-900">🟰 Jeu égalitaire</span>
+          <span className="text-sm text-slate-600">
+            Environ {egalitaireCount} propositions : chaque parti est
+            représenté par exactement {egalitaireTarget} propositions
+            tirées au hasard (le parti le moins documenté fixe ce nombre,
+            plafonné à {EGALITAIRE_MAX_PER_PARTY}).
           </span>
         </button>
       </div>
