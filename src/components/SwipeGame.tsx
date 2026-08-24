@@ -236,8 +236,8 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
-      <div>
+    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
+      <div className="max-w-2xl">
         <h1 className="text-2xl font-bold text-slate-900">Choisissez votre partie</h1>
         <p className="mt-2 text-sm text-slate-600">
           Les partis n&apos;ont pas tous le même nombre de propositions
@@ -252,7 +252,7 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
       <div className="grid w-full gap-4 sm:grid-cols-3">
         <button
           onClick={() => onSelect("complet")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
         >
           <span className="text-lg font-bold text-slate-900">🗂️ Jeu complet</span>
           <span className="text-sm text-slate-600">
@@ -263,7 +263,7 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
         </button>
         <button
           onClick={() => onSelect("equilibre")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
         >
           <span className="text-lg font-bold text-slate-900">⚖️ Jeu équilibré</span>
           <span className="text-sm text-slate-600">
@@ -275,7 +275,7 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
         </button>
         <button
           onClick={() => onSelect("egalitaire")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-5 text-left shadow-sm transition hover:border-slate-400"
+          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
         >
           <span className="text-lg font-bold text-slate-900">🟰 Jeu égalitaire</span>
           <span className="text-sm text-slate-600">
@@ -286,6 +286,12 @@ function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) 
           </span>
         </button>
       </div>
+
+      <p className="max-w-2xl text-xs text-slate-500">
+        💡 Pas besoin de tout finir : dès {MIN_ANSWERS_FOR_EARLY_RESULTS}{" "}
+        réponses, vous pouvez déjà voir vos résultats. Continuer le quiz
+        ne fait ensuite que les affiner.
+      </p>
     </div>
   );
 }

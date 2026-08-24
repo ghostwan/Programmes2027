@@ -15,6 +15,27 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.3.0] - 2026-08-24
+
+### Ajouté
+
+- Un rappel sur la page d'accueil précise que toutes les données
+  (réponses au jeu, marché des propositions) restent stockées
+  uniquement dans le navigateur et ne sont jamais envoyées à nos
+  serveurs.
+
+## [4.2.1] - 2026-08-24
+
+### Modifié
+
+- L'écran de choix du mode de jeu (complet/équilibré/égalitaire) est
+  désormais mieux réparti sur grand écran (les cartes n'étaient pas
+  adaptées aux larges résolutions).
+- L'écran de choix du mode de jeu précise maintenant qu'un résultat est
+  disponible dès 15 réponses, et que continuer le quiz sert seulement à
+  l'affiner — pour rassurer les personnes qui pourraient être
+  découragées par le nombre total de propositions.
+
 ## [4.2.0] - 2026-08-24
 
 ### Ajouté

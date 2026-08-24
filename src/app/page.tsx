@@ -37,6 +37,17 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-4 pt-6">
+        <p className="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+          <span aria-hidden>🔒</span>
+          <span>
+            Vos réponses, votre progression et votre marché des propositions
+            ne sont enregistrés que localement, dans votre navigateur — rien
+            n&apos;est envoyé ni stocké sur nos serveurs.
+          </span>
+        </p>
+      </section>
+
       <section className="mx-auto w-full max-w-6xl px-4 py-12">
         <h2 className="text-2xl font-bold text-slate-900">Comment ça marche</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-3">
