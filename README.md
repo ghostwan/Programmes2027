@@ -152,6 +152,10 @@ livrets, cahiers thématiques) pour vérifier par vous-même.
   public de toutes les évolutions du site.
 - Un bouton « Donner mon avis » en pied de page pour signaler un bug ou
   une suggestion via une issue GitHub pré-remplie.
+- Si le site a changé d'adresse depuis votre dernière visite, une
+  fenêtre vous propose au premier chargement de récupérer votre
+  progression sauvegardée sur l'ancienne adresse (réponses au jeu,
+  marché des propositions), ou de repartir de zéro.
 
 ## Sources et méthodologie
 

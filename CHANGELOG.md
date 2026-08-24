@@ -15,6 +15,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.2.0] - 2026-08-24
+
+### Ajouté
+
+- Au premier chargement du site, si une progression (réponses au jeu
+  et/ou marché des propositions) avait été sauvegardée sur l'ancienne
+  adresse du site, une fenêtre propose désormais de la récupérer ou de
+  repartir de zéro.
+
 ## [4.1.0] - 2026-08-24
 
 ### Ajouté

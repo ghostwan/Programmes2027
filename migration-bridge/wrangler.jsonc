@@ -1,0 +1,7 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "programmes2027",
+	"main": "worker.js",
+	"account_id": "701538cbdfc49d9d1037d46c70c9f1db",
+	"compatibility_date": "2026-08-20"
+}
