@@ -1,5 +1,25 @@
 [
   {
+    "version": "3.0.0",
+    "date": "2026-08-24",
+    "categories": [
+      {
+        "name": "Cassant",
+        "items": [
+          "Le site a changé de compte Cloudflare et d'adresse : il est désormais accessible sur `https://2027.programmes.workers.dev` (l'ancienne adresse `programmes2027.ghostwan.workers.dev` a été désactivée)."
+        ]
+      },
+      {
+        "name": "Corrigé",
+        "items": [
+          "La limite globale de requêtes ajoutée précédemment pouvait, dans de rares cas, bloquer la page de vérification anti-robot elle-même (message \"La vérification a échoué\" malgré un Turnstile résolu avec succès). Cette page reste désormais toujours accessible ; seule la navigation sur le site une fois la vérification passée est limitée.",
+          "Le message « Trop de requêtes » pouvait apparaître pendant une utilisation normale du site (notamment en jouant au jeu) sur les réseaux mobiles, où de nombreux visiteurs partagent la même adresse IP : la limite est désormais appliquée par visiteur (via son cookie de vérification) plutôt que par adresse IP.",
+          "Le message « Trop de requêtes » pouvait aussi apparaître de façon systématique en naviguant normalement (menu, page de résultats, listes de partis/thématiques/propositions) : les liens y étaient préchargés automatiquement en boucle par le navigateur, ce qui finissait par déclencher la limite. Ce préchargement automatique est désormais désactivé sur ces liens."
+        ]
+      }
+    ]
+  },
+  {
     "version": "2.14.1",
     "date": "2026-08-23",
     "categories": [

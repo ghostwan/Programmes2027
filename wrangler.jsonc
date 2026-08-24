@@ -1,7 +1,8 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"main": "custom-worker.ts",
-	"name": "quiz",
+	"name": "2027",
+	"account_id": "90a7fd104059db2a8b3998230580c587",
 	"compatibility_date": "2026-08-20",
 	"compatibility_flags": [
 		"nodejs_compat"

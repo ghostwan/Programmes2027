@@ -15,10 +15,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [3.0.0] - 2026-08-24
+
 ### Cassant
 
 - Le site a changé de compte Cloudflare et d'adresse : il est désormais
-  accessible sur `https://quiz.programmes2027.workers.dev` (l'ancienne
+  accessible sur `https://2027.programmes.workers.dev` (l'ancienne
   adresse `programmes2027.ghostwan.workers.dev` a été désactivée).
 
 ### Corrigé
