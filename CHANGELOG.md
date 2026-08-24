@@ -15,6 +15,16 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.0.0] - 2026-08-24
+
+### Cassant
+
+- Nouveau changement d'adresse : le site est désormais accessible sur
+  `https://2027.politique.workers.dev` (l'adresse précédente
+  `2027.programmes.workers.dev` a été désactivée). Ce sous-domaine plus
+  générique permettra d'héberger d'autres outils liés à la politique à
+  l'avenir.
+
 ## [3.0.0] - 2026-08-24
 
 ### Cassant

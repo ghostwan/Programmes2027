@@ -8,7 +8,7 @@ Renaissance, LR, RN, Reconquête, PCF) — sourcées depuis leurs programmes,
 livrets et cahiers thématiques officiels — pour vous permettre de vous
 faire votre propre avis, sans a priori.
 
-> 🔗 [Voir le site](https://2027.programmes.workers.dev) · [Changelog](https://2027.programmes.workers.dev/changelog)
+> 🔗 [Voir le site](https://2027.politique.workers.dev) · [Changelog](https://2027.politique.workers.dev/changelog)
 
 ![Page d'accueil de Programmes2027](public/screenshots/accueil.png)
 
@@ -148,7 +148,7 @@ livrets, cahiers thématiques) pour vérifier par vous-même.
   restant accessible à tous.
 - Site presque entièrement statique et mis en cache agressivement, pour
   rester rapide et peu coûteux à faire tourner.
-- Un [changelog](https://2027.programmes.workers.dev/changelog)
+- Un [changelog](https://2027.politique.workers.dev/changelog)
   public de toutes les évolutions du site.
 - Un bouton « Donner mon avis » en pied de page pour signaler un bug ou
   une suggestion via une issue GitHub pré-remplie.
