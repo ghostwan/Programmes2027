@@ -15,6 +15,13 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.1.0] - 2026-08-24
+
+### Ajouté
+
+- Ajout d'un lien « Sondages » dans le menu, vers le site Sondoscope
+  (sondages politiques).
+
 ## [4.0.0] - 2026-08-24
 
 ### Cassant

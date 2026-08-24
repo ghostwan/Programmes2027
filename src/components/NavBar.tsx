@@ -12,6 +12,8 @@ const links = [
   { href: "/partis", label: "Partis" },
 ];
 
+const SONDAGES_URL = "https://sondoscope.politique.workers.dev/";
+
 export function NavBar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -52,6 +54,14 @@ export function NavBar() {
               </Link>
             );
           })}
+          <a
+            href={SONDAGES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100"
+          >
+            Sondages ↗
+          </a>
         </nav>
 
         <button
@@ -86,6 +96,15 @@ export function NavBar() {
               </Link>
             );
           })}
+          <a
+            href={SONDAGES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100"
+          >
+            Sondages ↗
+          </a>
         </nav>
       )}
     </header>

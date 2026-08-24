@@ -1,5 +1,17 @@
 [
   {
+    "version": "4.1.0",
+    "date": "2026-08-24",
+    "categories": [
+      {
+        "name": "Ajouté",
+        "items": [
+          "Ajout d'un lien « Sondages » dans le menu, vers le site Sondoscope (sondages politiques)."
+        ]
+      }
+    ]
+  },
+  {
     "version": "4.0.0",
     "date": "2026-08-24",
     "categories": [
