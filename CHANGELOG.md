@@ -17,29 +17,21 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ### Supprimé
 
-- Les modes "Jeu complet" et "Jeu équilibré" ont été retirés : le jeu ne
-  propose plus qu'un seul mode, le jeu égalitaire, où chaque parti est
-  représenté par le même nombre de propositions.
+- Les modes "Jeu complet" et "Jeu équilibré" sont retirés : seul reste
+  le jeu égalitaire, où chaque parti a le même nombre de propositions.
+
+### Ajouté
+
+- Un écran d'introduction explique le principe du jeu égalitaire et
+  qu'un aperçu du résultat est possible dès 15 propositions.
+- Un message signale quand un parti n'a plus de proposition à venir.
 
 ### Modifié
 
-- Avant de commencer le jeu, un écran explique désormais le principe du
-  jeu égalitaire et précise qu'un aperçu du résultat est possible dès 15
-  propositions parcourues, sans afficher le nombre total de propositions
-  à venir.
-- Pendant le jeu, un message indique désormais quand un parti n'a plus
-  aucune proposition à venir dans la partie en cours.
-- Dès 15 propositions répondues, le bouton pour continuer le quiz est
-  affiché juste sous le nombre de propositions répondues, et le bouton
-  pour voir ses résultats est davantage mis en valeur.
-- Le bouton "Continuer le quiz" n'est plus proposé pendant le quiz
-  lui-même (il n'a de sens que sur la page des résultats, où il existait
-  déjà) : le message affiché dès 15 propositions ne propose plus qu'un
-  bouton pour voir ses résultats, avec une simple croix pour le masquer.
-- Sur la page de résultats, le bouton "Continuer le quiz" (affiché s'il
-  reste des propositions non répondues) est désormais placé tout en
-  haut de la page, sous forme d'un bandeau bien visible, au lieu d'être
-  seulement en bas de page.
+- Dès 15 propositions répondues, un message met en avant le bouton
+  pour voir ses résultats (peut être masqué avec une croix).
+- Le bouton "Continuer le quiz" est aussi affiché en haut de la page
+  de résultats, sous forme de bandeau bien visible.
 
 ## [4.3.0] - 2026-08-24
 

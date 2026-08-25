@@ -16,6 +16,17 @@ page `/changelog`) provient directement du champ `version` de
 `package.json`, et n'est jamais éditée à la main : elle est calculée par
 `scripts/bump-version.mjs` à partir de `CHANGELOG.md`.
 
+## Validation par l'utilisateur avant de finaliser
+
+Avant de mettre à jour `CHANGELOG.md` ou `README.md`, de committer, de
+pousser (`git push`) et de déployer (`npm run deploy`), tu dois
+**demander confirmation à l'utilisateur** que la fonctionnalité ou le
+changement implémenté correspond bien à ce qu'il souhaitait (comportement,
+rendu visuel, formulations, etc.). N'effectue ces étapes de finalisation
+qu'après avoir reçu cette confirmation explicite — sauf si l'utilisateur a
+déjà indiqué à l'avance qu'il souhaite que tu committes/pousses/déploies
+sans repasser par lui à chaque changement.
+
 ## Règle à appliquer après CHAQUE fonctionnalité, correction ou changement
 
 À chaque tâche de développement terminée (nouvelle fonctionnalité,
@@ -148,12 +159,14 @@ d'impact visuel/UX) — dans ce cas, le README n'a pas besoin d'évoluer.
 ## Résumé pour un agent qui vient de terminer une tâche
 
 1. Termine le code, vérifie `npm run lint` et `npm run build`.
-2. Ajoute une entrée dans `## [Non publié]` de `CHANGELOG.md` (catégorie
+2. Demande confirmation à l'utilisateur que le résultat correspond à ce
+   qu'il souhaitait (sauf s'il a déjà demandé de ne pas repasser par lui).
+3. Ajoute une entrée dans `## [Non publié]` de `CHANGELOG.md` (catégorie
    adaptée, en français, orientée utilisateur).
-3. Si la fonctionnalité a un impact visuel/UX, mets à jour `README.md` et
+4. Si la fonctionnalité a un impact visuel/UX, mets à jour `README.md` et
    régénère les captures d'écran concernées via
    `scripts/take-screenshots.mjs` (voir section dédiée ci-dessus).
-4. Ne touche pas au numéro de version toi-même — il sera calculé au
+5. Ne touche pas au numéro de version toi-même — il sera calculé au
    prochain `npm run deploy`.
-5. Committe et pousse le travail (message de commit en anglais, voir
+6. Committe et pousse le travail (message de commit en anglais, voir
    ci-dessus).
