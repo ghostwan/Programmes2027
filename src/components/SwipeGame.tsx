@@ -277,6 +277,8 @@ function GamePlay({
     }
   }
 
+  const [resultsHintDismissed, setResultsHintDismissed] = useState(false);
+
   const deck = useMemo(
     () => deckIds.map((id) => propositionById[id]).filter(Boolean),
     [deckIds]
@@ -429,17 +431,27 @@ function GamePlay({
             style={{ width: `${progress}%` }}
           />
         </div>
-        {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && (
-          <div className="mt-2 flex items-center justify-end gap-3 text-right">
-            <span className="text-xs text-slate-400">
-              Vous pouvez continuer ou
-            </span>
-            <button
-              onClick={viewResultsNow}
-              className="text-xs font-semibold text-slate-500 underline underline-offset-2 hover:text-slate-800"
-            >
-              voir mes résultats maintenant ({answeredCount} réponses) →
-            </button>
+        {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && !resultsHintDismissed && (
+          <div className="mt-3 rounded-xl border border-slate-300 bg-slate-50 p-3">
+            <p className="text-xs text-slate-600">
+              Vous avez déjà répondu à {answeredCount} propositions : vous
+              pouvez continuer pour affiner votre résultat, ou le
+              découvrir dès maintenant.
+            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <button
+                onClick={() => setResultsHintDismissed(true)}
+                className="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
+              >
+                Continuer le quiz
+              </button>
+              <button
+                onClick={viewResultsNow}
+                className="rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
+              >
+                🎉 Voir mes résultats maintenant →
+              </button>
+            </div>
           </div>
         )}
       </div>

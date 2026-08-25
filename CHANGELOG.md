@@ -29,6 +29,9 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   à venir.
 - Pendant le jeu, un message indique désormais quand un parti n'a plus
   aucune proposition à venir dans la partie en cours.
+- Dès 15 propositions répondues, le bouton pour continuer le quiz est
+  affiché juste sous le nombre de propositions répondues, et le bouton
+  pour voir ses résultats est davantage mis en valeur.
 
 ## [4.3.0] - 2026-08-24
 
