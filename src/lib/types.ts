@@ -96,6 +96,14 @@ export type AnswersMap = Record<string, Answer>;
 export interface GameState {
   /** Shuffled proposition ids, in the order they are/were presented. */
   deckIds: string[];
+  /**
+   * Number of leading `deckIds` that make up the "égalitaire" phase
+   * (every party backing the same number of propositions). Once the
+   * user goes past this index, the deck continues with the remaining
+   * propositions from parties that still have some left, balanced
+   * among themselves — see `createNewDeck` in SwipeGame.tsx.
+   */
+  egalitarianCount: number;
   /** Index of the next proposition to show. */
   index: number;
   answers: AnswersMap;

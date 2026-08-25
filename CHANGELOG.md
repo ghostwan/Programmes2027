@@ -15,6 +15,26 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Ajouté
+
+- Un repère sur la barre de progression du quiz indique le jalon des
+  15 propositions.
+- Un lien "Résultat" permanent en haut à droite du quiz permet d'accéder
+  à tout moment à un aperçu du résultat une fois 15 propositions
+  répondues (grisé avant ce seuil).
+
+### Modifié
+
+- Le quiz ne s'arrête plus aux propositions de la phase égalitaire :
+  une fois celle-ci terminée, il continue avec les propositions
+  restantes des partis qui en ont encore (par exemple les partis au
+  programme plus étoffé), réparties équitablement entre eux jusqu'à
+  épuisement complet. Le message "ce parti n'a plus de proposition"
+  ne s'affiche donc plus que lorsque c'est réellement le cas.
+- La barre de progression suit désormais la phase en cours (égalitaire
+  puis, une fois celle-ci terminée, la phase complémentaire) plutôt que
+  de révéler à l'avance l'existence de la seconde phase.
+
 ## [4.4.0] - 2026-08-25
 
 ### Supprimé

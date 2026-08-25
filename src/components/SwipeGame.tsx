@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
-import { themeById } from "@/lib/data/themes";
 import { partyById } from "@/lib/data/parties";
 import { Answer, AnswersMap, GameState, PartyId } from "@/lib/types";
 import {
@@ -21,19 +20,41 @@ import {
 } from "@/lib/storage";
 
 /**
- * The quiz always uses the "égalitaire" deck: every party ends up
- * backing the exact same number of propositions, using whichever party
- * has the fewest as the shared target (capped at
- * `EGALITAIRE_MAX_PER_PARTY`), picked at random. This is the only mode
- * offered — it guarantees no party dominates the questions asked.
+ * The quiz starts with an "égalitaire" phase: every party backs the
+ * exact same number of propositions, using whichever party has the
+ * fewest as the shared target (capped at `EGALITAIRE_MAX_PER_PARTY`),
+ * picked at random — this guarantees no party dominates the first
+ * questions asked. Once that phase is exhausted, the deck continues
+ * with all the remaining propositions from parties that still have
+ * some documented (e.g. a party with a much larger program), spread
+ * out as evenly as possible among those remaining parties, until every
+ * single proposition has been shown.
  */
 export type DeckMode = "egalitaire";
 
 const EGALITAIRE_MAX_PER_PARTY = 30;
 
-function createNewDeckIds(): string[] {
-  const pool = selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY);
-  return createBalancedDeckOrder(pool).map((p) => p.id);
+/**
+ * Builds the full quiz deck: the égalitaire phase first, followed by
+ * every remaining proposition (balanced among whichever parties still
+ * have some left), so no proposition is ever permanently excluded —
+ * only deferred to the second phase.
+ */
+function createNewDeck(): { deckIds: string[]; egalitarianCount: number } {
+  const egalitarianPool = selectEgalitarianPropositions(
+    propositions,
+    EGALITAIRE_MAX_PER_PARTY
+  );
+  const egalitarianIds = new Set(egalitarianPool.map((p) => p.id));
+  const remainingPool = propositions.filter((p) => !egalitarianIds.has(p.id));
+
+  const orderedEgalitarian = createBalancedDeckOrder(egalitarianPool);
+  const orderedRemaining = createBalancedDeckOrder(remainingPool);
+
+  return {
+    deckIds: [...orderedEgalitarian, ...orderedRemaining].map((p) => p.id),
+    egalitarianCount: orderedEgalitarian.length,
+  };
 }
 
 function parseSavedGameState(raw: string): GameState | null {
@@ -51,7 +72,17 @@ function parseSavedGameState(raw: string): GameState | null {
       parsed.index < parsed.deckIds.length &&
       typeof parsed.answers === "object" &&
       parsed.answers !== null;
-    return isValid ? parsed : null;
+    if (!isValid) return null;
+    // Older saved games predate the two-phase deck and don't have this
+    // field — treat their whole deck as the égalitaire phase so the
+    // progress bar/milestone still behave sensibly.
+    const egalitarianCount =
+      typeof parsed.egalitarianCount === "number" &&
+      parsed.egalitarianCount >= 0 &&
+      parsed.egalitarianCount <= parsed.deckIds.length
+        ? parsed.egalitarianCount
+        : parsed.deckIds.length;
+    return { ...parsed, egalitarianCount };
   } catch {
     return null;
   }
@@ -256,8 +287,12 @@ function GamePlay({
   const leftGlowOpacity = useTransform(x, [-160, -20], [0.9, 0]);
   const rightGlowOpacity = useTransform(x, [20, 160], [0, 0.9]);
 
-  const [deckIds] = useState<string[]>(
-    () => initialSavedState?.deckIds ?? createNewDeckIds()
+  const [{ deckIds, egalitarianCount }] = useState<{
+    deckIds: string[];
+    egalitarianCount: number;
+  }>(
+    () =>
+      initialSavedState ?? createNewDeck()
   );
   const [index, setIndex] = useState(() => initialSavedState?.index ?? 0);
   const [answers, setAnswers] = useState<AnswersMap>(
@@ -286,7 +321,22 @@ function GamePlay({
 
   const current = deck[index];
   const done = index >= deck.length;
-  const progress = deck.length > 0 ? Math.round((index / deck.length) * 100) : 0;
+  // The progress bar only ever reflects the phase the user is
+  // currently in: while still in the égalitaire phase, it's silent
+  // about the extra (non-égalitaire) propositions that may follow, so
+  // as not to reveal that part of the quiz prematurely. Once the user
+  // has gone past the égalitaire phase, the bar restarts and tracks
+  // progress through the remaining propositions only.
+  const inEgalitarianPhase = index < egalitarianCount;
+  const progress = inEgalitarianPhase
+    ? egalitarianCount > 0
+      ? Math.round((index / egalitarianCount) * 100)
+      : 0
+    : deck.length > egalitarianCount
+      ? Math.round(
+          ((index - egalitarianCount) / (deck.length - egalitarianCount)) * 100
+        )
+      : 100;
 
   // Last position (0-based) at which each party still has a proposition
   // in the deck. Once `index` moves past it, that party has no more
@@ -344,7 +394,7 @@ function GamePlay({
       finish(next);
     } else {
       setIndex(nextIndex);
-      saveGameState({ deckIds, index: nextIndex, answers: next });
+      saveGameState({ deckIds, egalitarianCount, index: nextIndex, answers: next });
     }
   }
 
@@ -365,7 +415,7 @@ function GamePlay({
     if (index === 0) return;
     const prevIndex = index - 1;
     setIndex(prevIndex);
-    saveGameState({ deckIds, index: prevIndex, answers });
+    saveGameState({ deckIds, egalitarianCount, index: prevIndex, answers });
   }
 
   async function handleDragEnd(_: unknown, info: PanInfo) {
@@ -392,7 +442,6 @@ function GamePlay({
     );
   }
 
-  const theme = themeById[current.themeId];
   const answeredCount = Object.keys(answers).length;
 
   return (
@@ -423,29 +472,44 @@ function GamePlay({
             ← Précédent
           </button>
           <span>Proposition n°{index + 1}</span>
-          <span>{theme.icon} {theme.name}</span>
+          <button
+            type="button"
+            onClick={viewResultsNow}
+            disabled={answeredCount < MIN_ANSWERS_FOR_EARLY_RESULTS}
+            title={
+              answeredCount < MIN_ANSWERS_FOR_EARLY_RESULTS
+                ? `Disponible dès ${MIN_ANSWERS_FOR_EARLY_RESULTS} propositions`
+                : "Voir mes résultats maintenant"
+            }
+            className="font-semibold text-slate-500 hover:text-slate-800 disabled:cursor-not-allowed disabled:text-slate-300 disabled:hover:text-slate-300"
+          >
+            🎉 Résultat
+          </button>
         </div>
-        <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+        <div className="relative mt-1.5 h-1.5 w-full rounded-full bg-slate-200">
           <div
-            className="h-full rounded-full bg-slate-900 transition-all"
+            className="h-full overflow-hidden rounded-full bg-slate-900 transition-all"
             style={{ width: `${progress}%` }}
           />
+          {inEgalitarianPhase && egalitarianCount > MIN_ANSWERS_FOR_EARLY_RESULTS && (
+            <div
+              className="absolute top-0 z-10 h-full w-0.5 -translate-x-1/2 bg-white"
+              style={{
+                left: `${(MIN_ANSWERS_FOR_EARLY_RESULTS / egalitarianCount) * 100}%`,
+              }}
+              title={`Étape des ${MIN_ANSWERS_FOR_EARLY_RESULTS} propositions : possibilité de voir vos résultats`}
+            />
+          )}
         </div>
         {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && !resultsHintDismissed && (
           <div className="mt-3 flex items-start gap-2 rounded-xl border border-slate-300 bg-slate-50 p-3">
-            <div className="flex-1">
-              <p className="text-xs text-slate-600">
-                Vous avez déjà répondu à {answeredCount} propositions :
-                vous pouvez continuer pour affiner votre résultat, ou le
-                découvrir dès maintenant.
-              </p>
-              <button
-                onClick={viewResultsNow}
-                className="mt-2 rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
-              >
-                🎉 Voir mes résultats maintenant →
-              </button>
-            </div>
+            <p className="flex-1 text-xs text-slate-600">
+              🎉 Vous avez répondu à {MIN_ANSWERS_FOR_EARLY_RESULTS} propositions :
+              vous pouvez continuer pour affiner votre résultat, ou le
+              découvrir dès maintenant via le lien{" "}
+              <span className="font-semibold text-slate-800">🎉 Résultat</span>{" "}
+              en haut à droite.
+            </p>
             <button
               type="button"
               onClick={() => setResultsHintDismissed(true)}

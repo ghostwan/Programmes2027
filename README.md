@@ -25,27 +25,27 @@ déjà ailleurs dans le monde.
 
 ### 🕹️ Le jeu — jugez les propositions à l'aveugle
 
-Avant de commencer, choisissez entre le **jeu complet** (toutes les
-propositions, chaque parti avec son nombre réel de propositions
-documentées), le **jeu équilibré** plus court, où aucun parti ne
-fournit plus que la médiane du nombre de propositions posées — les
-partis moins documentés (par exemple Reconquête, qui reste une niche
-avec un programme plus restreint sur les sujets couverts ici) gardent
-simplement toutes les leurs — et le **jeu égalitaire**, où chaque parti
-est représenté par exactement le même nombre de propositions (fixé par
-le parti le moins documenté, plafonné à 30), tirées au hasard.
+Le jeu se déroule en deux temps. D'abord une phase **égalitaire** : chaque
+parti y est représenté par exactement le même nombre de propositions
+(fixé par le parti le moins documenté, plafonné à 30), tirées au hasard,
+pour qu'aucun parti ne domine les premières questions. Une fois cette
+phase terminée, le jeu continue avec **toutes les propositions
+restantes** des partis qui en ont encore (par exemple les partis au
+programme plus étoffé sur les sujets couverts ici), réparties
+équitablement entre eux jusqu'à ce qu'il n'en reste plus aucune.
 
 Swipez (ou cliquez) chaque proposition « pour » ou « contre », sans
 savoir quel parti la porte. L'ordre est mélangé à chaque partie, mais
 équilibré pour que les propositions de chaque parti apparaissent à un
-rythme régulier tout au long du jeu (plutôt que de dépendre du seul
-hasard, ce qui pourrait sinon fortement biaiser le score d'un parti peu
-documenté si vous consultez vos résultats avant la fin). Vous pouvez
-revenir en arrière pour changer une réponse, sauter une question que
-vous ne maîtrisez pas, et voir vos résultats à tout moment (même sans
-avoir terminé) une fois un nombre minimal de réponses atteint. Votre
-progression est sauvegardée automatiquement dans votre navigateur pour
-reprendre plus tard.
+rythme régulier (plutôt que de dépendre du seul hasard, ce qui pourrait
+sinon fortement biaiser le score d'un parti peu documenté si vous
+consultez vos résultats avant la fin). Un repère sur la barre de
+progression indique le jalon des 15 propositions ; une fois ce seuil
+atteint, un lien « 🎉 Résultat » apparaît en haut à droite (grisé avant)
+pour voir vos résultats à tout moment, même sans avoir terminé. Vous
+pouvez aussi revenir en arrière pour changer une réponse ou sauter une
+question que vous ne maîtrisez pas. Votre progression est sauvegardée
+automatiquement dans votre navigateur pour reprendre plus tard.
 
 ![Le jeu à l'aveugle](public/screenshots/jeu.png)
 
