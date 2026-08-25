@@ -432,26 +432,28 @@ function GamePlay({
           />
         </div>
         {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && !resultsHintDismissed && (
-          <div className="mt-3 rounded-xl border border-slate-300 bg-slate-50 p-3">
-            <p className="text-xs text-slate-600">
-              Vous avez déjà répondu à {answeredCount} propositions : vous
-              pouvez continuer pour affiner votre résultat, ou le
-              découvrir dès maintenant.
-            </p>
-            <div className="mt-2 flex flex-wrap items-center gap-2">
-              <button
-                onClick={() => setResultsHintDismissed(true)}
-                className="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-              >
-                Continuer le quiz
-              </button>
+          <div className="mt-3 flex items-start gap-2 rounded-xl border border-slate-300 bg-slate-50 p-3">
+            <div className="flex-1">
+              <p className="text-xs text-slate-600">
+                Vous avez déjà répondu à {answeredCount} propositions :
+                vous pouvez continuer pour affiner votre résultat, ou le
+                découvrir dès maintenant.
+              </p>
               <button
                 onClick={viewResultsNow}
-                className="rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
+                className="mt-2 rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-slate-800"
               >
                 🎉 Voir mes résultats maintenant →
               </button>
             </div>
+            <button
+              type="button"
+              onClick={() => setResultsHintDismissed(true)}
+              aria-label="Masquer ce message"
+              className="shrink-0 rounded-full px-1.5 py-0.5 font-bold text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+            >
+              ✕
+            </button>
           </div>
         )}
       </div>

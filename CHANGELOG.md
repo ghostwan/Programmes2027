@@ -32,6 +32,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 - Dès 15 propositions répondues, le bouton pour continuer le quiz est
   affiché juste sous le nombre de propositions répondues, et le bouton
   pour voir ses résultats est davantage mis en valeur.
+- Le bouton "Continuer le quiz" n'est plus proposé pendant le quiz
+  lui-même (il n'a de sens que sur la page des résultats, où il existait
+  déjà) : le message affiché dès 15 propositions ne propose plus qu'un
+  bouton pour voir ses résultats, avec une simple croix pour le masquer.
 
 ## [4.3.0] - 2026-08-24
 
