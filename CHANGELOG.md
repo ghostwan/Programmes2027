@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.4.0] - 2026-08-25
+
 ### Supprimé
 
 - Les modes "Jeu complet" et "Jeu équilibré" sont retirés : seul reste

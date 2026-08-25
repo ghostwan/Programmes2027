@@ -1,5 +1,31 @@
 [
   {
+    "version": "4.4.0",
+    "date": "2026-08-25",
+    "categories": [
+      {
+        "name": "Supprimé",
+        "items": [
+          "Les modes \"Jeu complet\" et \"Jeu équilibré\" sont retirés : seul reste le jeu égalitaire, où chaque parti a le même nombre de propositions."
+        ]
+      },
+      {
+        "name": "Ajouté",
+        "items": [
+          "Un écran d'introduction explique le principe du jeu égalitaire et qu'un aperçu du résultat est possible dès 15 propositions.",
+          "Un message signale quand un parti n'a plus de proposition à venir."
+        ]
+      },
+      {
+        "name": "Modifié",
+        "items": [
+          "Dès 15 propositions répondues, un message met en avant le bouton pour voir ses résultats (peut être masqué avec une croix).",
+          "Le bouton \"Continuer le quiz\" est aussi affiché en haut de la page de résultats, sous forme de bandeau bien visible."
+        ]
+      }
+    ]
+  },
+  {
     "version": "4.3.0",
     "date": "2026-08-24",
     "categories": [
