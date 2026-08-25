@@ -6,12 +6,10 @@ import Link from "next/link";
 import { motion, useAnimation, useMotionValue, useTransform, type PanInfo } from "framer-motion";
 import { propositions, propositionById } from "@/lib/data/propositions";
 import { themeById } from "@/lib/data/themes";
-import { Answer, AnswersMap, GameState } from "@/lib/types";
+import { partyById } from "@/lib/data/parties";
+import { Answer, AnswersMap, GameState, PartyId } from "@/lib/types";
 import {
   createBalancedDeckOrder,
-  countPropositionsByParty,
-  medianPropositionsPerParty,
-  selectCappedPropositions,
   selectEgalitarianPropositions,
 } from "@/lib/deckOrdering";
 import {
@@ -23,31 +21,18 @@ import {
 } from "@/lib/storage";
 
 /**
- * - "complet": every proposition is shown, once each, in an order
- *   balanced so each party's questions are spread out evenly (see
- *   `createBalancedDeckOrder`).
- * - "equilibre": shortens the quiz by capping how many propositions a
- *   single party can contribute, using the median count across parties
- *   as the cap. Niche parties with fewer documented propositions (e.g.
- *   Reconquête) simply keep all of theirs — there's no attempt to
- *   "make up" for their smaller footprint, that's expected — while
- *   well-documented parties (LR, LFI...) get trimmed down so no party
- *   dominates the questions asked.
- * - "egalitaire": every party ends up backing the exact same number of
- *   propositions, using whichever party has the fewest as the shared
- *   target (capped at `EGALITAIRE_MAX_PER_PARTY`), picked at random.
+ * The quiz always uses the "égalitaire" deck: every party ends up
+ * backing the exact same number of propositions, using whichever party
+ * has the fewest as the shared target (capped at
+ * `EGALITAIRE_MAX_PER_PARTY`), picked at random. This is the only mode
+ * offered — it guarantees no party dominates the questions asked.
  */
-export type DeckMode = "complet" | "equilibre" | "egalitaire";
+export type DeckMode = "egalitaire";
 
 const EGALITAIRE_MAX_PER_PARTY = 30;
 
-function createNewDeckIds(mode: DeckMode): string[] {
-  const pool =
-    mode === "equilibre"
-      ? selectCappedPropositions(propositions, medianPropositionsPerParty(propositions))
-      : mode === "egalitaire"
-        ? selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY)
-        : propositions;
+function createNewDeckIds(): string[] {
+  const pool = selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY);
   return createBalancedDeckOrder(pool).map((p) => p.id);
 }
 
@@ -149,7 +134,7 @@ export function SwipeGame() {
 
   const initialSavedState = parseSavedGameState(snapshot);
   if (initialSavedState) {
-    return <GamePlay initialSavedState={initialSavedState} mode="complet" />;
+    return <GamePlay initialSavedState={initialSavedState} />;
   }
 
   if (!forceNewGame && hasAnswersContent(answersSnapshot)) {
@@ -204,104 +189,63 @@ function PreviousResultsGate({ onStartNew }: { onStartNew: () => void }) {
 }
 
 function DeckModeGate() {
-  const [mode, setMode] = useState<DeckMode | null>(null);
-  if (mode) return <GamePlay initialSavedState={null} mode={mode} />;
-  return <DeckModeSelector onSelect={setMode} />;
+  const [started, setStarted] = useState(false);
+  if (started) return <GamePlay initialSavedState={null} />;
+  return <GameIntro onStart={() => setStarted(true)} />;
 }
 
 /**
- * Pre-game screen letting the player choose between the full deck and
- * the party-capped one. Computes a live preview of how many questions
- * each mode would ask (the capped count varies slightly run to run
- * because of randomized tie-breaking in `selectCappedPropositions`, so
- * it's recomputed here rather than hardcoded).
+ * Pre-game screen explaining the concept of the (single, égalitaire)
+ * quiz mode: propositions are shown blind (without the party name), and
+ * every party is represented by the exact same number of propositions
+ * so that no party dominates the questions asked — niche parties (with
+ * fewer documented propositions) simply set the shared target for
+ * everyone rather than being "topped up" artificially.
  */
-function DeckModeSelector({ onSelect }: { onSelect: (mode: DeckMode) => void }) {
-  const cap = useMemo(() => medianPropositionsPerParty(propositions), []);
-  const maxPartyCount = useMemo(
-    () => Math.max(...countPropositionsByParty(propositions).values()),
-    []
-  );
-  const equilibreCount = useMemo(
-    () => selectCappedPropositions(propositions, cap).length,
-    [cap]
-  );
-  const egalitaireTarget = useMemo(() => {
-    const counts = [...countPropositionsByParty(propositions).values()];
-    return Math.min(Math.min(...counts), EGALITAIRE_MAX_PER_PARTY);
-  }, []);
-  const egalitaireCount = useMemo(
-    () => selectEgalitarianPropositions(propositions, EGALITAIRE_MAX_PER_PARTY).length,
-    []
-  );
-
+function GameIntro({ onStart }: { onStart: () => void }) {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
-      <div className="max-w-2xl">
-        <h1 className="text-2xl font-bold text-slate-900">Choisissez votre partie</h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Les partis n&apos;ont pas tous le même nombre de propositions
-          documentées (certains, comme Reconquête, sont plus des partis de
-          niche avec un programme moins étoffé sur les sujets couverts
-          ici). Ce n&apos;est pas un problème en soi — mais si vous
-          préférez un jeu où aucun parti ne domine le nombre de questions,
-          choisissez le mode équilibré ou égalitaire.
+    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-6 px-4 py-10 text-center">
+      <div className="text-4xl">🟰</div>
+      <div>
+        <h1 className="text-2xl font-bold text-slate-900">
+          Le jeu égalitaire
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+          Vous allez répondre « pour » ou « contre » à des propositions
+          politiques présentées à l&apos;aveugle, sans savoir de quel parti
+          elles viennent. À la fin, on compare vos réponses aux programmes
+          des partis pour voir duquel vous êtes le plus proche.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+          Pour que le résultat soit juste, chaque parti est représenté par
+          exactement le même nombre de propositions, tirées au hasard.
+          Les partis avec un programme moins étoffé sur les sujets
+          couverts ici (par exemple les partis de niche) fixent ce nombre
+          partagé : personne ne domine le jeu de questions.
         </p>
       </div>
 
-      <div className="grid w-full gap-4 sm:grid-cols-3">
-        <button
-          onClick={() => onSelect("complet")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
-        >
-          <span className="text-lg font-bold text-slate-900">🗂️ Jeu complet</span>
-          <span className="text-sm text-slate-600">
-            Les {propositions.length} propositions, avec le nombre réel de
-            propositions par parti (jusqu&apos;à {maxPartyCount} pour les
-            partis les plus documentés).
-          </span>
-        </button>
-        <button
-          onClick={() => onSelect("equilibre")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
-        >
-          <span className="text-lg font-bold text-slate-900">⚖️ Jeu équilibré</span>
-          <span className="text-sm text-slate-600">
-            Environ {equilibreCount} propositions : aucun parti n&apos;a
-            plus que la médiane ({cap}) de propositions posées, les partis
-            avec moins de propositions documentées (ex. Reconquête) gardent
-            simplement toutes les leurs.
-          </span>
-        </button>
-        <button
-          onClick={() => onSelect("egalitaire")}
-          className="flex flex-col gap-2 rounded-2xl border-2 border-slate-200 bg-white p-6 text-left shadow-sm transition hover:border-slate-400"
-        >
-          <span className="text-lg font-bold text-slate-900">🟰 Jeu égalitaire</span>
-          <span className="text-sm text-slate-600">
-            Environ {egalitaireCount} propositions : chaque parti est
-            représenté par exactement {egalitaireTarget} propositions
-            tirées au hasard (le parti le moins documenté fixe ce nombre,
-            plafonné à {EGALITAIRE_MAX_PER_PARTY}).
-          </span>
-        </button>
-      </div>
-
-      <p className="max-w-2xl text-xs text-slate-500">
+      <p className="max-w-xl rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
         💡 Pas besoin de tout finir : dès {MIN_ANSWERS_FOR_EARLY_RESULTS}{" "}
-        réponses, vous pouvez déjà voir vos résultats. Continuer le quiz
-        ne fait ensuite que les affiner.
+        propositions parcourues, vous pourrez avoir un aperçu de votre
+        résultat et choisir de continuer pour l&apos;affiner, ou de vous
+        arrêter là.
       </p>
+
+      <button
+        onClick={onStart}
+        className="rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+      >
+        🎮 Commencer
+      </button>
     </div>
   );
 }
 
 function GamePlay({
   initialSavedState,
-  mode,
 }: {
   initialSavedState: GameState | null;
-  mode: DeckMode;
 }) {
   const router = useRouter();
   const controls = useAnimation();
@@ -313,7 +257,7 @@ function GamePlay({
   const rightGlowOpacity = useTransform(x, [20, 160], [0, 0.9]);
 
   const [deckIds] = useState<string[]>(
-    () => initialSavedState?.deckIds ?? createNewDeckIds(mode)
+    () => initialSavedState?.deckIds ?? createNewDeckIds()
   );
   const [index, setIndex] = useState(() => initialSavedState?.index ?? 0);
   const [answers, setAnswers] = useState<AnswersMap>(
@@ -341,6 +285,27 @@ function GamePlay({
   const current = deck[index];
   const done = index >= deck.length;
   const progress = deck.length > 0 ? Math.round((index / deck.length) * 100) : 0;
+
+  // Last position (0-based) at which each party still has a proposition
+  // in the deck. Once `index` moves past it, that party has no more
+  // propositions left to show for the rest of the quiz.
+  const lastDeckIndexByParty = useMemo(() => {
+    const map = new Map<PartyId, number>();
+    deck.forEach((p, i) => {
+      for (const partyId of p.supportingParties) {
+        map.set(partyId, i);
+      }
+    });
+    return map;
+  }, [deck]);
+
+  const exhaustedParties = useMemo(
+    () =>
+      [...lastDeckIndexByParty.entries()]
+        .filter(([, lastIndex]) => index > lastIndex)
+        .map(([partyId]) => partyById[partyId]?.name ?? partyId),
+    [lastDeckIndexByParty, index]
+  );
 
   function persistAnswers(finalAnswers: AnswersMap) {
     if (typeof window !== "undefined") {
@@ -455,9 +420,7 @@ function GamePlay({
           >
             ← Précédent
           </button>
-          <span>
-            {index + 1} / {deck.length}
-          </span>
+          <span>Proposition n°{index + 1}</span>
           <span>{theme.icon} {theme.name}</span>
         </div>
         <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
@@ -467,16 +430,27 @@ function GamePlay({
           />
         </div>
         {answeredCount >= MIN_ANSWERS_FOR_EARLY_RESULTS && (
-          <div className="mt-2 text-right">
+          <div className="mt-2 flex items-center justify-end gap-3 text-right">
+            <span className="text-xs text-slate-400">
+              Vous pouvez continuer ou
+            </span>
             <button
               onClick={viewResultsNow}
               className="text-xs font-semibold text-slate-500 underline underline-offset-2 hover:text-slate-800"
             >
-              Voir mes résultats maintenant ({answeredCount} réponses) →
+              voir mes résultats maintenant ({answeredCount} réponses) →
             </button>
           </div>
         )}
       </div>
+
+      {exhaustedParties.length > 0 && (
+        <p className="mb-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-600">
+          ℹ️ {exhaustedParties.length === 1 ? "Ce parti n'a" : "Ces partis n'ont"}{" "}
+          plus de propositions à venir dans cette partie :{" "}
+          <span className="font-semibold">{exhaustedParties.join(", ")}</span>.
+        </p>
+      )}
 
       {!warningDismissed && (
         <p className="mb-4 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">

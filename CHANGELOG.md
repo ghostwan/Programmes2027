@@ -15,6 +15,21 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+### Supprimé
+
+- Les modes "Jeu complet" et "Jeu équilibré" ont été retirés : le jeu ne
+  propose plus qu'un seul mode, le jeu égalitaire, où chaque parti est
+  représenté par le même nombre de propositions.
+
+### Modifié
+
+- Avant de commencer le jeu, un écran explique désormais le principe du
+  jeu égalitaire et précise qu'un aperçu du résultat est possible dès 15
+  propositions parcourues, sans afficher le nombre total de propositions
+  à venir.
+- Pendant le jeu, un message indique désormais quand un parti n'a plus
+  aucune proposition à venir dans la partie en cours.
+
 ## [4.3.0] - 2026-08-24
 
 ### Ajouté
