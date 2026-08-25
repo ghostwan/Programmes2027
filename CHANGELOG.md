@@ -15,6 +15,8 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
 
 ## [Non publié]
 
+## [4.5.0] - 2026-08-25
+
 ### Ajouté
 
 - Un repère sur la barre de progression du quiz indique le jalon des
