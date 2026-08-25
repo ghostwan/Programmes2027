@@ -36,6 +36,10 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Dépr�
   lui-même (il n'a de sens que sur la page des résultats, où il existait
   déjà) : le message affiché dès 15 propositions ne propose plus qu'un
   bouton pour voir ses résultats, avec une simple croix pour le masquer.
+- Sur la page de résultats, le bouton "Continuer le quiz" (affiché s'il
+  reste des propositions non répondues) est désormais placé tout en
+  haut de la page, sous forme d'un bandeau bien visible, au lieu d'être
+  seulement en bas de page.
 
 ## [4.3.0] - 2026-08-24
 

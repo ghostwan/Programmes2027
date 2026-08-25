@@ -125,6 +125,22 @@ export function ResultsView() {
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
+      {unfinishedGame && (
+        <Link
+          href="/jeu"
+          prefetch={false}
+          className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-slate-900 bg-slate-900 px-5 py-4 text-white shadow-sm transition hover:bg-slate-800"
+        >
+          <span className="text-sm font-semibold">
+            Ces résultats sont provisoires : il reste des propositions
+            auxquelles vous n&apos;avez pas encore répondu.
+          </span>
+          <span className="rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-900">
+            ▶️ Continuer le quiz
+          </span>
+        </Link>
+      )}
+
       <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
         Vos résultats
       </h1>
@@ -367,12 +383,6 @@ export function ResultsView() {
       )}
 
       <div className="mt-10 flex flex-wrap gap-3">
-        {unfinishedGame && (
-          <p className="w-full text-sm text-slate-500">
-            Ces résultats sont provisoires : vous n&apos;avez pas encore
-            répondu à toutes les propositions.
-          </p>
-        )}
         {shareFeedback && (
           <p className="w-full text-sm font-medium text-emerald-600">
             {shareFeedback}
@@ -384,15 +394,7 @@ export function ResultsView() {
         >
           📤 Partager mes résultats
         </button>
-        {unfinishedGame ? (
-          <Link
-            href="/jeu"
-            prefetch={false}
-            className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-          >
-            ▶️ Continuer le quiz
-          </Link>
-        ) : (
+        {!unfinishedGame && (
           <Link
             href="/jeu"
             prefetch={false}
